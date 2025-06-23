@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   include.h                                          :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/23 10:58:04 by amblanch         ###   ########.fr       */
+/*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
+/*   Updated: 2025/06/23 15:29:06 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDE_H
-# define INCLUDE_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "libft/libft.h"
-# include "MacroLibX/includes/mlx.h"
-# include "MacroLibX/includes/mlx_extended.h"
-# include "MacroLibX/includes/mlx_profile.h"
+# include "cub3d.h"
 
 typedef struct s_color
 {
@@ -46,6 +40,7 @@ typedef struct s_graphics
 typedef struct s_map
 {
 	///
+    int         fd_map;
 	char		*name;
 }				t_map;
 
@@ -56,4 +51,4 @@ typedef struct s_game
 	t_map		*map;
 } 				t_game;
 
-# endif
+#endif
