@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/23 15:56:02 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:24:50 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,11 @@
 /*****************/
 int 	check_file_map(char **argv, t_game *game);
 int 	check_texture(t_game *game);
+int	    check_ground_and_sky(t_game *game, int count);
+
+/*****************/
+/*    CLEANUP    */
+/*****************/
+void	free_texture(t_game *game);
 
 # endif

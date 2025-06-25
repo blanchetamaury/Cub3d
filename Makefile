@@ -9,9 +9,12 @@ GNL = libs/get_next_line/get_next_line.c \
 LIBS = libs/libft/libft.a $(GNL)
 
 CHECKS = src/checks/check_map.c \
-			src/checks/check_texture.c
+			src/checks/check_texture.c \
+			src/checks/check_color.c
 
-SRC = src/main.c $(CHECKS)
+CLEANUP = src/cleanup/clean_game.c
+
+SRC = src/main.c $(CHECKS) $(CLEANUP)
 OBJDIR = .obj
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 

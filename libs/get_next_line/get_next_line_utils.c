@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 13:05:53 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/23 16:00:19 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:40:15 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_bzero_gnl(void *s, size_t n)
 	ft_memset_gnl(s, 0, n);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc_gnl(size_t nmemb, size_t size)
 {
 	void	*str;
 
@@ -53,10 +53,10 @@ char	*ft_strjoin_gnl(char *str, char *src, int len)
 	char	*new;
 
 	if (!str)
-		return (str = ft_calloc(1, sizeof(char)));
+		return (str = ft_calloc_gnl(1, sizeof(char)));
 	if (!src)
 		return (str);
-	new = ft_calloc((ft_strlen_gnl(str) + len + 1), sizeof(char));
+	new = ft_calloc_gnl((ft_strlen_gnl(str) + len + 1), sizeof(char));
 	if (new == 0)
 		return (0);
 	i = 0;

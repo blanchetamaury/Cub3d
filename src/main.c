@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:00 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/23 16:14:11 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/25 10:31:18 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int main(int argc, char **argv)
 	if (check_file_map(argv, game) == 0)
 	{
 		write(2, "error\n", 6);
+		free(game->texture);
+		free(game->map);
+		free(game);
 		return (0);
 	}
 	printf("argv = %s\n", game->map->name);

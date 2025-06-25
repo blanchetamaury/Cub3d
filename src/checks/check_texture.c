@@ -6,75 +6,62 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:21:50 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/23 16:13:24 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:22:30 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int is_whitespace(char *str)
+static void	init_texture(t_game *game)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != ' ' || (str[i] <= 9 || str[i] >= 13))
-			return (0);
-		i++;
-	}
-	return (1);
+	game->texture->east_path = NULL;
+	game->texture->west_path = NULL;
+	game->texture->south_path = NULL;
+	game->texture->north_path = NULL;
+	game->texture->sky.string_color = NULL;
+	game->texture->ground.string_color = NULL;
 }
 
-static int check_texture_wall(t_game *game)
+static int	check_texture_wall(t_game *game)
 {
-	char    *tmp;
-	int     i;
-	
-	i = 0;
+	char	*tmp;
+	int		count;
+
+	count = 0;
+	init_texture(game);
 	tmp = get_next_line(game->map->fd_map);
-	while (tmp != NULL)
+	while (tmp != NULL && count < 6)
 	{
-		if (ft_strncmp(tmp, "EA", 2) == 0)
-		{
-			game->texture->east_path = ft_strdup(&tmp[3]);
-			printf("ea = [%s]\n", game->texture->east_path);
-		}
-		else if (ft_strncmp(tmp, "WE", 2) == 0)
-		{
-			game->texture->west_path = ft_strdup(&tmp[3]);
-			printf("we = [%s]\n", game->texture->west_path);
-		}
-		else if (ft_strncmp(tmp, "SO", 2) == 0)
-		{
-			game->texture->south_path = ft_strdup(&tmp[3]);
-			printf("so = [%s]\n", game->texture->south_path);
-		}
-		else if (ft_strncmp(tmp, "NO", 2) == 0)
-		{
-			game->texture->north_path = ft_strdup(&tmp[3]);
-			printf("no = [%s]\n", game->texture->north_path);
-		}
-		else if (is_whitespace(tmp) == 0)
-		{
-			free(tmp);
-			close(game->map->fd_map);
-			free(game->texture->east_path);
-			free(game->texture->west_path);
-			free(game->texture->south_path);
-			free(game->texture->north_path);
-			return (0);
-		}
+		if (ft_strncmp(tmp, "EA ", 3) == 0 && game->texture->east_path == NULL && ++count)
+			game->texture->east_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+		else if (ft_strncmp(tmp, "WE ", 3) == 0 && game->texture->west_path == NULL && ++count)
+			game->texture->west_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+		else if (ft_strncmp(tmp, "SO ", 3) == 0 && game->texture->south_path == NULL && ++count)
+			game->texture->south_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+		else if (ft_strncmp(tmp, "NO ", 3) == 0 && game->texture->north_path == NULL && ++count)
+			game->texture->north_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+		else if (ft_strncmp(tmp, "F ", 2) == 0  && game->texture->ground.string_color == NULL&& ++count)
+			game->texture->ground.string_color = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+		else if (ft_strncmp(tmp, "C ", 2) == 0 && game->texture->sky.string_color == NULL && ++count)
+			game->texture->sky.string_color = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
 		free(tmp);
-		tmp = get_next_line(game->map->fd_map);
+		if (count < 6)
+			tmp = get_next_line(game->map->fd_map);
 	}
-	free(game->texture->east_path);
-	free(game->texture->west_path);
-	free(game->texture->south_path);
-	free(game->texture->north_path);
+	if (check_ground_and_sky(game, count) == 0)
+		return (0);
+	printf("EA = [%s]\n", game->texture->east_path);
+	printf("WE = [%s]\n", game->texture->west_path);
+	printf("SO = [%s]\n", game->texture->south_path);
+	printf("NO = [%s]\n", game->texture->north_path);
+	printf("F = [%s]\n", game->texture->ground.string_color);
+	printf("C = [%s]\n", game->texture->sky.string_color);
+	printf("sky R = %d | G = %d | B = %d\n", game->texture->sky.r, game->texture->sky.g, game->texture->sky.b);
+	printf("ground R = %d | G = %d | B = %d\n", game->texture->ground.r, game->texture->ground.g, game->texture->ground.b);
+	free_texture(game);
+	close(game->map->fd_map);
 	return (1);
 }
-
 
 int check_texture(t_game *game)
 {

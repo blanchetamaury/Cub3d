@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:30:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/23 15:35:24 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:17:48 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	check_name_map(char *name, t_game *game)
 {
-	int len;
-	int pos;
-	const char tab[4] = ".cub";
+	int			len;
+	int			pos;
+	const char	tab[4] = ".cub";
 
 	pos = 3;
 	len = ft_strlen(name) - 1;
-	while (len > 0 &&  pos > 0)
+	while (len > 0 && pos > 0)
 	{
 		if (name[len] != tab[pos])
 			return (1);
@@ -31,13 +31,14 @@ static int	check_name_map(char *name, t_game *game)
 	return (0);
 }
 
-int check_file_map(char **argv, t_game *game)
+int	check_file_map(char **argv, t_game *game)
 {
 	if (check_name_map(argv[1], game) == 1)
 		return (0);
 	game->map->fd_map = open(game->map->name, O_RDONLY);
 	if (game->map->fd_map == -1)
 		return (0);
-	check_texture(game);
+	if (check_texture(game) == 0)
+		return (0);
 	return (1);
 }

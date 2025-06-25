@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 13:03:58 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/23 15:59:49 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:40:33 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	buf = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	if (buf == 0)
 		return (0);
-	line = ft_calloc(BUFFER_SIZE, sizeof(char));
+	line = ft_calloc_gnl(BUFFER_SIZE, sizeof(char));
 	if (line == 0)
 		return (0);
 	line = ft_rest(line, buf, 0, 0);
