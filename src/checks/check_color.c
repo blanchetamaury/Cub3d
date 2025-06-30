@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:20:24 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/25 13:21:28 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:23:56 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,9 @@ static int	check_number(char *str)
 	return (1);
 }
 
-static t_color	convert_to_rgb(t_color color, int *status)
+static t_color	convert_to_rgb_condition(t_color color, char **tab,
+					int *status, int i)
 {
-	char	**tab;
-	int		i;
-
-	i = 0;
-	tab = ft_split(color.string_color, ',');
-	while (tab[i])
-	{
-		if (tab[i] == NULL)
-			*status = 0;
-		i++;
-	}
 	if (i == 3 && *status == 1)
 	{
 		color.r = ft_atoi(tab[0]);
@@ -53,6 +43,23 @@ static t_color	convert_to_rgb(t_color color, int *status)
 	}
 	else
 		*status = 0;
+	return (color);
+}
+
+static t_color	convert_to_rgb(t_color color, int *status)
+{
+	char	**tab;
+	int		i;
+
+	i = 0;
+	tab = ft_split(color.string_color, ',');
+	while (tab[i])
+	{
+		if (tab[i] == NULL)
+			*status = 0;
+		i++;
+	}
+	color = convert_to_rgb_condition(color, tab, status, i);
 	if (*status == 1 && (float)(color.r + color.g + color.b) / 3 > 255)
 		*status = 0;
 	i = 0;
@@ -72,7 +79,6 @@ int	check_ground_and_sky(t_game *game, int count)
 	status = 1;
 	if (count != 6)
 	{
-		free_texture(game);
 		close(game->map->fd_map);
 		return (0);
 	}
@@ -80,7 +86,6 @@ int	check_ground_and_sky(t_game *game, int count)
 	game->texture->sky = convert_to_rgb(game->texture->sky, &status);
 	if (status == 0)
 	{
-		free_texture(game);
 		close(game->map->fd_map);
 		return (0);
 	}

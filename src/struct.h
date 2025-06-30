@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/25 10:54:07 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:52:43 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_map
 	///
     int         fd_map;
 	char		*name;
+	char		**map;
 }				t_map;
 
 typedef struct s_game
