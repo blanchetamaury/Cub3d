@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_game.c                                       :+:      :+:    :+:   */
+/*   clean_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 13:22:35 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/01 15:27:51 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/01 15:16:07 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/01 15:19:32 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_game(t_game *game)
+void	clean_map(t_map *map)
 {
-	clean_texture(game->texture);
-	clean_graphics(game->graphics);
-	clean_map(game->map);
-	clean_player(game->player);
-	free(game);
+	if (map->fd_map > 0)
+		close(map->fd_map);
+	ft_free_h(map->map);
+	free(map);
 }

@@ -22,7 +22,12 @@ SRC_CHECKS =	src/checks/check_map.c \
 				src/checks/check_map_valid.c \
 				src/checks/create_map.c
 
-SRC_CLEANUP =	src/cleanup/clean_game.c
+SRC_CLEANUP =	src/cleanup/clean_game.c \
+				src/cleanup/clean_map.c \
+				src/cleanup/clean_texture.c \
+				src/cleanup/clean_graphics.c \
+				src/cleanup/clean_player.c \
+				src/cleanup/clean_color.c
 
 SRC		=	src/main.c \
 			${SRC_INIT} \

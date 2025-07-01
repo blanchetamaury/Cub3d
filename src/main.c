@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:00 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/01 13:39:36 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/01 15:28:21 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,7 @@ int main(int argc, char **argv)
 	if (check_file_map(argv, game) == 0)
 	{
 		write(2, "error\n", 6);
-		if (game->map->map != NULL)
-			ft_free_h(game->map->map);
-		free_texture(game);
-		free(game->texture);
-		free(game->map);
-		free(game->player);
-		free(game);
+		clean_game(game);
 		return (0);
 	}
 	printf("EA = [%s]\n", game->texture->east_path);
@@ -42,10 +36,5 @@ int main(int argc, char **argv)
 	printf("NO = [%s]\n", game->texture->north_path);
 	printf("sky R = %d | G = %d | B = %d\n", game->texture->sky->r, game->texture->sky->g, game->texture->sky->b);
 	printf("ground R = %d | G = %d | B = %d\n", game->texture->ground->r, game->texture->ground->g, game->texture->ground->b);
-	ft_free_h(game->map->map);
-	free_texture(game);
-	free(game->texture);
-	free(game->map);
-	free(game->player);
-	free(game);
+	clean_game(game);
 }
