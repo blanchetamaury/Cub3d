@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:00 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/30 12:35:17 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:18:25 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int main(int argc, char **argv)
 	if (game == NULL)
 		return (1);
 	game->map = malloc(sizeof(t_map));
-	game->texture = malloc(sizeof(t_texture));
 	if (game->map == NULL)
 	{
 		free(game);
 		return (1);
 	}
+	game->texture = malloc(sizeof(t_texture));
+	game->player = malloc(sizeof(t_player));
 	game->map->map = NULL;
 	if (check_file_map(argv, game) == 0)
 	{
@@ -40,6 +41,7 @@ int main(int argc, char **argv)
 		free_texture(game);
 		free(game->texture);
 		free(game->map);
+		free(game->player);
 		free(game);
 		return (0);
 	}
@@ -53,5 +55,6 @@ int main(int argc, char **argv)
 	free_texture(game);
 	free(game->texture);
 	free(game->map);
+	free(game->player);
 	free(game);
 }

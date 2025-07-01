@@ -10,11 +10,15 @@ LIBS = libs/libft/libft.a $(GNL)
 
 CHECKS = src/checks/check_map.c \
 			src/checks/check_texture.c \
-			src/checks/check_color.c
+			src/checks/check_color.c \
+			src/checks/check_map_valid.c \
+			src/checks/create_map.c
+
+INIT = src/initialization/get_player_pos.c
 
 CLEANUP = src/cleanup/clean_game.c
 
-SRC = src/main.c $(CHECKS) $(CLEANUP)
+SRC = src/main.c $(CHECKS) $(CLEANUP) $(INIT)
 OBJDIR = .obj
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 

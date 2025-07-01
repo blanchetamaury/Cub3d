@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/25 13:52:43 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:14:46 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct s_graphics
 	///    
 }				t_graphics;
 
+typedef struct s_player
+{
+	int			x;
+	int			y;
+	///    
+}				t_player;
+
 typedef struct s_map
 {
 	///
@@ -51,6 +58,7 @@ typedef struct s_game
 	t_texture	*texture;
 	t_graphics	*graphics;
 	t_map		*map;
+	t_player	*player;
 } 				t_game;
 
 #endif
