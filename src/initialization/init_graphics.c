@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init_graphics.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 13:12:41 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/01 13:30:56 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/01 13:24:40 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/01 13:24:58 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_game	*init_game(void)
+t_graphics	*init_graphics(void)
 {
-	t_game	*game;
+	t_graphics	*graphics;
 
-	game = ft_calloc(1, sizeof(t_game));
-	game->texture = init_texture();
-	game->graphics = init_graphics();
-	game->map = init_map();
-	game->player = init_player();
-	return (game);
+	graphics = ft_calloc(1, sizeof(t_graphics));
+	return (graphics);
 }

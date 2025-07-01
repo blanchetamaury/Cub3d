@@ -13,8 +13,6 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# include "cub3d.h"
-
 typedef struct s_color
 {
 	char		*string_color;
@@ -29,8 +27,8 @@ typedef struct s_texture
 	char		*east_path;
 	char		*south_path;
 	char		*west_path;
-	t_color		sky;
-	t_color		ground;
+	t_color		*sky;
+	t_color		*ground;
 }				t_texture;
 
 typedef struct s_graphics

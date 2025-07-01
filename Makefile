@@ -8,17 +8,27 @@ GNL = libs/get_next_line/get_next_line.c \
 
 LIBS = libs/libft/libft.a $(GNL)
 
-CHECKS = src/checks/check_map.c \
-			src/checks/check_texture.c \
-			src/checks/check_color.c \
-			src/checks/check_map_valid.c \
-			src/checks/create_map.c
+SRC_INIT =		src/initialization/get_player_pos.c \
+				src/initialization/init_color.c \
+				src/initialization/init_texture.c \
+				src/initialization/init_graphics.c \
+				src/initialization/init_player.c \
+				src/initialization/init_map.c \
+				src/initialization/init_game.c
 
-INIT = src/initialization/get_player_pos.c
+SRC_CHECKS =	src/checks/check_map.c \
+				src/checks/check_texture.c \
+				src/checks/check_color.c \
+				src/checks/check_map_valid.c \
+				src/checks/create_map.c
 
-CLEANUP = src/cleanup/clean_game.c
+SRC_CLEANUP =	src/cleanup/clean_game.c
 
-SRC = src/main.c $(CHECKS) $(CLEANUP) $(INIT)
+SRC		=	src/main.c \
+			${SRC_INIT} \
+			${SRC_CHECKS} \
+			${SRC_CLEANUP}
+
 OBJDIR = .obj
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
@@ -33,7 +43,6 @@ $(OBJDIR)/%.o: %.c | $(OBJDIR)
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
-
 
 clean:
 	rm -rf $(OBJDIR)

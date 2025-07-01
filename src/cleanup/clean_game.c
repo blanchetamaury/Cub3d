@@ -18,6 +18,6 @@ void	free_texture(t_game *game)
 	free(game->texture->west_path);
 	free(game->texture->south_path);
 	free(game->texture->north_path);
-	free(game->texture->sky.string_color);
-	free(game->texture->ground.string_color);
+	free(game->texture->sky->string_color);
+	free(game->texture->ground->string_color);
 }

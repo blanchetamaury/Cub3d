@@ -12,16 +12,6 @@
 
 #include "../cub3d.h"
 
-static void	init_texture(t_game *game)
-{
-	game->texture->east_path = NULL;
-	game->texture->west_path = NULL;
-	game->texture->south_path = NULL;
-	game->texture->north_path = NULL;
-	game->texture->sky.string_color = NULL;
-	game->texture->ground.string_color = NULL;
-}
-
 static int	check_texture_wall_condition(t_game *game, char *tmp, int count)
 {
 	if (ft_strncmp(tmp, "EA ", 3) == 0 && game->texture->east_path == NULL
@@ -37,12 +27,12 @@ static int	check_texture_wall_condition(t_game *game, char *tmp, int count)
 		&& ++count)
 		game->texture->north_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
 	else if (ft_strncmp(tmp, "F ", 2) == 0
-		&& game->texture->ground.string_color == NULL && ++count)
-		game->texture->ground.string_color = ft_substr(tmp, 2,
+		&& game->texture->ground->string_color == NULL && ++count)
+		game->texture->ground->string_color = ft_substr(tmp, 2,
 				ft_strlen(tmp) - 3);
 	else if (ft_strncmp(tmp, "C ", 2) == 0
-		&& game->texture->sky.string_color == NULL && ++count)
-		game->texture->sky.string_color = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+		&& game->texture->sky->string_color == NULL && ++count)
+		game->texture->sky->string_color = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
 	return (count);
 }
 
@@ -52,7 +42,6 @@ static int	check_texture_all(t_game *game)
 	int		count;
 
 	count = 0;
-	init_texture(game);
 	tmp = get_next_line(game->map->fd_map);
 	while (tmp != NULL && count < 6)
 	{

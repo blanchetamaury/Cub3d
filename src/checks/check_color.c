@@ -26,41 +26,40 @@ static int	check_number(char *str)
 	return (1);
 }
 
-static t_color	convert_to_rgb_condition(t_color color, char **tab,
+static void	convert_to_rgb_condition(t_color *color, char **tab,
 					int *status, int i)
 {
 	if (i == 3 && *status == 1)
 	{
-		color.r = ft_atoi(tab[0]);
-		if (color.r < 0 || check_number(tab[0]) == 0)
+		color->r = ft_atoi(tab[0]);
+		if (color->r < 0 || check_number(tab[0]) == 0)
 			*status = 0;
-		color.g = ft_atoi(tab[1]);
-		if (color.g < 0 || check_number(tab[1]) == 0)
+		color->g = ft_atoi(tab[1]);
+		if (color->g < 0 || check_number(tab[1]) == 0)
 			*status = 0;
-		color.b = ft_atoi(tab[2]);
-		if (color.b < 0 || check_number(tab[2]) == 0)
+		color->b = ft_atoi(tab[2]);
+		if (color->b < 0 || check_number(tab[2]) == 0)
 			*status = 0;
 	}
 	else
 		*status = 0;
-	return (color);
 }
 
-static t_color	convert_to_rgb(t_color color, int *status)
+static void	convert_to_rgb(t_color *color, int *status)
 {
 	char	**tab;
 	int		i;
 
 	i = 0;
-	tab = ft_split(color.string_color, ',');
+	tab = ft_split(color->string_color, ',');
 	while (tab[i])
 	{
 		if (tab[i] == NULL)
 			*status = 0;
 		i++;
 	}
-	color = convert_to_rgb_condition(color, tab, status, i);
-	if (*status == 1 && (float)(color.r + color.g + color.b) / 3 > 255)
+	convert_to_rgb_condition(color, tab, status, i);
+	if (*status == 1 && (float)(color->r + color->g + color->b) / 3 > 255)
 		*status = 0;
 	i = 0;
 	while (tab[i])
@@ -69,7 +68,6 @@ static t_color	convert_to_rgb(t_color color, int *status)
 		i++;
 	}
 	free(tab);
-	return (color);
 }
 
 int	check_ground_and_sky(t_game *game, int count)
@@ -82,8 +80,8 @@ int	check_ground_and_sky(t_game *game, int count)
 		close(game->map->fd_map);
 		return (0);
 	}
-	game->texture->ground = convert_to_rgb(game->texture->ground, &status);
-	game->texture->sky = convert_to_rgb(game->texture->sky, &status);
+	convert_to_rgb(game->texture->ground, &status);
+	convert_to_rgb(game->texture->sky, &status);
 	if (status == 0)
 	{
 		close(game->map->fd_map);

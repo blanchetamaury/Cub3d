@@ -25,6 +25,17 @@
 # include "struct.h"
 
 
+/* ************************************************************************** */
+/* Initialization                                                             */
+/* ************************************************************************** */
+
+t_color			*init_color(void);
+t_texture		*init_texture(void);
+t_graphics		*init_graphics(void);
+t_player		*init_player(void);
+t_map			*init_map(void);
+t_game			*init_game(void);
+
 /*****************/
 /*      CHECK    */
 /*****************/
