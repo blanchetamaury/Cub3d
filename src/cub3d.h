@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/01 15:27:45 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/07 09:19:06 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_map			*init_map(void);
 t_game			*init_game(void);
 
 /* ************************************************************************** */
-/* cleanup                                                                    */
+/* Cleanup                                                                    */
 /* ************************************************************************** */
 
 void			clean_color(t_color *color);
@@ -46,6 +46,15 @@ void			clean_graphics(t_graphics *graphics);
 void			clean_player(t_player *player);
 void			clean_map(t_map *map);
 void			clean_game(t_game *game);
+
+/* ************************************************************************** */
+/* Logs                                                                       */
+/* ************************************************************************** */
+
+int				log_error(const char *message);
+int				log_warn(const char *message);
+int				log_info(const char	*message);
+int				log_debug(const char *message);
 
 /*****************/
 /*      CHECK    */
