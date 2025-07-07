@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:20:24 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/30 12:23:56 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/07 09:43:11 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,10 @@ int	check_ground_and_sky(t_game *game, int count)
 
 	status = 1;
 	if (count != 6)
-	{
-		close(game->map->fd_map);
-		return (0);
-	}
+		return (log_error("A texture is missing. All of these are required : NO, SO, WE, EA, F, C"));
 	convert_to_rgb(game->texture->ground, &status);
 	convert_to_rgb(game->texture->sky, &status);
 	if (status == 0)
-	{
-		close(game->map->fd_map);
-		return (0);
-	}
-	return (1);
+		return (log_error("Failed to parse color. Is it in right format ?"));
+	return (0);
 }

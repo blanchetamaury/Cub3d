@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/01 11:09:47 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/07 10:16:27 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void	close_file(t_game *game, char *tmp)
 		free(tmp);
 		tmp = get_next_line(game->map->fd_map);
 	}
-	close (game->map->fd_map);
 }
 
 static int	write_map(t_game *game, char *tmp, int *status)
@@ -58,6 +57,7 @@ static int	write_map(t_game *game, char *tmp, int *status)
 		if (tmp != NULL && check_line_map(tmp) == 0)
 		{
 			*status = 0;
+			log_error("Invalid character found in the map");
 			break ;
 		}
 		if (tmp != NULL && ft_strlen(tmp) > 1)
@@ -74,23 +74,18 @@ static int	write_map(t_game *game, char *tmp, int *status)
 
 static int	create_map(t_game *game)
 {
-	int		i;
 	int		status;
 	char	*tmp;
 
 	status = 1;
-	i = 0;
 	game->map->map = ft_malloc_h(2);
 	if (game->map->map == NULL)
-	{
-		close (game->map->fd_map);
-		return (0);
-	}
+		return (close(game->map->fd_map));
 	tmp = get_next_line(game->map->fd_map);
 	while (tmp != NULL)
 	{
-		if (check_line_map(tmp) == 1)
-			break ;
+		if (check_line_map(tmp))
+			break;
 		free(tmp);
 		tmp = get_next_line(game->map->fd_map);
 	}

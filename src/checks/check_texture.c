@@ -50,7 +50,7 @@ static int	check_texture_all(t_game *game)
 		if (count < 6)
 			tmp = get_next_line(game->map->fd_map);
 	}
-	if (check_ground_and_sky(game, count) == 0)
+	if (check_ground_and_sky(game, count))
 		return (0);
 	return (1);
 }

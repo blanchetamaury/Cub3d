@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:00 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/01 15:28:21 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/07 09:32:03 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@ int main(int argc, char **argv)
 {
 	t_game *game;
 
-	if (argc != 2)
-	{
-		write(2, "error\n", 6);
-		exit(1);
-	}
+	if (argc < 2)
+		return (log_error("Missing map files arguments.") - 27);
+	else if (argc > 2)
+		log_warn("Only one map arguments is supported. Using the first.");
 	game = init_game();
 	if (game == NULL)
-		return (1);
-	if (check_file_map(argv, game) == 0)
+		return (log_error("Memory allocation failed.") - 24);
+	if (check_file_map(argv, game))
 	{
-		write(2, "error\n", 6);
 		clean_game(game);
 		return (0);
 	}

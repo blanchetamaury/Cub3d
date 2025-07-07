@@ -89,7 +89,7 @@ int	check_map(t_game *game)
 	game->player->x = find_playerx(game->map->map);
 	game->player->y = find_playery(game->map->map);
 	if (game->player->x == -1 || game->player->y == -1)
-		return (0);
+		return (log_error("No player found in the map") - 26);
 	ft_stats(game->map->map, &size, &cap);
 	new_map = dup_map(game->map->map);
 	if (new_map == NULL)
@@ -97,5 +97,7 @@ int	check_map(t_game *game)
 	new_map[game->player->y][game->player->x] = '0';
 	status = fill(new_map, game->player->x, game->player->y, status);
 	ft_free_h(new_map);
+	if (status == 0)
+		log_error("Map is not closed.");
 	return (status);
 }
