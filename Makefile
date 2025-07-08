@@ -45,7 +45,7 @@ OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(LIBS) $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIBS)
 
 $(OBJDIR)/%.o: %.c | $(OBJDIR)
@@ -55,10 +55,15 @@ $(OBJDIR)/%.o: %.c | $(OBJDIR)
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
 
+$(LIBS):
+	make -C libs/libft
+
 clean:
+	make -C libs/libft clean
 	rm -rf $(OBJDIR)
 
 fclean: clean
+	make -C libs/libft fclean
 	rm -f $(NAME)
 
 re: fclean all
