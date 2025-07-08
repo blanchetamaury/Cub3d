@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 15:26:43 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:44:40 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,8 @@ static void	loop(void *param)
 			perpwalldist = (raylength_y - ray_y);
 		int lineheight;
 		
+		if (perpwalldist == 0)
+			perpwalldist = 1;
 		lineheight = (int)(height_window / perpwalldist);
 		draw_start = -lineheight / 2 + height_window /2;
 		if (draw_start < 0)
@@ -262,7 +264,7 @@ static void	loop(void *param)
 		{
 			tmp.rgba = 0x00FF00FF;
 			//if (side == 1)
-				mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
+			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
 			len++;
 		}
 		i++;
