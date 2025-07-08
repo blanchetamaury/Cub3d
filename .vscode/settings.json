@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "fstream": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "cmath": "c"
     }
 }

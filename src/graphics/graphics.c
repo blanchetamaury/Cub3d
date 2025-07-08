@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 14:38:26 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:18:08 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static void	loop(void *param)
 	mlx_color	red;
 
 	game = (t_game *)param;
-	bg.rgba = 0x00000000;
+	bg.rgba = 0x000000FF;
 	red.rgba = 0xFF0000FF;
 	mlx_clear_window(game->graphics->init, game->graphics->window, bg);
 	int xt;
@@ -141,13 +141,17 @@ static void	loop(void *param)
 	int		map_x;
 	int		map_y;
 	int		i;
+	int		draw_start;
+	int		draw_end;
 	mlx_color	vision;
 
 	const float DEG2RAD = 3.14 / 180.0f;
 	i = 0;
-	while (i < FOV)
+	while (i < width_window)
 	{
-		float rad = (game->player->angle + i) * DEG2RAD;
+		float deltaAngle = FOV / (float)width_window;
+		float rayAngle = (game->player->angle - FOV / 2) + i * deltaAngle;
+		float rad = rayAngle * DEG2RAD;
 		map_x = (int)game->player->pos_x;
 		map_y = (int)game->player->pos_y;
 		cos_x = cos(rad);
@@ -179,6 +183,7 @@ static void	loop(void *param)
 		}
 		int hit;
 		int j;
+		int side;
 		hit = 0;
 		j = 0;
 		while (hit == 0)
@@ -200,13 +205,40 @@ static void	loop(void *param)
 			{
 				map_x += step_x;
 				raylength_x += ray_x;
+				side = 0;
 			}
 			else
 			{
 				map_y += step_y;
 				raylength_y += ray_y;
+				side = 1;
 			}
 			j++;
+		}
+		int perpwalldist;
+		if (side == 0)
+			perpwalldist = (raylength_x - ray_x);
+		else
+			perpwalldist = (raylength_y - ray_y);
+		int lineheight;
+		
+		lineheight = (int)(height_window / perpwalldist);
+		draw_start = -lineheight / 2 + height_window /2;
+		if (draw_start < 0)
+			draw_start = 0;
+		draw_end = lineheight / 2 + height_window /2;
+		if (draw_end >= height_window)
+			draw_end = height_window - 1;
+		int len;
+
+		len = draw_start;
+		mlx_color tmp;
+		while (len < draw_end)
+		{
+			tmp.rgba = 0x00FF00FF;
+			//if (side == 1)
+				mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
+			len++;
 		}
 		i++;
 	}
