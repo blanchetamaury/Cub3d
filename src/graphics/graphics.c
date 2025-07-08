@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 14:21:51 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:38:26 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,24 @@ static void	key_hook_up(int key, void *param)
 	{
 		printf("key up = %d\n", key);
 		game->key[key] = 0;
+	}
+}
+
+static void	draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	while (i < h)
+	{
+		j = 0;
+		while (j < w)
+		{
+			mlx_pixel_put(game->graphics->init, game->graphics->window, x + j, y + i, color);
+			j++;
+		}
+		i++;
 	}
 }
 
@@ -122,58 +140,75 @@ static void	loop(void *param)
 	int		step_y;
 	int		map_x;
 	int		map_y;
+	int		i;
+	mlx_color	vision;
 
 	const float DEG2RAD = 3.14 / 180.0f;
-	float rad = game->player->angle * DEG2RAD;
-	map_x = (int)game->player->pos_x;
-	map_y = (int)game->player->pos_y;
-	cos_x = cos(rad);
-	sin_y = sin(rad);
-
-	ray_x = sqrt(1 + (sin_y / cos_x) * (sin_y / cos_x));
-    ray_y = sqrt(1 + (cos_x / sin_y) * (cos_x / sin_y));
-	rofract_x = game->player->pos_x - (int)game->player->pos_x;
-	rofract_y = game->player->pos_y - (int)game->player->pos_y;
-	if (cos_x < 0)
+	i = 0;
+	while (i < FOV)
 	{
-		step_x = -1;
-		raylength_x = rofract_x * ray_x;
-	}
-	else
-	{
-		step_x = 1;
-		raylength_x = (1 - rofract_x) * ray_x;
-	}
-	if (sin_y < 0)
-	{
-		step_y = -1;
-		raylength_y = rofract_y * ray_y;
-	}
-	else
-	{
-		step_y = 1;
-		raylength_y = (1 - rofract_y) * ray_y;
-	}
-	int hit;
-	hit = 0;
-	while (hit == 0)
-	{
-		if (game->map->map[map_y][map_x] == '1')
+		float rad = (game->player->angle + i) * DEG2RAD;
+		map_x = (int)game->player->pos_x;
+		map_y = (int)game->player->pos_y;
+		cos_x = cos(rad);
+		sin_y = sin(rad);
+	
+		ray_x = sqrt(1 + (sin_y / cos_x) * (sin_y / cos_x));
+		ray_y = sqrt(1 + (cos_x / sin_y) * (cos_x / sin_y));
+		rofract_x = game->player->pos_x - (int)game->player->pos_x;
+		rofract_y = game->player->pos_y - (int)game->player->pos_y;
+		if (cos_x < 0)
 		{
-			hit = 1;
-			break ;
-		}
-		draw_rectangle(game, (map_x * 20), (map_y* 20), 20, 20, 0x0000FFFF);
-		if (raylength_x < raylength_y)
-		{
-        	map_x += step_x;
-        	raylength_x += ray_x;
+			step_x = -1;
+			raylength_x = rofract_x * ray_x;
 		}
 		else
 		{
-        	map_y += step_y;
-        	raylength_y += ray_y;
-    	}
+			step_x = 1;
+			raylength_x = (1 - rofract_x) * ray_x;
+		}
+		if (sin_y < 0)
+		{
+			step_y = -1;
+			raylength_y = rofract_y * ray_y;
+		}
+		else
+		{
+			step_y = 1;
+			raylength_y = (1 - rofract_y) * ray_y;
+		}
+		int hit;
+		int j;
+		hit = 0;
+		j = 0;
+		while (hit == 0)
+		{
+			if (game->map->map[map_y][map_x] == '1')
+			{
+				hit = 1;
+				break ;
+			}
+			if (255 - j * 20 < 0)
+				vision.a = 0;
+			else
+				vision.a = 255 - j * 20;
+			vision.b = 255;
+			vision.g = 0;
+			vision.r = 0;
+			draw_rectangle_mlx(game, (map_x * 20), (map_y* 20), 20, 20, vision);
+			if (raylength_x < raylength_y)
+			{
+				map_x += step_x;
+				raylength_x += ray_x;
+			}
+			else
+			{
+				map_y += step_y;
+				raylength_y += ray_y;
+			}
+			j++;
+		}
+		i++;
 	}
 	if (game->key[26]) // W
 		game->player->pos_y -= 0.1;
