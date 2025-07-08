@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 15:44:40 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:06:09 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,11 @@ static void	loop(void *param)
 		//printf("len = %zu | xt = %d\n", ft_strlen(game->map->map[game->player->y]), xt);
 		while  (game->map->map[yt][xt])
 		{
+			if (game->map->map[yt][xt] == ' ')
+			{
+				xt++;
+				continue;
+			}
 			if (game->map->map[yt][xt] == '1')
 				draw_rectangle(game, xt * 20, yt * 20, 20, 20, 0xAAAAAAFF);
 			draw_rectangle(game, xt * 20, yt * 20, 1, 20, 0xFFFFFFFF);
@@ -218,8 +223,10 @@ static void	loop(void *param)
 				hit = 1;
 				break ;
 			}
-			if (255 - j * 20 < 0)
+			if (255 - j * 20 < 0) {
+				hit = 1;
 				vision.a = 0;
+			}
 			else
 				vision.a = 255 - j * 20;
 			vision.b = 255;
@@ -246,7 +253,7 @@ static void	loop(void *param)
 		else
 			perpwalldist = (raylength_y - ray_y);
 		int lineheight;
-		
+
 		if (perpwalldist == 0)
 			perpwalldist = 1;
 		lineheight = (int)(height_window / perpwalldist);
@@ -271,11 +278,11 @@ static void	loop(void *param)
 	}
 	if (game->key[26] && !checkCollideTop(game->player, game->map)) // W
 		game->player->pos_y -= 0.1;
-	else if (game->key[22] && !checkCollideBottom(game->player, game->map)) // S
+	if (game->key[22] && !checkCollideBottom(game->player, game->map)) // S
 		game->player->pos_y += 0.1;
-	else if (game->key[4] && !checkCollideLeft(game->player, game->map)) // A
+	if (game->key[4] && !checkCollideLeft(game->player, game->map)) // A
 		game->player->pos_x -= 0.1;
-	else if (game->key[7]&& !checkCollideRight(game->player, game->map)) // D
+	if (game->key[7]&& !checkCollideRight(game->player, game->map)) // D
 		game->player->pos_x += 0.1;
 
 	if (game->key[80]) // Arrow	right
