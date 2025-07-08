@@ -38,7 +38,8 @@ SRC = ft_strjoin.c \
 		ft_strmapi.c \
 		ft_striteri.c \
 		ft_realloc.c \
-		ft_tab_header.c
+		ft_tab_header.c \
+		ft_atoi_8bit.c
 
 BONUS = ft_lstnew_bonus.c \
 		ft_lstadd_front_bonus.c \

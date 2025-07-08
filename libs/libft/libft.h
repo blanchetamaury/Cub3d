@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:22:17 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/30 10:16:17 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:41:18 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void	ft_free_h(char **array);
 char	**ft_malloc_h(__uint32_t min_cap);
 void	ft_stats(char **array, int *extern_size, int *extern_cap);
 char	**ft_push(char **array, char *new);
+int		ft_atoi_8bit(const char *str);
 
 #endif

@@ -31,13 +31,13 @@ static void	convert_to_rgb_condition(t_color *color, char **tab,
 {
 	if (i == 3 && *status == 1)
 	{
-		color->r = ft_atoi(tab[0]);
+		color->r = ft_atoi_8bit(tab[0]);
 		if (color->r < 0 || check_number(tab[0]) == 0)
 			*status = 0;
-		color->g = ft_atoi(tab[1]);
+		color->g = ft_atoi_8bit(tab[1]);
 		if (color->g < 0 || check_number(tab[1]) == 0)
 			*status = 0;
-		color->b = ft_atoi(tab[2]);
+		color->b = ft_atoi_8bit(tab[2]);
 		if (color->b < 0 || check_number(tab[2]) == 0)
 			*status = 0;
 	}

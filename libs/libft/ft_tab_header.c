@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 11:26:44 by amblanch          #+#    #+#             */
-/*   Updated: 2025/06/30 10:16:31 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:45:44 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	**ft_malloc_h(__uint32_t min_cap)
 	void		**block;
 
 	block = malloc(sizeof(t_header) + min_cap * sizeof(char *));
+	if (block == NULL)
+		return (NULL);
 	ptr = (t_header *)block;
 	ptr->capacity = min_cap;
 	ptr->size = 0;
