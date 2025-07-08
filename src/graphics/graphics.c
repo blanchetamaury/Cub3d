@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 15:18:08 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:26:43 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,40 @@ static void	draw_rectangle(t_game *game, int x, int y, int w, int h, uint32_t co
 	}
 }
 
-int	isBlockAtTop(t_player	*player, t_map *map)
+int checkCollideTop(t_player *player, t_map *map)
 {
-	int		x;
-	int		y;
+	// Get block at y + 1
+	printf("PLAYER X => %f => %d\n", player->pos_x, (int)player->pos_x);
+	printf("PLAYER Y => %f => %d\n", player->pos_y, (int)player->pos_y);
+	printf("ELEMENT ON TOP => %c\n", map->map[(int)(player->pos_y + 0.5) - 1][(int)player->pos_x]);
+	return (map->map[(int)(player->pos_y + 0.9) - 1][(int)player->pos_x] == '1');
+}
 
-	x = (int)player->pos_x;
-	y = ceilf(player->pos_y) - 1;
-	printf("[X]	= %d | [Y] = %d\n", x, y);
-	return (map->map[y][x] == '1');
+int checkCollideBottom(t_player *player, t_map *map)
+{
+	// Get block at y + 1
+	printf("PLAYER X => %f => %d\n", player->pos_x, (int)player->pos_x);
+	printf("PLAYER Y => %f => %d\n", player->pos_y, (int)player->pos_y);
+	printf("ELEMENT ON BOTTOM => %c\n", map->map[(int)(player->pos_y) - 1][(int)player->pos_x]);
+	return (map->map[(int)(player->pos_y + 0.1)][(int)player->pos_x] == '1');
+}
+
+int checkCollideLeft(t_player *player, t_map *map)
+{
+	// Get block at y + 1
+	printf("PLAYER X => %f => %d\n", player->pos_x, (int)player->pos_x);
+	printf("PLAYER Y => %f => %d\n", player->pos_y, (int)player->pos_y);
+	printf("ELEMENT ON LEFT => %c\n", map->map[(int)player->pos_y][(int)player->pos_x - 1]);
+	return (map->map[(int)(player->pos_y)][(int)(player->pos_x + 0.9) - 1] == '1');
+}
+
+int checkCollideRight(t_player *player, t_map *map)
+{
+	// Get block at y + 1
+	printf("PLAYER X => %f => %d\n", player->pos_x, (int)player->pos_x);
+	printf("PLAYER Y => %f => %d\n", player->pos_y, (int)player->pos_y);
+	printf("ELEMENT ON RIGHT => %c\n", map->map[(int)player->pos_y][(int)player->pos_x - 1]);
+	return (map->map[(int)(player->pos_y)][(int)(player->pos_x + 0.1)] == '1');
 }
 
 static void	loop(void *param)
@@ -156,7 +181,7 @@ static void	loop(void *param)
 		map_y = (int)game->player->pos_y;
 		cos_x = cos(rad);
 		sin_y = sin(rad);
-	
+
 		ray_x = sqrt(1 + (sin_y / cos_x) * (sin_y / cos_x));
 		ray_y = sqrt(1 + (cos_x / sin_y) * (cos_x / sin_y));
 		rofract_x = game->player->pos_x - (int)game->player->pos_x;
@@ -242,14 +267,14 @@ static void	loop(void *param)
 		}
 		i++;
 	}
-	if (game->key[26]) // W
+	if (game->key[26] && !checkCollideTop(game->player, game->map)) // W
 		game->player->pos_y -= 0.1;
-	else if (game->key[7]) // D
-		game->player->pos_x += 0.1;
-	else if (game->key[22]) // S
+	else if (game->key[22] && !checkCollideBottom(game->player, game->map)) // S
 		game->player->pos_y += 0.1;
-	else if (game->key[4]) // A
+	else if (game->key[4] && !checkCollideLeft(game->player, game->map)) // A
 		game->player->pos_x -= 0.1;
+	else if (game->key[7]&& !checkCollideRight(game->player, game->map)) // D
+		game->player->pos_x += 0.1;
 
 	if (game->key[80]) // Arrow	right
 		game->player->angle = (game->player->angle + rotSpeed) % 360;
