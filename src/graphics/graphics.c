@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 14:06:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/08 14:21:51 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,15 @@ static void	loop(void *param)
 		step_y = 1;
 		raylength_y = (1 - rofract_y) * ray_y;
 	}
-	int i;
-	i = 0;
-	while (i < 50)
+	int hit;
+	hit = 0;
+	while (hit == 0)
 	{
+		if (game->map->map[map_y][map_x] == '1')
+		{
+			hit = 1;
+			break ;
+		}
 		draw_rectangle(game, (map_x * 20), (map_y* 20), 20, 20, 0x0000FFFF);
 		if (raylength_x < raylength_y)
 		{
@@ -169,7 +174,6 @@ static void	loop(void *param)
         	map_y += step_y;
         	raylength_y += ray_y;
     	}
-		i++;
 	}
 	if (game->key[26]) // W
 		game->player->pos_y -= 0.1;
@@ -212,6 +216,8 @@ void	graphic(t_game *game)
 	if (game->map->map[game->player->y][game->player->x] == 'W')
 		game->player->angle = 270;
 	game->map->map[game->player->y][game->player->x] = '0';
+	game->player->pos_y = game->player->y + 0.5;
+	game->player->pos_x = game->player->x + 0.5;
 	printf("1 x = %d | y = %d\n", game->player->x,  game->player->y);
 	window_info(&info);
 	game->graphics->init = mlx_init();
