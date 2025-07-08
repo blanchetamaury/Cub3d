@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/07 09:19:06 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/08 14:05:15 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "struct.h"
+# include <math.h>
 
+#define width_window 800
+#define height_window 800
+
+#define FPS 60
+#define FOV 70
 
 /* ************************************************************************** */
 /* Initialization                                                             */
@@ -55,6 +61,12 @@ int				log_error(const char *message);
 int				log_warn(const char *message);
 int				log_info(const char	*message);
 int				log_debug(const char *message);
+
+/* ************************************************************************** */
+/* Graphic                                                                    */
+/* ************************************************************************** */
+
+void    graphic(t_game *game);
 
 /*****************/
 /*      CHECK    */

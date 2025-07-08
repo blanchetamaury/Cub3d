@@ -6,7 +6,7 @@ CFLAGS = -Werror -Wall -Wextra -g -Isrc/
 GNL = libs/get_next_line/get_next_line.c \
 		libs/get_next_line/get_next_line_utils.c
 
-LIBS = libs/libft/libft.a $(GNL)
+LIBS = libs/libft/libft.a $(GNL) libs/MacroLibX/libmlx.so -lSDL2 -lm
 
 SRC_INIT =		src/initialization/get_player_pos.c \
 				src/initialization/init_color.c \
@@ -34,10 +34,13 @@ SRC_CLEANUP =	src/cleanup/clean_game.c \
 				src/cleanup/clean_player.c \
 				src/cleanup/clean_color.c
 
+SRC_GRAPHICS =	src/graphics/graphics.c
+
 SRC		=	src/main.c \
 			${SRC_INIT} \
 			${SRC_CHECKS} \
 			${SRC_LOGS} \
+			${SRC_GRAPHICS} \
 			${SRC_CLEANUP}
 
 OBJDIR = .obj
@@ -57,6 +60,7 @@ $(OBJDIR):
 
 $(LIBS):
 	make -C libs/libft
+	make -C libs/MacroLibX
 
 clean:
 	make -C libs/libft clean
