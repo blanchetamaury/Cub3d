@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 13:39:28 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/08 16:33:46 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 typedef struct s_color
 {
 	char		*string_color;
-	int			r;
-	int			g;
-	int			b;
+	mlx_color	color;
 }				t_color;
 
 typedef struct s_texture

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:20:24 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/07 09:43:11 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/08 16:34:44 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,16 @@ static void	convert_to_rgb_condition(t_color *color, char **tab,
 {
 	if (i == 3 && *status == 1)
 	{
-		color->r = ft_atoi_8bit(tab[0]);
-		if (color->r < 0 || check_number(tab[0]) == 0)
+		color->color.r = ft_atoi_8bit(tab[0]);
+		if (color->color.r < 0 || check_number(tab[0]) == 0)
 			*status = 0;
-		color->g = ft_atoi_8bit(tab[1]);
-		if (color->g < 0 || check_number(tab[1]) == 0)
+		color->color.g = ft_atoi_8bit(tab[1]);
+		if (color->color.g < 0 || check_number(tab[1]) == 0)
 			*status = 0;
-		color->b = ft_atoi_8bit(tab[2]);
-		if (color->b < 0 || check_number(tab[2]) == 0)
+		color->color.b = ft_atoi_8bit(tab[2]);
+		if (color->color.b < 0 || check_number(tab[2]) == 0)
 			*status = 0;
+		color->color.a = 255;
 	}
 	else
 		*status = 0;
@@ -59,7 +60,7 @@ static void	convert_to_rgb(t_color *color, int *status)
 		i++;
 	}
 	convert_to_rgb_condition(color, tab, status, i);
-	if (*status == 1 && (float)(color->r + color->g + color->b) / 3 > 255)
+	if (*status == 1 && (float)(color->color.r + color->color.g + color->color.b) / 3 > 255)
 		*status = 0;
 	i = 0;
 	while (tab[i])

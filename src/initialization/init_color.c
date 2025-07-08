@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:15:14 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/01 13:25:57 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/08 16:39:44 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ t_color	*init_color(void)
 
 	color = ft_calloc(1, sizeof(t_color));
 	color->string_color = NULL;
-	color->r = 0;
-	color->g = 0;
-	color->b = 0;
+	color->color.a = 0;
+	color->color.b = 0;
+	color->color.g = 0;
+	color->color.r = 0;
 	return (color);
 }

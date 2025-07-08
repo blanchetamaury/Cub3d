@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 16:30:03 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/08 16:37:22 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,7 @@ static void	loop(void *param)
 		while (len < draw_start) // sky
 		{
 			tmp.rgba = 0x0000FFFF;
-			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
+			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, game->texture->sky->color);
 			len++;
 		}
 		len = draw_start;
@@ -261,7 +261,7 @@ static void	loop(void *param)
 		while (len < height_window) // ground
 		{
 			tmp.rgba = 0xFF0000FF;
-			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
+			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, game->texture->ground->color);
 			len++;
 		}
 		i++;
@@ -340,7 +340,7 @@ void	graphic(t_game *game)
 	game->graphics->init = mlx_init();
 	game->graphics->window = mlx_new_window(game->graphics->init, &info);
 
-	mlx_set_fps_goal(game->graphics->init, 60);
+	mlx_set_fps_goal(game->graphics->init, FPS);
 	mlx_on_event(game->graphics->init, game->graphics->window, MLX_KEYDOWN, key_hook_down, game);
 	mlx_on_event(game->graphics->init, game->graphics->window, MLX_KEYUP, key_hook_up, game);
 	mlx_add_loop_hook(game->graphics->init, loop, game);

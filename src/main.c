@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:00 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 14:11:23 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/08 16:39:00 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int main(int argc, char **argv)
 	printf("WE = [%s]\n", game->texture->west_path);
 	printf("SO = [%s]\n", game->texture->south_path);
 	printf("NO = [%s]\n", game->texture->north_path);
-	printf("sky R = %d | G = %d | B = %d\n", game->texture->sky->r, game->texture->sky->g, game->texture->sky->b);
-	printf("ground R = %d | G = %d | B = %d\n", game->texture->ground->r, game->texture->ground->g, game->texture->ground->b);
+	//printf("sky R = %d | G = %d | B = %d\n", game->texture->sky->r, game->texture->sky->g, game->texture->sky->b);
+	//printf("ground R = %d | G = %d | B = %d\n", game->texture->ground->r, game->texture->ground->g, game->texture->ground->b);
 	graphic(game);
 	clean_game(game);
 }
