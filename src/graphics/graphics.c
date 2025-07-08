@@ -6,13 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 15:06:09 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/08 16:30:03 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-# define rotSpeed 1
+# define rotSpeed 3
 
 static void	window_info(mlx_window_create_info *info)
 {
@@ -130,31 +130,7 @@ static void	loop(void *param)
 
 	game = (t_game *)param;
 	bg.rgba = 0x000000FF;
-	red.rgba = 0xFF0000FF;
 	mlx_clear_window(game->graphics->init, game->graphics->window, bg);
-	int xt;
-	int yt;
-
-	yt = 0;
-	while (game->map->map[yt])
-	{
-		xt = 0;
-		//printf("len = %zu | xt = %d\n", ft_strlen(game->map->map[game->player->y]), xt);
-		while  (game->map->map[yt][xt])
-		{
-			if (game->map->map[yt][xt] == ' ')
-			{
-				xt++;
-				continue;
-			}
-			if (game->map->map[yt][xt] == '1')
-				draw_rectangle(game, xt * 20, yt * 20, 20, 20, 0xAAAAAAFF);
-			draw_rectangle(game, xt * 20, yt * 20, 1, 20, 0xFFFFFFFF);
-			draw_rectangle(game, xt * 20, yt * 20, 20, 1, 0xFFFFFFFF);
-			xt++;
-		}
-		yt++;
-	}
 	//printf("x_pos = %f | pos_y = %f | x = %d | y = %d\n", game->player->pos_x, game->player->pos_y, game->player->x, game->player->y);
 
 
@@ -249,14 +225,16 @@ static void	loop(void *param)
 		}
 		int perpwalldist;
 		if (side == 0)
-			perpwalldist = (raylength_x - ray_x);
+		perpwalldist = (raylength_x - ray_x);
 		else
-			perpwalldist = (raylength_y - ray_y);
+		perpwalldist = (raylength_y - ray_y);
 		int lineheight;
-
+		
+		float cameraOffset = (game->player->angle - rayAngle) * DEG2RAD;
+		float correctedDist = perpwalldist * cosf(cameraOffset);
 		if (perpwalldist == 0)
 			perpwalldist = 1;
-		lineheight = (int)(height_window / perpwalldist);
+		lineheight = (int)(height_window / correctedDist);
 		draw_start = -lineheight / 2 + height_window /2;
 		if (draw_start < 0)
 			draw_start = 0;
@@ -264,13 +242,25 @@ static void	loop(void *param)
 		if (draw_end >= height_window)
 			draw_end = height_window - 1;
 		int len;
-
-		len = draw_start;
 		mlx_color tmp;
-		while (len < draw_end)
+		len = 0;
+		while (len < draw_start) // sky
+		{
+			tmp.rgba = 0x0000FFFF;
+			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
+			len++;
+		}
+		len = draw_start;
+		while (len < draw_end) // wall
 		{
 			tmp.rgba = 0x00FF00FF;
 			//if (side == 1)
+			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
+			len++;
+		}
+		while (len < height_window) // ground
+		{
+			tmp.rgba = 0xFF0000FF;
 			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
 			len++;
 		}
@@ -289,6 +279,32 @@ static void	loop(void *param)
 		game->player->angle = (game->player->angle + rotSpeed) % 360;
 	if (game->key[79]) // Arrow	left
 		game->player->angle = (game->player->angle - rotSpeed) % 360;
+	
+
+	red.rgba = 0xFF0000FF;
+	int xt;
+	int yt;
+
+	yt = 0;
+	while (game->map->map[yt])
+	{
+		xt = 0;
+		//printf("len = %zu | xt = %d\n", ft_strlen(game->map->map[game->player->y]), xt);
+		while  (game->map->map[yt][xt])
+		{
+			if (game->map->map[yt][xt] == ' ')
+			{
+				xt++;
+				continue;
+			}
+			if (game->map->map[yt][xt] == '1')
+				draw_rectangle(game, xt * 20, yt * 20, 20, 20, 0xAAAAAAFF);
+			draw_rectangle(game, xt * 20, yt * 20, 1, 20, 0xFFFFFFFF);
+			draw_rectangle(game, xt * 20, yt * 20, 20, 1, 0xFFFFFFFF);
+			xt++;
+		}
+		yt++;
+	}
 	draw_rectangle(game, (game->player->pos_x * 20) - 3, (game->player->pos_y * 20) - 3, 6, 6, 0x00FF00FF);
 	//mlx_pixel_put_region(game->graphics->init, game->graphics->window, );
 }
