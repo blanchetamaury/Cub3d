@@ -14,14 +14,10 @@
 
 void	apply_position(t_player *player, t_map *map, float x, float y)
 {
-	if (map->map[(int)(y + 0.9) - 1][(int)x] == '1')
-		return;
-	if (map->map[(int)(y + 0.1)][(int)x] == '1')
-		return;
-	if (map->map[(int)y][(int)(x + 0.9) - 1] == '1')
-		return;
-	if (map->map[(int)y][(int)(x + 0.1)] == '1')
-		return;
-	player->pos_x = x;
-	player->pos_y = y;
+	if (map->map[(int)(y + 0.9) - 1][(int)x] != '1'
+		&& map->map[(int)(y + 0.1)][(int)x] != '1')
+		player->pos_y = y;
+	if (map->map[(int)y][(int)(x + 0.9) - 1] != '1'
+		&& map->map[(int)y][(int)(x + 0.1)] != '1')
+		player->pos_x = x;
 }
