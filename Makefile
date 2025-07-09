@@ -34,7 +34,8 @@ SRC_CLEANUP =	src/cleanup/clean_game.c \
 				src/cleanup/clean_player.c \
 				src/cleanup/clean_color.c
 
-SRC_GRAPHICS =	src/graphics/graphics.c
+SRC_GRAPHICS =	src/graphics/graphics.c \
+				src/graphics/raycasting.c
 
 SRC		=	src/main.c \
 			${SRC_INIT} \

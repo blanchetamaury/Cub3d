@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 10:07:08 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:20:33 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int				log_debug(const char *message);
 /* ************************************************************************** */
 
 void    graphic(t_game *game);
+void    raycasting(t_game *game);
+void	draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color);
 
 /*****************/
 /*      CHECK    */
