@@ -6,12 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 16:33:46 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 09:39:16 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+# include <cub3d.h>
 
 typedef struct s_color
 {
@@ -52,6 +53,7 @@ typedef struct s_map
 	char		**map;
 	int			size;
 	int			cap;
+	mlx_image	img;
 }				t_map;
 
 typedef struct s_game

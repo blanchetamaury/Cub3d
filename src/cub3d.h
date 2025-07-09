@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 15:39:20 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 09:46:30 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "struct.h"
 # include <math.h>
 
-#define width_window 800
-#define height_window 800
+#define width_window 1920
+#define height_window 1080
 
 #define FPS 60
 #define FOV 70
+
+# include "struct.h"
 
 /* ************************************************************************** */
 /* Initialization                                                             */

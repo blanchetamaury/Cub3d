@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 16:37:22 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 09:48:23 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,11 +230,11 @@ static void	loop(void *param)
 		perpwalldist = (raylength_y - ray_y);
 		int lineheight;
 		
-		float cameraOffset = (game->player->angle - rayAngle) * DEG2RAD;
-		float correctedDist = perpwalldist * cosf(cameraOffset);
+		//float cameraOffset = (game->player->angle - rayAngle) * DEG2RAD;
+		//float correctedDist = perpwalldist * cosf(cameraOffset);
 		if (perpwalldist == 0)
 			perpwalldist = 1;
-		lineheight = (int)(height_window / correctedDist);
+		lineheight = (int)(height_window / perpwalldist);
 		draw_start = -lineheight / 2 + height_window /2;
 		if (draw_start < 0)
 			draw_start = 0;
@@ -247,7 +247,8 @@ static void	loop(void *param)
 		while (len < draw_start) // sky
 		{
 			tmp.rgba = 0x0000FFFF;
-			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, game->texture->sky->color);
+			//mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, game->texture->sky->color);
+			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
 		len = draw_start;
@@ -255,17 +256,21 @@ static void	loop(void *param)
 		{
 			tmp.rgba = 0x00FF00FF;
 			//if (side == 1)
-			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
+			//mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
+			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
 		while (len < height_window) // ground
 		{
 			tmp.rgba = 0xFF0000FF;
-			mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, game->texture->ground->color);
+			//mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, game->texture->ground->color);
+			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
 		i++;
 	}
+
+	
 	if (game->key[26] && !checkCollideTop(game->player, game->map)) // W
 		game->player->pos_y -= 0.1;
 	if (game->key[22] && !checkCollideBottom(game->player, game->map)) // S
@@ -286,6 +291,7 @@ static void	loop(void *param)
 	int yt;
 
 	yt = 0;
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->map->img, 0, 0);
 	while (game->map->map[yt])
 	{
 		xt = 0;
@@ -325,7 +331,7 @@ void	graphic(t_game *game)
 	game->player->x = find_playerx(game->map->map);
 	game->player->y = find_playery(game->map->map);
 	if (game->map->map[game->player->y][game->player->x] == 'N')
-		game->player->angle = 360;
+		game->player->angle = 0;
 	if (game->map->map[game->player->y][game->player->x] == 'E')
 		game->player->angle = 90;
 	if (game->map->map[game->player->y][game->player->x] == 'S')
@@ -339,6 +345,7 @@ void	graphic(t_game *game)
 	window_info(&info);
 	game->graphics->init = mlx_init();
 	game->graphics->window = mlx_new_window(game->graphics->init, &info);
+	game->map->img = mlx_new_image(game->graphics->init, width_window, height_window);
 
 	mlx_set_fps_goal(game->graphics->init, FPS);
 	mlx_on_event(game->graphics->init, game->graphics->window, MLX_KEYDOWN, key_hook_down, game);
@@ -346,6 +353,7 @@ void	graphic(t_game *game)
 	mlx_add_loop_hook(game->graphics->init, loop, game);
 	mlx_loop(game->graphics->init);
 
+	mlx_destroy_image(game->graphics->init, game->map->img);
 	mlx_destroy_window(game->graphics->init, game->graphics->window);
 	mlx_destroy_context(game->graphics->init);
 }
