@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 09:39:16 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:01:41 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
-	float			pos_x;
-	float			pos_y;
+	float		pos_x;
+	float		pos_y;
 	int			rad;
 	int			angle;
 }				t_player;
@@ -56,13 +56,30 @@ typedef struct s_map
 	mlx_image	img;
 }				t_map;
 
+typedef struct s_raycasting
+{
+	float		cos_x;
+	float		sin_y;
+	float		ray_x;
+	float		ray_y;
+	float		raylength_x;
+	float		raylength_y;
+	float		rofract_x;
+	float		rofract_y;
+	int			step_x;
+	int			step_y;
+	int			map_x;
+	int			map_y;
+}				t_raycasting;
+
 typedef struct s_game
 {
-	t_texture	*texture;
-	t_graphics	*graphics;
-	t_map		*map;
-	t_player	*player;
-	int			key[300];
-} 				t_game;
+	t_texture		*texture;
+	t_graphics		*graphics;
+	t_map			*map;
+	t_player		*player;
+	t_raycasting	*ray;
+	int				key[300];
+} 					t_game;
 
 #endif

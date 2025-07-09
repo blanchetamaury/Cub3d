@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_game.c                                       :+:      :+:    :+:   */
+/*   clean_raycasting.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 13:22:35 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 10:53:06 by amblanch         ###   ########.fr       */
+/*   Created: 2025/07/09 10:53:22 by amblanch          #+#    #+#             */
+/*   Updated: 2025/07/09 10:59:50 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_game(t_game *game)
+void    clean_raycasting(t_raycasting *ray)
 {
-	clean_texture(game->texture);
-	clean_graphics(game->graphics);
-	clean_map(game->map);
-	clean_player(game->player);
-	clean_raycasting(game->ray);
-	free(game);
+	free(ray);
 }

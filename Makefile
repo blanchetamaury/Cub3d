@@ -14,7 +14,8 @@ SRC_INIT =		src/initialization/get_player_pos.c \
 				src/initialization/init_graphics.c \
 				src/initialization/init_player.c \
 				src/initialization/init_map.c \
-				src/initialization/init_game.c
+				src/initialization/init_game.c \
+				src/initialization/init_raycasting.c
 
 SRC_CHECKS =	src/checks/check_map.c \
 				src/checks/check_texture.c \
@@ -32,7 +33,8 @@ SRC_CLEANUP =	src/cleanup/clean_game.c \
 				src/cleanup/clean_texture.c \
 				src/cleanup/clean_graphics.c \
 				src/cleanup/clean_player.c \
-				src/cleanup/clean_color.c
+				src/cleanup/clean_color.c \
+				src/cleanup/clean_raycasting.c
 
 SRC_GRAPHICS =	src/graphics/graphics.c \
 				src/graphics/raycasting.c

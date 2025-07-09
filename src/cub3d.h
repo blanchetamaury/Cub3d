@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 10:20:33 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:18:10 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define width_window 800
 #define height_window 800
 
-#define FPS 60
+#define FPS 120
 #define FOV 70
 
 # include "struct.h"
@@ -42,6 +42,7 @@ t_graphics		*init_graphics(void);
 t_player		*init_player(void);
 t_map			*init_map(void);
 t_game			*init_game(void);
+t_raycasting    *init_raycasting();
 
 /* ************************************************************************** */
 /* Cleanup                                                                    */
@@ -53,6 +54,7 @@ void			clean_graphics(t_graphics *graphics);
 void			clean_player(t_player *player);
 void			clean_map(t_map *map);
 void			clean_game(t_game *game);
+void            clean_raycasting(t_raycasting *ray);
 
 /* ************************************************************************** */
 /* Logs                                                                       */
@@ -67,28 +69,28 @@ int				log_debug(const char *message);
 /* Graphic                                                                    */
 /* ************************************************************************** */
 
-void    graphic(t_game *game);
-void    raycasting(t_game *game);
-void	draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color);
+void			graphic(t_game *game);
+void			raycasting(t_game *game);
+void			draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color);
 
 /*****************/
 /*      CHECK    */
 /*****************/
-int 	check_file_map(char **argv, t_game *game);
-int 	check_texture(t_game *game);
-int	    check_ground_and_sky(t_game *game, int count);
-int     check_map(t_game *game);
-int     get_map(t_game *game);
+int				check_file_map(char **argv, t_game *game);
+int				check_texture(t_game *game);
+int				check_ground_and_sky(t_game *game, int count);
+int				check_map(t_game *game);
+int				get_map(t_game *game);
 
 /*****************/
 /*    CLEANUP    */
 /*****************/
-void	free_texture(t_game *game);
+void			free_texture(t_game *game);
 
 /*****************/
 /*    INIT       */
 /*****************/
-int	    find_playerx(char **map);
-int 	find_playery(char **map);
+int	    		find_playerx(char **map);
+int 			find_playery(char **map);
 
 # endif
