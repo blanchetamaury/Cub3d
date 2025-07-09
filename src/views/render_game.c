@@ -1,0 +1,111 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_game.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 14:56:07 by rgodet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3d.h"
+
+static void	draw_rectangle(t_game *game, int x, int y, int w, int h, uint32_t color)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	while (i < h)
+	{
+		j = 0;
+		while (j < w)
+		{
+			mlx_pixel_put(game->graphics->init, game->graphics->window, x + j, y + i, (mlx_color){ .rgba = color });
+			j++;
+		}
+		i++;
+	}
+}
+
+mlx_color	color(uint32_t color)
+{
+	mlx_color	c;
+
+	c.rgba = color;
+	return (c);
+}
+
+void	render_game(t_game *game)
+{
+	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
+
+	raycasting(game);
+
+	if (game->events->move_forward) // W
+	{
+		float x = game->player->pos_x + (cos(deg_to_rad(game->player->angle)) * 0.1);
+		float y = game->player->pos_y + (sin(deg_to_rad(game->player->angle)) * 0.1);
+		apply_position(game->player, game->map, x, y);
+	}
+	if (game->events->move_backward) // S
+	{
+		float x = game->player->pos_x - (cos(deg_to_rad(game->player->angle)) * 0.1);
+		float y = game->player->pos_y - (sin(deg_to_rad(game->player->angle)) * 0.1);
+		apply_position(game->player, game->map, x, y);
+	}
+	if (game->events->move_left) // A
+	{
+		float angle_rad = deg_to_rad(game->player->angle - 90);
+		float x = game->player->pos_x + (cos(angle_rad) * 0.1);
+		float y = game->player->pos_y + (sin(angle_rad) * 0.1);
+		apply_position(game->player, game->map, x, y);
+	}
+
+	if (game->events->move_right) // D
+	{
+		float angle_rad = deg_to_rad(game->player->angle + 90);
+		float x = game->player->pos_x + (cos(angle_rad) * 0.1);
+		float y = game->player->pos_y + (sin(angle_rad) * 0.1);
+		apply_position(game->player, game->map, x, y);
+	}
+	if (game->events->exit) // Escape
+		mlx_loop_end(game->graphics->init);
+
+
+	int xt = 0;
+	int yt = 0;
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->map->img, 0, 0);
+	while (game->map->map[yt])
+	{
+		xt = 0;
+		while  (game->map->map[yt][xt])
+		{
+			if (game->map->map[yt][xt] == ' ')
+			{
+				xt++;
+				continue;
+			}
+			if (game->map->map[yt][xt] == '1')
+				draw_rectangle(game, xt * 20, yt * 20, 20, 20, 0xAAAAAAFF);
+			draw_rectangle(game, xt * 20, yt * 20, 1, 20, 0xFFFFFFFF);
+			draw_rectangle(game, xt * 20, yt * 20, 20, 1, 0xFFFFFFFF);
+			xt++;
+		}
+		yt++;
+	}
+	draw_rectangle(game, (game->player->pos_x * 20) - 3, (game->player->pos_y * 20) - 3, 6, 6, 0x00FF00FF);
+
+	int mouse_x = width_window/2;
+	int mouse_y = 0;
+	mlx_mouse_get_pos(game->graphics->init, &mouse_x, &mouse_y);
+	if ((mouse_x / (float)width_window) * 360.0f == 0 && game->graphics->frame % 3 == 0)
+		mlx_mouse_move(game->graphics->init, game->graphics->window, width_window - 2, height_window/2);
+	else if ((mouse_x / (float)width_window) * 360.0f > 359.0f && game->graphics->frame % 3 == 0)
+		mlx_mouse_move(game->graphics->init, game->graphics->window, 2, height_window/2);
+	game->player->angle = (mouse_x / (float)width_window) * 360.0f;
+
+	game->graphics->frame++;
+}

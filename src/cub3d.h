@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 11:35:54 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/09 14:31:41 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,41 @@ int				log_debug(const char *message);
 
 void			graphic(t_game *game);
 void			raycasting(t_game *game);
+void			render(void *data);
 void			draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color);
+
+/* ************************************************************************** */
+/* Views                                                                      */
+/* ************************************************************************** */
+
+void			render_game(t_game *game);
+
+/* ************************************************************************** */
+/* Collision                                                                  */
+/* ************************************************************************** */
+
+void			apply_position(t_player *player, t_map *map, float x, float y);
 
 /* ************************************************************************** */
 /* Window                                                                     */
 /* ************************************************************************** */
 
-void	create_window(t_graphics *graphics);
+void			create_window(t_graphics *graphics);
 
 /* ************************************************************************** */
 /* Events                                                                     */
 /* ************************************************************************** */
 
-void	subscribe_keydown(t_graphics *graphics, t_events *events);
-void	subscribe_keyup(t_graphics *graphics, t_events *events);
-void	subscribe_window(t_graphics *graphics, t_events *events);
-void	subscribe_events(t_graphics *graphics, t_events *events);
+void			subscribe_keydown(t_graphics *graphics, t_events *events);
+void			subscribe_keyup(t_graphics *graphics, t_events *events);
+void			subscribe_window(t_graphics *graphics, t_events *events);
+void			subscribe_events(t_graphics *graphics, t_events *events);
+
+/* ************************************************************************** */
+/* Maths                                                                      */
+/* ************************************************************************** */
+
+float	deg_to_rad(float angle);
 
 /*****************/
 /*      CHECK    */

@@ -64,29 +64,13 @@ static int	find_wall(t_game *game)
 {
 	int	j;
 	int side;
-	int hit;
-	mlx_color	vision;
 
 	j = 0;
 	side = 0;
-	hit = 0;
-	while (hit == 0)
+	while (1)
 	{
 		if (game->map->map[game->ray->map_y][game->ray->map_x] == '1')
-		{
-			hit = 1;
 			break ;
-		}
-		if (255 - j * 20 < 0) {
-			hit = 1;
-			vision.a = 0;
-		}
-		else
-			vision.a = 255 - j * 20;
-		vision.b = 255;
-		vision.g = 0;
-		vision.r = 0;
-		draw_rectangle_mlx(game, (game->ray->map_x * 20), (game->ray->map_y* 20), 20, 20, vision);
 		if (game->ray->raylength_x < game->ray->raylength_y)
 		{
 			game->ray->map_x += game->ray->step_x;

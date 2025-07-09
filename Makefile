@@ -40,14 +40,21 @@ SRC_CLEANUP =	src/cleanup/clean_game.c \
 				src/cleanup/clean_raycasting.c
 
 SRC_GRAPHICS =	src/graphics/graphics.c \
-				src/graphics/raycasting.c
+				src/graphics/raycasting.c \
+				src/graphics/render.c
 
 SRC_EVENTS =	src/event/subscribe_events.c \
 				src/event/subscribe_keydown.c \
 				src/event/subscribe_keyup.c \
 				src/event/subscribe_window.c
 
+SRC_COLLISION =	src/collision/check_collision.c
+
+SRC_VIEWS =		src/views/render_game.c
+
 SRC_WINDOW =	src/window/create_window.c
+
+SRC_MATH =		src/math/deg_to_rad.c
 
 SRC		=	src/main.c \
 			${SRC_INIT} \
@@ -56,6 +63,9 @@ SRC		=	src/main.c \
 			${SRC_GRAPHICS} \
 			${SRC_WINDOW} \
 			${SRC_EVENTS} \
+			${SRC_VIEWS} \
+			${SRC_COLLISION} \
+			${SRC_MATH} \
 			${SRC_CLEANUP}
 
 OBJDIR = .obj

@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 13:12:41 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 14:02:56 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 13:53:10 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_game	*init_game(void)
+void	render(void *data)
 {
-	t_game	*game;
+	t_game		*game;
 
-	game = ft_calloc(1, sizeof(t_game));
-	game->texture = init_texture();
-	game->graphics = init_graphics();
-	game->map = init_map();
-	game->map->img = mlx_new_image(game->graphics->init, width_window, height_window);
-	game->player = init_player();
-	game->ray = init_raycasting();
-	game->events = init_events();
-	return (game);
+	game = (t_game *)data;
+	render_game(game);
 }

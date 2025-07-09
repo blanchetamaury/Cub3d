@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:30:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 11:39:58 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/09 13:42:49 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	check_file_map(char **argv, t_game *game)
 	if (check_map(game) == 0)
 		return (1);
 	init_player_pos(game);
+	ft_stats(game->map->map, &game->map->size, &game->map->cap);
 	return (0);
 }
