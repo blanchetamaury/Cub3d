@@ -118,12 +118,12 @@ void    raycasting(t_game *game)
 	i = 0;
 	while (i < width_window)
 	{
-		
+
 		rad = init_angle(game, i);
 		init_calc(game, rad);
 		init_dir(game);
 		side = find_wall(game);
-		
+
 		if (side == 0)
 			perpwalldist = (game->ray->raylength_x - game->ray->ray_x);
 		else
@@ -141,25 +141,33 @@ void    raycasting(t_game *game)
 		len = 0;
 		while (len < draw_start) // sky
 		{
-			tmp.rgba = 0x0000FFFF;
+			tmp.rgba = 0xADD8E6FF;
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
 		len = draw_start;
 		while (len < draw_end) // wall
 		{
-			if (len < draw_start + 10)
-				tmp.rgba = 0xAA00AAFF;
-			else if (len + 10 > draw_end)
-				tmp.rgba = 0xFFFF00FF;
+			if (side == 0) // vertical wall
+			{
+				if (game->ray->step_x < 0)
+					tmp.rgba = 0xFF0000FF; // west
+				else
+					tmp.rgba = 0x0000FFFF; // east
+			}
 			else
-				tmp.rgba = 0x00FF00FF;
+			{
+				if (game->ray->step_y < 0)
+					tmp.rgba = 0xFFFF00FF; // north
+				else
+					tmp.rgba = 0x00FF00FF; // south
+			}
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
 		while (len < height_window) // ground
 		{
-			tmp.rgba = 0xFF0000FF;
+			tmp.rgba = 0x136d15FF;
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
