@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 11:15:58 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:25:17 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void    raycasting(t_game *game)
 		while (len < draw_start) // sky
 		{
 			tmp.rgba = 0xADD8E6FF;
-			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
+			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, game->texture->sky->color);
 			len++;
 		}
 		len = draw_start;
@@ -152,7 +152,7 @@ void    raycasting(t_game *game)
 		while (len < height_window) // ground
 		{
 			tmp.rgba = 0x136d15FF;
-			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
+			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, game->texture->ground->color);
 			len++;
 		}
 		i++;

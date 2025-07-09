@@ -83,12 +83,12 @@ typedef struct s_events
 
 typedef struct s_game
 {
-	t_texture	*texture;
-	t_graphics	*graphics;
-	t_map		*map;
-	t_player	*player;
+	t_texture		*texture;
+	t_graphics		*graphics;
+	t_map			*map;
+	t_player		*player;
 	t_raycasting	*ray;
-	t_events	*events;
+	t_events		*events;
 } 				t_game;
 
 #endif
