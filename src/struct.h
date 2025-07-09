@@ -79,6 +79,7 @@ typedef struct s_events
 	int		move_left;
 	int		move_right;
 	int		exit;
+	int		debug_enabled;
 }	t_events;
 
 typedef struct s_game

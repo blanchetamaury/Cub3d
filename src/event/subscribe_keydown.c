@@ -27,6 +27,8 @@ static void		on_keydown(int key, void *param)
 		events->move_right = 1;
 	else if (key == 41)
 		events->exit = 1;
+	else if (key == 60)
+		events->debug_enabled = !events->debug_enabled;
 }
 
 void	subscribe_keydown(t_graphics *graphics, t_events *events)

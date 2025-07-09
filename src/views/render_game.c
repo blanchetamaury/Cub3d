@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 15:46:51 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:45:52 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	render_game(t_game *game)
 		mlx_loop_end(game->graphics->init);
 
 	(void) draw_rectangle;
-	debug_view(game);
+	if (game->events->debug_enabled)
+		debug_view(game);
 
 	int mouse_x = width_window/2;
 	int mouse_y = 0;
