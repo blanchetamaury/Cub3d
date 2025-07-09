@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 14:56:07 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/09 15:46:51 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	render_game(t_game *game)
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
 
 	raycasting(game);
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->map->img, 0, 0);
 
 	if (game->events->move_forward) // W
 	{
@@ -74,29 +75,8 @@ void	render_game(t_game *game)
 	if (game->events->exit) // Escape
 		mlx_loop_end(game->graphics->init);
 
-
-	int xt = 0;
-	int yt = 0;
-	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->map->img, 0, 0);
-	while (game->map->map[yt])
-	{
-		xt = 0;
-		while  (game->map->map[yt][xt])
-		{
-			if (game->map->map[yt][xt] == ' ')
-			{
-				xt++;
-				continue;
-			}
-			if (game->map->map[yt][xt] == '1')
-				draw_rectangle(game, xt * 20, yt * 20, 20, 20, 0xAAAAAAFF);
-			draw_rectangle(game, xt * 20, yt * 20, 1, 20, 0xFFFFFFFF);
-			draw_rectangle(game, xt * 20, yt * 20, 20, 1, 0xFFFFFFFF);
-			xt++;
-		}
-		yt++;
-	}
-	draw_rectangle(game, (game->player->pos_x * 20) - 3, (game->player->pos_y * 20) - 3, 6, 6, 0x00FF00FF);
+	(void) draw_rectangle;
+	debug_view(game);
 
 	int mouse_x = width_window/2;
 	int mouse_y = 0;

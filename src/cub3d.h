@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 14:31:41 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/09 15:44:14 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int				log_debug(const char *message);
 void			graphic(t_game *game);
 void			raycasting(t_game *game);
 void			render(void *data);
+mlx_color		color(uint32_t color);
 void			draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color);
 
 /* ************************************************************************** */
@@ -81,6 +82,12 @@ void			draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color co
 /* ************************************************************************** */
 
 void			render_game(t_game *game);
+
+/* ************************************************************************** */
+/* Components    													          */
+/* ************************************************************************** */
+
+void	debug_view(t_game *game);
 
 /* ************************************************************************** */
 /* Collision                                                                  */
