@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 09:48:23 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:04:28 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,11 +223,11 @@ static void	loop(void *param)
 			}
 			j++;
 		}
-		int perpwalldist;
+		float perpwalldist;
 		if (side == 0)
-		perpwalldist = (raylength_x - ray_x);
+			perpwalldist = (raylength_x - ray_x);
 		else
-		perpwalldist = (raylength_y - ray_y);
+			perpwalldist = (raylength_y - ray_y);
 		int lineheight;
 		
 		//float cameraOffset = (game->player->angle - rayAngle) * DEG2RAD;
@@ -254,7 +254,12 @@ static void	loop(void *param)
 		len = draw_start;
 		while (len < draw_end) // wall
 		{
-			tmp.rgba = 0x00FF00FF;
+			if (len < draw_start + 10)
+				tmp.rgba = 0xAA00AAFF;
+			else if (len + 10 > draw_end)
+				tmp.rgba = 0xFFFF00FF;
+			else
+				tmp.rgba = 0x00FF00FF;
 			//if (side == 1)
 			//mlx_pixel_put(game->graphics->init, game->graphics->window, i, len, tmp);
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
