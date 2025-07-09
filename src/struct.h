@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 11:42:24 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/09 17:42:11 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,13 @@ typedef struct s_color
 typedef struct s_texture
 {
 	char		*north_path;
+	mlx_image	*north;
 	char		*east_path;
+	mlx_image	*east;
 	char		*south_path;
+	mlx_image	*south;
 	char		*west_path;
+	mlx_image	*west;
 	t_color		*sky;
 	t_color		*ground;
 }				t_texture;
