@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 11:28:03 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 10:54:39 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/09 10:21:55 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 10:28:39 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_map   *init_map()
+mlx_window_create_info	*init_window_info(void)
 {
-    t_map   *map;
+	mlx_window_create_info	*info;
 
-    map = ft_calloc(1, sizeof(t_map));
-    map->fd_map = -1;
-    map->name = NULL;
-    map->map = NULL;
-    map->size = 0;
-    map->cap = 0;
-    return (map);
+	info = ft_calloc(1, sizeof(mlx_window_create_info));
+	info->height = height_window;
+	info->width = width_window;
+	info->title = "cub3d";
+	return (info);
 }

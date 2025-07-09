@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   create_window.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 13:12:41 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/01 13:30:56 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/09 10:18:50 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 10:44:16 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_game	*init_game(void)
+void	create_window(t_graphics *graphics)
 {
-	t_game	*game;
+	mlx_window_create_info	*info;
 
-	game = ft_calloc(1, sizeof(t_game));
-	game->texture = init_texture();
-	game->graphics = init_graphics();
-	game->map = init_map();
-	game->player = init_player();
-	game->ray = init_raycasting();
-	game->events = init_events();
-	return (game);
+	info = init_window_info();
+	graphics->window = mlx_new_window(graphics->init, info);
+	mlx_set_fps_goal(graphics->init, FPS);
+	//mlx_key_hook(game->graphics->window, key_hook_down, game);
+	//mlx_key_release_hook(game->graphics->window, key_hook_up, game);
 }

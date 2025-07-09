@@ -6,13 +6,12 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 11:01:41 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:42:24 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
-# include <cub3d.h>
 
 typedef struct s_color
 {
@@ -34,6 +33,7 @@ typedef struct s_graphics
 {
 	mlx_context	init;
 	mlx_window	window;
+	int			frame;
 }				t_graphics;
 
 typedef struct s_player
@@ -72,14 +72,23 @@ typedef struct s_raycasting
 	int			map_y;
 }				t_raycasting;
 
+typedef struct s_events
+{
+	int		move_forward;
+	int		move_backward;
+	int		move_left;
+	int		move_right;
+	int		exit;
+}	t_events;
+
 typedef struct s_game
 {
-	t_texture		*texture;
-	t_graphics		*graphics;
-	t_map			*map;
-	t_player		*player;
+	t_texture	*texture;
+	t_graphics	*graphics;
+	t_map		*map;
+	t_player	*player;
 	t_raycasting	*ray;
-	int				key[300];
-} 					t_game;
+	t_events	*events;
+} 				t_game;
 
 #endif

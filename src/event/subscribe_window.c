@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   subscribe_window.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 13:12:41 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/01 13:30:56 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/09 11:14:31 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 11:16:18 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_game	*init_game(void)
+static void		on_window_event(int event, void *param)
 {
-	t_game	*game;
+	t_graphics	*graphics;
 
-	game = ft_calloc(1, sizeof(t_game));
-	game->texture = init_texture();
-	game->graphics = init_graphics();
-	game->map = init_map();
-	game->player = init_player();
-	game->ray = init_raycasting();
-	game->events = init_events();
-	return (game);
+	graphics = param;
+	if (event == 0)
+		mlx_loop_end(graphics->init);
+}
+
+void	subscribe_window(t_graphics *graphics, t_events *events)
+{
+	(void) events;
+	mlx_on_event(graphics->init, graphics->window, MLX_WINDOW_EVENT, on_window_event, graphics);
 }

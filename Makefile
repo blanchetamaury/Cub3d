@@ -15,12 +15,15 @@ SRC_INIT =		src/initialization/get_player_pos.c \
 				src/initialization/init_player.c \
 				src/initialization/init_map.c \
 				src/initialization/init_game.c \
-				src/initialization/init_raycasting.c
+				src/initialization/init_raycasting.c \
+				src/initialization/init_window_info.c \
+				src/initialization/init_event.c
 
 SRC_CHECKS =	src/checks/check_map.c \
 				src/checks/check_texture.c \
 				src/checks/check_color.c \
 				src/checks/check_map_valid.c \
+				src/checks/check_player.c \
 				src/checks/create_map.c
 
 SRC_LOGS =		src/logs/log_error.c \
@@ -39,11 +42,20 @@ SRC_CLEANUP =	src/cleanup/clean_game.c \
 SRC_GRAPHICS =	src/graphics/graphics.c \
 				src/graphics/raycasting.c
 
+SRC_EVENTS =	src/event/subscribe_events.c \
+				src/event/subscribe_keydown.c \
+				src/event/subscribe_keyup.c \
+				src/event/subscribe_window.c
+
+SRC_WINDOW =	src/window/create_window.c
+
 SRC		=	src/main.c \
 			${SRC_INIT} \
 			${SRC_CHECKS} \
 			${SRC_LOGS} \
 			${SRC_GRAPHICS} \
+			${SRC_WINDOW} \
+			${SRC_EVENTS} \
 			${SRC_CLEANUP}
 
 OBJDIR = .obj
@@ -56,7 +68,7 @@ $(NAME): $(LIBS) $(OBJ)
 
 $(OBJDIR)/%.o: %.c | $(OBJDIR)
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)

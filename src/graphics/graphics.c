@@ -6,49 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 10:21:47 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:44:46 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 # define rotSpeed 3
-
-static void	window_info(mlx_window_create_info *info)
-{
-	ft_bzero(info, sizeof(mlx_window_create_info));
-	info->height = height_window;
-	info->width = width_window;
-	info->title = "test";
-	info->is_resizable = 0;
-	info->is_fullscreen = 0;
-}
-
-static void	key_hook_down(int key, void *param)
-{
-	t_game *game;
-
-	game = (t_game *)param;
-	if (key == 41)
-		mlx_loop_end(game->graphics->init);
-	if (game->key[key] == 0)
-	{
-		printf("key down = %d\n", key);
-		game->key[key] = 1;
-	}
-}
-
-static void	key_hook_up(int key, void *param)
-{
-	t_game *game;
-
-	game = (t_game *)param;
-	if (game->key[key] == 1)
-	{
-		printf("key up = %d\n", key);
-		game->key[key] = 0;
-	}
-}
 
 void	draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color)
 {
@@ -110,7 +74,6 @@ static void	loop(void *param)
 {
 	t_game		*game;
 	mlx_color	bg;
-	mlx_color	red;
 
 	game = (t_game *)param;
 	bg.rgba = 0x000000FF;
@@ -120,25 +83,25 @@ static void	loop(void *param)
 
 	raycasting(game);
 
-	
-	if (game->key[26] && !checkCollideTop(game->player, game->map)) // W
-		game->player->pos_y -= 0.1;
-	if (game->key[22] && !checkCollideBottom(game->player, game->map)) // S
-		game->player->pos_y += 0.1;
-	if (game->key[4] && !checkCollideLeft(game->player, game->map)) // A
-		game->player->pos_x -= 0.1;
-	if (game->key[7]&& !checkCollideRight(game->player, game->map)) // D
-		game->player->pos_x += 0.1;
-
-	if (game->key[80]) // Arrow	right
-		game->player->angle = (game->player->angle + rotSpeed) % 360;
-	if (game->key[79]) // Arrow	left
-		game->player->angle = (game->player->angle - rotSpeed) % 360;
-	
-
-	red.rgba = 0xFF0000FF;
 	int xt;
 	int yt;
+	
+	if (game->events->move_forward && !checkCollideTop(game->player, game->map)) // W
+		game->player->pos_y -= 0.1f;
+	if (game->events->move_backward && !checkCollideBottom(game->player, game->map)) // S
+		game->player->pos_y += 0.1f;
+	if (game->events->move_left && !checkCollideLeft(game->player, game->map)) // A
+		game->player->pos_x -= 0.1f;
+	if (game->events->move_right && !checkCollideRight(game->player, game->map)) // D
+		game->player->pos_x += 0.1f;
+	if (game->events->exit) // Escape
+		mlx_loop_end(game->graphics->init);
+
+	/*if (game->key[80]) // Arrow	right
+		game->player->angle = (game->player->angle + rotSpeed) % 360;
+	if (game->key[79]) // Arrow	left
+		game->player->angle = (game->player->angle - rotSpeed) % 360;*/
+	draw_rectangle(game, (game->player->pos_x * 20) - 3, (game->player->pos_y * 20) - 3, 6, 6, 0x00FF00FF);
 
 	yt = 0;
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->map->img, 0, 0);
@@ -162,44 +125,30 @@ static void	loop(void *param)
 		yt++;
 	}
 	draw_rectangle(game, (game->player->pos_x * 20) - 3, (game->player->pos_y * 20) - 3, 6, 6, 0x00FF00FF);
+
+	int mouse_x = width_window/2;
+	int mouse_y = 0;
+	mlx_mouse_get_pos(game->graphics->init, &mouse_x, &mouse_y);
+
+	printf("Angle => %f\n", (mouse_x / (float)width_window) * 360.0f );
+	if ((mouse_x / (float)width_window) * 360.0f == 0 && game->graphics->frame % 3 == 0)
+		mlx_mouse_move(game->graphics->init, game->graphics->window, width_window - 2, height_window/2);
+	else if ((mouse_x / (float)width_window) * 360.0f > 359.0f && game->graphics->frame % 3 == 0)
+		mlx_mouse_move(game->graphics->init, game->graphics->window, 2, height_window/2);
+	game->player->angle = (mouse_x / (float)width_window) * 360.0f;
+
 	//mlx_pixel_put_region(game->graphics->init, game->graphics->window, );
+	game->graphics->frame++;
 }
 
 void	graphic(t_game *game)
 {
-	mlx_window_create_info info;
-	mlx_color color;
-
-	color.a = 0;
-	color.b = 100;
-	color.g = 20;
-	color.r = 20;
-	game->map->size = 0;
-	game->map->cap = 0;
 	ft_stats(game->map->map, &game->map->size, &game->map->cap);
-	ft_memset(game->key, 0, 300);
-	game->player->x = find_playerx(game->map->map);
-	game->player->y = find_playery(game->map->map);
-	if (game->map->map[game->player->y][game->player->x] == 'N')
-		game->player->angle = 0;
-	if (game->map->map[game->player->y][game->player->x] == 'E')
-		game->player->angle = 90;
-	if (game->map->map[game->player->y][game->player->x] == 'S')
-		game->player->angle = 180;
-	if (game->map->map[game->player->y][game->player->x] == 'W')
-		game->player->angle = 270;
-	game->map->map[game->player->y][game->player->x] = '0';
-	game->player->pos_y = game->player->y + 0.5;
-	game->player->pos_x = game->player->x + 0.5;
+
+
 	printf("1 x = %d | y = %d\n", game->player->x,  game->player->y);
-	window_info(&info);
-	game->graphics->init = mlx_init();
-	game->graphics->window = mlx_new_window(game->graphics->init, &info);
 	game->map->img = mlx_new_image(game->graphics->init, width_window, height_window);
 
-	mlx_set_fps_goal(game->graphics->init, FPS);
-	mlx_on_event(game->graphics->init, game->graphics->window, MLX_KEYDOWN, key_hook_down, game);
-	mlx_on_event(game->graphics->init, game->graphics->window, MLX_KEYUP, key_hook_up, game);
 	mlx_add_loop_hook(game->graphics->init, loop, game);
 	mlx_loop(game->graphics->init);
 

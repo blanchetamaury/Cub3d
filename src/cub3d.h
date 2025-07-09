@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 11:18:10 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:35:54 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # include <math.h>
 
 #define width_window 800
-#define height_window 800
+#define height_window 600
 
-#define FPS 120
+#define FPS 60
 #define FOV 70
 
 # include "struct.h"
@@ -36,13 +36,15 @@
 /* Initialization                                                             */
 /* ************************************************************************** */
 
-t_color			*init_color(void);
-t_texture		*init_texture(void);
-t_graphics		*init_graphics(void);
-t_player		*init_player(void);
-t_map			*init_map(void);
-t_game			*init_game(void);
-t_raycasting    *init_raycasting();
+t_color					*init_color(void);
+t_texture				*init_texture(void);
+t_graphics				*init_graphics(void);
+t_player				*init_player(void);
+t_map					*init_map(void);
+t_game					*init_game(void);
+t_raycasting			*init_raycasting();
+t_events				*init_events(void);
+mlx_window_create_info	*init_window_info(void);
 
 /* ************************************************************************** */
 /* Cleanup                                                                    */
@@ -73,14 +75,30 @@ void			graphic(t_game *game);
 void			raycasting(t_game *game);
 void			draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color);
 
+/* ************************************************************************** */
+/* Window                                                                     */
+/* ************************************************************************** */
+
+void	create_window(t_graphics *graphics);
+
+/* ************************************************************************** */
+/* Events                                                                     */
+/* ************************************************************************** */
+
+void	subscribe_keydown(t_graphics *graphics, t_events *events);
+void	subscribe_keyup(t_graphics *graphics, t_events *events);
+void	subscribe_window(t_graphics *graphics, t_events *events);
+void	subscribe_events(t_graphics *graphics, t_events *events);
+
 /*****************/
 /*      CHECK    */
 /*****************/
-int				check_file_map(char **argv, t_game *game);
-int				check_texture(t_game *game);
-int				check_ground_and_sky(t_game *game, int count);
-int				check_map(t_game *game);
-int				get_map(t_game *game);
+int 	check_file_map(char **argv, t_game *game);
+int 	check_texture(t_game *game);
+int	    check_ground_and_sky(t_game *game, int count);
+int     check_map(t_game *game);
+void	init_player_pos(t_game *game);
+int     get_map(t_game *game);
 
 /*****************/
 /*    CLEANUP    */

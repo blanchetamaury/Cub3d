@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   subscribe_events.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 11:28:03 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 10:54:39 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/09 11:02:40 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 11:23:42 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_map   *init_map()
+void	subscribe_events(t_graphics *graphics, t_events *events)
 {
-    t_map   *map;
-
-    map = ft_calloc(1, sizeof(t_map));
-    map->fd_map = -1;
-    map->name = NULL;
-    map->map = NULL;
-    map->size = 0;
-    map->cap = 0;
-    return (map);
+	subscribe_keydown(graphics, events);
+	subscribe_keyup(graphics, events);
+	subscribe_window(graphics, events);
 }

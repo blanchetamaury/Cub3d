@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   init_event.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 11:28:03 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 10:54:39 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/09 11:00:18 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 11:01:00 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_map   *init_map()
+t_events	*init_events(void)
 {
-    t_map   *map;
+	t_events	*events;
 
-    map = ft_calloc(1, sizeof(t_map));
-    map->fd_map = -1;
-    map->name = NULL;
-    map->map = NULL;
-    map->size = 0;
-    map->cap = 0;
-    return (map);
+	events = ft_calloc(1, sizeof(t_events));
+	events->move_forward = 0;
+	events->move_backward = 0;
+	events->move_left = 0;
+	events->move_right = 0;
+	return (events);
 }
