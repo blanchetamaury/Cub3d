@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 10:21:59 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:14:18 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,8 @@ void    raycasting(t_game *game)
 	float	shade;
 	float	max_rad;
 	int		status_x;
-	uint8_t	color_alpha;
+	float	 color_alpha;
+	mlx_color tmp;
 
 	i = 0;
 	color_x = 0;
@@ -173,18 +174,21 @@ void    raycasting(t_game *game)
 		draw_end = lineheight / 2 + height_window /2;
 		if (draw_end >= height_window)
 			draw_end = height_window - 1;
-		mlx_color tmp;
 		len = 0;
 		while (len < draw_start) // sky
 		{
+			color_x = (float)i - width_window / 2;
+			color_y = (float)len - height_window / 2;
+			dist = hypotf(color_x, color_y);
+			max_rad = hypotf(width_window / 2, draw_start);
+			shade = 1.0f - (dist / max_rad);
 			tmp.r = game->texture->sky->color.r;
 			tmp.g = game->texture->sky->color.g;
 			tmp.b = game->texture->sky->color.b;
-			tmp.a = 255;
-			color_alpha = ((255 + LIGHT * 1000) / ((len + 1)));
-			if ((255 + LIGHT * 1000) / (len + 1) > 255)
-				color_alpha = 255;
-			tmp.a -= (255 - color_alpha);
+			if (shade < 0)
+				tmp.a = 0;
+			else
+				tmp.a = 255 * (shade / 2);
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
@@ -201,6 +205,11 @@ void    raycasting(t_game *game)
 		texPos = (draw_start - height_window / 2 + lineheight / 2) * texStep;
 		while (len < draw_end) // wall
 		{
+			color_x = (float)i - width_window / 2;
+			color_y = (float)len - height_window / 2;
+			dist = hypotf(color_x, color_y);
+			max_rad = hypotf(width_window / 2, draw_start);
+			shade = 1.0f - (dist / max_rad);
 			texY = (int)texPos & (get_face_height(side, game->ray->step_x, game->ray->step_y, game->texture) - 1);
 			texPos += texStep;
 			if (side == 0) // vertical wall
@@ -209,8 +218,11 @@ void    raycasting(t_game *game)
 					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->west->img, texX, texY);
 				else // east
 					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east->img, texX, texY);
-				color_alpha = ((255 + LIGHT) / game->ray->raylength_x);
-				tmp.rgba -= 255 - color_alpha;
+				color_alpha = 1.0f - (perpwalldist/ LIGHT);
+				if ((255) * (shade / 2) * color_alpha < 0)
+					tmp.a = 0;
+				else
+					tmp.a = (255) * (shade / 2) * color_alpha;
 			}
 			else
 			{
@@ -218,10 +230,12 @@ void    raycasting(t_game *game)
 					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->north->img, texX, texY);
 				else // south
 					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->south->img, texX, texY);
-				color_alpha = ((255 + LIGHT) / game->ray->raylength_y); 
-				tmp.rgba -= 255 - color_alpha;
+				color_alpha = 1.0f - (perpwalldist/ LIGHT);
+				if ((255) * (shade / 2) * color_alpha < 0)
+					tmp.a = 0;
+				else
+					tmp.a = (255) * (shade / 2) * color_alpha;
 			}
-			//printf("x = %f | y = %f\n", game->ray->raylength_x, game->ray->raylength_y);
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
@@ -231,20 +245,17 @@ void    raycasting(t_game *game)
 		while (len < height_window) // ground
 		{
 			color_x = (float)i - width_window / 2;
-			color_y = (float)len - height_window;
+			color_y = (float)len - height_window / 2;
 			dist = hypotf(color_x, color_y);
 			max_rad = hypotf(width_window / 2, draw_end);
 			shade = 1.0f - (dist / max_rad);
 			tmp.r = game->texture->ground->color.r;
 			tmp.g = game->texture->ground->color.g;
 			tmp.b = game->texture->ground->color.b;
-			tmp.a = 255 * (shade / 2);
-			/*color_alpha = 255 - (count - count / 2);
-			tmp.a -= color_alpha;
-			if (((count - count / 2) ) > 255)
-				tmp.a = 255;
-			if (((count - count / 2)) < 0)
-				tmp.a = 0;**/
+			if (shade < 0)
+				tmp.a = 0;
+			else
+				tmp.a = 255 * (shade / 2);
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 			count++; 
