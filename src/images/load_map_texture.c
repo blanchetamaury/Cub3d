@@ -16,27 +16,21 @@ int	load_map_texture(t_texture *texture, mlx_context init)
 {
 	open_image(texture->north, init);
 	if (!texture->north->img)
-	{
-		log_error("Failed to load north texture. Is the path correct?");
 		return (1);
-	}
 	open_image(texture->east, init);
 	if (!texture->east->img)
-	{
-		log_error("Failed to load east texture. Is the path correct?");
 		return (1);
-	}
 	open_image(texture->south, init);
 	if (!texture->south->img)
-	{
-		log_error("Failed to load south texture. Is the path correct?");
 		return (1);
-	}
 	open_image(texture->west, init);
 	if (!texture->west->img)
-	{
-		log_error("Failed to load west texture. Is the path correct?");
 		return (1);
-	}
+	open_image(texture->sky, init);
+	if (!texture->sky->img)
+		return (1);
+	open_image(texture->ground, init);
+	if (!texture->ground->img)
+		return (1);
 	return (0);
 }

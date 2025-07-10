@@ -26,13 +26,10 @@ static int	check_texture_wall_condition(t_game *game, char *tmp, int count)
 	else if (ft_strncmp(tmp, "NO ", 3) == 0 && game->texture->north->path == NULL
 		&& ++count)
 		game->texture->north->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	else if (ft_strncmp(tmp, "F ", 2) == 0
-		&& game->texture->ground->string_color == NULL && ++count)
-		game->texture->ground->string_color = ft_substr(tmp, 2,
-				ft_strlen(tmp) - 3);
-	else if (ft_strncmp(tmp, "C ", 2) == 0
-		&& game->texture->sky->string_color == NULL && ++count)
-		game->texture->sky->string_color = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+	else if (ft_strncmp(tmp, "F ", 2) == 0 && game->texture->ground->path == NULL && ++count)
+		game->texture->ground->path = ft_substr(tmp, 2,ft_strlen(tmp) - 3);
+	else if (ft_strncmp(tmp, "C ", 2) == 0 && game->texture->sky->path == NULL && ++count)
+		game->texture->sky->path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
 	return (count);
 }
 
@@ -50,8 +47,11 @@ static int	check_texture_all(t_game *game)
 		if (count < 6)
 			tmp = get_next_line(game->map->fd_map);
 	}
-	if (check_ground_and_sky(game, count))
+	if (count != 6)
+	{
+		log_error("A texture is missing. All of these are required : NO, SO, WE, EA, F, C");
 		return (0);
+	}
 	return (1);
 }
 

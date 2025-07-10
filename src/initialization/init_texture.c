@@ -21,8 +21,8 @@ t_texture	*init_texture(void)
 	texture->east = init_image();
 	texture->south = init_image();
 	texture->west = init_image();
-	texture->sky = init_color();
-	texture->ground = init_color();
+	texture->sky = init_image();
+	texture->ground = init_image();
 	texture->render = NULL;
 	texture->compass_background = NULL;
 	texture->compass_indicator = NULL;

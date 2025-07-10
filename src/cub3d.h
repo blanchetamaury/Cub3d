@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 16:45:40 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:08:03 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define width_window 800
 #define height_window 600
 
-#define FPS 60
+#define FPS 120
 #define FOV 70
 
 #define LIGHT 10

@@ -22,9 +22,9 @@ void	draw_sky(t_game *game, int i)
 	while (len < game->ray->draw_start)
 	{
 		shade = shade_result(game, len);
-		tmp.r = game->texture->sky->color.r;
-		tmp.g = game->texture->sky->color.g;
-		tmp.b = game->texture->sky->color.b;
+		tmp.r = 0;//game->texture->sky->color.r;
+		tmp.g = 0;//game->texture->sky->color.g;
+		tmp.b = 0;//game->texture->sky->color.b;
 		if (shade < 0)
 			tmp.a = 0;
 		else
@@ -53,8 +53,8 @@ void	draw_wall(t_game *game, int len, int side, int i)
 			else
 				tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east->img, game->ray->texX, game->ray->texY);
 			color_alpha = 1.0f - (game->ray->perpwalldist/ LIGHT);
-			if ((255) * (shade / (2 + (game->events->flashlight * 4))) * color_alpha < 0)
-				tmp.a = 0;
+			if ((255) * (shade / (2 + (game->events->flashlight * 4))) * color_alpha < 20)
+				tmp.a = 20;
 			else
 				tmp.a = (255) * (shade / (2 + (game->events->flashlight * 4))) * color_alpha;
 		}
@@ -65,8 +65,8 @@ void	draw_wall(t_game *game, int len, int side, int i)
 			else
 				tmp = mlx_get_image_pixel(game->graphics->init, game->texture->south->img, game->ray->texX, game->ray->texY);
 			color_alpha = 1.0f - (game->ray->perpwalldist/ LIGHT);
-			if ((255) * (shade / (2 + (game->events->flashlight * 4))) * color_alpha < 0)
-				tmp.a = 0;
+			if ((255) * (shade / (2 + (game->events->flashlight * 4))) * color_alpha < 20)
+				tmp.a = 20;
 			else
 				tmp.a = (255) * (shade / (2 + (game->events->flashlight * 4))) * color_alpha;
 		}
@@ -83,9 +83,9 @@ void	draw_ground(t_game *game, int len, int i)
 	while (len < height_window)
 	{
 		shade = shade_result(game, len);
-		tmp.r = game->texture->ground->color.r;
-		tmp.g = game->texture->ground->color.g;
-		tmp.b = game->texture->ground->color.b;
+		tmp.r = 0;//game->texture->ground->color.r;
+		tmp.g = 0;//game->texture->ground->color.g;
+		tmp.b = 0;//game->texture->ground->color.b;
 		if (shade < 0)
 			tmp.a = 0;
 		else
