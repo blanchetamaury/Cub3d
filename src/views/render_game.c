@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 14:33:56 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 15:00:24 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ void	render_game(t_game *game)
 	}
 	else
 		mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->hands, 0, 0);
+
+
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->clock_background, 0, height_window - 143);
+
 	if (game->events->debug_enabled)
 		debug_view(game);
 

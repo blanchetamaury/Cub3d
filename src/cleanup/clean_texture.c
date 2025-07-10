@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:16:48 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 17:57:03 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 14:58:19 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	clean_hud(t_texture *texture, mlx_context init)
 		mlx_destroy_image(init, texture->compass_indicator);
 	if (texture->hands)
 		mlx_destroy_image(init, texture->hands);
+	if (texture->clock_background)
+		mlx_destroy_image(init, texture->clock_background);
 }
 
 void	clean_texture(t_texture *texture, mlx_context init)

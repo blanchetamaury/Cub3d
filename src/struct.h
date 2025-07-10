@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 14:08:10 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 14:57:57 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_texture
 	mlx_image	compass_background;
 	mlx_image	compass_indicator;
 	mlx_image	hands;
+	mlx_image	clock_background;
 }				t_texture;
 
 typedef struct s_graphics
