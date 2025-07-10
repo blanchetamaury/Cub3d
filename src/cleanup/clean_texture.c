@@ -18,6 +18,8 @@ static void	clean_hud(t_texture *texture, mlx_context init)
 		mlx_destroy_image(init, texture->compass_background);
 	if (texture->compass_indicator)
 		mlx_destroy_image(init, texture->compass_indicator);
+	if (texture->hands)
+		mlx_destroy_image(init, texture->hands);
 }
 
 void	clean_texture(t_texture *texture, mlx_context init)

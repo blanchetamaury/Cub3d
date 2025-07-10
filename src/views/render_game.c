@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 13:25:21 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 14:25:17 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,16 @@ void	render_game(t_game *game)
 
 	(void) draw_rectangle;
 	compass(game);
+	if (game->events->move_forward || game->events->move_backward
+		|| game->events->move_left || game->events->move_right)
+	{
+		if (game->graphics->frame % 30 >= 15)
+			mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->hands, 0, (game->graphics->frame % 15) / 2);
+		else
+		 	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->hands, 0, (15 - game->graphics->frame % 15) / 2);
+	}
+	else
+		mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->hands, 0, 0);
 	if (game->events->debug_enabled)
 		debug_view(game);
 
