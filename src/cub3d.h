@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 15:44:14 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 09:27:45 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@
 # include <math.h>
 
 #define width_window 800
-#define height_window 600
+#define height_window 800
 
 #define FPS 60
 #define FOV 70
+
+#define LIGHT 10
 
 # include "struct.h"
 

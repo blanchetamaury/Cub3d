@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 15:25:17 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 09:26:30 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	init_dir(t_game *game)
 	}
 }
 
-static int	find_wall(t_game *game)
+static int	find_wall(t_game *game, int	*alpha)
 {
 	int	j;
 	int side;
@@ -84,6 +84,9 @@ static int	find_wall(t_game *game)
 			side = 1;
 		}
 		j++;
+		*alpha += 20;
+		if (*alpha > 255)
+			*alpha = 255;
 	}
 	return (side);
 }
@@ -92,21 +95,32 @@ void    raycasting(t_game *game)
 {
 	float	rad;
 	float	perpwalldist;
+	float	texStep;
+	float	texPos;
+	float	wallX;
 	int		i;
 	int		lineheight;
 	int		side;
 	int		draw_start;
 	int		draw_end;
 	int		len;
+	int		texY;
+	int		texX;
+	int		alpha;
+	int		color_x;
+	int		status_x;
+	uint8_t	color_alpha;
 
 	i = 0;
+	color_x = 0;
+	status_x = 0;
 	while (i < width_window)
 	{
-
+		alpha = 0;
 		rad = init_angle(game, i);
 		init_calc(game, rad);
 		init_dir(game);
-		side = find_wall(game);
+		side = find_wall(game, &alpha);
 
 		if (side == 0)
 			perpwalldist = (game->ray->raylength_x - game->ray->ray_x);
@@ -125,36 +139,79 @@ void    raycasting(t_game *game)
 		len = 0;
 		while (len < draw_start) // sky
 		{
-			tmp.rgba = 0xADD8E6FF;
-			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, game->texture->sky->color);
-			len++;
-		}
-		len = draw_start;
-		while (len < draw_end) // wall
-		{
-			if (side == 0) // vertical wall
-			{
-				if (game->ray->step_x < 0)
-					tmp.rgba = 0xFF0000FF; // west
-				else
-					tmp.rgba = 0x0000FFFF; // east
-			}
-			else
-			{
-				if (game->ray->step_y < 0)
-					tmp.rgba = 0xFFFF00FF; // north
-				else
-					tmp.rgba = 0x00FF00FF; // south
-			}
+			tmp.r = game->texture->sky->color.r;
+			tmp.g = game->texture->sky->color.g;
+			tmp.b = game->texture->sky->color.b;
+			tmp.a = 255;
+			color_alpha = ((255 + LIGHT * 1000) / (len + 1 + ((width_window - color_x) / 2)));
+			if ((255 + LIGHT * 100) / (len + 1 + ((width_window - color_x) / 2)) > 255)
+				color_alpha = 255;
+			tmp.a -= (255 - color_alpha);
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
-		while (len < height_window) // ground
+		len = draw_start;
+		if (side == 0)
+		    wallX = game->player->pos_y + perpwalldist * game->ray->sin_y;
+		else
+		    wallX = game->player->pos_x + perpwalldist * game->ray->cos_x;
+		wallX -= floorf(wallX);
+		texX = (int)(wallX * (float)game->size_y);
+		if ((side == 0 && game->ray->cos_x > 0) || (side == 1 && game->ray->sin_y < 0))
+		    texX = game->size_y - texX - 1;
+		texStep = 1.0f * game->size_y / lineheight;
+		texPos = (draw_start - height_window / 2 + lineheight / 2) * texStep;
+		while (len < draw_end) // wall
 		{
-			tmp.rgba = 0x136d15FF;
-			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, game->texture->ground->color);
+			texY = (int)texPos & (game->size_y - 1);
+			texPos += texStep;
+			if (side == 0) // vertical wall
+			{
+				if (game->ray->step_x < 0) // west
+					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east, texX, texY);
+				else // east
+					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east, texX, texY);
+				color_alpha = ((255 + LIGHT) / game->ray->raylength_x);
+				tmp.rgba -= 255 - color_alpha;
+			}
+			else
+			{
+				if (game->ray->step_y < 0) // north
+					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east, texX, texY);
+				else // south
+					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east, texX, texY);
+				color_alpha = ((255 + LIGHT) / game->ray->raylength_y); 
+				tmp.rgba -= 255 - color_alpha;
+			}
+			//printf("x = %f | y = %f\n", game->ray->raylength_x, game->ray->raylength_y);
+			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 		}
+		int count;
+
+		count = 1;
+		while (len < height_window) // ground
+		{
+			tmp.r = game->texture->ground->color.r;
+			tmp.g = game->texture->ground->color.g;
+			tmp.b = game->texture->ground->color.b;
+			tmp.a = 255;
+			color_alpha = 255 - (count - count / 2);
+			tmp.a -= color_alpha;
+			if (((count - count / 2) ) > 255)
+				tmp.a = 255;
+			if (((count - count / 2)) < 0)
+				tmp.a = 0;
+			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
+			len++;
+			count++; 
+		}
+		if (color_x > width_window / 2 && status_x == 0)
+			status_x = 1;
+		if (status_x == 1)
+			color_x--;
+		else
+			color_x++;
 		i++;
 	}
 }
