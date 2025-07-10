@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 11:16:24 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/10 10:30:16 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,13 +162,11 @@ void    raycasting(t_game *game)
 	float	dist;
 	float	shade;
 	float	max_rad;
-	int		status_x;
 	float	 color_alpha;
 	mlx_color tmp;
 
 	i = 0;
 	color_x = 0;
-	status_x = 0;
 	while (i < width_window)
 	{
 		alpha = 0;
@@ -205,7 +203,7 @@ void    raycasting(t_game *game)
 				tmp.a = 0;
 			else
 				tmp.a = 255 * (shade / 2);
-			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
+			mlx_set_image_pixel(game->graphics->init, game->texture->render, i, len, tmp);
 			len++;
 		}
 		len = draw_start;
@@ -252,7 +250,7 @@ void    raycasting(t_game *game)
 				else
 					tmp.a = (255) * (shade / 2) * color_alpha;
 			}
-			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
+			mlx_set_image_pixel(game->graphics->init, game->texture->render, i, len, tmp);
 			len++;
 		}
 		int count;
@@ -272,7 +270,7 @@ void    raycasting(t_game *game)
 				tmp.a = 0;
 			else
 				tmp.a = 255 * (shade / 2);
-			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
+			mlx_set_image_pixel(game->graphics->init, game->texture->render, i, len, tmp);
 			len++;
 			count++; 
 		}

@@ -16,6 +16,4 @@ void	graphic(t_game *game)
 {
 	mlx_add_loop_hook(game->graphics->init, render, game);
 	mlx_loop(game->graphics->init);
-
-	mlx_destroy_image(game->graphics->init, game->map->img);
 }

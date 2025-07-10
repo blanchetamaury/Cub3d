@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 16:45:52 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/09 18:16:00 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	render_game(t_game *game)
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
 
 	raycasting(game);
-	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->map->img, 0, 0);
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->render, 0, 0);
 
 	if (game->events->move_forward) // W
 	{

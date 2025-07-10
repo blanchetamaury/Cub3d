@@ -20,7 +20,7 @@ t_game	*init_game(void)
 	game->texture = init_texture();
 	game->graphics = init_graphics();
 	game->map = init_map();
-	game->map->img = mlx_new_image(game->graphics->init, width_window, height_window);
+	game->texture->render = mlx_new_image(game->graphics->init, width_window, height_window);
 	game->player = init_player();
 	game->ray = init_raycasting();
 	game->events = init_events();

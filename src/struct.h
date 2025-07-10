@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 17:42:11 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:56:26 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_texture
 	t_image		*west;
 	t_color		*sky;
 	t_color		*ground;
+	mlx_image	render;
 }				t_texture;
 
 typedef struct s_graphics
@@ -61,7 +62,6 @@ typedef struct s_map
 	char		**map;
 	int			size;
 	int			cap;
-	mlx_image	img;
 }				t_map;
 
 typedef struct s_raycasting
