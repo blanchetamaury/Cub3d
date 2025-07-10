@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 18:16:00 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 13:25:21 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	render_game(t_game *game)
 		game->player->angle = (game->player->angle - 2) % 360;
 
 	(void) draw_rectangle;
+	compass(game);
 	if (game->events->debug_enabled)
 		debug_view(game);
 

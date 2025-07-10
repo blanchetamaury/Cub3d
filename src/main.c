@@ -28,12 +28,7 @@ int main(int argc, char **argv)
 		clean_game(game);
 		return (0);
 	}
-	printf("EA = [%s]\n", game->texture->east->path);
-	printf("WE = [%s]\n", game->texture->west->path);
-	printf("SO = [%s]\n", game->texture->south->path);
-	printf("NO = [%s]\n", game->texture->north->path);
-	//printf("sky R = %d | G = %d | B = %d\n", game->texture->sky->r, game->texture->sky->g, game->texture->sky->b);
-	//printf("ground R = %d | G = %d | B = %d\n", game->texture->ground->r, game->texture->ground->g, game->texture->ground->b);
+	load_hud_texture(game->texture, game->graphics->init);
 	create_window(game->graphics);
 	subscribe_events(game->graphics, game->events);
 	graphic(game);

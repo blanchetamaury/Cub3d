@@ -12,6 +12,14 @@
 
 #include "../cub3d.h"
 
+static void	clean_hud(t_texture *texture, mlx_context init)
+{
+	if (texture->compass_background)
+		mlx_destroy_image(init, texture->compass_background);
+	if (texture->compass_indicator)
+		mlx_destroy_image(init, texture->compass_indicator);
+}
+
 void	clean_texture(t_texture *texture, mlx_context init)
 {
 	clean_image(texture->north, init);
@@ -19,6 +27,7 @@ void	clean_texture(t_texture *texture, mlx_context init)
 	clean_image(texture->south, init);
 	clean_image(texture->west, init);
 	mlx_destroy_image(init, texture->render);
+	clean_hud(texture, init);
 	clean_color(texture->sky);
 	clean_color(texture->ground);
 	free(texture);

@@ -42,7 +42,8 @@ SRC_CLEANUP =		src/cleanup/clean_game.c \
 					src/cleanup/clean_raycasting.c
 
 SRC_IMAGES =		src/images/open_image.c \
-					src/images/load_map_texture.c
+					src/images/load_map_texture.c \
+					src/images/load_hud_texture.c
 
 SRC_GRAPHICS =		src/graphics/graphics.c \
 					src/graphics/raycasting.c \
@@ -57,7 +58,8 @@ SRC_COLLISION =		src/collision/check_collision.c
 
 SRC_VIEWS =			src/views/render_game.c
 
-SRC_COMPONENTS =	src/components/debug_view.c
+SRC_COMPONENTS =	src/components/debug_view.c \
+					src/components/compass.c
 
 SRC_WINDOW =		src/window/create_window.c
 

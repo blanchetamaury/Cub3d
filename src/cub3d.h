@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 11:15:20 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:24:49 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int				log_debug(const char *message);
 /* ************************************************************************** */
 
 int				load_map_texture(t_texture *texture, mlx_context init);
+void			load_hud_texture(t_texture *texture, mlx_context init);
 void			open_image(t_image *image, mlx_context init);
 
 /* ************************************************************************** */
@@ -99,6 +100,7 @@ void			render_game(t_game *game);
 /* ************************************************************************** */
 
 void	debug_view(t_game *game);
+void	compass(t_game *game);
 
 /* ************************************************************************** */
 /* Collision                                                                  */

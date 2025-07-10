@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 12:56:26 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 13:18:12 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_texture
 	t_color		*sky;
 	t_color		*ground;
 	mlx_image	render;
+	mlx_image	compass_background;
+	mlx_image	compass_indicator;
 }				t_texture;
 
 typedef struct s_graphics

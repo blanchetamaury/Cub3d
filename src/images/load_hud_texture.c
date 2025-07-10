@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_texture.c                                     :+:      :+:    :+:   */
+/*   load_hud_texture.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 13:21:35 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 13:19:02 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/10 13:19:47 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_texture	*init_texture(void)
+void	load_hud_texture(t_texture *texture, mlx_context init)
 {
-	t_texture	*texture;
+	int	ignored;
 
-	texture = ft_calloc(1, sizeof(t_texture));
-	texture->north = init_image();
-	texture->east = init_image();
-	texture->south = init_image();
-	texture->west = init_image();
-	texture->sky = init_color();
-	texture->ground = init_color();
-	texture->render = NULL;
-	texture->compass_background = NULL;
-	texture->compass_indicator = NULL;
-	return (texture);
+	texture->compass_background = mlx_new_image_from_file(init, "assets/compass_background.png", &ignored, &ignored);
+	texture->compass_indicator = mlx_new_image_from_file(init, "assets/compass_indicator.png", &ignored, &ignored);
 }
