@@ -45,9 +45,12 @@ SRC_IMAGES =		src/images/open_image.c \
 					src/images/load_map_texture.c \
 					src/images/load_hud_texture.c
 
-SRC_GRAPHICS =		src/graphics/graphics.c \
-					src/graphics/raycasting.c \
-					src/graphics/render.c
+SRC_GRAPHICS =		src/raycasting/graphics.c \
+					src/raycasting/raycasting.c \
+					src/raycasting/render.c \
+					src/raycasting/init_calc.c \
+					src/raycasting/get_face.c \
+					src/raycasting/draw_texture.c
 
 SRC_EVENTS =		src/event/subscribe_events.c \
 					src/event/subscribe_keydown.c \

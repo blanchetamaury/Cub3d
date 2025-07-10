@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subscribe_keydown.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:04:46 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 11:43:13 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 16:47:18 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ static void		on_keydown(int key, void *param)
 		events->exit = 1;
 	else if (key == 60)
 		events->debug_enabled = !events->debug_enabled;
+	else if (key == 15)
+		events->flashlight = !events->flashlight;
+	//printf("key = %d | flaslight = %d\n", key, events->flashlight);
 }
 
 void	subscribe_keydown(t_graphics *graphics, t_events *events)

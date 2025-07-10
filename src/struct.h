@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 14:57:57 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 16:36:53 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,16 @@ typedef struct s_raycasting
 	float		raylength_y;
 	float		rofract_x;
 	float		rofract_y;
+	float		perpwalldist;
+	int			draw_start;
+	int			draw_end;
+	float		color_x;
+	float		color_y;
+	int			texY;
+	int			texX;
+	float		wallX;
+	float		texStep;
+	float		texPos;
 	int			step_x;
 	int			step_y;
 	int			map_x;
@@ -90,6 +100,7 @@ typedef struct s_events
 	int		move_backward;
 	int		move_left;
 	int		move_right;
+	int		flashlight;
 	int		rotate_left;
 	int		rotate_right;
 	int		exit;

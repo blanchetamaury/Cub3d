@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_event.c                                       :+:      :+:    :+:   */
+/*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 11:00:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 15:28:14 by amblanch         ###   ########.fr       */
+/*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
+/*   Updated: 2025/07/10 16:47:51 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_events	*init_events(void)
+void	graphic(t_game *game)
 {
-	t_events	*events;
-
-	events = ft_calloc(1, sizeof(t_events));
-	events->move_forward = 0;
-	events->move_backward = 0;
-	events->move_left = 0;
-	events->move_right = 0;
-	return (events);
+	mlx_add_loop_hook(game->graphics->init, render, game);
+	mlx_loop(game->graphics->init);
 }

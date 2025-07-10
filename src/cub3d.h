@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 13:24:49 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 16:45:40 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,17 @@ void			raycasting(t_game *game);
 void			render(void *data);
 mlx_color		color(uint32_t color);
 void			draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color);
+void            draw_sky(t_game *game, int i);
+void	        draw_wall(t_game *game, int len, int side, int i);
+void            draw_ground(t_game *game, int len, int i);
+int	            get_face(int side, int step_x, int step_y);
+int		        get_face_height(int side, int step_x, int step_y, t_texture *texture);
+int		        get_face_width(int side, int step_x, int step_y, t_texture *texture);
+float           init_angle(t_game *game, int i);
+void	        init_calc(t_game *game, float rad);
+void	        init_dir(t_game *game);
+float	        shade_result(t_game *game, int len);
+void	        wall_size_texture(t_game *game, int side, int lineheight);
 
 /* ************************************************************************** */
 /* Views                                                                      */

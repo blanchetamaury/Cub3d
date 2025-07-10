@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_event.c                                       :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 11:00:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 15:28:14 by amblanch         ###   ########.fr       */
+/*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 13:53:10 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_events	*init_events(void)
+void	render(void *data)
 {
-	t_events	*events;
+	t_game		*game;
 
-	events = ft_calloc(1, sizeof(t_events));
-	events->move_forward = 0;
-	events->move_backward = 0;
-	events->move_left = 0;
-	events->move_right = 0;
-	return (events);
+	game = (t_game *)data;
+	render_game(game);
 }
