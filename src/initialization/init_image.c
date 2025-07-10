@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_texture.c                                    :+:      :+:    :+:   */
+/*   init_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 15:16:48 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 17:57:03 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/09 17:48:47 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/09 17:50:00 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_texture(t_texture *texture, mlx_context init)
+t_image	*init_image(void)
 {
-	clean_image(texture->north, init);
-	clean_image(texture->east, init);
-	clean_image(texture->south, init);
-	clean_image(texture->west, init);
-	clean_color(texture->sky);
-	clean_color(texture->ground);
-	free(texture);
+	t_image	*image;
+
+	image = ft_calloc(1, sizeof(t_image));
+	image->path = NULL;
+	image->img = NULL;
+	image->width = -1;
+	image->height = -1;
+	return (image);
 }

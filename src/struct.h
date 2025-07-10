@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 18:14:25 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 17:42:11 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,20 @@ typedef struct s_color
 	mlx_color	color;
 }				t_color;
 
+typedef struct s_image
+{
+	char		*path;
+	mlx_image	img;
+	int			width;
+	int			height;
+}				t_image;
+
 typedef struct s_texture
 {
-	char		*north_path;
-	mlx_image	north;
-	char		*east_path;
-	mlx_image	east;
-	char		*south_path;
-	mlx_image	south;
-	char		*west_path;
-	mlx_image	west;
+	t_image		*north;
+	t_image		*east;
+	t_image		*south;
+	t_image		*west;
 	t_color		*sky;
 	t_color		*ground;
 }				t_texture;
@@ -94,8 +98,6 @@ typedef struct s_game
 	t_player		*player;
 	t_raycasting	*ray;
 	t_events		*events;
-	int				size_x;
-	int				size_y;
 } 				t_game;
 
 #endif

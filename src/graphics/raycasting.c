@@ -91,6 +91,40 @@ static int	find_wall(t_game *game, int	*alpha)
 	return (side);
 }
 
+int		get_face(int side, int step_x, int step_y)
+{
+	if (side == 0) // vertical wall
+	{
+		if (step_x < 0) // west
+			return (3);
+		else // east
+			return (1);
+	}
+	else
+	{
+		if (step_y < 0) // north
+			return (0);
+		else // south
+			return (2);
+	}
+}
+
+int		get_face_height(int side, int step_x, int step_y, t_texture *texture)
+{
+	int	face;
+
+	face = get_face(side, step_x, step_y);
+	if (face == 0) // north
+		return (texture->north->height);
+	if (face == 1) // east
+		return (texture->east->height);
+	if (face == 2) // south
+		return (texture->south->height);
+	if (face == 3) // west
+		return (texture->west->height);
+	return (0);
+}
+
 void    raycasting(t_game *game)
 {
 	float	rad;
@@ -160,30 +194,30 @@ void    raycasting(t_game *game)
 		else
 		    wallX = game->player->pos_x + perpwalldist * game->ray->cos_x;
 		wallX -= floorf(wallX);
-		texX = (int)(wallX * (float)game->size_y);
+		texX = (int)(wallX * (float)get_face_height(side, game->ray->step_x, game->ray->step_y, game->texture));
 		if ((side == 0 && game->ray->cos_x > 0) || (side == 1 && game->ray->sin_y < 0))
-		    texX = game->size_y - texX - 1;
-		texStep = 1.0f * game->size_y / lineheight;
+		    texX = get_face_height(side, game->ray->step_x, game->ray->step_y, game->texture) - texX - 1;
+		texStep = 1.0f * get_face_height(side, game->ray->step_x, game->ray->step_y, game->texture) / lineheight;
 		texPos = (draw_start - height_window / 2 + lineheight / 2) * texStep;
 		while (len < draw_end) // wall
 		{
-			texY = (int)texPos & (game->size_y - 1);
+			texY = (int)texPos & (get_face_height(side, game->ray->step_x, game->ray->step_y, game->texture) - 1);
 			texPos += texStep;
 			if (side == 0) // vertical wall
 			{
 				if (game->ray->step_x < 0) // west
-					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east, texX, texY);
+					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->west->img, texX, texY);
 				else // east
-					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east, texX, texY);
+					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east->img, texX, texY);
 				color_alpha = ((255 + LIGHT) / game->ray->raylength_x);
 				tmp.rgba -= 255 - color_alpha;
 			}
 			else
 			{
 				if (game->ray->step_y < 0) // north
-					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east, texX, texY);
+					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->north->img, texX, texY);
 				else // south
-					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->east, texX, texY);
+					tmp = mlx_get_image_pixel(game->graphics->init, game->texture->south->img, texX, texY);
 				color_alpha = ((255 + LIGHT) / game->ray->raylength_y); 
 				tmp.rgba -= 255 - color_alpha;
 			}

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 09:27:45 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:44:14 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <math.h>
 
 #define width_window 800
-#define height_window 800
+#define height_window 600
 
 #define FPS 60
 #define FOV 70
@@ -43,6 +43,7 @@ t_texture				*init_texture(void);
 t_graphics				*init_graphics(void);
 t_player				*init_player(void);
 t_map					*init_map(void);
+t_image					*init_image(void);
 t_game					*init_game(void);
 t_raycasting			*init_raycasting();
 t_events				*init_events(void);
@@ -53,10 +54,11 @@ mlx_window_create_info	*init_window_info(void);
 /* ************************************************************************** */
 
 void			clean_color(t_color *color);
-void			clean_texture(t_texture *texture);
+void			clean_texture(t_texture *texture, mlx_context init);
 void			clean_graphics(t_graphics *graphics);
 void			clean_player(t_player *player);
 void			clean_map(t_map *map);
+void			clean_image(t_image *image, mlx_context init);
 void			clean_game(t_game *game);
 void            clean_raycasting(t_raycasting *ray);
 
@@ -68,6 +70,13 @@ int				log_error(const char *message);
 int				log_warn(const char *message);
 int				log_info(const char	*message);
 int				log_debug(const char *message);
+
+/* ************************************************************************** */
+/* Images                                                                     */
+/* ************************************************************************** */
+
+int				load_map_texture(t_texture *texture, mlx_context init);
+void			open_image(t_image *image, mlx_context init);
 
 /* ************************************************************************** */
 /* Graphic                                                                    */

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_texture.c                                    :+:      :+:    :+:   */
+/*   clean_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 15:16:48 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 17:57:03 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/09 17:54:11 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/10 09:38:30 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_texture(t_texture *texture, mlx_context init)
+void	clean_image(t_image *image, mlx_context init)
 {
-	clean_image(texture->north, init);
-	clean_image(texture->east, init);
-	clean_image(texture->south, init);
-	clean_image(texture->west, init);
-	clean_color(texture->sky);
-	clean_color(texture->ground);
-	free(texture);
+	if (init && image->img)
+		mlx_destroy_image(init, image->img);
+	if (image->path)
+		free(image->path);
+	free(image);
 }

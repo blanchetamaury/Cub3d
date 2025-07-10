@@ -14,18 +14,18 @@
 
 static int	check_texture_wall_condition(t_game *game, char *tmp, int count)
 {
-	if (ft_strncmp(tmp, "EA ", 3) == 0 && game->texture->east_path == NULL
+	if (ft_strncmp(tmp, "EA ", 3) == 0 && game->texture->east->path == NULL
 		&& ++count)
-		game->texture->east_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	else if (ft_strncmp(tmp, "WE ", 3) == 0 && game->texture->west_path == NULL
+		game->texture->east->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+	else if (ft_strncmp(tmp, "WE ", 3) == 0 && game->texture->west->path == NULL
 		&& ++count)
-		game->texture->west_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	else if (ft_strncmp(tmp, "SO ", 3) == 0 && game->texture->south_path == NULL
+		game->texture->west->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+	else if (ft_strncmp(tmp, "SO ", 3) == 0 && game->texture->south->path == NULL
 		&& ++count)
-		game->texture->south_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	else if (ft_strncmp(tmp, "NO ", 3) == 0 && game->texture->north_path == NULL
+		game->texture->south->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+	else if (ft_strncmp(tmp, "NO ", 3) == 0 && game->texture->north->path == NULL
 		&& ++count)
-		game->texture->north_path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+		game->texture->north->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
 	else if (ft_strncmp(tmp, "F ", 2) == 0
 		&& game->texture->ground->string_color == NULL && ++count)
 		game->texture->ground->string_color = ft_substr(tmp, 2,
