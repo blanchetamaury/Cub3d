@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 09:26:30 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/10 10:21:59 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,11 @@ void    raycasting(t_game *game)
 	int		texY;
 	int		texX;
 	int		alpha;
-	int		color_x;
+	float	color_x;
+	float	color_y;
+	float	dist;
+	float	shade;
+	float	max_rad;
 	int		status_x;
 	uint8_t	color_alpha;
 
@@ -143,8 +147,8 @@ void    raycasting(t_game *game)
 			tmp.g = game->texture->sky->color.g;
 			tmp.b = game->texture->sky->color.b;
 			tmp.a = 255;
-			color_alpha = ((255 + LIGHT * 1000) / (len + 1 + ((width_window - color_x) / 2)));
-			if ((255 + LIGHT * 100) / (len + 1 + ((width_window - color_x) / 2)) > 255)
+			color_alpha = ((255 + LIGHT * 1000) / ((len + 1)));
+			if ((255 + LIGHT * 1000) / (len + 1) > 255)
 				color_alpha = 255;
 			tmp.a -= (255 - color_alpha);
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
@@ -192,26 +196,25 @@ void    raycasting(t_game *game)
 		count = 1;
 		while (len < height_window) // ground
 		{
+			color_x = (float)i - width_window / 2;
+			color_y = (float)len - height_window;
+			dist = hypotf(color_x, color_y);
+			max_rad = hypotf(width_window / 2, draw_end);
+			shade = 1.0f - (dist / max_rad);
 			tmp.r = game->texture->ground->color.r;
 			tmp.g = game->texture->ground->color.g;
 			tmp.b = game->texture->ground->color.b;
-			tmp.a = 255;
-			color_alpha = 255 - (count - count / 2);
+			tmp.a = 255 * (shade / 2);
+			/*color_alpha = 255 - (count - count / 2);
 			tmp.a -= color_alpha;
 			if (((count - count / 2) ) > 255)
 				tmp.a = 255;
 			if (((count - count / 2)) < 0)
-				tmp.a = 0;
+				tmp.a = 0;**/
 			mlx_set_image_pixel(game->graphics->init, game->map->img, i, len, tmp);
 			len++;
 			count++; 
 		}
-		if (color_x > width_window / 2 && status_x == 0)
-			status_x = 1;
-		if (status_x == 1)
-			color_x--;
-		else
-			color_x++;
 		i++;
 	}
 }

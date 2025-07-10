@@ -3,8 +3,8 @@ WE ./maps/assets/wall_brick.png
 SO ./maps/assets/wall_brick.png
 EA ./maps/assets/wall_brick.png
 
-C 255,255,255
-F 255,255,255
+C 50,50,50
+F 50,50,50
 
         1111111111111111111111111
         1000000000110000000000001
