@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 14:25:17 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 14:33:56 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ mlx_color	color(uint32_t color)
 
 void	render_game(t_game *game)
 {
+	static float	previous_rotation = 2.0f;
+
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
 
 	raycasting(game);
@@ -76,9 +78,21 @@ void	render_game(t_game *game)
 		mlx_loop_end(game->graphics->init);
 
 	if (game->events->rotate_left) // Left arrow
-		game->player->angle = (game->player->angle + 2) % 360;
+	{
+		game->player->angle = (game->player->angle + (int)previous_rotation) % 360;
+		previous_rotation += 0.025f;
+		if (previous_rotation > 10)
+			previous_rotation = 10.0f;
+	}
 	if (game->events->rotate_right) // Right arrow
-		game->player->angle = (game->player->angle - 2) % 360;
+	{
+		game->player->angle = (game->player->angle - (int)previous_rotation) % 360;
+		previous_rotation += 0.025f;
+		if (previous_rotation > 10)
+			previous_rotation = 10.0f;
+	}
+	if (!game->events->rotate_left && !game->events->rotate_right)
+		previous_rotation = 2.0f;
 
 	(void) draw_rectangle;
 	compass(game);
