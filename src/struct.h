@@ -86,6 +86,8 @@ typedef struct s_events
 	int		move_backward;
 	int		move_left;
 	int		move_right;
+	int		rotate_left;
+	int		rotate_right;
 	int		exit;
 	int		debug_enabled;
 }	t_events;

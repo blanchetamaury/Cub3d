@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:07:40 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 11:07:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/10 10:38:08 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ static void		on_keyup(int key, void *param)
 		events->move_left = 0;
 	else if (key == 7)
 		events->move_right = 0;
+	else if (key == 79)
+		events->rotate_left = 0;
+	else if (key == 80)
+		events->rotate_right = 0;
 }
 
 void	subscribe_keyup(t_graphics *graphics, t_events *events)

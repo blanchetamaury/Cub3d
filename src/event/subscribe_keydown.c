@@ -25,6 +25,10 @@ static void		on_keydown(int key, void *param)
 		events->move_left = 1;
 	else if (key == 7)
 		events->move_right = 1;
+	else if (key == 79)
+		events->rotate_left = 1;
+	else if (key == 80)
+		events->rotate_right = 1;
 	else if (key == 41)
 		events->exit = 1;
 	else if (key == 60)

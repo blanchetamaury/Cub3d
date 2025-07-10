@@ -75,18 +75,29 @@ void	render_game(t_game *game)
 	if (game->events->exit) // Escape
 		mlx_loop_end(game->graphics->init);
 
+	if (game->events->rotate_left) // Left arrow
+		game->player->angle = (game->player->angle + 2) % 360;
+	if (game->events->rotate_right) // Right arrow
+		game->player->angle = (game->player->angle - 2) % 360;
+
 	(void) draw_rectangle;
 	if (game->events->debug_enabled)
 		debug_view(game);
 
-	int mouse_x = width_window/2;
-	int mouse_y = 0;
-	mlx_mouse_get_pos(game->graphics->init, &mouse_x, &mouse_y);
-	if ((mouse_x / (float)width_window) * 360.0f == 0 && game->graphics->frame % 3 == 0)
-		mlx_mouse_move(game->graphics->init, game->graphics->window, width_window - 2, height_window/2);
-	else if ((mouse_x / (float)width_window) * 360.0f > 359.0f && game->graphics->frame % 3 == 0)
-		mlx_mouse_move(game->graphics->init, game->graphics->window, 2, height_window/2);
-	game->player->angle = (mouse_x / (float)width_window) * 360.0f;
+	// int mouse_x = width_window/2;
+	// int mouse_y = 0;
+	// mlx_mouse_get_pos(game->graphics->init, &mouse_x, &mouse_y);
+	// if ((mouse_x / (float)width_window) * 360.0f == 0 && game->graphics->frame % 3 == 0)
+	// 	mlx_mouse_move(game->graphics->init, game->graphics->window, width_window - 2, height_window/2);
+	// else if ((mouse_x / (float)width_window) * 360.0f > 359.0f && game->graphics->frame % 3 == 0)
+	// 	mlx_mouse_move(game->graphics->init, game->graphics->window, 2, height_window/2);
+	// game->player->angle = (mouse_x / (float)width_window) * 360.0f;
+	//
+	// mlx_put_transformed_image_to_window(game->graphics->init, game->graphics->window, game->texture->north->img, 0, 0, 0.25, 0.25, 0);
+	// mlx_put_transformed_image_to_window(game->graphics->init, game->graphics->window, game->texture->south->img, game->texture->north->width * 0.25 + 10, 0, 0.25, 0.25, 0);
+	//
+	// mlx_put_transformed_image_to_window(game->graphics->init, game->graphics->window, game->texture->west->img, 0, game->texture->north->height * 0.25 + 10, 0.25, 0.25, 0);
+	// mlx_put_transformed_image_to_window(game->graphics->init, game->graphics->window, game->texture->east->img, game->texture->west->width * 0.25 + 10, game->texture->south->height * 0.25 + 10, 0.25, 0.25, 0);
 
 	game->graphics->frame++;
 }
