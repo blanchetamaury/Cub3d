@@ -14,16 +14,14 @@
 
 void	init_player_pos(t_game *game)
 {
-	game->player->x = find_playerx(game->map->map);
-	game->player->y = find_playery(game->map->map);
 	if (game->map->map[game->player->y][game->player->x] == 'N')
-		game->player->angle = 0;
-	if (game->map->map[game->player->y][game->player->x] == 'E')
-		game->player->angle = 90;
-	if (game->map->map[game->player->y][game->player->x] == 'S')
-		game->player->angle = 180;
-	if (game->map->map[game->player->y][game->player->x] == 'W')
 		game->player->angle = 270;
+	if (game->map->map[game->player->y][game->player->x] == 'E')
+		game->player->angle = 0;
+	if (game->map->map[game->player->y][game->player->x] == 'S')
+		game->player->angle = 90;
+	if (game->map->map[game->player->y][game->player->x] == 'W')
+		game->player->angle = 180;
 	game->map->map[game->player->y][game->player->x] = '0';
 	game->player->pos_y = game->player->y + 0.5;
 	game->player->pos_x = game->player->x + 0.5;
