@@ -2,7 +2,9 @@
 
 void	clean_graphics(t_graphics *graphics)
 {
-	mlx_destroy_window(graphics->init, graphics->window);
-	mlx_destroy_context(graphics->init);
+	if (graphics->init && graphics->window)
+		mlx_destroy_window(graphics->init, graphics->window);
+	if (graphics->init)
+		mlx_destroy_context(graphics->init);
 	free(graphics);
 }
