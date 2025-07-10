@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 10:21:59 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/10 10:30:16 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,22 @@ int		get_face_height(int side, int step_x, int step_y, t_texture *texture)
 	return (0);
 }
 
+int		get_face_width(int side, int step_x, int step_y, t_texture *texture)
+{
+	int	face;
+
+	face = get_face(side, step_x, step_y);
+	if (face == 0) // north
+		return (texture->north->width);
+	if (face == 1) // east
+		return (texture->east->width);
+	if (face == 2) // south
+		return (texture->south->width);
+	if (face == 3) // west
+		return (texture->west->width);
+	return (0);
+}
+
 void    raycasting(t_game *game)
 {
 	float	rad;
@@ -194,9 +210,9 @@ void    raycasting(t_game *game)
 		else
 		    wallX = game->player->pos_x + perpwalldist * game->ray->cos_x;
 		wallX -= floorf(wallX);
-		texX = (int)(wallX * (float)get_face_height(side, game->ray->step_x, game->ray->step_y, game->texture));
+		texX = (int)(wallX * (float)get_face_width(side, game->ray->step_x, game->ray->step_y, game->texture));
 		if ((side == 0 && game->ray->cos_x > 0) || (side == 1 && game->ray->sin_y < 0))
-		    texX = get_face_height(side, game->ray->step_x, game->ray->step_y, game->texture) - texX - 1;
+		    texX = get_face_width(side, game->ray->step_x, game->ray->step_y, game->texture) - texX - 1;
 		texStep = 1.0f * get_face_height(side, game->ray->step_x, game->ray->step_y, game->texture) / lineheight;
 		texPos = (draw_start - height_window / 2 + lineheight / 2) * texStep;
 		while (len < draw_end) // wall
