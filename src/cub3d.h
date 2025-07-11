@@ -148,6 +148,7 @@ float	deg_to_rad(float angle);
 
 int		min(int a, int b);
 float	minf(float a, float b);
+int		is_bonus(void);
 
 /*****************/
 /*      CHECK    */
