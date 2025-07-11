@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/11 11:15:30 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:50:19 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,20 @@ static int	find_wall(t_game *game)
 	return (side);
 }
 
-int	draw_size_wall(t_game *game, int side)
+int	draw_size_wall(t_game *game, int side, int i)
 {
 	int		lineheight;
 
+	float cameraX   = 2.0f * i / (float)width_window - 1.0f;
+	float halfFOV   = (FOV * 3.14/180.0f) / 2.0f;
+	float angleDiff = cameraX * halfFOV; 
+
 	if (side == 0)
-		game->ray->perpwalldist = (game->ray->raylength_x - game->ray->ray_x);
+		game->ray->perpwalldist = (game->ray->raylength_x - game->ray->ray_x) * cosf(angleDiff);
 	else
-		game->ray->perpwalldist = (game->ray->raylength_y - game->ray->ray_y);
+		game->ray->perpwalldist = (game->ray->raylength_y - game->ray->ray_y) * cosf(angleDiff);
 	if (game->ray->perpwalldist == 0)
-		game->ray->perpwalldist = 1;
+		game->ray->perpwalldist = 1  * cosf(angleDiff);
 	lineheight = (int)(height_window / game->ray->perpwalldist);
 	game->ray->draw_start = -lineheight / 2 + height_window / 2;
 	if (game->ray->draw_start < 0)
@@ -151,7 +155,7 @@ void	raycasting(t_game *game)
 		init_calc(game, init_angle(game, i));
 		init_dir(game);
 		side = find_wall(game);
-		lineheight = draw_size_wall(game, side);
+		lineheight = draw_size_wall(game, side, i);
 		game->ray->color_x = (float)i - width_window / 3 - 60;
 		//draw_sky(game, i);
 		wall_size_texture(game, side, lineheight);
