@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 16:48:32 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/11 08:58:54 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,50 @@ int	draw_size_wall(t_game *game, int side)
 	return (lineheight);
 }
 
+void	raycasting_floor(t_game *game)
+{
+	int i;
+	int	j;
+	int	p;
+	int	tx;
+	int	ty;
+	float	posz;
+	float	row_d;
+	float	raydirx0;
+	float	raydiry0;
+	float	raydirx1;
+	float	raydiry1;
+	float	floorstep_x;
+	float	floorstep_y;
+	float	floor_x;
+	float	floor_y;
+
+	i = 0;
+	j = 0;
+	while (i < height_window)
+	{
+		raydirx0 = -1.0;
+		raydiry0 = -0.66;
+		raydirx1 = -1.0;
+		raydiry1 = 0.66;
+		//init_angle(game, i);
+		p = i - height_window / 2;
+		posz = 0.5 * height_window;
+		row_d = posz / p;
+		floorstep_x = row_d * (raydirx1 - raydirx0) / width_window;
+		floorstep_y = row_d * (raydiry1 - raydiry0) / width_window;
+		floor_x = game->player->pos_x + row_d * raydirx0;
+		floor_y = game->player->pos_y + row_d * raydiry0;
+		
+		j = 0;
+		while (j < width_window)
+		{
+			tx = (floor_x - (int)floor_x);
+			j++;
+		}
+	}
+}
+
 void	raycasting(t_game *game)
 {
 	int		i;
@@ -67,8 +111,10 @@ void	raycasting(t_game *game)
 	int		lineheight;
 
 	i = 0;
+	raycasting_floor(game);
 	while (i < width_window)
 	{
+		
 		init_calc(game, init_angle(game, i));
 		init_dir(game);
 		side = find_wall(game);
