@@ -22,6 +22,24 @@ static void	clean_hud(t_texture *texture, mlx_context init)
 		mlx_destroy_image(init, texture->hands);
 	if (texture->clock_background)
 		mlx_destroy_image(init, texture->clock_background);
+	if (texture->cub3d_logo)
+		mlx_destroy_image(init, texture->cub3d_logo);
+	if (texture->play_button)
+		mlx_destroy_image(init, texture->play_button);
+	if (texture->online_button)
+		mlx_destroy_image(init, texture->online_button);
+	if (texture->option_button)
+		mlx_destroy_image(init, texture->option_button);
+	if (texture->exit_button)
+		mlx_destroy_image(init, texture->exit_button);
+	if (texture->play_button_selected)
+		mlx_destroy_image(init, texture->play_button_selected);
+	if (texture->online_button_selected)
+		mlx_destroy_image(init, texture->online_button_selected);
+	if (texture->option_button_selected)
+		mlx_destroy_image(init, texture->option_button_selected);
+	if (texture->exit_button_selected)
+		mlx_destroy_image(init, texture->exit_button_selected);
 }
 
 void	clean_texture(t_texture *texture, mlx_context init)

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/11 10:19:04 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/11 14:08:28 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	        wall_size_texture(t_game *game, int side, int lineheight);
 /* Views                                                                      */
 /* ************************************************************************** */
 
+void			render_menu(t_game *game);
 void			render_game(t_game *game);
 
 /* ************************************************************************** */
@@ -129,16 +130,24 @@ void			create_window(t_graphics *graphics);
 /* Events                                                                     */
 /* ************************************************************************** */
 
+void			subscribe_mouseup(t_graphics *graphics, t_game *game);
 void			subscribe_keydown(t_graphics *graphics, t_events *events);
 void			subscribe_keyup(t_graphics *graphics, t_events *events);
 void			subscribe_window(t_graphics *graphics, t_events *events);
-void			subscribe_events(t_graphics *graphics, t_events *events);
+void			subscribe_events(t_game *game);
 
 /* ************************************************************************** */
 /* Maths                                                                      */
 /* ************************************************************************** */
 
 float	deg_to_rad(float angle);
+
+/* ************************************************************************** */
+/* Utils  																      */
+/* ************************************************************************** */
+
+int		min(int a, int b);
+float	minf(float a, float b);
 
 /*****************/
 /*      CHECK    */

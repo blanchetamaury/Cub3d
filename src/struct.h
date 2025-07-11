@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 14:57:57 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/11 13:45:41 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,24 @@ typedef struct s_texture
 	mlx_image	compass_indicator;
 	mlx_image	hands;
 	mlx_image	clock_background;
+	mlx_image	cub3d_logo;
+	mlx_image	play_button;
+	mlx_image	play_button_selected;
+	mlx_image	online_button;
+	mlx_image	online_button_selected;
+	mlx_image	option_button;
+	mlx_image	option_button_selected;
+	mlx_image	exit_button;
+	mlx_image	exit_button_selected;
 }				t_texture;
 
 typedef struct s_graphics
 {
 	mlx_context	init;
 	mlx_window	window;
+	int			view;
 	int			frame;
+	int			selection;
 }				t_graphics;
 
 typedef struct s_player
@@ -55,8 +66,8 @@ typedef struct s_player
 	int			y;
 	float		pos_x;
 	float		pos_y;
-	int			rad;
-	int			angle;
+	float		rad;
+	float		angle;
 }				t_player;
 
 typedef struct s_map

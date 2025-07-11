@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	}
 	load_hud_texture(game->texture, game->graphics->init);
 	create_window(game->graphics);
-	subscribe_events(game->graphics, game->events);
+	subscribe_events(game);
 	graphic(game);
 	clean_game(game);
 }

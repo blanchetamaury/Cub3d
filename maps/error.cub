@@ -3,8 +3,8 @@ WE ./maps/assets/wall_brick.png
 SO ./maps/assets/wall_brick.png
 EA ./maps/assets/wall_brick.png
 
-C ./maps/assets/wall_brick.png
-F ./maps/assets/wall_brick.png
+C ./maps/assets/ceiling.png
+F ./maps/assets/floor.png
 
         1111111111111111111111111
         1000000000110000000000001

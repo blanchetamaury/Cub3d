@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   min.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/11 11:29:07 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/11 12:38:37 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/11 12:38:48 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-
-void	render(void *data)
+int	min(int a, int b)
 {
-	t_game		*game;
+	if (a < b)
+		return (a);
+	return (b);
+}
 
-	game = (t_game *)data;
-	if (game->graphics->view == 0)
-		render_menu(game);
-	else if (game->graphics->view == 1)
-		render_game(game);
+float minf(float a, float b)
+{
+	if (a < b)
+		return (a);
+	return (b);
 }

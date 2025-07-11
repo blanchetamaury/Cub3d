@@ -55,11 +55,13 @@ SRC_GRAPHICS =		src/raycasting/graphics.c \
 SRC_EVENTS =		src/event/subscribe_events.c \
 					src/event/subscribe_keydown.c \
 					src/event/subscribe_keyup.c \
+					src/event/subscribe_mouseup.c \
 					src/event/subscribe_window.c
 
 SRC_COLLISION =		src/collision/check_collision.c
 
-SRC_VIEWS =			src/views/render_game.c
+SRC_VIEWS =			src/views/render_game.c \
+					src/views/render_menu.c \
 
 SRC_COMPONENTS =	src/components/debug_view.c \
 					src/components/compass.c
@@ -67,6 +69,8 @@ SRC_COMPONENTS =	src/components/debug_view.c \
 SRC_WINDOW =		src/window/create_window.c
 
 SRC_MATH =			src/math/deg_to_rad.c
+
+SRC_UTILS =			src/utils/min.c
 
 SRC		=	src/main.c \
 			${SRC_INIT} \
@@ -80,6 +84,7 @@ SRC		=	src/main.c \
 			${SRC_COMPONENTS} \
 			${SRC_COLLISION} \
 			${SRC_MATH} \
+			${SRC_UTILS} \
 			${SRC_CLEANUP}
 
 OBJDIR = .obj

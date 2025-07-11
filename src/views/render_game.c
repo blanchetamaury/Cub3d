@@ -79,14 +79,14 @@ void	render_game(t_game *game)
 
 	if (game->events->rotate_left) // Left arrow
 	{
-		game->player->angle = (game->player->angle + (int)previous_rotation) % 360;
+		game->player->angle = fmodf(game->player->angle + previous_rotation, 360.0f);
 		previous_rotation += 0.025f;
 		if (previous_rotation > 10)
 			previous_rotation = 10.0f;
 	}
 	if (game->events->rotate_right) // Right arrow
 	{
-		game->player->angle = (game->player->angle - (int)previous_rotation) % 360;
+		game->player->angle = fmodf(game->player->angle - previous_rotation, 360.0f);
 		previous_rotation += 0.025f;
 		if (previous_rotation > 10)
 			previous_rotation = 10.0f;
