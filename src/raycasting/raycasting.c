@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/11 10:58:39 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/11 11:15:30 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ void	raycasting_floor(t_game *game)
 		j = 0;
 		while (j < width_window)
 		{
-			game->ray->color_x = (float)i - width_window / 3 - 60;
-			shade = shade_result(game, i);
-			color_alpha = 1.0f - ((floor_x) / LIGHT);
+			game->ray->color_x = (float)j - width_window / 3 - 60;
+			shade = shade_result(game, i  % (height_window / 2)) ;
+			color_alpha = 1.0f - ((height_window % (height_window / 2)) / (LIGHT * 1000));
 			tx = (int)(game->texture->sky->width * (floor_x - (int)floor_x)) & (game->texture->sky->width - 1);
 			ty = (int)(game->texture->sky->height * (floor_y - (int)floor_y)) & (game->texture->sky->height - 1);
 			tmp = mlx_get_image_pixel(game->graphics->init, game->texture->ground->img, tx, ty);
