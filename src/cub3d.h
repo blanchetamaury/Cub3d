@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/11 09:01:34 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/11 10:19:04 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int				log_debug(const char *message);
 
 int				load_map_texture(t_texture *texture, mlx_context init);
 void			load_hud_texture(t_texture *texture, mlx_context init);
-void			open_image(t_image *image, mlx_context init);
+int				open_image(t_image *image, mlx_context init);
 
 /* ************************************************************************** */
 /* Graphic                                                                    */
