@@ -20,5 +20,8 @@ mlx_window_create_info	*init_window_info(void)
 	info->height = height_window;
 	info->width = width_window;
 	info->title = "cub3d";
+#ifdef BONUS
+	info->title = "cub3d - Bonus";
+#endif
 	return (info);
 }

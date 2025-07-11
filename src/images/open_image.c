@@ -79,12 +79,15 @@ static void	image_file(t_image *image, mlx_context init)
 		log_error("Failed to open image file.");
 }
 
-void	open_image(t_image *image, mlx_context init)
+int		open_image(t_image *image, mlx_context init)
 {
 	if (image->path == NULL)
-		return ;
+		return (0);
 	if (ft_strchr(image->path, ',') == NULL)
+	{
 		image_file(image, init);
-	else
-		color_image(image, init);
+		return (1);
+	}
+	color_image(image, init);
+	return (2);
 }
