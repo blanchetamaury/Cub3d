@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/11 08:58:54 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/11 09:19:10 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	raycasting_floor(t_game *game)
 	float	floorstep_y;
 	float	floor_x;
 	float	floor_y;
+	mlx_color	tmp;
 
 	i = 0;
 	j = 0;
@@ -98,9 +99,20 @@ void	raycasting_floor(t_game *game)
 		j = 0;
 		while (j < width_window)
 		{
-			tx = (floor_x - (int)floor_x);
+			
+			tx = (int)(game->texture->sky->width * (floor_x - (int)floor_x)) & (game->texture->sky->width - 1);
+			ty = (int)(game->texture->sky->height * (floor_y - (int)floor_y)) & (game->texture->sky->height - 1);
+			tmp = mlx_get_image_pixel(game->graphics->init, game->texture->sky->img, tx, ty);
+			mlx_set_image_pixel(game->graphics->init, game->texture->render, j, i, tmp);
+			tx = (int)(game->texture->ground->width * (floor_x - (int)floor_x)) & (game->texture->ground->width - 1);
+			ty = (int)(game->texture->ground->height * (floor_y - (int)floor_y)) & (game->texture->ground->height - 1);
+			tmp = mlx_get_image_pixel(game->graphics->init, game->texture->ground->img, tx, ty);
+			mlx_set_image_pixel(game->graphics->init, game->texture->render, j, height_window - i - 1, tmp);
+			floor_x += floorstep_x;
+			floor_y += floorstep_y;
 			j++;
 		}
+		i++;
 	}
 }
 
@@ -120,10 +132,10 @@ void	raycasting(t_game *game)
 		side = find_wall(game);
 		lineheight = draw_size_wall(game, side);
 		game->ray->color_x = (float)i - width_window / 3 - 60;
-		draw_sky(game, i);
+		//draw_sky(game, i);
 		wall_size_texture(game, side, lineheight);
 		draw_wall(game, game->ray->draw_start, side, i);
-		draw_ground(game, game->ray->draw_end, i);
+		//draw_ground(game, game->ray->draw_end, i);
 		i++;
 	}
 }
