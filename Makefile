@@ -87,6 +87,10 @@ OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
 all: $(NAME)
 
+bonus: CFLAGS += -DBONUS
+bonus: $(LIBS) $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIBS)
+
 $(NAME): $(LIBS) $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIBS)
 
@@ -110,3 +114,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+rebonus: fclean bonus
