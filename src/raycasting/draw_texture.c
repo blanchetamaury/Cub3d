@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 10:47:35 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:35:05 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static void	draw_wall_face_north_and_south(t_game *game, int i, int len)
 	shade = shade_result(game, len);
 	if (game->ray->step_y < 0)
 		tmp = mlx_get_image_pixel(game->graphics->init,
-				game->texture->north->img, game->ray->texX, game->ray->texY);
+				game->texture->north->img, game->ray->tex_x, game->ray->tex_y);
 	else
 		tmp = mlx_get_image_pixel(game->graphics->init,
-				game->texture->south->img, game->ray->texX, game->ray->texY);
+				game->texture->south->img, game->ray->tex_x, game->ray->tex_y);
 	color_alpha = 1.0f - (game->ray->perpwalldist / LIGHT);
 	if (255 * (shade / (2 + game->events->flashlight * 4)) * color_alpha < 20)
 		tmp.a = 20;
@@ -44,10 +44,10 @@ static void	draw_wall_face_west_and_east(t_game *game, int i, int len)
 	shade = shade_result(game, len);
 	if (game->ray->step_x < 0)
 		tmp = mlx_get_image_pixel(game->graphics->init,
-				game->texture->west->img, game->ray->texX, game->ray->texY);
+				game->texture->west->img, game->ray->tex_x, game->ray->tex_y);
 	else
 		tmp = mlx_get_image_pixel(game->graphics->init,
-				game->texture->east->img, game->ray->texX, game->ray->texY);
+				game->texture->east->img, game->ray->tex_x, game->ray->tex_y);
 	color_alpha = 1.0f - (game->ray->perpwalldist / LIGHT);
 	if (255 * (shade / (2 + game->events->flashlight * 4)) * color_alpha < 20)
 		tmp.a = 20;
@@ -62,9 +62,9 @@ void	draw_wall(t_game *game, int len, int side, int i)
 {
 	while (len < game->ray->draw_end)
 	{
-		game->ray->texY = (int)game->ray->texPos & (get_face_height(side,
+		game->ray->tex_y = (int)game->ray->tex_pos & (get_face_height(side,
 					game->ray->step_x, game->ray->step_y, game->texture) - 1);
-		game->ray->texPos += game->ray->texStep;
+		game->ray->tex_pos += game->ray->tex_step;
 		if (side == 0)
 			draw_wall_face_west_and_east(game, i, len);
 		else

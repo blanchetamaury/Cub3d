@@ -2,6 +2,7 @@
     "files.associations": {
         "fstream": "c",
         "cstdlib": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "cub3d.h": "c"
     }
 }

@@ -6,15 +6,15 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:00 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 16:17:12 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 11:31:40 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_game *game;
+	t_game	*game;
 
 	if (argc < 2)
 		return (log_error("Missing map files arguments.") - 27);
@@ -23,7 +23,8 @@ int main(int argc, char **argv)
 	game = init_game();
 	if (game == NULL)
 		return (log_error("Memory allocation failed.") - 24);
-	if (check_file_map(argv, game) || load_map_texture(game->texture, game->graphics->init))
+	if (check_file_map(argv, game) || load_map_texture(game->texture,
+			game->graphics->init))
 	{
 		clean_game(game);
 		return (0);

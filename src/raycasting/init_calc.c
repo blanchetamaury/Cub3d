@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:43:07 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/11 10:51:12 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:35:05 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ float	init_angle(t_game *game, int i)
 	float	deg_to_rad;
 
 	deg_to_rad = 3.14 / 180.0f;
-	deltaangle = FOV / (float)width_window;
+	deltaangle = FOV / (float)WIDTH_WINDOW;
 	rayangle = (game->player->angle - FOV / 2) + i * deltaangle;
 	return (rayangle * deg_to_rad);
 }
@@ -67,29 +67,29 @@ float	shade_result(t_game *game, int len)
 	float	dist;
 	float	max_rad;
 
-	game->ray->color_y = (float)len - (height_window - height_window / 3);
+	game->ray->color_y = (float)len - (HEIGHT_WINDOW - HEIGHT_WINDOW / 3);
 	dist = hypotf(game->ray->color_x, game->ray->color_y);
-	max_rad = hypotf(width_window / 2, game->ray->draw_start);
+	max_rad = hypotf(WIDTH_WINDOW / 2, game->ray->draw_start);
 	return (1.0f - (dist / max_rad));
 }
 
 void	wall_size_texture(t_game *game, int side, int lineheight)
 {
 	if (side == 0)
-		game->ray->wallX = game->player->pos_y + game->ray->perpwalldist
+		game->ray->wall_x = game->player->pos_y + game->ray->perpwalldist
 			* game->ray->sin_y;
 	else
-		game->ray->wallX = game->player->pos_x + game->ray->perpwalldist
+		game->ray->wall_x = game->player->pos_x + game->ray->perpwalldist
 			* game->ray->cos_x;
-	game->ray->wallX -= floorf(game->ray->wallX);
-	game->ray->texX = (int)(game->ray->wallX * (float)get_face_width(side,
+	game->ray->wall_x -= floorf(game->ray->wall_x);
+	game->ray->tex_x = (int)(game->ray->wall_x * (float)get_face_width(side,
 				game->ray->step_x, game->ray->step_y, game->texture));
 	if ((side == 0 && game->ray->cos_x > 0) || (side == 1
 			&& game->ray->sin_y < 0))
-		game->ray->texX = get_face_width(side, game->ray->step_x,
-				game->ray->step_y, game->texture) - game->ray->texX - 1;
-	game->ray->texStep = 1.0f * get_face_height(side, game->ray->step_x,
+		game->ray->tex_x = get_face_width(side, game->ray->step_x,
+				game->ray->step_y, game->texture) - game->ray->tex_x - 1;
+	game->ray->tex_step = 1.0f * get_face_height(side, game->ray->step_x,
 			game->ray->step_y, game->texture) / lineheight;
-	game->ray->texPos = (game->ray->draw_start - height_window / 2
-			+ lineheight / 2) * game->ray->texStep;
+	game->ray->tex_pos = (game->ray->draw_start - HEIGHT_WINDOW / 2
+			+ lineheight / 2) * game->ray->tex_step;
 }

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 10:02:49 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:28:28 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	draw_size_wall(t_game *game, int side, int i)
 	float	half_fov;
 	float	angle_diff;
 
-	camera_x = 2.0f * i / (float)width_window - 1.0f;
+	camera_x = 2.0f * i / (float)WIDTH_WINDOW - 1.0f;
 	half_fov = (FOV * 3.14 / 180.0f) / 2.0f;
 	angle_diff = camera_x * half_fov;
 	if (side == 0)
@@ -58,13 +58,13 @@ int	draw_size_wall(t_game *game, int side, int i)
 			* cosf(angle_diff);
 	if (game->ray->perpwalldist == 0)
 		game->ray->perpwalldist = 1 * cosf(angle_diff);
-	lineheight = (int)(height_window / game->ray->perpwalldist);
-	game->ray->draw_start = -lineheight / 2 + height_window / 2;
+	lineheight = (int)(HEIGHT_WINDOW / game->ray->perpwalldist);
+	game->ray->draw_start = -lineheight / 2 + HEIGHT_WINDOW / 2;
 	if (game->ray->draw_start < 0)
 		game->ray->draw_start = 0;
-	game->ray->draw_end = lineheight / 2 + height_window / 2;
-	if (game->ray->draw_end >= height_window)
-		game->ray->draw_end = height_window - 1;
+	game->ray->draw_end = lineheight / 2 + HEIGHT_WINDOW / 2;
+	if (game->ray->draw_end >= HEIGHT_WINDOW)
+		game->ray->draw_end = HEIGHT_WINDOW - 1;
 	return (lineheight);
 }
 
@@ -75,13 +75,13 @@ void	raycasting_wall(t_game *game)
 	int		lineheight;
 
 	i = 0;
-	while (i < width_window)
+	while (i < WIDTH_WINDOW)
 	{
 		init_calc(game, init_angle(game, i));
 		init_dir(game);
 		side = find_wall(game);
 		lineheight = draw_size_wall(game, side, i);
-		game->ray->color_x = (float)i - width_window / 3 - 60;
+		game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
 		wall_size_texture(game, side, lineheight);
 		draw_wall(game, game->ray->draw_start, side, i);
 		i++;

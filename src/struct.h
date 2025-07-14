@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 10:30:38 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:35:24 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
-    int         fd_map;
+	int			fd_map;
 	char		*name;
 	char		**map;
 	int			size;
@@ -94,22 +94,21 @@ typedef struct s_raycasting
 	int			draw_end;
 	float		color_x;
 	float		color_y;
-	int			texY;
-	int			texX;
-	float		wallX;
-	float		texStep;
-	float		texPos;
+	int			tex_y;
+	int			tex_x;
+	float		wall_x;
+	float		tex_step;
+	float		tex_pos;
 	int			step_x;
 	int			step_y;
 	int			map_x;
 	int			map_y;
-	
-	float	floorstep_x;
-	float	floorstep_y;
-	float	floor_x;
-	float	floor_y;
-	int		tx;
-	int		ty;
+	float		floorstep_x;
+	float		floorstep_y;
+	float		floor_x;
+	float		floor_y;
+	int			tx;
+	int			ty;
 }				t_raycasting;
 
 typedef struct s_events
@@ -133,6 +132,6 @@ typedef struct s_game
 	t_player		*player;
 	t_raycasting	*ray;
 	t_events		*events;
-} 				t_game;
+}					t_game;
 
 #endif
