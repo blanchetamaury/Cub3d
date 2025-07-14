@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 11:30:40 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:55:14 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void					clean_map(t_map *map);
 void					clean_image(t_image *image, mlx_context init);
 void					clean_game(t_game *game);
 void					clean_raycasting(t_raycasting *ray);
+void					clean_window_info(t_game *game);
+void					free_texture(t_game *game);
 
 /* ************************************************************************** */
 /* Logs                                                                       */
@@ -168,17 +170,6 @@ void					init_player_pos(t_game *game);
 int						get_map(t_game *game);
 
 /* ************************************************************************** */
-/*    CLEANUP                                                                 */
-/* ************************************************************************** */
-void					free_texture(t_game *game);
-
-/* ************************************************************************** */
-/*    INIT                                                                    */
-/* ************************************************************************** */
-int						find_playerx(char **map);
-int						find_playery(char **map);
-
-/* ************************************************************************** */
 /*   PLAYER                                                                   */
 /* ************************************************************************** */
 void					player_move_backward(t_game *game);
@@ -191,5 +182,7 @@ float					player_rotate_left(t_game *game,
 float					player_rotate_right(t_game *game,
 							float previous_rotation);
 void					player_exit(t_game *game);
+int						find_playerx(char **map);
+int						find_playery(char **map);
 
 #endif

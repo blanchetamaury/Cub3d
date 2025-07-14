@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 11:28:28 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:10:41 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	render_game(t_game *game)
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
 
 	raycasting(game);
-	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->render, 0, 0);
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->render_tmp, 0, 0);
 	(void) draw_rectangle;
 	compass(game);
 	if (game->events->move_forward || game->events->move_backward

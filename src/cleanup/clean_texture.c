@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:16:48 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 09:26:29 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:15:33 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	clean_texture(t_texture *texture, mlx_context init)
 	clean_image(texture->sky, init);
 	clean_image(texture->ground, init);
 	mlx_destroy_image(init, texture->render);
+	mlx_destroy_image(init, texture->render_tmp);
 	clean_hud(texture, init);
 	free(texture);
 }

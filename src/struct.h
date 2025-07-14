@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 11:35:24 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:27:45 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_texture
 	t_image		*sky;
 	t_image		*ground;
 	mlx_image	render;
+	mlx_image	render_tmp;
 	mlx_image	compass_background;
 	mlx_image	compass_indicator;
 	mlx_image	hands;
@@ -53,11 +54,12 @@ typedef struct s_texture
 
 typedef struct s_graphics
 {
-	mlx_context	init;
-	mlx_window	window;
-	int			view;
-	int			frame;
-	int			selection;
+	mlx_context				init;
+	mlx_window				window;
+	mlx_window_create_info	*info;
+	int						view;
+	int						frame;
+	int						selection;
 }				t_graphics;
 
 typedef struct s_player

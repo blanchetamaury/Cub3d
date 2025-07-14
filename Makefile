@@ -39,7 +39,8 @@ SRC_CLEANUP =		src/cleanup/clean_game.c \
 					src/cleanup/clean_player.c \
 					src/cleanup/clean_color.c \
 					src/cleanup/clean_image.c \
-					src/cleanup/clean_raycasting.c
+					src/cleanup/clean_raycasting.c \
+					src/cleanup/clean_window_info.c
 
 SRC_IMAGES =		src/images/open_image.c \
 					src/images/load_map_texture.c \
@@ -52,7 +53,8 @@ SRC_GRAPHICS =		src/raycasting/graphics.c \
 					src/raycasting/get_face.c \
 					src/raycasting/draw_texture.c \
 					src/raycasting/raycasting_wall.c \
-					src/raycasting/raycasting_floor.c
+					src/raycasting/raycasting_floor.c \
+					src/raycasting/raycasting_sprite.c
 
 SRC_EVENTS =		src/event/subscribe_events.c \
 					src/event/subscribe_keydown.c \
