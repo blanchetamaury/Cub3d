@@ -6,13 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:04:46 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 16:47:18 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 09:29:24 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void		on_keydown(int key, void *param)
+static void	on_keydown(int key, void *param)
 {
 	t_events	*events;
 
@@ -35,10 +35,10 @@ static void		on_keydown(int key, void *param)
 		events->debug_enabled = !events->debug_enabled;
 	else if (key == 15)
 		events->flashlight = !events->flashlight;
-	//printf("key = %d | flaslight = %d\n", key, events->flashlight);
 }
 
 void	subscribe_keydown(t_graphics *graphics, t_events *events)
 {
-	mlx_on_event(graphics->init, graphics->window, MLX_KEYDOWN, on_keydown, events);
+	mlx_on_event(graphics->init, graphics->window, MLX_KEYDOWN,
+		on_keydown, events);
 }

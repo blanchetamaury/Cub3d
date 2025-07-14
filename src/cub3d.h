@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/11 14:08:28 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 11:17:52 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			clean_player(t_player *player);
 void			clean_map(t_map *map);
 void			clean_image(t_image *image, mlx_context init);
 void			clean_game(t_game *game);
-void            clean_raycasting(t_raycasting *ray);
+void			clean_raycasting(t_raycasting *ray);
 
 /* ************************************************************************** */
 /* Logs                                                                       */
@@ -88,17 +88,17 @@ void			raycasting(t_game *game);
 void			render(void *data);
 mlx_color		color(uint32_t color);
 void			draw_rectangle_mlx(t_game *game, int x, int y, int w, int h, mlx_color color);
-void            draw_sky(t_game *game, int i);
-void	        draw_wall(t_game *game, int len, int side, int i);
-void            draw_ground(t_game *game, int len, int i);
-int	            get_face(int side, int step_x, int step_y);
-int		        get_face_height(int side, int step_x, int step_y, t_texture *texture);
-int		        get_face_width(int side, int step_x, int step_y, t_texture *texture);
-float           init_angle(t_game *game, int i);
-void	        init_calc(t_game *game, float rad);
-void	        init_dir(t_game *game);
-float	        shade_result(t_game *game, int len);
-void	        wall_size_texture(t_game *game, int side, int lineheight);
+void			draw_wall(t_game *game, int len, int side, int i);
+int				get_face(int side, int step_x, int step_y);
+int				get_face_height(int side, int step_x, int step_y, t_texture *texture);
+int				get_face_width(int side, int step_x, int step_y, t_texture *texture);
+float			init_angle(t_game *game, int i);
+void			init_calc(t_game *game, float rad);
+void			init_dir(t_game *game);
+float			shade_result(t_game *game, int len);
+void			wall_size_texture(t_game *game, int side, int lineheight);
+void			raycasting_floor(t_game *game);
+void			raycasting_wall(t_game *game);
 
 /* ************************************************************************** */
 /* Views                                                                      */
@@ -111,8 +111,8 @@ void			render_game(t_game *game);
 /* Components    													          */
 /* ************************************************************************** */
 
-void	debug_view(t_game *game);
-void	compass(t_game *game);
+void			debug_view(t_game *game);
+void			compass(t_game *game);
 
 /* ************************************************************************** */
 /* Collision                                                                  */
@@ -140,35 +140,47 @@ void			subscribe_events(t_game *game);
 /* Maths                                                                      */
 /* ************************************************************************** */
 
-float	deg_to_rad(float angle);
+float			deg_to_rad(float angle);
 
 /* ************************************************************************** */
 /* Utils  																      */
 /* ************************************************************************** */
 
-int		min(int a, int b);
-float	minf(float a, float b);
-int		is_bonus(void);
+int				min(int a, int b);
+float			minf(float a, float b);
+int				is_bonus(void);
 
-/*****************/
-/*      CHECK    */
-/*****************/
-int 	check_file_map(char **argv, t_game *game);
-int 	check_texture(t_game *game);
-int	    check_ground_and_sky(t_game *game, int count);
-int     check_map(t_game *game);
-void	init_player_pos(t_game *game);
-int     get_map(t_game *game);
+/* ************************************************************************** */
+/*      CHECK                                                                 */
+/* ************************************************************************** */
+int				check_file_map(char **argv, t_game *game);
+int				check_texture(t_game *game);
+int				check_ground_and_sky(t_game *game, int count);
+int				check_map(t_game *game);
+void			init_player_pos(t_game *game);
+int				get_map(t_game *game);
 
-/*****************/
-/*    CLEANUP    */
-/*****************/
+/* ************************************************************************** */
+/*    CLEANUP                                                                 */
+/* ************************************************************************** */
 void			free_texture(t_game *game);
 
-/*****************/
-/*    INIT       */
-/*****************/
-int	    		find_playerx(char **map);
-int 			find_playery(char **map);
+/* ************************************************************************** */
+/*    INIT                                                                    */
+/* ************************************************************************** */
+int				find_playerx(char **map);
+int				find_playery(char **map);
+
+/* ************************************************************************** */
+/*   PLAYER                                                                   */
+/* ************************************************************************** */
+void			player_move_backward(t_game *game);
+void			player_move_left(t_game *game);
+void			player_move_right(t_game *game);
+void			player_move_forward(t_game *game);
+void			player_action(t_game *game);
+float			player_rotate_left(t_game *game, float previous_rotation);
+float			player_rotate_right(t_game *game, float previous_rotation);
+void			player_exit(t_game *game);
 
 # endif

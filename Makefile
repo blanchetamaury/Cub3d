@@ -50,7 +50,9 @@ SRC_GRAPHICS =		src/raycasting/graphics.c \
 					src/raycasting/render.c \
 					src/raycasting/init_calc.c \
 					src/raycasting/get_face.c \
-					src/raycasting/draw_texture.c
+					src/raycasting/draw_texture.c \
+					src/raycasting/raycasting_wall.c \
+					src/raycasting/raycasting_floor.c
 
 SRC_EVENTS =		src/event/subscribe_events.c \
 					src/event/subscribe_keydown.c \
@@ -73,6 +75,15 @@ SRC_MATH =			src/math/deg_to_rad.c
 SRC_UTILS =			src/utils/min.c \
 					src/utils/is_bonus.c
 
+SRC_PLAYER =		src/player/player_move_backward.c \
+					src/player/player_move_forward.c \
+					src/player/player_move_left.c \
+					src/player/player_move_right.c \
+					src/player/player_action.c \
+					src/player/player_exit.c \
+					src/player/player_rotate_left.c \
+					src/player/player_rotate_right.c
+
 SRC		=	src/main.c \
 			${SRC_INIT} \
 			${SRC_CHECKS} \
@@ -86,7 +97,8 @@ SRC		=	src/main.c \
 			${SRC_COLLISION} \
 			${SRC_MATH} \
 			${SRC_UTILS} \
-			${SRC_CLEANUP}
+			${SRC_CLEANUP} \
+			$(SRC_PLAYER)
 
 OBJDIR = .obj
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)

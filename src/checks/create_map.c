@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/07 10:16:27 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 09:11:02 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	create_map(t_game *game)
 	while (tmp != NULL)
 	{
 		if (check_line_map(tmp))
-			break;
+			break ;
 		free(tmp);
 		tmp = get_next_line(game->map->fd_map);
 	}

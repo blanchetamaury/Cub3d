@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_graphics.c                                   :+:      :+:    :+:   */
+/*   player_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 09:19:39 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 09:19:42 by amblanch         ###   ########.fr       */
+/*   Created: 2025/07/14 11:08:00 by amblanch          #+#    #+#             */
+/*   Updated: 2025/07/14 11:15:01 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_graphics(t_graphics *graphics)
+void	player_exit(t_game *game)
 {
-	if (graphics->init && graphics->window)
-		mlx_destroy_window(graphics->init, graphics->window);
-	if (graphics->init)
-		mlx_destroy_context(graphics->init);
-	free(graphics);
+	if (game->events->exit)
+		mlx_loop_end(game->graphics->init);
 }

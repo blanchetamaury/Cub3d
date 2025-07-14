@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_graphics.c                                   :+:      :+:    :+:   */
+/*   player_rotate_right.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 09:19:39 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 09:19:42 by amblanch         ###   ########.fr       */
+/*   Created: 2025/07/14 11:09:48 by amblanch          #+#    #+#             */
+/*   Updated: 2025/07/14 11:19:01 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_graphics(t_graphics *graphics)
+float	player_rotate_right(t_game *game, float previous_rotation)
 {
-	if (graphics->init && graphics->window)
-		mlx_destroy_window(graphics->init, graphics->window);
-	if (graphics->init)
-		mlx_destroy_context(graphics->init);
-	free(graphics);
+	if (game->events->rotate_right)
+	{
+		game->player->angle = fmodf(game->player->angle
+				- previous_rotation, 360.0f);
+		previous_rotation += 0.025f;
+		if (previous_rotation > 10)
+			previous_rotation = 10.0f;
+	}
+	return (previous_rotation);
 }

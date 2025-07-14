@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_graphics.c                                   :+:      :+:    :+:   */
+/*   player_move_right.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 09:19:39 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 09:19:42 by amblanch         ###   ########.fr       */
+/*   Created: 2025/07/14 10:52:02 by amblanch          #+#    #+#             */
+/*   Updated: 2025/07/14 10:58:48 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_graphics(t_graphics *graphics)
+void	player_move_right(t_game *game)
 {
-	if (graphics->init && graphics->window)
-		mlx_destroy_window(graphics->init, graphics->window);
-	if (graphics->init)
-		mlx_destroy_context(graphics->init);
-	free(graphics);
+	float	x;
+	float	y;
+	float	angle_rad;
+
+	if (game->events->move_right)
+	{
+		angle_rad = deg_to_rad(game->player->angle + 90);
+		x = game->player->pos_x + (cos(angle_rad) * 0.1);
+		y = game->player->pos_y + (sin(angle_rad) * 0.1);
+		apply_position(game->player, game->map, x, y);
+	}
 }

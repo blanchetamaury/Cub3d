@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 12:38:37 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/11 12:38:48 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 10:48:40 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	min(int a, int b)
 	return (b);
 }
 
-float minf(float a, float b)
+float	minf(float a, float b)
 {
 	if (a < b)
 		return (a);

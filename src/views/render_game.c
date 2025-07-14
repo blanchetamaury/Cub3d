@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 15:00:24 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 11:20:51 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,60 +40,10 @@ mlx_color	color(uint32_t color)
 
 void	render_game(t_game *game)
 {
-	static float	previous_rotation = 2.0f;
-
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
 
 	raycasting(game);
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->render, 0, 0);
-
-	if (game->events->move_forward) // W
-	{
-		float x = game->player->pos_x + (cos(deg_to_rad(game->player->angle)) * 0.1);
-		float y = game->player->pos_y + (sin(deg_to_rad(game->player->angle)) * 0.1);
-		apply_position(game->player, game->map, x, y);
-	}
-	if (game->events->move_backward) // S
-	{
-		float x = game->player->pos_x - (cos(deg_to_rad(game->player->angle)) * 0.1);
-		float y = game->player->pos_y - (sin(deg_to_rad(game->player->angle)) * 0.1);
-		apply_position(game->player, game->map, x, y);
-	}
-	if (game->events->move_left) // A
-	{
-		float angle_rad = deg_to_rad(game->player->angle - 90);
-		float x = game->player->pos_x + (cos(angle_rad) * 0.1);
-		float y = game->player->pos_y + (sin(angle_rad) * 0.1);
-		apply_position(game->player, game->map, x, y);
-	}
-
-	if (game->events->move_right) // D
-	{
-		float angle_rad = deg_to_rad(game->player->angle + 90);
-		float x = game->player->pos_x + (cos(angle_rad) * 0.1);
-		float y = game->player->pos_y + (sin(angle_rad) * 0.1);
-		apply_position(game->player, game->map, x, y);
-	}
-	if (game->events->exit) // Escape
-		mlx_loop_end(game->graphics->init);
-
-	if (game->events->rotate_left) // Left arrow
-	{
-		game->player->angle = fmodf(game->player->angle + previous_rotation, 360.0f);
-		previous_rotation += 0.025f;
-		if (previous_rotation > 10)
-			previous_rotation = 10.0f;
-	}
-	if (game->events->rotate_right) // Right arrow
-	{
-		game->player->angle = fmodf(game->player->angle - previous_rotation, 360.0f);
-		previous_rotation += 0.025f;
-		if (previous_rotation > 10)
-			previous_rotation = 10.0f;
-	}
-	if (!game->events->rotate_left && !game->events->rotate_right)
-		previous_rotation = 2.0f;
-
 	(void) draw_rectangle;
 	compass(game);
 	if (game->events->move_forward || game->events->move_backward
@@ -112,7 +62,6 @@ void	render_game(t_game *game)
 
 	if (game->events->debug_enabled)
 		debug_view(game);
-
 	// int mouse_x = width_window/2;
 	// int mouse_y = 0;
 	// mlx_mouse_get_pos(game->graphics->init, &mouse_x, &mouse_y);
@@ -127,6 +76,6 @@ void	render_game(t_game *game)
 	//
 	// mlx_put_transformed_image_to_window(game->graphics->init, game->graphics->window, game->texture->west->img, 0, game->texture->north->height * 0.25 + 10, 0.25, 0.25, 0);
 	// mlx_put_transformed_image_to_window(game->graphics->init, game->graphics->window, game->texture->east->img, game->texture->west->width * 0.25 + 10, game->texture->south->height * 0.25 + 10, 0.25, 0.25, 0);
-
+	player_action(game);
 	game->graphics->frame++;
 }

@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   is_bonus.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/11 14:18:58 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 10:48:17 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 #ifdef BONUS
+
 int	is_bonus(void)
 {
 	return (1);
 }
 #else
+
 int	is_bonus(void)
 {
 	return (0);

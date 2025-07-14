@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   subscribe_keyup.c                                  :+:      :+:    :+:   */
+/*   subscribe_mouseup.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:07:40 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/11 14:09:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 09:30:17 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void		on_mouseup(int key, void *param)
+static void	on_mouseup(int key, void *param)
 {
 	t_game	*game;
 
@@ -26,5 +26,6 @@ static void		on_mouseup(int key, void *param)
 
 void	subscribe_mouseup(t_graphics *graphics, t_game *game)
 {
-	mlx_on_event(graphics->init, graphics->window, MLX_MOUSEUP, on_mouseup, game);
+	mlx_on_event(graphics->init, graphics->window, MLX_MOUSEUP,
+		on_mouseup, game);
 }

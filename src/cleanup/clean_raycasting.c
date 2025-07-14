@@ -6,13 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:53:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/09 10:59:50 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/14 09:18:58 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void    clean_raycasting(t_raycasting *ray)
+void	clean_raycasting(t_raycasting *ray)
 {
 	free(ray);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:57:29 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 16:44:24 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 09:35:17 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ static int	check_color(char	**color)
 	return (0);
 }
 
+static void	create_mlx_image(t_image *image, mlx_context init)
+{
+	image->width = 1;
+	image->height = 1;
+	image->img = mlx_new_image(init, image->width, image->height);
+}
+
 static void	color_image(t_image *image, mlx_context init)
 {
 	char		**tab;
@@ -47,7 +54,7 @@ static void	color_image(t_image *image, mlx_context init)
 
 	tab = ft_split(image->path, ',');
 	if (!tab)
-		return;
+		return ;
 	if (check_color(tab) == 1)
 		return ;
 	if (ft_atoi_8bit(tab[0]) < 0 || ft_atoi_8bit(tab[1]) < 0
@@ -56,9 +63,7 @@ static void	color_image(t_image *image, mlx_context init)
 		log_error("Color values must be between 0 and 255.");
 		return ;
 	}
-	image->width = 1;
-	image->height = 1;
-	image->img = mlx_new_image(init, image->width, image->height);
+	create_mlx_image(image, init);
 	if (image->img == NULL)
 	{
 		log_error("Failed to create image from color.");
@@ -79,7 +84,7 @@ static void	image_file(t_image *image, mlx_context init)
 		log_error("Failed to open image file.");
 }
 
-int		open_image(t_image *image, mlx_context init)
+int	open_image(t_image *image, mlx_context init)
 {
 	if (image->path == NULL)
 		return (0);

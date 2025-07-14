@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/11 13:45:41 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 10:30:38 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,13 @@ typedef struct s_raycasting
 	int			step_y;
 	int			map_x;
 	int			map_y;
+	
+	float	floorstep_x;
+	float	floorstep_y;
+	float	floor_x;
+	float	floor_y;
+	int		tx;
+	int		ty;
 }				t_raycasting;
 
 typedef struct s_events

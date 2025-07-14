@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:12:41 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 16:47:43 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/14 09:51:27 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_game	*init_game(void)
 	game->texture = init_texture();
 	game->graphics = init_graphics();
 	game->map = init_map();
-	game->texture->render = mlx_new_image(game->graphics->init, width_window, height_window);
+	game->texture->render = mlx_new_image(game->graphics->init,
+			width_window, height_window);
 	game->player = init_player();
 	game->ray = init_raycasting();
 	game->events = init_events();
