@@ -24,8 +24,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WIDTH_WINDOW 800
-# define HEIGHT_WINDOW 600
+# define WIDTH_WINDOW 1280
+# define HEIGHT_WINDOW 800
 
 # define FPS 120
 # define FOV 70
@@ -119,6 +119,7 @@ void					render_game(t_game *game);
 
 void					debug_view(t_game *game);
 void					compass(t_game *game);
+void					hand(t_game *game);
 
 /* ************************************************************************** */
 /* Collision                                                                  */

@@ -54,7 +54,7 @@ void	put_play_to_window(t_game *game)
 		i++;
 	}
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 195,
+		40, 295,
 		88, 60,
 		color);
 }
@@ -82,7 +82,7 @@ void	put_online_to_window(t_game *game)
 		i++;
 	}
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 268,
+		40, 368,
 		132, 60,
 		color);
 }
@@ -110,7 +110,7 @@ void	put_option_to_window(t_game *game)
 		i++;
 	}
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 342,
+		40, 442,
 		135, 60,
 		color);
 }
@@ -138,7 +138,7 @@ void	put_exit_to_window(t_game *game)
 		i++;
 	}
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 416,
+		40, 516,
 		88, 60,
 		color);
 }
@@ -147,10 +147,10 @@ void	render_menu(t_game *game)
 {
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
 
-	raycasting(game);
+	//raycasting(game);
 
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
-		game->texture->render, 0, 0);
+		game->texture->render_tmp, 0, 0);
 
 	game->player->angle = fmodf(game->player->angle + 0.1f, 360.0f);
 	put_logo_to_window(game);
@@ -161,13 +161,13 @@ void	render_menu(t_game *game)
 
 	int mouse_x, mouse_y;
 	mlx_mouse_get_pos(game->graphics->init, &mouse_x, &mouse_y);
-	if (mouse_x >= 40 && mouse_x <= 128 && mouse_y >= 195 && mouse_y <= 255)
+	if (mouse_x >= 40 && mouse_x <= 128 && mouse_y >= 294 && mouse_y <= 368)
 		game->graphics->selection = 1;
-	else if (mouse_x >= 40 && mouse_x <= 172 && mouse_y >= 268 && mouse_y <= 328)
+	else if (mouse_x >= 40 && mouse_x <= 172 && mouse_y >= 368 && mouse_y <= 440)
 		game->graphics->selection = 2;
-	else if (mouse_x >= 40 && mouse_x <= 175 && mouse_y >= 342 && mouse_y <= 402)
+	else if (mouse_x >= 40 && mouse_x <= 175 && mouse_y >= 440 && mouse_y <= 514)
 		game->graphics->selection = 3;
-	else if (mouse_x >= 40 && mouse_x <= 128 && mouse_y >= 416 && mouse_y <= 476)
+	else if (mouse_x >= 40 && mouse_x <= 128 && mouse_y >= 514 && mouse_y <= 574)
 		game->graphics->selection = 4;
 	else
 		game->graphics->selection = 0;

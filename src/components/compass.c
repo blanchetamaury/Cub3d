@@ -17,14 +17,14 @@ void	compass(t_game *game)
 	mlx_put_image_to_window(
 		game->graphics->init, game->graphics->window,
 		game->texture->compass_background,
-		WIDTH_WINDOW - 105 - 20,
-		20
+		WIDTH_WINDOW - 160 - 24,
+		0
 		);
 	mlx_put_transformed_image_to_window(
 		game->graphics->init, game->graphics->window,
 		game->texture->compass_indicator,
-		WIDTH_WINDOW - 105 - 20,
-		20,
+		WIDTH_WINDOW - 96 - 54,
+		55,
 		1,
 		1,
 		game->player->angle + 90
