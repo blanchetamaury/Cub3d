@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 13:55:14 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/15 10:53:54 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ float					deg_to_rad(float angle);
 int						min(int a, int b);
 float					minf(float a, float b);
 int						is_bonus(void);
+void					draw_rectangle(t_graphics *graphics, int x, int y, int w, int h, mlx_color c);
 
 /* ************************************************************************** */
 /*      CHECK                                                                 */

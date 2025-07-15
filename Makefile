@@ -75,7 +75,8 @@ SRC_WINDOW =		src/window/create_window.c
 SRC_MATH =			src/math/deg_to_rad.c
 
 SRC_UTILS =			src/utils/min.c \
-					src/utils/is_bonus.c
+					src/utils/is_bonus.c \
+					src/utils/draw_rectangle.c
 
 SRC_PLAYER =		src/player/player_move_backward.c \
 					src/player/player_move_forward.c \

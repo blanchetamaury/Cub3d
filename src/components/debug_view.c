@@ -40,24 +40,6 @@ static int	get_map_height(t_map *map)
 	return (height);
 }
 
-static void	draw_rectangle(t_game *game, int x, int y, int w, int h, uint32_t c)
-{
-	int	i;
-	int j;
-
-	i = 0;
-	while (i < h)
-	{
-		j = 0;
-		while (j < w)
-		{
-			mlx_pixel_put(game->graphics->init, game->graphics->window, x + j, y + i, color(c));
-			j++;
-		}
-		i++;
-	}
-}
-
 static void	draw_circle(t_game *game, int x, int y, int w, int h, uint32_t c)
 {
 	int	i;
@@ -117,17 +99,17 @@ static void	draw_map_grid(t_game *game)
 		while (x < width)
 		{
 			if (game->map->map[y] && game->map->map[y][x] == '1')
-				draw_rectangle(game, x * 10 + 20, y * 10 + 30, 10, 10, 0xFFFFFFFF);
+				draw_rectangle(game->graphics, x * 10 + 20, y * 10 + 30, 10, 10, color(0xFFFFFFFF));
 			else if (game->map->map[y] && game->map->map[y][x] == '0')
-				draw_rectangle(game, x * 10 + 20, y * 10 + 30, 10, 10, 0xFFFFFF55);
-			draw_rectangle(game, x * 10 + 20, y * 10 + 30, 10, 1, 0xFFFFFFFF);
-			draw_rectangle(game, x * 10 + 20, y * 10 + 30, 1, 10, 0xFFFFFFFF);
+				draw_rectangle(game->graphics, x * 10 + 20, y * 10 + 30, 10, 10, color(0xFFFFFF55));
+			draw_rectangle(game->graphics, x * 10 + 20, y * 10 + 30, 10, 1, color(0xFFFFFFFF));
+			draw_rectangle(game->graphics, x * 10 + 20, y * 10 + 30, 1, 10, color(0xFFFFFFFF));
 			x++;
 		}
 		y++;
 	}
-	draw_rectangle(game, 20, y * 10 + 30, width * 10, 1, 0xFFFFFFFF);
-	draw_rectangle(game, x * 10 + 20, 30, 1, height * 10 + 1, 0xFFFFFFFF);
+	draw_rectangle(game->graphics, 20, y * 10 + 30, width * 10, 1, color(0xFFFFFFFF));
+	draw_rectangle(game->graphics, x * 10 + 20, 30, 1, height * 10 + 1, color(0xFFFFFFFF));
 }
 
 void	debug_view(t_game *game)
