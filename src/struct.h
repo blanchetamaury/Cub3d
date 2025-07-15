@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 14:27:45 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/15 16:09:14 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_texture
 	mlx_image	option_button_selected;
 	mlx_image	exit_button;
 	mlx_image	exit_button_selected;
+	mlx_image	inventory_background;
 }				t_texture;
 
 typedef struct s_graphics
@@ -124,6 +125,7 @@ typedef struct s_events
 	int		rotate_right;
 	int		exit;
 	int		debug_enabled;
+	int		inventory;
 }	t_events;
 
 typedef struct s_game

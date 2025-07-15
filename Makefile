@@ -66,6 +66,7 @@ SRC_COLLISION =		src/collision/check_collision.c
 
 SRC_VIEWS =			src/views/render_game.c \
 					src/views/render_menu.c \
+					src/views/render_inventory.c
 
 SRC_COMPONENTS =	src/components/debug_view.c \
 					src/components/compass.c \

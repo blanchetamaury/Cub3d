@@ -33,6 +33,7 @@ static void	clean_hud(t_texture *texture, mlx_context init)
 	clean_img(init, texture->online_button_selected);
 	clean_img(init, texture->option_button_selected);
 	clean_img(init, texture->exit_button_selected);
+	clean_img(init, texture->inventory_background);
 }
 
 void	clean_texture(t_texture *texture, mlx_context init)

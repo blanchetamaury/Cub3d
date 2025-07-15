@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/15 10:53:54 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/15 16:01:59 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int						open_image(t_image *image, mlx_context init);
 /* Graphic                                                                    */
 /* ************************************************************************** */
 
+void					change_view(t_game *game, int view);
 void					graphic(t_game *game);
 void					raycasting(t_game *game);
 void					render(void *data);
@@ -112,6 +113,7 @@ void					raycasting_wall(t_game *game);
 
 void					render_menu(t_game *game);
 void					render_game(t_game *game);
+void					render_inventory(t_game *game);
 
 /* ************************************************************************** */
 /* Components    													          */

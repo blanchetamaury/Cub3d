@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_inventory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/15 15:54:04 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/15 15:49:08 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/15 15:52:45 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	change_view(t_game *game, int view)
+void	render_inventory(t_game *game)
 {
-	game->graphics->view = view;
-	game->graphics->frame = 0;
-}
+	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->render_tmp, 0, 0);
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->inventory_background, 153, 1);
 
-void	render(void *data)
-{
-	t_game		*game;
-
-	game = (t_game *)data;
-	if (game->graphics->view == 0)
-		render_menu(game);
-	else if (game->graphics->view == 1)
-		render_game(game);
-	else if (game->graphics->view == 2)
-		render_inventory(game);
+	if (game->events->exit)
+	{
+		change_view(game, 1);
+		game->events->exit = 0;
+	}
 }

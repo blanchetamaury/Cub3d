@@ -23,6 +23,11 @@ void	player_action(t_game *game)
 	player_rotate_left(game, previous_rotation);
 	player_rotate_right(game, previous_rotation);
 	player_exit(game);
+	if (game->events->inventory)
+	{
+		change_view(game, 2);
+		game->events->inventory = 0;
+	}
 	if (!game->events->rotate_left && !game->events->rotate_right)
 		previous_rotation = 2.0f;
 }

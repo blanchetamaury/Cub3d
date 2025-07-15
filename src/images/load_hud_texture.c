@@ -38,4 +38,6 @@ void	load_hud_texture(t_texture *texture, mlx_context init)
 			"assets/option_button_selected.png", init);
 	texture->exit_button_selected = load(
 			"assets/exit_button_selected.png", init);
+	texture->inventory_background = load(
+			"assets/inventory_background.png", init);
 }

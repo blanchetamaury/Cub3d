@@ -31,6 +31,8 @@ static void	on_keydown(int key, void *param)
 		events->rotate_right = 1;
 	else if (key == 41)
 		events->exit = 1;
+	else if (key == 8)
+		events->inventory = 1;
 	else if (key == 60)
 		events->debug_enabled = !events->debug_enabled;
 	else if (key == 15)
