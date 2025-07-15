@@ -18,7 +18,7 @@ void	raycasting(t_game *game)
 
 	raycasting_floor(game);
 	raycasting_wall(game);
-	raycasting_sprite(game);
+	//raycasting_sprite(game);
 	mlx_get_image_region(game->graphics->init, game->texture->render, 0, 0, WIDTH_WINDOW, HEIGHT_WINDOW, color);
 	mlx_set_image_region(game->graphics->init, game->texture->render_tmp, 0, 0, WIDTH_WINDOW, HEIGHT_WINDOW, color);
 }

@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void    raycasting_sprite(t_game *game)
-{
-    
-}
+// void    raycasting_sprite(t_game *game)
+// {
+//
+// }
