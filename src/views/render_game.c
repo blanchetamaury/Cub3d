@@ -12,24 +12,6 @@
 
 #include "../cub3d.h"
 
-static void	draw_rectangle(t_game *game, int x, int y, int w, int h, uint32_t color)
-{
-	int	i;
-	int j;
-
-	i = 0;
-	while (i < h)
-	{
-		j = 0;
-		while (j < w)
-		{
-			mlx_pixel_put(game->graphics->init, game->graphics->window, x + j, y + i, (mlx_color){ .rgba = color });
-			j++;
-		}
-		i++;
-	}
-}
-
 mlx_color	color(uint32_t color)
 {
 	mlx_color	c;
