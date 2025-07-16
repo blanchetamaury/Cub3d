@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 10:42:51 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:34:14 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,22 @@ void	raycasting_wall(t_game *game)
 		init_calc(game, init_angle(game, i));
 		init_dir(game);
 		side = find_wall(game);
-		lineheight = draw_size_wall(game, side, i);
-		game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
-		wall_size_texture(game, side, lineheight);
-		draw_wall(game, game->ray->draw_start, side, i);
-		count = 0;
-		mlx_get_image_region(game->graphics->init, game->texture->render, i, 0, 1, HEIGHT_WINDOW, color);
-		while (count < 6)
+		if (game->ray->map_x - game->player->pos_x < 9 && game->ray->map_x - game->player->pos_x > -9 && game->ray->map_y - game->player->pos_y < 9 && game->ray->map_y - game->player->pos_y > -9)
 		{
-			mlx_set_image_region(game->graphics->init, game->texture->render, i + count, 0, 1, HEIGHT_WINDOW, color);
-			count++;
+			lineheight = draw_size_wall(game, side, i);
+			game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
+			wall_size_texture(game, side, lineheight);
+			draw_wall(game, game->ray->draw_start, side, i);
+			count = 0;
+			mlx_get_image_region(game->graphics->init, game->texture->render, i, 0, 1, HEIGHT_WINDOW, color);
+			while (count < 6)
+			{
+				mlx_set_image_region(game->graphics->init, game->texture->render, i + count, 0, 1, HEIGHT_WINDOW, color);
+				count++;
+			}
+			i += count;
 		}
-		i += count;
+		else
+			i++;
 	}
 }

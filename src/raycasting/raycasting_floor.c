@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 11:10:07 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:26:25 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ static void	init_calc_floor(t_game *game, int i)
 	game->ray->floor_y = game->player->pos_y + row_d * (dir_y - plane_y);
 }
 
-static void	get_pixel_image(t_game *game, t_image *img, int i, int j)
+static void	get_pixel_image(t_game *game, t_image *img, int i, int j, int light)
 {
 	mlx_color	tmp;
 	float		shade;
 	float		color_alpha;
 
-	color_alpha = 1.0f - ((HEIGHT_WINDOW % (HEIGHT_WINDOW / 2))
-			/ (LIGHT * 1000));
+	color_alpha = light / (LIGHT * 46);
 	shade = shade_result(game, i % (HEIGHT_WINDOW / 2));
 	tmp = img->colors[game->ray->ty * img->width + game->ray->tx];
 	if (((tmp.r + tmp.g + tmp.b) / 3) * (shade / (2 + game->events->flashlight * 4)) * color_alpha < 20)
@@ -96,10 +95,10 @@ void	raycasting_floor(t_game *game)
 		{
 			game->ray->color_x = (float)j - WIDTH_WINDOW / 3 - 60;
 			calc_tx_and_ty(game, game->texture->sky);
-			get_pixel_image(game, game->texture->ground, i, j);
+			get_pixel_image(game, game->texture->ground, i, j, i);
 			calc_tx_and_ty(game, game->texture->ground);
 			get_pixel_image(game, game->texture->sky,
-				HEIGHT_WINDOW - i - 1, j);
+				HEIGHT_WINDOW - i - 1, j, HEIGHT_WINDOW - (HEIGHT_WINDOW - i - 1));
 			game->ray->floor_x += game->ray->floorstep_x;
 			game->ray->floor_y += game->ray->floorstep_y;
 			j++;
