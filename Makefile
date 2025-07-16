@@ -1,7 +1,7 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Werror -Wall -Wextra -g -Isrc/
+CFLAGS = -Werror -Wall -Wextra -Ofast -g -Isrc/
 
 GNL = libs/get_next_line/get_next_line.c \
 		libs/get_next_line/get_next_line_utils.c
