@@ -24,6 +24,19 @@ double get_time_in_seconds(void) {
 	return (t.tv_sec + t.tv_usec / 1000000.0);
 }
 
+void	debug_fps(t_game *game)
+{
+	char	*tmp;
+	char	*fps_str;
+
+	tmp = ft_itoa(min(game->graphics->fps, FPS));
+	fps_str = ft_strjoin("FPS: ", tmp);
+	free(tmp);
+	mlx_string_put(game->graphics->init, game->graphics->window,
+		10, 10, color(0xFFFFFF), fps_str);
+	free(fps_str);
+}
+
 void	render(void *data)
 {
 	double		start_time;
@@ -31,6 +44,10 @@ void	render(void *data)
 	t_game		*game;
 
 	game = (t_game *)data;
+
+	// if (game->graphics->frame % 60 == 0)
+	// 	printf("FPS: %.2f\n", game->graphics->fps);
+
 	start_time = get_time_in_seconds();
 	if (game->graphics->view == 0)
 		render_menu(game);
@@ -39,6 +56,8 @@ void	render(void *data)
 	else if (game->graphics->view == 2)
 		render_inventory(game);
 	end_time = get_time_in_seconds();
-	printf("Frame rendered in %.3f seconds (FPS: %.2f)\n", end_time - start_time,
-		1.0 / (end_time - start_time));
+	game->graphics->fps = 1.0 / (end_time - start_time);
+	if (game->events->debug_enabled)
+		debug_fps(game);
+
 }
