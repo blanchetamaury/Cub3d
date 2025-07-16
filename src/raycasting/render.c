@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/15 15:54:04 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/16 15:58:00 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	change_view(t_game *game, int view)
 {
+	mlx_mouse_show(game->graphics->init);
 	game->graphics->view = view;
 	game->graphics->frame = 0;
 }
@@ -33,7 +34,7 @@ void	debug_fps(t_game *game)
 	fps_str = ft_strjoin("FPS: ", tmp);
 	free(tmp);
 	mlx_string_put(game->graphics->init, game->graphics->window,
-		10, 10, color(0xFFFFFF), fps_str);
+		WIDTH_WINDOW - 150, 20, color(0xFFEA00FF), fps_str);
 	free(fps_str);
 }
 

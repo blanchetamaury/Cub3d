@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 13:46:52 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/16 15:49:20 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ typedef struct s_texture
 	mlx_image	inventory_icon_options_selected;
 	mlx_image	q_arrow;
 	mlx_image	e_arrow;
+	mlx_image	options_header;
+	mlx_image	slider_base;
+	mlx_image	slider_selected;
+	mlx_image	switch_on;
+	mlx_image	switch_off;
+	mlx_image	switch_selected;
 }				t_texture;
 
 typedef struct s_graphics
@@ -86,6 +92,8 @@ typedef struct s_player
 	float		rad;
 	float		angle;
 	int			inventory_page;
+	int			selected_item;
+	int			use_mouse_rotation;
 }				t_player;
 
 typedef struct s_map

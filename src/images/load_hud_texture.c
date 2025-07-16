@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/16 13:22:14 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/16 15:41:35 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,10 @@ void	load_hud_texture(t_texture *texture, mlx_context init)
 			"assets/inventory_icon_options_selected.png", init);
 	texture->q_arrow = load("assets/q_arrow.png", init);
 	texture->e_arrow = load("assets/e_arrow.png", init);
+	texture->options_header = load("assets/options_header.png", init);
+	texture->slider_base = load("assets/slider_base.png", init);
+	texture->slider_selected = load("assets/slider_selected.png", init);
+	texture->switch_on = load("assets/switch_on.png", init);
+	texture->switch_off = load("assets/switch_off.png", init);
+	texture->switch_selected = load("assets/switch_selected.png", init);
 }
