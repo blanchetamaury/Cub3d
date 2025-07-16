@@ -39,5 +39,6 @@ void	render(void *data)
 	else if (game->graphics->view == 2)
 		render_inventory(game);
 	end_time = get_time_in_seconds();
-	printf("Frame rendered in %.3f seconds\n", end_time - start_time);
+	printf("Frame rendered in %.3f seconds (FPS: %.2f)\n", end_time - start_time,
+		1.0 / (end_time - start_time));
 }

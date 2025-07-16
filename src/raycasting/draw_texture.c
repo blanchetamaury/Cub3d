@@ -20,11 +20,11 @@ static void	draw_wall_face_north_and_south(t_game *game, int i, int len)
 
 	shade = shade_result(game, len);
 	if (game->ray->step_y < 0)
-		tmp = mlx_get_image_pixel(game->graphics->init,
-				game->texture->north->img, game->ray->tex_x, game->ray->tex_y);
+		tmp = game->texture->north->colors[game->ray->tex_y
+			* game->texture->north->width + game->ray->tex_x];
 	else
-		tmp = mlx_get_image_pixel(game->graphics->init,
-				game->texture->south->img, game->ray->tex_x, game->ray->tex_y);
+		tmp = game->texture->south->colors[game->ray->tex_y
+			* game->texture->south->width + game->ray->tex_x];
 	color_alpha = 1.0f - (game->ray->perpwalldist / LIGHT);
 	if (255 * (shade / (2 + game->events->flashlight * 4)) * color_alpha < 20)
 		tmp.a = 20;
@@ -43,11 +43,11 @@ static void	draw_wall_face_west_and_east(t_game *game, int i, int len)
 
 	shade = shade_result(game, len);
 	if (game->ray->step_x < 0)
-		tmp = mlx_get_image_pixel(game->graphics->init,
-				game->texture->west->img, game->ray->tex_x, game->ray->tex_y);
+		tmp = game->texture->west->colors[game->ray->tex_y
+				* game->texture->west->width + game->ray->tex_x];
 	else
-		tmp = mlx_get_image_pixel(game->graphics->init,
-				game->texture->east->img, game->ray->tex_x, game->ray->tex_y);
+		tmp = game->texture->east->colors[game->ray->tex_y
+				* game->texture->east->width + game->ray->tex_x];
 	color_alpha = 1.0f - (game->ray->perpwalldist / LIGHT);
 	if (255 * (shade / (2 + game->events->flashlight * 4)) * color_alpha < 20)
 		tmp.a = 20;

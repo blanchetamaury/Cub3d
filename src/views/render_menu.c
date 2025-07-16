@@ -147,7 +147,7 @@ void	render_menu(t_game *game)
 {
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
 
-	//raycasting(game);
+	raycasting(game);
 
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 		game->texture->render_tmp, 0, 0);

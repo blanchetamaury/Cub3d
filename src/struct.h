@@ -25,6 +25,7 @@ typedef struct s_image
 	mlx_image	img;
 	int			width;
 	int			height;
+	mlx_color	*colors;
 }				t_image;
 
 typedef struct s_texture
@@ -61,6 +62,8 @@ typedef struct s_graphics
 	int						view;
 	int						frame;
 	int						selection;
+	struct timeval			last_time;
+	double					fps;
 }				t_graphics;
 
 typedef struct s_player

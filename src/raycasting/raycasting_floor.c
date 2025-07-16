@@ -28,10 +28,12 @@ static void	init_calc_floor(t_game *game, int i)
 	float			plane_x;
 	float			plane_y;
 	float			row_d;
+	float			tan_half_fov;
 
 	init_rad_floor(game, &dir_x, &dir_y);
-	plane_x = -dir_y * tanf((FOV / 2) *(3.14 / 180.0f));
-	plane_y = dir_x * tanf((FOV / 2) *(3.14 / 180.0f));
+	tan_half_fov = tanf((FOV / 2) * (3.14 / 180.0f));
+	plane_x = -dir_y * tan_half_fov;
+	plane_y = dir_x * tan_half_fov;
 	row_d = (0.5 * HEIGHT_WINDOW) / (i - HEIGHT_WINDOW / 2);
 	game->ray->floorstep_x = row_d * ((dir_x + plane_x)
 			- (dir_x - plane_x)) / WIDTH_WINDOW;
@@ -41,7 +43,7 @@ static void	init_calc_floor(t_game *game, int i)
 	game->ray->floor_y = game->player->pos_y + row_d * (dir_y - plane_y);
 }
 
-static void	get_pixel_image(t_game *game, mlx_image img, int i, int j)
+static void	get_pixel_image(t_game *game, t_image *img, int i, int j)
 {
 	mlx_color	tmp;
 	float		shade;
@@ -50,8 +52,7 @@ static void	get_pixel_image(t_game *game, mlx_image img, int i, int j)
 	color_alpha = 1.0f - ((HEIGHT_WINDOW % (HEIGHT_WINDOW / 2))
 			/ (LIGHT * 1000));
 	shade = shade_result(game, i % (HEIGHT_WINDOW / 2));
-	tmp = mlx_get_image_pixel(game->graphics->init, img,
-			game->ray->tx, game->ray->ty);
+	tmp = img->colors[game->ray->ty * img->width + game->ray->tx];
 	if (255 * (shade / (2 + game->events->flashlight * 4)) * color_alpha < 20)
 		tmp.a = 20;
 	else
@@ -85,9 +86,9 @@ void	raycasting_floor(t_game *game)
 		{
 			game->ray->color_x = (float)j - WIDTH_WINDOW / 3 - 60;
 			calc_tx_and_ty(game, game->texture->sky);
-			get_pixel_image(game, game->texture->ground->img, i, j);
+			get_pixel_image(game, game->texture->ground, i, j);
 			calc_tx_and_ty(game, game->texture->ground);
-			get_pixel_image(game, game->texture->sky->img,
+			get_pixel_image(game, game->texture->sky,
 				HEIGHT_WINDOW - i - 1, j);
 			game->ray->floor_x += game->ray->floorstep_x;
 			game->ray->floor_y += game->ray->floorstep_y;

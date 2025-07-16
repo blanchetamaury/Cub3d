@@ -86,13 +86,21 @@ static void	image_file(t_image *image, mlx_context init)
 
 int	open_image(t_image *image, mlx_context init)
 {
+	int	type;
 	if (image->path == NULL)
 		return (0);
 	if (ft_strchr(image->path, ',') == NULL)
 	{
 		image_file(image, init);
-		return (1);
+		type = 1;
 	}
-	color_image(image, init);
-	return (2);
+	else
+	{
+		color_image(image, init);
+		type = 2;
+	}
+	image->colors = ft_calloc(image->width * image->height, sizeof(mlx_color));
+	mlx_get_image_region(init, image->img, 0, 0, image->width,
+			image->height, image->colors);
+	return (type);
 }
