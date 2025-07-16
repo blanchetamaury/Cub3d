@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:21:35 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/10 13:19:02 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/16 13:47:36 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_texture	*init_texture(void)
 	texture->west = init_image();
 	texture->sky = init_image();
 	texture->ground = init_image();
+	texture->battery = init_image();
 	texture->render = NULL;
 	texture->compass_background = NULL;
 	texture->compass_indicator = NULL;

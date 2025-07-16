@@ -71,5 +71,7 @@ int	load_map_texture(t_texture *texture, mlx_context init)
 		return (1);
 	if (!texture->sky->img || !texture->ground->img)
 		return (1);
+	texture->battery->path = "assets/battery.png";
+	open_image(texture->battery, init);
 	return (0);
 }
