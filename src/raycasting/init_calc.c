@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:43:07 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 11:35:05 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:43:23 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 
 float	init_angle(t_game *game, int i)
 {
-	float	deltaangle;
 	float	rayangle;
-	float	deg_to_rad;
 
-	deg_to_rad = 3.14 / 180.0f;
-	deltaangle = FOV / (float)WIDTH_WINDOW;
-	rayangle = (game->player->angle - FOV / 2) + i * deltaangle;
-	return (rayangle * deg_to_rad);
+	rayangle = (game->player->angle - FOV / 2) + i * game->ray->deltaangle;
+	return (rayangle * game->ray->deg_to_rad);
 }
 
 void	init_calc(t_game *game, float rad)

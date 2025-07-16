@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 10:08:44 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:45:10 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_rad_floor(t_game *game, float *dir_x, float *dir_y)
 {
 	float	rad;
 
-	rad = game->player->angle * (3.14 / 180.0f);
+	rad = game->player->angle * game->ray->deg_to_rad;
 	*dir_x = cosf(rad);
 	*dir_y = sinf(rad);
 }
@@ -56,7 +56,7 @@ static void	get_pixel_image(t_game *game, t_image *img, int i, int j)
 	if (255 * (shade / (2 + game->events->flashlight * 4)) * color_alpha < 20)
 		tmp.a = 20;
 	else
-		tmp.a = (255) * (shade / (2 + game->events->flashlight * 4))
+		tmp.a = 255 * (shade / (2 + game->events->flashlight * 4))
 			* color_alpha;
 	mlx_set_image_pixel(game->graphics->init, game->texture->render, j, i, tmp);
 }
