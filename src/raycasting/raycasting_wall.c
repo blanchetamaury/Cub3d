@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 11:28:28 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:14:13 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	raycasting_wall(t_game *game)
 	int		i;
 	int		side;
 	int		lineheight;
+	int		count;
+	mlx_color	color[HEIGHT_WINDOW * 1];
 
 	i = 0;
 	while (i < WIDTH_WINDOW)
@@ -84,6 +86,14 @@ void	raycasting_wall(t_game *game)
 		game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
 		wall_size_texture(game, side, lineheight);
 		draw_wall(game, game->ray->draw_start, side, i);
-		i++;
+		count = 0;
+		mlx_get_image_region(game->graphics->init, game->texture->render, i, 0, 1, HEIGHT_WINDOW, color);
+		while (count < 6)
+		{
+			mlx_set_image_region(game->graphics->init, game->texture->render, i + count, 0, 1, HEIGHT_WINDOW, color);
+			count++;
+		}
+		i += count;
+		//i++;
 	}
 }

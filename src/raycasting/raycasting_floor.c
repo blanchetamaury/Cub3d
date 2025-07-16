@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 11:28:28 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:08:44 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	raycasting_floor(t_game *game)
 {
 	int	i;
 	int	j;
+	int count;
+	mlx_color	color[WIDTH_WINDOW * 1];
 
 	i = 0;
 	j = 0;
@@ -91,6 +93,20 @@ void	raycasting_floor(t_game *game)
 			game->ray->floor_y += game->ray->floorstep_y;
 			j++;
 		}
-		i++;
+		count = 0;
+		mlx_get_image_region(game->graphics->init, game->texture->render, 0, i, WIDTH_WINDOW, 1, color);
+		while (count < 3)
+		{
+			mlx_set_image_region(game->graphics->init, game->texture->render, 0, i + count, WIDTH_WINDOW, 1, color);
+			count++;
+		}
+		count = 0;
+		mlx_get_image_region(game->graphics->init, game->texture->render, 0, HEIGHT_WINDOW - i - 1, WIDTH_WINDOW, 1, color);
+		while (count < 3)
+		{
+			mlx_set_image_region(game->graphics->init, game->texture->render, 0, (HEIGHT_WINDOW - i - 1) - count, WIDTH_WINDOW, 1, color);
+			count++;
+		}
+		i += count;
 	}
 }
