@@ -44,10 +44,6 @@ void	render(void *data)
 	t_game		*game;
 
 	game = (t_game *)data;
-
-	// if (game->graphics->frame % 60 == 0)
-	// 	printf("FPS: %.2f\n", game->graphics->fps);
-
 	start_time = get_time_in_seconds();
 	if (game->graphics->view == 0)
 		render_menu(game);
@@ -59,5 +55,4 @@ void	render(void *data)
 	game->graphics->fps = 1.0 / (end_time - start_time);
 	if (game->events->debug_enabled)
 		debug_fps(game);
-
 }

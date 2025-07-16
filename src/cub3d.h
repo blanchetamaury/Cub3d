@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 10:43:39 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:34:25 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,13 @@ void					create_window(t_graphics *graphics);
 /* ************************************************************************** */
 
 void					subscribe_mouseup(t_graphics *graphics, t_game *game);
-void					subscribe_keydown(t_graphics *graphics,
-							t_events *events);
+void					subscribe_keydown(t_game *game);
 void					subscribe_keyup(t_graphics *graphics, t_events *events);
 void					subscribe_window(t_graphics *graphics,
 							t_events *events);
 void					subscribe_events(t_game *game);
+
+void					on_keydown_inventory(int key, t_game *game);
 
 /* ************************************************************************** */
 /* Maths                                                                      */

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 09:49:02 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:22:14 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,22 @@ void	load_hud_texture(t_texture *texture, mlx_context init)
 			"assets/exit_button_selected.png", init);
 	texture->inventory_background = load(
 			"assets/inventory_background.png", init);
+	texture->inventory_icon_map = load(
+			"assets/inventory_icon_map.png", init);
+	texture->inventory_icon_cases = load(
+			"assets/inventory_icon_cases.png", init);
+	texture->inventory_icon_save = load(
+			"assets/inventory_icon_save.png", init);
+	texture->inventory_icon_options = load(
+			"assets/inventory_icon_options.png", init);
+	texture->inventory_icon_map_selected = load(
+			"assets/inventory_icon_map_selected.png", init);
+	texture->inventory_icon_cases_selected = load(
+			"assets/inventory_icon_cases_selected.png", init);
+	texture->inventory_icon_save_selected = load(
+			"assets/inventory_icon_save_selected.png", init);
+	texture->inventory_icon_options_selected = load(
+			"assets/inventory_icon_options_selected.png", init);
+	texture->q_arrow = load("assets/q_arrow.png", init);
+	texture->e_arrow = load("assets/e_arrow.png", init);
 }

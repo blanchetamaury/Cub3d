@@ -14,33 +14,35 @@
 
 static void	on_keydown(int key, void *param)
 {
-	t_events	*events;
+	t_game	*game;
 
-	events = param;
+	game = param;
+	if (game->graphics->view == 2)
+		return (on_keydown_inventory(key, game));
 	if (key == 26)
-		events->move_forward = 1;
+		game->events->move_forward = 1;
 	else if (key == 22)
-		events->move_backward = 1;
+		game->events->move_backward = 1;
 	else if (key == 4)
-		events->move_left = 1;
+		game->events->move_left = 1;
 	else if (key == 7)
-		events->move_right = 1;
+		game->events->move_right = 1;
 	else if (key == 79)
-		events->rotate_left = 1;
+		game->events->rotate_left = 1;
 	else if (key == 80)
-		events->rotate_right = 1;
+		game->events->rotate_right = 1;
 	else if (key == 41)
-		events->exit = 1;
+		game->events->exit = 1;
 	else if (key == 8)
-		events->inventory = 1;
+		game->events->inventory = 1;
 	else if (key == 60)
-		events->debug_enabled = !events->debug_enabled;
+		game->events->debug_enabled = !game->events->debug_enabled;
 	else if (key == 15)
-		events->flashlight = !events->flashlight;
+		game->events->flashlight = !game->events->flashlight;
 }
 
-void	subscribe_keydown(t_graphics *graphics, t_events *events)
+void	subscribe_keydown(t_game *game)
 {
-	mlx_on_event(graphics->init, graphics->window, MLX_KEYDOWN,
-		on_keydown, events);
+	mlx_on_event(game->graphics->init, game->graphics->window, MLX_KEYDOWN,
+		on_keydown, game);
 }

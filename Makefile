@@ -60,7 +60,8 @@ SRC_EVENTS =		src/event/subscribe_events.c \
 					src/event/subscribe_keydown.c \
 					src/event/subscribe_keyup.c \
 					src/event/subscribe_mouseup.c \
-					src/event/subscribe_window.c
+					src/event/subscribe_window.c \
+					src/event/pages/inventory.c \
 
 SRC_COLLISION =		src/collision/check_collision.c
 
