@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <sys/time.h>
 
 # define WIDTH_WINDOW 1280
 # define HEIGHT_WINDOW 800
