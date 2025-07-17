@@ -28,8 +28,6 @@
 # define WIDTH_WINDOW 1280
 # define HEIGHT_WINDOW 800
 
-# define FPS 120
-
 # define LIGHT 10
 
 # include "struct.h"
@@ -122,6 +120,7 @@ void					render_inventory(t_game *game);
 void					debug_view(t_game *game);
 void					compass(t_game *game);
 void					hand(t_game *game);
+void					progress(int value, int x, int y, t_game *game);
 
 /* ************************************************************************** */
 /* Collision                                                                  */

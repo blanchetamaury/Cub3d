@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/16 15:58:00 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 11:15:27 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	debug_fps(t_game *game)
 	char	*tmp;
 	char	*fps_str;
 
-	tmp = ft_itoa(min(game->graphics->fps, FPS));
+	tmp = ft_itoa(min(game->graphics->fps, game->graphics->max_fps));
 	fps_str = ft_strjoin("FPS: ", tmp);
 	free(tmp);
 	mlx_string_put(game->graphics->init, game->graphics->window,

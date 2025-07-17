@@ -39,6 +39,10 @@ void	on_keydown_inventory(int key, t_game *game)
 		{
 			if (game->player->selected_item == 0 && game->ray->fov < 100)
 				game->ray->fov += 10;
+			if (game->player->selected_item == 1) {
+				game->graphics->max_fps += 30;
+				mlx_set_fps_goal(game->graphics->init, game->graphics->max_fps);
+			}
 			if (game->player->selected_item == 2)
 				game->player->use_mouse_rotation = !game->player->use_mouse_rotation;
 		}
@@ -47,8 +51,12 @@ void	on_keydown_inventory(int key, t_game *game)
 	{
 		if (game->player->inventory_page == 3)
 		{
-			if (game->player->selected_item == 0 && game->ray->fov > 50)
+			if (game->player->selected_item == 0 && game->ray->fov > 40)
 				game->ray->fov -= 10;
+			if (game->player->selected_item == 1 && game->graphics->max_fps > 30) {
+				game->graphics->max_fps -= 30;
+				mlx_set_fps_goal(game->graphics->init, game->graphics->max_fps);
+			}
 			if (game->player->selected_item == 2)
 				game->player->use_mouse_rotation = !game->player->use_mouse_rotation;
 		}

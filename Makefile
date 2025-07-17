@@ -71,7 +71,8 @@ SRC_VIEWS =			src/views/render_game.c \
 
 SRC_COMPONENTS =	src/components/debug_view.c \
 					src/components/compass.c \
-					src/components/hand.c
+					src/components/hand.c \
+					src/components/progress.c
 
 SRC_WINDOW =		src/window/create_window.c
 
