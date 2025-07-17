@@ -31,7 +31,7 @@ static void	init_calc_floor(t_game *game, int i)
 	float			tan_half_fov;
 
 	init_rad_floor(game, &dir_x, &dir_y);
-	tan_half_fov = tanf((FOV / 2) * (3.14 / 180.0f));
+	tan_half_fov = tanf((game->ray->fov / 2) * (3.14 / 180.0f));
 	plane_x = -dir_y * tan_half_fov;
 	plane_y = dir_x * tan_half_fov;
 	row_d = (0.5 * HEIGHT_WINDOW) / (i - HEIGHT_WINDOW / 2);

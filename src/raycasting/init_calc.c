@@ -16,7 +16,7 @@ float	init_angle(t_game *game, int i)
 {
 	float	rayangle;
 
-	rayangle = (game->player->angle - FOV / 2) + i * game->ray->deltaangle;
+	rayangle = (game->player->angle - game->ray->fov / 2) + i * game->ray->deltaangle;
 	return (rayangle * game->ray->deg_to_rad);
 }
 

@@ -64,4 +64,7 @@ void	load_hud_texture(t_texture *texture, mlx_context init)
 	texture->switch_on = load("assets/switch_on.png", init);
 	texture->switch_off = load("assets/switch_off.png", init);
 	texture->switch_selected = load("assets/switch_selected.png", init);
+	texture->progress_start = load("assets/progress_start.png", init);
+	texture->progress_center = load("assets/progress_center.png", init);
+	texture->progress_end = load("assets/progress_end.png", init);
 }

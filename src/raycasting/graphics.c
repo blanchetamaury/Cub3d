@@ -22,7 +22,7 @@ void	raycasting_task(void	*param)
 
 void	graphic(t_game *game)
 {
-	game->ray->deltaangle = FOV / (float)WIDTH_WINDOW;
+	game->ray->deltaangle = game->ray->fov / (float)WIDTH_WINDOW;
 	game->ray->deg_to_rad = 3.14 / 180.0f;
 
 	mlx_set_font_scale(game->graphics->init, "assets/fonts/SuperLegendBoy.ttf", 22);

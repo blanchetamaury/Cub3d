@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 15:49:20 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 12:26:54 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,16 @@ typedef struct s_texture
 	mlx_image	inventory_icon_options_selected;
 	mlx_image	q_arrow;
 	mlx_image	e_arrow;
+	mlx_image	minimap_header;
 	mlx_image	options_header;
 	mlx_image	slider_base;
 	mlx_image	slider_selected;
 	mlx_image	switch_on;
 	mlx_image	switch_off;
 	mlx_image	switch_selected;
+	mlx_image	progress_start;
+	mlx_image	progress_center;
+	mlx_image	progress_end;
 }				t_texture;
 
 typedef struct s_graphics
@@ -81,6 +85,7 @@ typedef struct s_graphics
 	int						selection;
 	struct timeval			last_time;
 	double					fps;
+	int						max_fps;
 }				t_graphics;
 
 typedef struct s_player
@@ -107,6 +112,7 @@ typedef struct s_map
 
 typedef struct s_raycasting
 {
+	int			fov;
 	float		cos_x;
 	float		sin_y;
 	float		ray_x;

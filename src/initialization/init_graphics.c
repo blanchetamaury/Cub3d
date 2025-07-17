@@ -20,5 +20,6 @@ t_graphics	*init_graphics(void)
 	graphics->frame = 0;
 	graphics->init = mlx_init();
 	graphics->window = NULL;
+	graphics->max_fps = 90;
 	return (graphics);
 }

@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:49:08 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/16 15:46:49 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 10:47:27 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 void	render_shadow_text(t_game *game, int x, int y, char *text)
 {
 	mlx_string_put(game->graphics->init, game->graphics->window, x, y, color(0x000000FF), text);
+}
+
+void	value_text(char *text, int value, int x, int y, t_game *game)
+{
+	char	*value_str;
+	char	*full_text;
+
+	value_str = ft_itoa(value);
+	full_text = ft_strjoin(text, value_str);
+	free(value_str);
+	render_shadow_text(game, x, y, full_text);
+	free(full_text);
 }
 
 void	render_inventory(t_game *game)
@@ -49,13 +61,16 @@ void	render_inventory(t_game *game)
 
 		if (game->player->selected_item == 0)
 			mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->slider_selected, 511, 297);
-		render_shadow_text(game, 531, 326, "FOV: 70");
+		value_text("FOV: ", game->ray->fov, 531, 326, game);
 		mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->slider_base, 511, 297);
+		progress((game->ray->fov / 10) - 4, 576, 331, game);
 
 		if (game->player->selected_item == 1)
 			mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->slider_selected, 511, 403);
-		render_shadow_text(game, 531, 433, "MAX FPS: 120");
+		value_text("MAX FPS: ", game->graphics->max_fps, 531, 433, game);
 		mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->slider_base, 511, 403);
+		progress((game->graphics->max_fps / 30) - 1, 576, 437, game);
+
 
 		if (game->player->selected_item == 2)
 			mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->switch_selected, 511, 509);

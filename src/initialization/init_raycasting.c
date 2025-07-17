@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:33:46 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 09:50:17 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:01:42 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ t_raycasting	*init_raycasting(void)
 
 	ray = NULL;
 	ray = ft_calloc(1, sizeof(t_raycasting));
+	ray->fov = 70;
 	return (ray);
 }

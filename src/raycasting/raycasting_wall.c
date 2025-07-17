@@ -56,7 +56,7 @@ int	draw_size_wall(t_game *game, int side, int i)
 	float	angle_diff;
 
 	camera_x = 2.0f * i / (float)WIDTH_WINDOW - 1.0f;
-	half_fov = (3.14 / 180.0f) / 2.0f;
+	half_fov = (game->ray->fov / 2) * (3.14 / 180.0f);
 	angle_diff = camera_x * half_fov;
 	if (side == 0)
 		game->ray->perpwalldist = (game->ray->raylength_x - game->ray->ray_x)
