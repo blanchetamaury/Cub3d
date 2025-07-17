@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/17 13:51:02 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:04:16 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	raycasting_wall(t_game *game)
 				float			plane_y;
 				
 				init_rad_floor(game, &dir_x, &dir_y);
-				tan_half_fov = tanf((FOV / 2) * (3.14 / 180.0f));
+				tan_half_fov = tanf((game->ray->fov / 2) * (3.14 / 180.0f));
 				plane_x = -dir_y * tan_half_fov;
 				plane_y = dir_x * tan_half_fov;
 				float	sprite_x = x - game->player->pos_x + 0.5;

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 15:20:42 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 14:16:20 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,31 @@ void	raycasting_task(void	*param)
 	raycasting(game);
 }
 
+void	add_battery(t_game *game)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while(game->map->map[y])
+	{
+		x = 0;
+		while (game->map->map[y][x])
+		{
+			if (game->map->map[y][x] == '0' && rand() % 40 == 0)
+				game->map->map[y][x] = 'B';
+			x++;
+		}
+		y++;
+	}
+}
+
 void	graphic(t_game *game)
 {
 	game->ray->deltaangle = game->ray->fov / (float)WIDTH_WINDOW;
 	game->ray->deg_to_rad = 3.14 / 180.0f;
 
+	add_battery(game);
 	mlx_set_font_scale(game->graphics->init, "assets/fonts/SuperLegendBoy.ttf", 22);
 
 	mlx_add_loop_hook(game->graphics->init, render, game);
