@@ -17,6 +17,18 @@ void	render_shadow_text(t_game *game, int x, int y, char *text)
 	mlx_string_put(game->graphics->init, game->graphics->window, x, y, color(0x000000FF), text);
 }
 
+void	value_text(char *text, int value, int x, int y, t_game *game)
+{
+	char	*value_str;
+	char	*full_text;
+
+	value_str = ft_itoa(value);
+	full_text = ft_strjoin(text, value_str);
+	free(value_str);
+	render_shadow_text(game, x, y, full_text);
+	free(full_text);
+}
+
 void	render_inventory(t_game *game)
 {
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
@@ -49,7 +61,7 @@ void	render_inventory(t_game *game)
 
 		if (game->player->selected_item == 0)
 			mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->slider_selected, 511, 297);
-		render_shadow_text(game, 531, 326, "FOV: 70");
+		value_text("FOV: ", game->ray->fov, 531, 326, game);
 		mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->slider_base, 511, 297);
 
 		if (game->player->selected_item == 1)

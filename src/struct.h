@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 15:49:20 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 09:01:19 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_map
 
 typedef struct s_raycasting
 {
+	int			fov;
 	float		cos_x;
 	float		sin_y;
 	float		ray_x;

@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:37:31 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/09 16:42:57 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 09:03:59 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ void	debug_view(t_game *game)
 
 	// Draw line of sight
 
-	int sight_angle = -(FOV/2);
-	while (sight_angle <= FOV/2)
+	int sight_angle = -(game->ray->fov/2);
+	while (sight_angle <= game->ray->fov/2)
 	{
 		int			sight_length = 30;
 		float		angle_rad = deg_to_rad(game->player->angle + sight_angle);

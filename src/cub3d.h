@@ -29,7 +29,6 @@
 # define HEIGHT_WINDOW 800
 
 # define FPS 120
-# define FOV 70
 
 # define LIGHT 10
 
