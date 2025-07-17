@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 13:34:25 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 10:39:26 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void					wall_size_texture(t_game *game, int side,
 							int lineheight);
 void					raycasting_floor(t_game *game);
 void					raycasting_wall(t_game *game);
+void					init_rad_floor(t_game *game, float *dir_x, float *dir_y);
 
 /* ************************************************************************** */
 /* Views                                                                      */

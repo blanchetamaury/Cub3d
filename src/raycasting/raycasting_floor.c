@@ -6,13 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/16 13:26:25 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:39:08 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_rad_floor(t_game *game, float *dir_x, float *dir_y)
+void	init_rad_floor(t_game *game, float *dir_x, float *dir_y)
 {
 	float	rad;
 
