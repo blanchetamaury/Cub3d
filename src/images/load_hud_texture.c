@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/16 15:41:35 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:21:46 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,10 @@ void	load_hud_texture(t_texture *texture, mlx_context init)
 	texture->progress_start = load("assets/progress_start.png", init);
 	texture->progress_center = load("assets/progress_center.png", init);
 	texture->progress_end = load("assets/progress_end.png", init);
+	texture->minimap_header = load("assets/minimap_header.png", init);
+	texture->map_t = load("assets/map_t.png", init);
+	texture->map_b = load("assets/map_b.png", init);
+	texture->map_l = load("assets/map_l.png", init);
+	texture->map_r = load("assets/map_r.png", init);
+	texture->map_p = load("assets/map_p.png", init);
 }

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/17 12:26:54 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/17 13:39:52 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ typedef struct s_texture
 	mlx_image	progress_start;
 	mlx_image	progress_center;
 	mlx_image	progress_end;
+	mlx_image	map_t;
+	mlx_image	map_b;
+	mlx_image	map_l;
+	mlx_image	map_r;
+	mlx_image	map_p;
 }				t_texture;
 
 typedef struct s_graphics
