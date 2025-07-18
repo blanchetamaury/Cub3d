@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   max.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 13:26:15 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/18 09:06:17 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/18 09:14:30 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/18 09:15:20 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_player	*init_player(void)
+int	max(int a, int b)
 {
-	t_player	*player;
+	if (a > b)
+		return (a);
+	return (b);
+}
 
-	player = ft_calloc(1, sizeof(t_player));
-	player->x = 0;
-	player->y = 0;
-	player->battery = 3600;
-	return (player);
+float	maxf(float a, float b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+uint8_t	maxu(uint8_t a, uint8_t b)
+{
+	if (a > b)
+		return (a);
+	return (b);
 }

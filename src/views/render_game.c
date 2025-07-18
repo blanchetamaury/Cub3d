@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/17 08:59:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:00:38 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ void	render_game(t_game *game)
 	compass(game);
 	hand(game);
 
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->flash_panel, WIDTH_WINDOW - 154, HEIGHT_WINDOW - 246);
+	if (!game->events->flashlight)
+		mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->flash_on, WIDTH_WINDOW - 82, HEIGHT_WINDOW - 74);
+	else
+		mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->flash_off, WIDTH_WINDOW - 82, HEIGHT_WINDOW - 74);
+
+	int i = 1;
+
+	while (i <= 6 && game->player->battery > (i * 600) - 600) {
+		mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->led_on, 1164, 734 - (i - 1) * 18.5f);
+		i++;
+	}
+
 
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->clock_background, 0, HEIGHT_WINDOW - 128);
 
@@ -48,5 +61,15 @@ void	render_game(t_game *game)
 		game->player->angle = (mouse_x / (float) WIDTH_WINDOW) * 360.0f;
 	}
 	player_action(game);
+	if (!game->events->flashlight && game->player->battery > 0)
+		game->player->battery--;
+	if (game->player->battery == 0)
+		game->events->flashlight = 1;
+
+	if (game->map->map[(int)game->player->pos_y][(int)game->player->pos_x] == 'B' && game->player->battery < 3600 - 600)
+	{
+		game->map->map[(int)game->player->pos_y][(int)game->player->pos_x] = '0';
+		game->player->battery += 600;
+	}
 	game->graphics->frame++;
 }

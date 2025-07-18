@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/17 16:21:46 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/18 09:59:47 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,8 @@ void	load_hud_texture(t_texture *texture, mlx_context init)
 	texture->map_l = load("assets/map_l.png", init);
 	texture->map_r = load("assets/map_r.png", init);
 	texture->map_p = load("assets/map_p.png", init);
+	texture->flash_panel = load("assets/flash_panel.png", init);
+	texture->led_on = load("assets/led_on.png", init);
+	texture->flash_on = load("assets/flash_on.png", init);
+	texture->flash_off = load("assets/flash_off.png", init);
 }
