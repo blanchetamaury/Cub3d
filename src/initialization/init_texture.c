@@ -25,6 +25,7 @@ t_texture	*init_texture(void)
 	texture->ground = init_image();
 	texture->battery = init_image();
 	texture->render = NULL;
+	texture->render_tmp = NULL;
 	texture->compass_background = NULL;
 	texture->compass_indicator = NULL;
 	return (texture);

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/18 09:51:00 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:33:51 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_texture
 	mlx_image	led_on;
 	mlx_image	flash_on;
 	mlx_image	flash_off;
+	mlx_image	crosshair;
 }				t_texture;
 
 typedef struct s_graphics

@@ -40,7 +40,7 @@ static int	get_map_height(t_map *map)
 	return (height);
 }
 
-static void	draw_circle(t_game *game, int x, int y, int w, int h, uint32_t c)
+void	draw_circle(t_game *game, int x, int y, int w, int h, uint32_t c)
 {
 	int	i;
 	int j;

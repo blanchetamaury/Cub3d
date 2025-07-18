@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/18 09:19:49 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:27:43 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ float					maxf(float a, float b);
 uint8_t					maxu(uint8_t a, uint8_t b);
 int						is_bonus(void);
 void					draw_rectangle(t_graphics *graphics, int x, int y, int w, int h, mlx_color c);
+void					draw_circle(t_game *game, int x, int y, int w, int h, uint32_t c);
 
 /* ************************************************************************** */
 /*      CHECK                                                                 */

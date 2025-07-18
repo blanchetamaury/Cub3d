@@ -34,6 +34,36 @@ static void	clean_hud(t_texture *texture, mlx_context init)
 	clean_img(init, texture->option_button_selected);
 	clean_img(init, texture->exit_button_selected);
 	clean_img(init, texture->inventory_background);
+	clean_img(init, texture->inventory_icon_map);
+	clean_img(init, texture->inventory_icon_cases);
+	clean_img(init, texture->inventory_icon_save);
+	clean_img(init, texture->inventory_icon_options);
+	clean_img(init, texture->inventory_icon_map_selected);
+	clean_img(init, texture->inventory_icon_cases_selected);
+	clean_img(init, texture->inventory_icon_save_selected);
+	clean_img(init, texture->inventory_icon_options_selected);
+	clean_img(init, texture->q_arrow);
+	clean_img(init, texture->e_arrow);
+	clean_img(init, texture->minimap_header);
+	clean_img(init, texture->options_header);
+	clean_img(init, texture->slider_base);
+	clean_img(init, texture->slider_selected);
+	clean_img(init, texture->switch_on);
+	clean_img(init, texture->switch_off);
+	clean_img(init, texture->switch_selected);
+	clean_img(init, texture->progress_start);
+	clean_img(init, texture->progress_center);
+	clean_img(init, texture->progress_end);
+	clean_img(init, texture->map_t);
+	clean_img(init, texture->map_b);
+	clean_img(init, texture->map_l);
+	clean_img(init, texture->map_r);
+	clean_img(init, texture->map_p);
+	clean_img(init, texture->flash_panel);
+	clean_img(init, texture->led_on);
+	clean_img(init, texture->flash_on);
+	clean_img(init, texture->flash_off);
+	clean_img(init, texture->crosshair);
 }
 
 void	clean_texture(t_texture *texture, mlx_context init)
@@ -44,6 +74,7 @@ void	clean_texture(t_texture *texture, mlx_context init)
 	clean_image(texture->west, init);
 	clean_image(texture->sky, init);
 	clean_image(texture->ground, init);
+	clean_image(texture->battery, init);
 	mlx_destroy_image(init, texture->render);
 	mlx_destroy_image(init, texture->render_tmp);
 	clean_hud(texture, init);

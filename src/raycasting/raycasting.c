@@ -14,7 +14,7 @@
 
 void	raycasting(t_game *game)
 {
-	mlx_color	color[WIDTH_WINDOW * HEIGHT_WINDOW];
+	mlx_color	color[HEIGHT_WINDOW * WIDTH_WINDOW];
 
 	raycasting_floor(game);
 	raycasting_wall(game);

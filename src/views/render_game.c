@@ -71,5 +71,6 @@ void	render_game(t_game *game)
 		game->map->map[(int)game->player->pos_y][(int)game->player->pos_x] = '0';
 		game->player->battery += 600;
 	}
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->crosshair, (WIDTH_WINDOW / 2) - 40, (HEIGHT_WINDOW / 2) + 20);
 	game->graphics->frame++;
 }
