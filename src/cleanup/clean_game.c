@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:22:35 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 13:55:49 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:39:06 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	clean_game(t_game *game)
 	clean_map(game->map);
 	clean_player(game->player);
 	clean_raycasting(game->ray);
+	clean_event(game->events);
 	free(game);
 }

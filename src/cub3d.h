@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/18 11:27:43 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/18 14:37:37 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void					clean_image(t_image *image, mlx_context init);
 void					clean_game(t_game *game);
 void					clean_raycasting(t_raycasting *ray);
 void					clean_window_info(t_game *game);
+void					clean_event(t_events *events);
 void					free_texture(t_game *game);
 
 /* ************************************************************************** */

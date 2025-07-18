@@ -40,7 +40,8 @@ SRC_CLEANUP =		src/cleanup/clean_game.c \
 					src/cleanup/clean_color.c \
 					src/cleanup/clean_image.c \
 					src/cleanup/clean_raycasting.c \
-					src/cleanup/clean_window_info.c
+					src/cleanup/clean_window_info.c \
+					src/cleanup/clean_event.c
 
 SRC_IMAGES =		src/images/open_image.c \
 					src/images/load_map_texture.c \
