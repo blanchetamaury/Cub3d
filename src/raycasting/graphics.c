@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/18 13:19:35 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/18 13:49:03 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	graphic(t_game *game)
 	mlx_set_font_scale(game->graphics->init, "assets/fonts/SuperLegendBoy.ttf", 22);
 
 	mlx_add_loop_hook(game->graphics->init, render, game);
-	//mlx_add_loop_hook(game->graphics->init, raycasting_task, game);
+	mlx_add_loop_hook(game->graphics->init, raycasting_task, game);
 	mlx_loop(game->graphics->init);
 }

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:26:38 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 14:17:12 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:17:04 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,6 @@ void	put_exit_to_window(t_game *game)
 void	render_menu(t_game *game)
 {
 	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
-
-	raycasting(game);
 
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 		game->texture->render_tmp, 0, 0);

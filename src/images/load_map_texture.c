@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:03:14 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 09:32:46 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:15:05 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	load_map_texture(t_texture *texture, mlx_context init)
 		return (1);
 	if (!texture->sky->img || !texture->ground->img)
 		return (1);
-	texture->battery->path = "assets/battery.png";
+	texture->battery->path = ft_strdup("assets/battery.png");
 	open_image(texture->battery, init);
 	return (0);
 }

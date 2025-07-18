@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 14:24:17 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:09:29 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	raycasting(t_game *game)
 {
-	mlx_color	color[HEIGHT_WINDOW * WIDTH_WINDOW];
+	static mlx_color	color[HEIGHT_WINDOW * WIDTH_WINDOW];
 
 	raycasting_floor(game);
 	raycasting_wall(game);
