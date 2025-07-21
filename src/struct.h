@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 13:14:56 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:50:13 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ typedef struct s_raycasting
 	float		deg_to_rad;
 	float		transform_y;
 	float		transform_x;
-	int 		sprite_height;
+	int			sprite_height;
 	int			sprite_width;
 	int			i;
 }				t_raycasting;

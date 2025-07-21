@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:18:16 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/18 15:18:19 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/21 15:43:20 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	flashlight_panel(t_game *game)
 {
-	int i;
+	int	i;
 
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 		game->texture->flash_panel, WIDTH_WINDOW - 154,

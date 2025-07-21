@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:57:29 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 09:35:17 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:47:51 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static void	image_file(t_image *image, mlx_context init)
 int	open_image(t_image *image, mlx_context init)
 {
 	int	type;
+
 	if (image->path == NULL)
 		return (0);
 	if (ft_strchr(image->path, ',') == NULL)
@@ -101,6 +102,6 @@ int	open_image(t_image *image, mlx_context init)
 	}
 	image->colors = ft_calloc(image->width * image->height, sizeof(mlx_color));
 	mlx_get_image_region(init, image->img, 0, 0, image->width,
-			image->height, image->colors);
+		image->height, image->colors);
 	return (type);
 }

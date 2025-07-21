@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:49:08 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 13:31:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/21 15:37:24 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	render_inventory(t_game *game)
 		game->texture->e_arrow, 315, 109);
 	render_tab_indicator(game);
 	render_inventory_page(game);
+	mlx_mouse_show(game->graphics->init);
 }
