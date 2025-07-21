@@ -72,7 +72,9 @@ SRC_VIEWS =			src/views/render_game.c \
 SRC_COMPONENTS =	src/components/debug_view.c \
 					src/components/compass.c \
 					src/components/hand.c \
-					src/components/progress.c
+					src/components/progress.c\
+					src/components/debug_fps.c \
+					src/components/flashlight_panel.c
 
 SRC_WINDOW =		src/window/create_window.c
 
@@ -81,7 +83,9 @@ SRC_MATH =			src/math/deg_to_rad.c
 SRC_UTILS =			src/utils/min.c \
 					src/utils/max.c \
 					src/utils/is_bonus.c \
-					src/utils/draw_rectangle.c
+					src/utils/draw_rectangle.c \
+					src/utils/color.c \
+					src/utils/time.c
 
 SRC_PLAYER =		src/player/player_move_backward.c \
 					src/player/player_move_forward.c \

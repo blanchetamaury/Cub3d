@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_window_info.c                                :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 13:48:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/18 15:10:44 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/18 15:23:33 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/18 15:23:45 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	clean_window_info(t_game *game)
+mlx_color	color(uint32_t color)
 {
-	free(game->graphics->info);
+	mlx_color	c;
+
+	c.rgba = color;
+	return (c);
 }

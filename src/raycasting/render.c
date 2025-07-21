@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/17 11:15:27 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/18 15:24:17 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,6 @@ void	change_view(t_game *game, int view)
 	game->graphics->frame = 0;
 }
 
-double get_time_in_seconds(void) {
-	struct timeval t;
-	gettimeofday(&t, NULL);
-	return (t.tv_sec + t.tv_usec / 1000000.0);
-}
-
-void	debug_fps(t_game *game)
-{
-	char	*tmp;
-	char	*fps_str;
-
-	tmp = ft_itoa(min(game->graphics->fps, game->graphics->max_fps));
-	fps_str = ft_strjoin("FPS: ", tmp);
-	free(tmp);
-	mlx_string_put(game->graphics->init, game->graphics->window,
-		WIDTH_WINDOW - 150, 20, color(0xFFEA00FF), fps_str);
-	free(fps_str);
-}
-
 void	render(void *data)
 {
 	double		start_time;
@@ -45,15 +26,19 @@ void	render(void *data)
 	t_game		*game;
 
 	game = (t_game *)data;
-	start_time = get_time_in_seconds();
+	if (is_bonus())
+		start_time = get_time_in_seconds();
 	if (game->graphics->view == 0)
 		render_menu(game);
 	else if (game->graphics->view == 1)
 		render_game(game);
 	else if (game->graphics->view == 2)
 		render_inventory(game);
-	end_time = get_time_in_seconds();
-	game->graphics->fps = 1.0 / (end_time - start_time);
-	if (game->events->debug_enabled)
-		debug_fps(game);
+	if (is_bonus()) {
+		end_time = get_time_in_seconds();
+		game->graphics->fps = 1.0 / (end_time - start_time);
+		if (game->events->debug_enabled)
+			debug_fps(game);
+	}
+	game->graphics->frame++;
 }

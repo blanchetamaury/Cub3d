@@ -122,6 +122,8 @@ void					debug_view(t_game *game);
 void					compass(t_game *game);
 void					hand(t_game *game);
 void					progress(int value, int x, int y, t_game *game);
+void					flashlight_panel(t_game *game);
+void					debug_fps(t_game *game);
 
 /* ************************************************************************** */
 /* Collision                                                                  */
@@ -168,6 +170,7 @@ int						is_bonus(void);
 void					draw_rectangle(t_graphics *graphics, t_rect rect,
 							mlx_color c);
 void					draw_circle(t_game *game, t_rect rect, uint32_t c);
+double					get_time_in_seconds(void);
 
 /* ************************************************************************** */
 /*      CHECK                                                                 */
