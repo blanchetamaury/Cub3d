@@ -24,6 +24,7 @@ t_texture	*init_texture(void)
 	texture->sky = init_image();
 	texture->ground = init_image();
 	texture->battery = init_image();
+	texture->door = init_image();
 	texture->render = NULL;
 	texture->render_tmp = NULL;
 	texture->compass_background = NULL;
