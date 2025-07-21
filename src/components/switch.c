@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   switch.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 15:23:33 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 13:38:32 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/21 13:19:15 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/21 13:20:31 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-mlx_color	color(uint32_t color)
+void	switch_view(t_game *game, int is_on, int x, int y)
 {
-	mlx_color	c;
-
-	c.rgba = color;
-	return (c);
-}
-
-void	set_region_opacity(mlx_color *color, int size, uint8_t opacity)
-{
-	int			i;
-
-	i = 0;
-	while (i < size)
-	{
-		color[i].a *= opacity / 255.0f;
-		i++;
-	}
+	if (is_on)
+		mlx_put_image_to_window(game->graphics->init, game->graphics->window,
+			game->texture->switch_on, x, y);
+	else
+		mlx_put_image_to_window(game->graphics->init, game->graphics->window,
+			game->texture->switch_off, x, y);
 }

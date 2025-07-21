@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   render_inventory_page.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 15:23:33 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 13:38:32 by rgodet           ###   ########.fr       */
+/*   Created: 2025/07/21 10:19:11 by rgodet            #+#    #+#             */
+/*   Updated: 2025/07/21 13:17:16 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-mlx_color	color(uint32_t color)
+void	render_inventory_page(t_game *game)
 {
-	mlx_color	c;
-
-	c.rgba = color;
-	return (c);
-}
-
-void	set_region_opacity(mlx_color *color, int size, uint8_t opacity)
-{
-	int			i;
-
-	i = 0;
-	while (i < size)
+	if (game->player->inventory_page == 0)
 	{
-		color[i].a *= opacity / 255.0f;
-		i++;
+		mlx_put_image_to_window(game->graphics->init, game->graphics->window,
+			game->texture->minimap_header, 511, 177);
+		minimap(game, 516, 257);
+	}
+	if (game->player->inventory_page == 3)
+	{
+		mlx_put_image_to_window(game->graphics->init, game->graphics->window,
+			game->texture->options_header, 511, 177);
+		render_options_page(game);
 	}
 }

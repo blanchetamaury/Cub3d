@@ -19,8 +19,8 @@ void	render_game(t_game *game)
 	compass(game);
 	hand(game);
 	flashlight_panel(game);
-	if (game->events->debug_enabled)
-		debug_view(game);
+	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
+		game->texture->crosshair, (WIDTH_WINDOW / 2) - 40, (HEIGHT_WINDOW / 2) + 20);
 
 	// Modification probable
 	player_action(game);
@@ -28,8 +28,6 @@ void	render_game(t_game *game)
 
 	// Non normé ! A move dans differents composant / utils
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->clock_background, 0, HEIGHT_WINDOW - 128);
-
-
 
 	if (game->player->use_mouse_rotation)
 	{
@@ -54,5 +52,4 @@ void	render_game(t_game *game)
 		game->map->map[(int)game->player->pos_y][(int)game->player->pos_x] = '0';
 		game->player->battery += 600;
 	}
-	mlx_put_image_to_window(game->graphics->init, game->graphics->window, game->texture->crosshair, (WIDTH_WINDOW / 2) - 40, (HEIGHT_WINDOW / 2) + 20);
 }

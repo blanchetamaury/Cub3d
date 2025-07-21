@@ -72,6 +72,7 @@ char	**dup_map(char **map)
 		}
 		i++;
 	}
+	new = ft_push(new, NULL);
 	return (new);
 }
 

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:28:11 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 09:40:23 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:21:44 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 static void	move_inventory(int key, t_game *game)
 {
 	if (key == 41)
-	{
 		change_view(game, 1);
-		game->events->exit = 0;
-	}
 	if (key == 20)
 		game->player->inventory_page = (game->player->inventory_page + 1) % 4;
 	if (key == 8)

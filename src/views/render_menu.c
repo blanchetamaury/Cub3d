@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:26:38 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/18 14:17:04 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:48:44 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,128 +15,66 @@
 void	put_logo_to_window(t_game *game)
 {
 	mlx_color	color[316 * 107];
-	int			i;
 
-	mlx_get_image_region(game->graphics->init, game->texture->cub3d_logo, 0, 0, 316, 107, color);
-	i = 0;
-	while (i < 316 * 107)
-	{
-		if (color[i].a > 0)
-			color[i].a = min(game->graphics->frame * 10, 255);
-		i++;
-	}
+	mlx_get_image_region(game->graphics->init, game->texture->cub3d_logo,
+		0, 0, 316, 107, color);
+	set_region_opacity(color, 316 * 107,
+		min(game->graphics->frame * 10, 255));
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		min(20 + game->graphics->frame, 40), 40,
-		316, 107,
+		min(20 + game->graphics->frame, 40), 40, 316, 107,
 		color);
 }
 
 void	put_play_to_window(t_game *game)
 {
 	mlx_color	color[88 * 60];
-	int			i;
 
 	if (game->graphics->frame < 15)
-		return;
+		return ;
 	if (game->graphics->selection == 1)
-		mlx_get_image_region(game->graphics->init, game->texture->play_button_selected,
-			0, 0, 88, 60, color);
+		mlx_get_image_region(game->graphics->init,
+			game->texture->play_button_selected, 0, 0, 88, 60, color);
 	else
 		mlx_get_image_region(game->graphics->init, game->texture->play_button,
 			0, 0, 88, 60, color);
-	i = 0;
-	while (i < 88 * 60)
-	{
-		if (color[i].a > 127)
-			color[i].a = min((game->graphics->frame - 15) * 20, 255);
-		else if (color[i].a > 0)
-			color[i].a = min(color[i].a * (game->graphics->frame - 15) / 20, color[i].a);
-		i++;
-	}
+	set_region_opacity(color, 88 * 60,
+		min((game->graphics->frame - 15) * 20, 255));
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 295,
-		88, 60,
-		color);
-}
-
-void	put_online_to_window(t_game *game)
-{
-	mlx_color	color[132 * 60];
-	int			i;
-
-	if (game->graphics->frame < 20)
-		return;
-	if (game->graphics->selection == 2)
-		mlx_get_image_region(game->graphics->init, game->texture->online_button_selected,
-			0, 0, 132, 60, color);
-	else
-		mlx_get_image_region(game->graphics->init, game->texture->online_button,
-			0, 0, 132, 60, color);
-	i = 0;
-	while (i < 132 * 60)
-	{
-		if (color[i].a > 127)
-			color[i].a = min((game->graphics->frame - 20) * 20, 255);
-		else if (color[i].a > 0)
-			color[i].a = min(color[i].a * (game->graphics->frame - 20) / 20, color[i].a);
-		i++;
-	}
-	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 368,
-		132, 60,
-		color);
+		40, 295, 88, 60, color);
 }
 
 void	put_option_to_window(t_game *game)
 {
 	mlx_color	color[135 * 60];
-	int			i;
 
 	if (game->graphics->frame < 25)
-		return;
+		return ;
 	if (game->graphics->selection == 3)
-		mlx_get_image_region(game->graphics->init, game->texture->option_button_selected,
-			0, 0, 135, 60, color);
+		mlx_get_image_region(game->graphics->init,
+			game->texture->option_button_selected, 0, 0, 135, 60, color);
 	else
 		mlx_get_image_region(game->graphics->init, game->texture->option_button,
 			0, 0, 135, 60, color);
-	i = 0;
-	while (i < 135 * 60)
-	{
-		if (color[i].a > 127)
-			color[i].a = min((game->graphics->frame - 25) * 20, 255);
-		else if (color[i].a > 0)
-			color[i].a = min(color[i].a * (game->graphics->frame - 25) / 20, color[i].a);
-		i++;
-	}
+	set_region_opacity(color, 135 * 60,
+		min((game->graphics->frame - 25) * 20, 255));
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 442,
-		135, 60,
-		color);
+		40, 442, 135, 60, color);
 }
 
 void	put_exit_to_window(t_game *game)
 {
 	mlx_color	color[88 * 60];
-	int			i;
 
 	if (game->graphics->frame < 30)
-		return;
+		return ;
 	if (game->graphics->selection == 4)
-		mlx_get_image_region(game->graphics->init, game->texture->exit_button_selected,
-			0, 0, 88, 60, color);
+		mlx_get_image_region(game->graphics->init,
+			game->texture->exit_button_selected, 0, 0, 88, 60, color);
 	else
 		mlx_get_image_region(game->graphics->init, game->texture->exit_button,
 			0, 0, 88, 60, color);
-	i = 0;
-	while (i < 88 * 60)
-	{
-		if (color[i].a > 127)
-			color[i].a = min((game->graphics->frame - 30) * 20, 255);
-		else if (color[i].a > 0)
-			color[i].a = min(color[i].a * (game->graphics->frame - 30) / 20, color[i].a);
-		i++;
-	}
+	set_region_opacity(color, 88 * 60,
+		min((game->graphics->frame - 30) * 20, 255));
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
 		40, 516,
 		88, 60,
@@ -145,27 +83,24 @@ void	put_exit_to_window(t_game *game)
 
 void	render_menu(t_game *game)
 {
-	mlx_clear_window(game->graphics->init, game->graphics->window, color(0x000000FF));
+	int		mx;
+	int		my;
 
+	mlx_clear_window(game->graphics->init, game->graphics->window,
+		color(0x000000FF));
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 		game->texture->render_tmp, 0, 0);
-
 	game->player->angle = fmodf(game->player->angle + 0.1f, 360.0f);
 	put_logo_to_window(game);
 	put_play_to_window(game);
-	put_online_to_window(game);
 	put_option_to_window(game);
 	put_exit_to_window(game);
-
-	int mouse_x, mouse_y;
-	mlx_mouse_get_pos(game->graphics->init, &mouse_x, &mouse_y);
-	if (mouse_x >= 40 && mouse_x <= 128 && mouse_y >= 294 && mouse_y <= 368)
+	mlx_mouse_get_pos(game->graphics->init, &mx, &my);
+	if (mx >= 40 && mx <= 128 && my >= 294 && my <= 368)
 		game->graphics->selection = 1;
-	else if (mouse_x >= 40 && mouse_x <= 172 && mouse_y >= 368 && mouse_y <= 440)
-		game->graphics->selection = 2;
-	else if (mouse_x >= 40 && mouse_x <= 175 && mouse_y >= 440 && mouse_y <= 514)
+	else if (mx >= 40 && mx <= 175 && my >= 440 && my <= 514)
 		game->graphics->selection = 3;
-	else if (mouse_x >= 40 && mouse_x <= 128 && mouse_y >= 514 && mouse_y <= 574)
+	else if (mx >= 40 && mx <= 128 && my >= 514 && my <= 574)
 		game->graphics->selection = 4;
 	else
 		game->graphics->selection = 0;

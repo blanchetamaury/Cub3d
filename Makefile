@@ -67,14 +67,17 @@ SRC_COLLISION =		src/collision/check_collision.c
 
 SRC_VIEWS =			src/views/render_game.c \
 					src/views/render_menu.c \
-					src/views/render_inventory.c
+					src/views/render_inventory.c \
+					src/views/render_inventory_page.c \
+					src/views/render_options_page.c
 
-SRC_COMPONENTS =	src/components/debug_view.c \
-					src/components/compass.c \
+SRC_COMPONENTS =	src/components/compass.c \
 					src/components/hand.c \
 					src/components/progress.c\
 					src/components/debug_fps.c \
-					src/components/flashlight_panel.c
+					src/components/flashlight_panel.c \
+					src/components/minimap.c \
+					src/components/switch.c \
 
 SRC_WINDOW =		src/window/create_window.c
 
@@ -83,7 +86,6 @@ SRC_MATH =			src/math/deg_to_rad.c
 SRC_UTILS =			src/utils/min.c \
 					src/utils/max.c \
 					src/utils/is_bonus.c \
-					src/utils/draw_rectangle.c \
 					src/utils/color.c \
 					src/utils/time.c
 

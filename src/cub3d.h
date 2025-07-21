@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 10:18:16 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:39:10 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,17 +114,20 @@ void					init_rad_floor(t_game *game, float *dir_x,
 void					render_menu(t_game *game);
 void					render_game(t_game *game);
 void					render_inventory(t_game *game);
+void					render_inventory_page(t_game *game);
+void					render_options_page(t_game *game);
 
 /* ************************************************************************** */
 /* Components    													          */
 /* ************************************************************************** */
 
-void					debug_view(t_game *game);
 void					compass(t_game *game);
 void					hand(t_game *game);
 void					progress(int value, int x, int y, t_game *game);
 void					flashlight_panel(t_game *game);
 void					debug_fps(t_game *game);
+void					minimap(t_game *game, int postion_x, int postion_y);
+void					switch_view(t_game *game, int is_on, int x, int y);
 
 /* ************************************************************************** */
 /* Collision                                                                  */
@@ -168,10 +171,10 @@ int						max(int a, int b);
 float					maxf(float a, float b);
 uint8_t					maxu(uint8_t a, uint8_t b);
 int						is_bonus(void);
-void					draw_rectangle(t_graphics *graphics, t_rect rect,
-							mlx_color c);
 void					draw_circle(t_game *game, t_rect rect, uint32_t c);
 double					get_time_in_seconds(void);
+void					set_region_opacity(mlx_color *color, int size,
+							uint8_t opacity);
 
 /* ************************************************************************** */
 /*      CHECK                                                                 */
