@@ -107,6 +107,7 @@ typedef struct s_player
 	float		pos_y;
 	float		rad;
 	float		angle;
+	float		base_angle;
 	int			inventory_page;
 	int			selected_item;
 	int			use_mouse_rotation;

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:07:40 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 09:30:17 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 17:30:54 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static void	on_mouseup(int key, void *param)
 
 	game = param;
 	if (game->graphics->view == 0 && game->graphics->selection == 1)
-		game->graphics->view = 1;
+	{
+		change_view(game, 1);
+		game->player->angle = game->player->base_angle;
+	}
 	if (game->graphics->view == 0 && game->graphics->selection == 4)
 		mlx_loop_end(game->graphics->init);
 	(void) key;
