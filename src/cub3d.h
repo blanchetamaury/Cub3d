@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/18 14:37:37 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 09:06:34 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ void					graphic(t_game *game);
 void					raycasting(t_game *game);
 void					render(void *data);
 mlx_color				color(uint32_t color);
-void					draw_rectangle_mlx(t_game *game, int x, int y,
-							int w, int h, mlx_color color);
 void					draw_wall(t_game *game, int len, int side, int i);
 int						get_face(int side, int step_x, int step_y);
 int						get_face_height(int side, int step_x, int step_y,
@@ -105,7 +103,8 @@ void					wall_size_texture(t_game *game, int side,
 							int lineheight);
 void					raycasting_floor(t_game *game);
 void					raycasting_wall(t_game *game);
-void					init_rad_floor(t_game *game, float *dir_x, float *dir_y);
+void					init_rad_floor(t_game *game, float *dir_x,
+							float *dir_y);
 
 /* ************************************************************************** */
 /* Views                                                                      */
@@ -166,8 +165,9 @@ int						max(int a, int b);
 float					maxf(float a, float b);
 uint8_t					maxu(uint8_t a, uint8_t b);
 int						is_bonus(void);
-void					draw_rectangle(t_graphics *graphics, int x, int y, int w, int h, mlx_color c);
-void					draw_circle(t_game *game, int x, int y, int w, int h, uint32_t c);
+void					draw_rectangle(t_graphics *graphics, t_rect rect,
+							mlx_color c);
+void					draw_circle(t_game *game, t_rect rect, uint32_t c);
 
 /* ************************************************************************** */
 /*      CHECK                                                                 */

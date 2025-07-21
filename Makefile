@@ -22,7 +22,6 @@ SRC_INIT =			src/initialization/get_player_pos.c \
 
 SRC_CHECKS =		src/checks/check_map.c \
 					src/checks/check_texture.c \
-					src/checks/check_color.c \
 					src/checks/check_map_valid.c \
 					src/checks/check_player.c \
 					src/checks/create_map.c

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/18 11:33:51 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/21 08:40:24 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,14 @@ typedef struct s_events
 	int		debug_enabled;
 	int		inventory;
 }	t_events;
+
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	h;
+	int	w;
+}			t_rect;
 
 typedef struct s_game
 {

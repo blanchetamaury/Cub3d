@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:16:48 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 14:15:33 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 09:09:47 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,12 @@ static void	clean_img(mlx_context init, mlx_image img)
 		mlx_destroy_image(init, img);
 }
 
-static void	clean_hud(t_texture *texture, mlx_context init)
+static void	clean_hud_game(t_texture *texture, mlx_context init)
 {
 	clean_img(init, texture->compass_background);
 	clean_img(init, texture->compass_indicator);
 	clean_img(init, texture->hands);
 	clean_img(init, texture->clock_background);
-	clean_img(init, texture->cub3d_logo);
-	clean_img(init, texture->play_button);
-	clean_img(init, texture->online_button);
-	clean_img(init, texture->option_button);
-	clean_img(init, texture->exit_button);
-	clean_img(init, texture->play_button_selected);
-	clean_img(init, texture->online_button_selected);
-	clean_img(init, texture->option_button_selected);
-	clean_img(init, texture->exit_button_selected);
-	clean_img(init, texture->inventory_background);
 	clean_img(init, texture->inventory_icon_map);
 	clean_img(init, texture->inventory_icon_cases);
 	clean_img(init, texture->inventory_icon_save);
@@ -44,16 +34,6 @@ static void	clean_hud(t_texture *texture, mlx_context init)
 	clean_img(init, texture->inventory_icon_options_selected);
 	clean_img(init, texture->q_arrow);
 	clean_img(init, texture->e_arrow);
-	clean_img(init, texture->minimap_header);
-	clean_img(init, texture->options_header);
-	clean_img(init, texture->slider_base);
-	clean_img(init, texture->slider_selected);
-	clean_img(init, texture->switch_on);
-	clean_img(init, texture->switch_off);
-	clean_img(init, texture->switch_selected);
-	clean_img(init, texture->progress_start);
-	clean_img(init, texture->progress_center);
-	clean_img(init, texture->progress_end);
 	clean_img(init, texture->map_t);
 	clean_img(init, texture->map_b);
 	clean_img(init, texture->map_l);
@@ -64,6 +44,31 @@ static void	clean_hud(t_texture *texture, mlx_context init)
 	clean_img(init, texture->flash_on);
 	clean_img(init, texture->flash_off);
 	clean_img(init, texture->crosshair);
+}
+
+static void	clean_hud(t_texture *texture, mlx_context init)
+{
+	clean_img(init, texture->cub3d_logo);
+	clean_img(init, texture->play_button);
+	clean_img(init, texture->online_button);
+	clean_img(init, texture->option_button);
+	clean_img(init, texture->exit_button);
+	clean_img(init, texture->play_button_selected);
+	clean_img(init, texture->online_button_selected);
+	clean_img(init, texture->option_button_selected);
+	clean_img(init, texture->exit_button_selected);
+	clean_img(init, texture->inventory_background);
+	clean_img(init, texture->minimap_header);
+	clean_img(init, texture->options_header);
+	clean_img(init, texture->slider_base);
+	clean_img(init, texture->slider_selected);
+	clean_img(init, texture->switch_on);
+	clean_img(init, texture->switch_off);
+	clean_img(init, texture->switch_selected);
+	clean_img(init, texture->progress_start);
+	clean_img(init, texture->progress_center);
+	clean_img(init, texture->progress_end);
+	clean_hud_game(texture, init);
 }
 
 void	clean_texture(t_texture *texture, mlx_context init)
