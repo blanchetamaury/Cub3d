@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 09:06:34 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:18:16 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ float					shade_result(t_game *game, int len);
 void					wall_size_texture(t_game *game, int side,
 							int lineheight);
 void					raycasting_floor(t_game *game);
-void					raycasting_wall(t_game *game);
+void					raycasting_wall(t_game *game, int *status, float *z_buffer);
+void					raycasting_sprite(t_game *game, int status, float *z_buffer);
 void					init_rad_floor(t_game *game, float *dir_x,
 							float *dir_y);
 

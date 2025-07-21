@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/18 15:24:17 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/21 13:46:47 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	render(void *data)
 		render_game(game);
 	else if (game->graphics->view == 2)
 		render_inventory(game);
-	if (is_bonus()) {
+	if (is_bonus())
+	{
 		end_time = get_time_in_seconds();
 		game->graphics->fps = 1.0 / (end_time - start_time);
 		if (game->events->debug_enabled)

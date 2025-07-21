@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/18 14:09:29 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:46:33 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,15 @@
 void	raycasting(t_game *game)
 {
 	static mlx_color	color[HEIGHT_WINDOW * WIDTH_WINDOW];
+	static float		z_buffer[WIDTH_WINDOW];
+	int					status;
 
+	status = 0;
 	raycasting_floor(game);
-	raycasting_wall(game);
-	//raycasting_sprite(game);
-	mlx_get_image_region(game->graphics->init, game->texture->render, 0, 0, WIDTH_WINDOW, HEIGHT_WINDOW, color);
-	mlx_set_image_region(game->graphics->init, game->texture->render_tmp, 0, 0, WIDTH_WINDOW, HEIGHT_WINDOW, color);
+	raycasting_wall(game, &status, z_buffer);
+	raycasting_sprite(game, status, z_buffer);
+	mlx_get_image_region(game->graphics->init, game->texture->render, 0,
+		0, WIDTH_WINDOW, HEIGHT_WINDOW, color);
+	mlx_set_image_region(game->graphics->init, game->texture->render_tmp, 0,
+		0, WIDTH_WINDOW, HEIGHT_WINDOW, color);
 }
