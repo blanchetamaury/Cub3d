@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 09:11:02 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:35:02 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static int	check_line_map(char *str)
 
 	i = 0;
 	j = 0;
-	find = " 10NSEW\n";
+	if (is_bonus())
+		find = " 10NSEW\n";
+	else
+		find = " 10NSEWP\n";
 	while (str[i])
 	{
 		j = 0;
@@ -30,7 +33,9 @@ static int	check_line_map(char *str)
 				break ;
 			j++;
 		}
-		if (j >= 8)
+		if (j >= 9 && is_bonus())
+			return (0);
+		else if (j >= 8 && !is_bonus())
 			return (0);
 		i++;
 	}

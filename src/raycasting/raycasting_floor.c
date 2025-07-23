@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 13:36:45 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:25:38 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,8 @@ static void	get_pixel_image(t_game *game, t_image *img, int j, int light)
 	color_alpha = light / (LIGHT * 46);
 	shade = shade_result(game, game->ray->i % (HEIGHT_WINDOW / 2));
 	tmp = img->colors[game->ray->ty * img->width + game->ray->tx];
-	if (((tmp.r + tmp.g + tmp.b) / 3) * (shade / (2 + game->events->flashlight
-				* 4)) * color_alpha < 20)
-	{
-		tmp.r = 0;
-		tmp.g = 0;
-		tmp.b = 0;
-	}
-	else
-	{
-		tmp.r = tmp.r * (shade / (2 + game->events->flashlight * 4))
-			* color_alpha;
-		tmp.g = tmp.g * (shade / (2 + game->events->flashlight * 4))
-			* color_alpha;
-		tmp.b = tmp.b * (shade / (2 + game->events->flashlight * 4))
-			* color_alpha;
-	}
+	if (is_bonus())
+		tmp = texture_shader(game, tmp, shade, color_alpha);
 	mlx_set_image_pixel(game->graphics->init, game->texture->render,
 		j, game->ray->i, tmp);
 }

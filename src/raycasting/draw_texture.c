@@ -6,13 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 11:26:47 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:47:38 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static mlx_color	texture_shader(t_game *game, mlx_color tmp,
+mlx_color	texture_shader(t_game *game, mlx_color tmp,
 						float shade, float color_alpha)
 {
 	if (((tmp.r + tmp.g + tmp.b) / 3) * (shade / (2 + game->events->flashlight
@@ -41,14 +41,18 @@ static void	draw_wall_face_north_and_south(t_game *game, int i, int len)
 	float		color_alpha;
 
 	shade = shade_result(game, len);
-	if (game->ray->step_y < 0)
+	if (game->ray->door == 1)
+		tmp = game->texture->ground->colors[game->ray->tex_y
+			* game->texture->ground->width + game->ray->tex_x];
+	else if (game->ray->step_y < 0)
 		tmp = game->texture->north->colors[game->ray->tex_y
 			* game->texture->north->width + game->ray->tex_x];
 	else
 		tmp = game->texture->south->colors[game->ray->tex_y
 			* game->texture->south->width + game->ray->tex_x];
 	color_alpha = 1.0f - (game->ray->perpwalldist / LIGHT);
-	tmp = texture_shader(game, tmp, shade, color_alpha);
+	if (is_bonus())
+		tmp = texture_shader(game, tmp, shade, color_alpha);
 	mlx_set_image_pixel(game->graphics->init, game->texture->render,
 		i, len, tmp);
 }
@@ -60,14 +64,18 @@ static void	draw_wall_face_west_and_east(t_game *game, int i, int len)
 	float		color_alpha;
 
 	shade = shade_result(game, len);
-	if (game->ray->step_x < 0)
+	if (game->ray->door == 1)
+		tmp = game->texture->ground->colors[game->ray->tex_y
+			* game->texture->ground->width + game->ray->tex_x];
+	else if (game->ray->step_x < 0)
 		tmp = game->texture->west->colors[game->ray->tex_y
 			* game->texture->west->width + game->ray->tex_x];
 	else
 		tmp = game->texture->east->colors[game->ray->tex_y
 			* game->texture->east->width + game->ray->tex_x];
 	color_alpha = 1.0f - (game->ray->perpwalldist / LIGHT);
-	tmp = texture_shader(game, tmp, shade, color_alpha);
+	if (is_bonus())
+		tmp = texture_shader(game, tmp, shade, color_alpha);
 	mlx_set_image_pixel(game->graphics->init, game->texture->render,
 		i, len, tmp);
 }

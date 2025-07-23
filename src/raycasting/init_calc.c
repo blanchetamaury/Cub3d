@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:43:07 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 11:27:05 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:55:06 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,33 @@ void	wall_size_texture(t_game *game, int side, int lineheight)
 		game->ray->wall_x = game->player->pos_x + game->ray->perpwalldist
 			* game->ray->cos_x;
 	game->ray->wall_x -= floorf(game->ray->wall_x);
-	game->ray->tex_x = (int)(game->ray->wall_x * (float)get_face_width(side,
-				game->ray->step_x, game->ray->step_y, game->texture));
-	if ((side == 0 && game->ray->cos_x > 0) || (side == 1
+	if (game->ray->door == 1)
+	{
+		game->ray->tex_x = (int)(game->ray->wall_x * game->texture->ground->width);
+	}
+	else
+	{
+		game->ray->tex_x = (int)(game->ray->wall_x * (float)get_face_width(side,
+					game->ray->step_x, game->ray->step_y, game->texture));
+	}
+	if (((side == 0 && game->ray->cos_x > 0) || (side == 1
+			&& game->ray->sin_y < 0)) && game->ray->door == 1)
+	{
+		game->ray->tex_x = game->texture->ground->width - game->ray->tex_x - 1;
+	}
+	else if ((side == 0 && game->ray->cos_x > 0) || (side == 1
 			&& game->ray->sin_y < 0))
 		game->ray->tex_x = get_face_width(side, game->ray->step_x,
 				game->ray->step_y, game->texture) - game->ray->tex_x - 1;
-	game->ray->tex_step = 1.0f * get_face_height(side, game->ray->step_x,
-			game->ray->step_y, game->texture) / lineheight;
+	if (game->ray->door == 1)
+	{
+		game->ray->tex_step = 1.0f * game->texture->ground->height / lineheight;
+	}
+	else
+	{
+		game->ray->tex_step = 1.0f * get_face_height(side, game->ray->step_x,
+				game->ray->step_y, game->texture) / lineheight;
+	}
 	game->ray->tex_pos = (game->ray->draw_start - HEIGHT_WINDOW / 2
 			+ lineheight / 2) * game->ray->tex_step;
 }
