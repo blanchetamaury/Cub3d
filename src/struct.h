@@ -162,6 +162,7 @@ typedef struct s_raycasting
 	int			sprite_width;
 	int			i;
 	int			door;
+	int			frame;
 }				t_raycasting;
 
 typedef struct s_events

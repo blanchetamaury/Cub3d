@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 13:46:47 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:05:44 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	render(void *data)
 			debug_fps(game);
 	}
 	game->graphics->frame++;
+	game->ray->frame++;
 }

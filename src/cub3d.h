@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 09:22:54 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 09:59:39 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void					set_region_opacity(mlx_color *color, int size,
 							uint8_t opacity);
 
 /* ************************************************************************** */
-/*      CHECK                                                                 */
+/* Checks                                                                     */
 /* ************************************************************************** */
 int						check_file_map(char **argv, t_game *game);
 int						check_texture(t_game *game);
@@ -189,9 +189,10 @@ int						check_ground_and_sky(t_game *game, int count);
 int						check_map(t_game *game);
 void					init_player_pos(t_game *game);
 int						get_map(t_game *game);
+int						check_door(t_game *game);
 
 /* ************************************************************************** */
-/*   PLAYER                                                                   */
+/* Player                                                                     */
 /* ************************************************************************** */
 void					player_move_backward(t_game *game);
 void					player_move_left(t_game *game);

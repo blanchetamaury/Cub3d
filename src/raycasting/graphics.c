@@ -35,7 +35,6 @@ void	add_battery(t_game *game)
 				game->map->map[y][x] = 'B';
 			x++;
 		}
-		printf("%s\n", game->map->map[y]);
 		y++;
 	}
 }

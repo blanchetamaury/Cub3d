@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 09:46:30 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:14:22 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ static int find_door(t_game *g, int *status, float wall_dist)
 
     while (1)
     {
-        if (g->map->map[g->ray->map_y][g->ray->map_x] == 'P')
+        if (g->map->map[g->ray->map_y][g->ray->map_x] == 'P' || g->map->map[g->ray->map_y][g->ray->map_x] == 'C' || g->map->map[g->ray->map_y][g->ray->map_x] == 'M' || g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
             if (check_door_hit(g, side, status, wall_dist))
                 return side;
 
@@ -149,7 +149,22 @@ int draw_size_wall_forced(t_game *g, int i)
     lineheight = (int)(HEIGHT_WINDOW / dist);
     g->ray->draw_start = -lineheight / 2 + HEIGHT_WINDOW / 2;
     if (g->ray->draw_start < 0) g->ray->draw_start = 0;
-    g->ray->draw_end = lineheight / 2 + HEIGHT_WINDOW / 2;
+	if (g->map->map[g->ray->map_y][g->ray->map_x] == 'M')
+	{
+		g->ray->draw_end = lineheight * (0.5f - g->ray->frame / 60.0f) + HEIGHT_WINDOW / 2;
+		if ((0.5f - g->ray->frame / 60.0f) <= -0.4f)
+			g->map->map[g->ray->map_y][g->ray->map_x] = 'O';
+	}
+	else if (g->map->map[g->ray->map_y][g->ray->map_x] == 'C')
+	{
+		g->ray->draw_end = lineheight * (-0.4f + g->ray->frame / 60.0f) + HEIGHT_WINDOW / 2;
+		if ((-0.4f + g->ray->frame / 60.0f) >= 0.5f)
+			g->map->map[g->ray->map_y][g->ray->map_x] = 'P';
+	}
+	else if (g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
+		g->ray->draw_end = lineheight * -0.4f + HEIGHT_WINDOW / 2;
+	else
+		g->ray->draw_end = lineheight / 2 + HEIGHT_WINDOW / 2;
     if (g->ray->draw_end >= HEIGHT_WINDOW) g->ray->draw_end = HEIGHT_WINDOW - 1;
     return lineheight;
 }
@@ -186,7 +201,7 @@ void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 		if (s == 1)
 		{
 			lineheight = draw_size_wall_forced(game, i);
-			game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
+			game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 0;
 			wall_size_texture(game, side, lineheight);
 			draw_wall(game, game->ray->draw_start, side, i);
 		}

@@ -24,6 +24,7 @@ SRC_CHECKS =		src/checks/check_map.c \
 					src/checks/check_texture.c \
 					src/checks/check_map_valid.c \
 					src/checks/check_player.c \
+					src/checks/check_door.c \
 					src/checks/create_map.c
 
 SRC_LOGS =			src/logs/log_error.c \

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 15:47:38 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:29:57 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,12 @@ void	draw_wall(t_game *game, int len, int side, int i)
 	{
 		game->ray->tex_y = (int)game->ray->tex_pos & (get_face_height(side,
 					game->ray->step_x, game->ray->step_y, game->texture) - 1);
+		if (game->ray->door == 1 && game->map->map[game->ray->map_y][game->ray->map_x] == 'M')
+			game->ray->tex_y += game->ray->frame * 2;
+		else if (game->ray->door == 1 && game->map->map[game->ray->map_y][game->ray->map_x] == 'C')
+			game->ray->tex_y += 110 - (game->ray->frame * 2);
+		else if (game->ray->door == 1  && game->map->map[game->ray->map_y][game->ray->map_x] == 'O')
+			game->ray->tex_y = 110;
 		game->ray->tex_pos += game->ray->tex_step;
 		if (side == 0)
 			draw_wall_face_west_and_east(game, i, len);
