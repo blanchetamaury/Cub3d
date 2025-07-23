@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 09:33:11 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 09:46:30 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,4 +192,5 @@ void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 		}
 		i++;
 	}
+	game->ray->frame++;
 }

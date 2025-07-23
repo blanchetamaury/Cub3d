@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:28:11 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 10:21:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 09:48:35 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ static void	inventory_settings(int key, t_game *game)
 		if (game->player->inventory_page == 3)
 		{
 			if (game->player->selected_item == 0 && game->ray->fov < 100)
+			{
 				game->ray->fov += 10;
+				game->ray->deltaangle = game->ray->fov / (float)WIDTH_WINDOW;
+				game->ray->deg_to_rad = 3.14 / 180.0f;
+			}
 			if (game->player->selected_item == 1)
 			{
 				game->graphics->max_fps += 30;
@@ -63,7 +67,11 @@ void	on_keydown_inventory(int key, t_game *game)
 		if (game->player->inventory_page == 3)
 		{
 			if (game->player->selected_item == 0 && game->ray->fov > 40)
+			{
 				game->ray->fov -= 10;
+				game->ray->deltaangle = game->ray->fov / (float)WIDTH_WINDOW;
+				game->ray->deg_to_rad = 3.14 / 180.0f;
+			}
 			if (game->player->selected_item == 1
 				&& game->graphics->max_fps > 30)
 			{

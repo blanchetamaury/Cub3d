@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 16:34:23 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 09:47:25 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	graphic(t_game *game)
 {
 	game->ray->deltaangle = game->ray->fov / (float)WIDTH_WINDOW;
 	game->ray->deg_to_rad = 3.14 / 180.0f;
+	game->ray->frame = 0;
 	if (is_bonus())
 		add_battery(game);
 	mlx_set_font_scale(game->graphics->init,
