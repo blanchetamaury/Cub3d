@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 15:52:36 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 17:35:07 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ static void	draw_wall_face_north_and_south(t_game *game, int i, int len)
 	if (game->ray->door == 1)
 		tmp = game->texture->door->colors[game->ray->tex_y
 			* game->texture->door->width + game->ray->tex_x];
+	else if (game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
+		tmp = game->texture->exit->colors[game->ray->tex_y
+			* game->texture->exit->width + game->ray->tex_x];
 	else if (game->ray->step_y < 0)
 		tmp = game->texture->north->colors[game->ray->tex_y
 			* game->texture->north->width + game->ray->tex_x];
@@ -67,6 +70,9 @@ static void	draw_wall_face_west_and_east(t_game *game, int i, int len)
 	if (game->ray->door == 1)
 		tmp = game->texture->door->colors[game->ray->tex_y
 			* game->texture->door->width + game->ray->tex_x];
+	else if (game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
+		tmp = game->texture->exit->colors[game->ray->tex_y
+			* game->texture->exit->width + game->ray->tex_x];
 	else if (game->ray->step_x < 0)
 		tmp = game->texture->west->colors[game->ray->tex_y
 			* game->texture->west->width + game->ray->tex_x];
@@ -92,6 +98,8 @@ void	draw_wall(t_game *game, int len, int side, int i)
 			game->ray->tex_y += 110 - (game->ray->frame * 2);
 		else if (game->ray->door == 1  && game->map->map[game->ray->map_y][game->ray->map_x] == 'O')
 			game->ray->tex_y = 110;
+		else if (game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
+			game->ray->tex_y = (int)game->ray->tex_pos & (128 - 1);
 		game->ray->tex_pos += game->ray->tex_step;
 		if (side == 0)
 			draw_wall_face_west_and_east(game, i, len);

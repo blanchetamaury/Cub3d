@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:21:35 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/16 13:47:36 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 17:05:34 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_texture	*init_texture(void)
 	texture->ground = init_image();
 	texture->battery = init_image();
 	texture->door = init_image();
+	texture->exit = init_image();
 	texture->render = NULL;
 	texture->render_tmp = NULL;
 	texture->compass_background = NULL;

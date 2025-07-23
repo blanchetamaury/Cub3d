@@ -83,6 +83,10 @@ void	wall_size_texture(t_game *game, int side, int lineheight)
 	{
 		game->ray->tex_x = (int)(game->ray->wall_x * game->texture->door->width);
 	}
+	else if (game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
+	{
+		game->ray->tex_x = (int)(game->ray->wall_x * game->texture->exit->width);
+	}
 	else
 	{
 		game->ray->tex_x = (int)(game->ray->wall_x * (float)get_face_width(side,
@@ -100,6 +104,10 @@ void	wall_size_texture(t_game *game, int side, int lineheight)
 	if (game->ray->door == 1)
 	{
 		game->ray->tex_step = 1.0f * game->texture->door->height / lineheight;
+	}
+	else if (game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
+	{
+		game->ray->tex_step = 1.0f * game->texture->exit->height / lineheight;
 	}
 	else
 	{

@@ -71,6 +71,8 @@ static void	on_mouseup(int key, void *param)
 			game->ray->frame = 0;
 			game->map->map[y][x] = 'C';
 		}
+		else if (game->map->map[y][x] == 'Q')
+			mlx_loop_end(game->graphics->init);// TODO: Add exit animation
 	}
 	(void) key;
 }

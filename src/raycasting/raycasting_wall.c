@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 15:13:35 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 17:01:05 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static int	find_wall(t_game *game, int *status)
 	{
 		if (game->map->map[game->ray->map_y][game->ray->map_x] == 'B')
 			*status = 1;
-		if (game->map->map[game->ray->map_y][game->ray->map_x] == '1')
+		if (game->map->map[game->ray->map_y][game->ray->map_x] == '1'
+			|| game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
 			break ;
 		side = find_wall_condition(game);
 	}
@@ -179,7 +180,7 @@ static int find_door(t_game *g, int *status, float wall_dist, int i)
 			}
 		}
 
-        if (g->map->map[g->ray->map_y][g->ray->map_x] == '1')
+        if (g->map->map[g->ray->map_y][g->ray->map_x] == '1' || g->map->map[g->ray->map_y][g->ray->map_x] == 'Q')
             break;
         side = find_wall_condition(g);
     }

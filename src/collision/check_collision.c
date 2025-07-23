@@ -28,9 +28,11 @@ static int	check_x(float y, float x, char c, t_map *map)
 void	apply_position(t_player *player, t_map *map, float x, float y)
 {
 	if (check_y(y, x, '1', map) && check_y(y, x, 'P', map)
-		&& check_y(y, x, 'C', map) && check_y(y, x, 'M', map))
+		&& check_y(y, x, 'C', map) && check_y(y, x, 'M', map)
+		&& check_y(y, x, 'Q', map))
 		player->pos_y = y;
 	if (check_x(y, x, '1', map) && check_x(y, x, 'P', map)
-		&& check_x(y, x, 'C', map) && check_x(y, x, 'M', map))
+		&& check_x(y, x, 'C', map) && check_x(y, x, 'M', map)
+		&& check_y(y, x, 'Q', map))
 		player->pos_x = x;
 }
