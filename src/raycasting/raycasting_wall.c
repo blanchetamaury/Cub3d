@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 20:10:21 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:46:25 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ static int find_door(t_game *g, int *status, float wall_dist, int i)
 				{
 					lineheight = draw_size_wall_forced(g, i);
 					g->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 0;
-					wall_size_texture(g, side, lineheight);
-					draw_wall(g, g->ray->draw_start, side, i);
+					wall_size_texture(g->ray, g->player, g->text, g->map, side, lineheight);
+					draw_wall(g, g->ray->draw_start, side, i, g->ray);
 					return (-1);
 				}
 				else
@@ -198,13 +198,13 @@ void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 	while (i < WIDTH_WINDOW)
 	{
 		game->ray->door = 0;
-		init_calc(game, init_angle(game, i));
-		init_dir(game);
+		init_calc(game->ray, game->player, init_angle(game->ray, game->player, i));
+		init_dir(game->ray);
 		side = find_wall(game, status);
 		lineheight = draw_size_wall(game, side, i);
 		game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
-		wall_size_texture(game, side, lineheight);
-		draw_wall(game, game->ray->draw_start, side, i);
+		wall_size_texture(game->ray, game->player, game->text, game->map, side, lineheight);
+		draw_wall(game, game->ray->draw_start, side, i, game->ray);
 		i = raycasting_wall_print(game, i, z_buffer);
 	}
 	i = 0;
@@ -213,15 +213,15 @@ void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 	{
 		s = 0;
 		game->ray->door = 0;
-		init_calc(game, init_angle(game, i));
-		init_dir(game);
+		init_calc(game->ray, game->player, init_angle(game->ray, game->player, i));
+		init_dir(game->ray);
 		side = find_door(game, &s, z_buffer[i], i);
 		if (s == 1 && side != -1)
 		{
 			lineheight = draw_size_wall_forced(game, i);
 			game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 0;
-			wall_size_texture(game, side, lineheight);
-			draw_wall(game, game->ray->draw_start, side, i);
+			wall_size_texture(game->ray, game->player, game->text, game->map, side, lineheight);
+			draw_wall(game, game->ray->draw_start, side, i, game->ray);
 			z_buffer[i] = game->ray->perpwalldist;
 		}
 		i++;

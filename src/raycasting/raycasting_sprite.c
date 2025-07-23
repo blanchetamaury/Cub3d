@@ -6,13 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:24:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 20:11:12 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:26:33 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	sprite_draw_col(t_game *game, int len, int k, int tex_x)
+void	sprite_draw_col(t_game *game, t_image *text, int len, int k, int tex_x)
 {
 	mlx_color	raw;
 	float		intensity;
@@ -22,10 +22,9 @@ void	sprite_draw_col(t_game *game, int len, int k, int tex_x)
 	{
 		intensity = (2.0f + game->events->flashlight * 4.0f)
 			* (1.0f - (game->ray->transform_y / game->ray->light));
-		idx = ((k - game->ray->draw_start) * game->texture->battery->height
-				/ game->ray->sprite_height) * game->texture->battery->width
-			+ tex_x;
-		raw = game->texture->battery->colors[idx];
+		idx = ((k - game->ray->draw_start) * text[BATTERY].height
+				/ game->ray->sprite_height) * text[BATTERY].width + tex_x;
+		raw = text[BATTERY].colors[idx];
 		if (((raw.r + raw.g + raw.b) / 3) < 20 || raw.a * intensity < 255)
 		{
 			raw.r = 0;
@@ -41,7 +40,7 @@ void	sprite_draw_col(t_game *game, int len, int k, int tex_x)
 	}
 }
 
-void	sprite_draw_raw(t_game *game, int len, int draw_end_x, float *z_buffer)
+void	sprite_draw_raw(t_game *game, t_image *text, int len, int draw_end_x, float *z_buffer)
 {
 	int	draw_start_x;
 	int	tex_x;
@@ -49,13 +48,13 @@ void	sprite_draw_raw(t_game *game, int len, int draw_end_x, float *z_buffer)
 	draw_start_x = len;
 	while (len < draw_end_x)
 	{
-		tex_x = (len - draw_start_x) * game->texture->battery->width
+		tex_x = (len - draw_start_x) * text[BATTERY].width
 			/ game->ray->sprite_width;
 		if (game->ray->transform_y <= 0
 			|| game->ray->transform_y >= z_buffer[len])
 			;
 		else
-			sprite_draw_col(game, len, game->ray->draw_start, tex_x);
+			sprite_draw_col(game, text, len, game->ray->draw_start, tex_x);
 		len++;
 	}
 }
@@ -124,7 +123,7 @@ void	raycasting_sprite_condition(t_game *game, int x, int y, float *z_buffer)
 			game->ray->draw_end = HEIGHT_WINDOW - 1;
 		game->ray->sprite_width = abs((int)(HEIGHT_WINDOW
 					/ game->ray->transform_y)) / 3;
-		sprite_draw_raw(game, find_draw_start(game, sprite_screen_x),
+		sprite_draw_raw(game, game->text, find_draw_start(game, sprite_screen_x),
 			find_draw_end(game, sprite_screen_x), z_buffer);
 	}
 }

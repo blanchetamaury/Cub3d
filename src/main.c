@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:00 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 20:00:37 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:30:58 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	game = init_game();
 	if (game == NULL)
 		return (log_error("Memory allocation failed.") - 24);
-	if (check_file_map(argv, game) || load_map_texture(game->texture,
+	if (check_file_map(argv, game) || load_map_texture(game,
 			game->graphics->init))
 	{
 		clean_game(game);

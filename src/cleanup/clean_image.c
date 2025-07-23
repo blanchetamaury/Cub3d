@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:54:11 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 09:19:17 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:52:35 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,4 @@ void	clean_image(t_image *image, mlx_context init)
 		free(image->path);
 	if (image->colors)
 		free(image->colors);
-	free(image);
 }

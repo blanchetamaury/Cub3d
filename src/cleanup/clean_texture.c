@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:16:48 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 20:27:20 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:51:42 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,18 @@ static void	clean_hud(mlx_image *img, mlx_context init)
 	clean_hud_game(img, init);
 }
 
-void	clean_texture(t_texture *texture, mlx_image *img, mlx_context init)
+void	clean_texture(t_image *text, mlx_image *img, mlx_context init)
 {
-	clean_image(texture->north, init);
-	clean_image(texture->east, init);
-	clean_image(texture->south, init);
-	clean_image(texture->west, init);
-	clean_image(texture->sky, init);
-	clean_image(texture->ground, init);
-	clean_image(texture->battery, init);
-	clean_image(texture->door, init);
-	clean_image(texture->exit, init);
+	clean_image(&text[NORTH], init);
+	clean_image(&text[EAST], init);
+	clean_image(&text[SOUTH], init);
+	clean_image(&text[WEST], init);
+	clean_image(&text[SKY], init);
+	clean_image(&text[GROUND], init);
+	clean_image(&text[BATTERY], init);
+	clean_image(&text[DOOR], init);
+	clean_image(&text[EXIT], init);
 	mlx_destroy_image(init, img[RENDER]);
 	mlx_destroy_image(init, img[RENDER_TMP]);
 	clean_hud(img, init);
-	free(texture);
 }

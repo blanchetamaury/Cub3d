@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 20:27:50 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:42:44 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 /* ************************************************************************** */
 
 t_color					*init_color(void);
-t_texture				*init_texture(void);
 t_graphics				*init_graphics(void);
 t_player				*init_player(void);
 t_map					*init_map(void);
@@ -53,7 +52,7 @@ mlx_window_create_info	*init_window_info(void);
 /* ************************************************************************** */
 
 void					clean_color(t_color *color);
-void					clean_texture(t_texture *texture, mlx_image *img, mlx_context init);
+void					clean_texture(t_image *texture, mlx_image *img, mlx_context init);
 void					clean_graphics(t_graphics *graphics);
 void					clean_player(t_player *player);
 void					clean_map(t_map *map);
@@ -77,7 +76,7 @@ int						log_debug(const char *message);
 /* Images                                                                     */
 /* ************************************************************************** */
 
-int						load_map_texture(t_texture *texture, mlx_context init);
+int						load_map_texture(t_game *game, mlx_context init);
 void					load_hud_texture(mlx_image *img, mlx_context init);
 int						open_image(t_image *image, mlx_context init);
 
@@ -90,18 +89,17 @@ void					graphic(t_game *game);
 void					raycasting(t_game *game);
 void					render(void *data);
 mlx_color				color(uint32_t color);
-void					draw_wall(t_game *game, int len, int side, int i);
+void					draw_wall(t_game *game, int len, int side, int i, t_raycasting *ray);
 int						get_face(int side, int step_x, int step_y);
 int						get_face_height(int side, int step_x, int step_y,
-							t_texture *texture);
+							t_image *texture);
 int						get_face_width(int side, int step_x, int step_y,
-							t_texture *texture);
-float					init_angle(t_game *game, int i);
-void					init_calc(t_game *game, float rad);
-void					init_dir(t_game *game);
-float					shade_result(t_game *game, int len);
-void					wall_size_texture(t_game *game, int side,
-							int lineheight);
+							t_image *texture);
+float					init_angle(t_raycasting *ray, t_player *player, int i);
+void					init_calc(t_raycasting *ray, t_player *player, float rad);
+void					init_dir(t_raycasting *ray);
+float					shade_result(t_raycasting *ray, int len);
+void					wall_size_texture(t_raycasting *ray, t_player *player, t_image *text, t_map *map, int side, int lineheight);
 void					raycasting_floor(t_game *game);
 void					raycasting_wall(t_game *game, int *status,
 							float *z_buffer);

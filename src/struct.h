@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 20:12:28 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:38:37 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,19 @@ typedef struct s_image
 	mlx_color	*colors;
 }				t_image;
 
-typedef struct s_texture
+typedef enum s_list_text
 {
-	t_image		*north;
-	t_image		*east;
-	t_image		*south;
-	t_image		*west;
-	t_image		*sky;
-	t_image		*ground;
-	t_image		*battery;
-	t_image		*door;
-	t_image		*exit;
-}				t_texture;
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST,
+	SKY,
+	GROUND,
+	BATTERY,
+	DOOR,
+	EXIT,
+	SIZE_LIST_TEXT,
+}	t_list_text;
 
 typedef	enum s_list_img
 {
@@ -89,6 +90,7 @@ typedef	enum s_list_img
 	FLASH_ON,
 	FLASH_OFF,
 	CROSSHAIR,
+	SIZE_LIST_IMG,
 }	t_list_img;
 
 typedef struct s_graphics
@@ -195,8 +197,8 @@ typedef struct s_rect
 
 typedef struct s_game
 {
-	mlx_image		img[CROSSHAIR + 1];
-	t_texture		*texture;
+	mlx_image		img[SIZE_LIST_IMG];
+	t_image			text[SIZE_LIST_TEXT];
 	t_graphics		*graphics;
 	t_map			*map;
 	t_player		*player;

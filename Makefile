@@ -10,7 +10,6 @@ LIBS = libs/libft/libft.a $(GNL) libs/MacroLibX/libmlx.so -lSDL2 -lm
 
 SRC_INIT =			src/initialization/get_player_pos.c \
 					src/initialization/init_color.c \
-					src/initialization/init_texture.c \
 					src/initialization/init_graphics.c \
 					src/initialization/init_player.c \
 					src/initialization/init_map.c \

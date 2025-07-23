@@ -6,32 +6,26 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:21:50 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 09:15:53 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:39:14 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	check_texture_wall_condition(t_game *game, char *tmp, int count)
+static int	check_texture_wall_condition(t_image *text, char *tmp, int count)
 {
-	if (!ft_strncmp(tmp, "EA ", 3) && game->texture->east->path == NULL
-		&& ++count)
-		game->texture->east->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	else if (!ft_strncmp(tmp, "WE ", 3) && game->texture->west->path == NULL
-		&& ++count)
-		game->texture->west->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	else if (!ft_strncmp(tmp, "SO ", 3) && game->texture->south->path == NULL
-		&& ++count)
-		game->texture->south->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	else if (!ft_strncmp(tmp, "NO ", 3) && game->texture->north->path == NULL
-		&& ++count)
-		game->texture->north->path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	else if (!ft_strncmp(tmp, "F ", 2) && game->texture->ground->path == NULL
-		&& ++count)
-		game->texture->ground->path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
-	else if (!ft_strncmp(tmp, "C ", 2) && game->texture->sky->path == NULL
-		&& ++count)
-		game->texture->sky->path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+	if (!ft_strncmp(tmp, "EA ", 3) && text[EAST].path == NULL && ++count)
+		text[EAST].path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+	else if (!ft_strncmp(tmp, "WE ", 3) && text[WEST].path == NULL && ++count)
+		text[WEST].path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+	else if (!ft_strncmp(tmp, "SO ", 3) && text[SOUTH].path == NULL && ++count)
+		text[SOUTH].path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+	else if (!ft_strncmp(tmp, "NO ", 3) && text[NORTH].path == NULL && ++count)
+		text[NORTH].path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
+	else if (!ft_strncmp(tmp, "F ", 2) && text[GROUND].path == NULL && ++count)
+		text[GROUND].path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+	else if (!ft_strncmp(tmp, "C ", 2) && text[SKY].path == NULL && ++count)
+		text[SKY].path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
 	return (count);
 }
 
@@ -44,7 +38,7 @@ static int	check_texture_all(t_game *game)
 	tmp = get_next_line(game->map->fd_map);
 	while (tmp != NULL && count < 6)
 	{
-		count = check_texture_wall_condition(game, tmp, count);
+		count = check_texture_wall_condition(game->text, tmp, count);
 		free(tmp);
 		if (count < 6)
 			tmp = get_next_line(game->map->fd_map);

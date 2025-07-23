@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:40:46 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/10 17:00:36 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 21:23:47 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,34 @@ int	get_face(int side, int step_x, int step_y)
 	}
 }
 
-int	get_face_height(int side, int step_x, int step_y, t_texture *texture)
+int	get_face_height(int side, int step_x, int step_y, t_image *text)
 {
 	int	face;
 
 	face = get_face(side, step_x, step_y);
 	if (face == 0)
-		return (texture->north->height);
+		return (text[NORTH].height);
 	if (face == 1)
-		return (texture->east->height);
+		return (text[EAST].height);
 	if (face == 2)
-		return (texture->south->height);
+		return (text[SOUTH].height);
 	if (face == 3)
-		return (texture->west->height);
+		return (text[WEST].height);
 	return (0);
 }
 
-int	get_face_width(int side, int step_x, int step_y, t_texture *texture)
+int	get_face_width(int side, int step_x, int step_y, t_image *text)
 {
 	int	face;
 
 	face = get_face(side, step_x, step_y);
 	if (face == 0)
-		return (texture->north->width);
+		return (text[NORTH].width);
 	if (face == 1)
-		return (texture->east->width);
+		return (text[EAST].width);
 	if (face == 2)
-		return (texture->south->width);
+		return (text[SOUTH].width);
 	if (face == 3)
-		return (texture->west->width);
+		return (text[WEST].width);
 	return (0);
 }

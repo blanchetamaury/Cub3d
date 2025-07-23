@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:03:14 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 14:49:11 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 21:31:36 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 #ifndef BONUS
 
-static int	open_wall(t_texture *texture, mlx_context init)
+static int	open_wall(t_image *text, mlx_context init)
 {
-	if (open_image(texture->north, init) != 1
-		|| open_image(texture->east, init) != 1
-		|| open_image(texture->south, init) != 1
-		|| open_image(texture->west, init) != 1)
+	if (open_image(&text[NORTH], init) != 1
+		|| open_image(&text[EAST], init) != 1
+		|| open_image(&text[SOUTH], init) != 1
+		|| open_image(&text[WEST], init) != 1)
 	{
 		log_error("Used color instead of image for wall texture.");
 		return (1);
@@ -28,22 +28,22 @@ static int	open_wall(t_texture *texture, mlx_context init)
 }
 #else
 
-static int	open_wall(t_texture *texture, mlx_context init)
+static int	open_wall(t_image *text, mlx_context init)
 {
-	open_image(texture->north, init);
-	open_image(texture->east, init);
-	open_image(texture->south, init);
-	open_image(texture->west, init);
+	open_image(&text[NORTH], init);
+	open_image(&text[EAST], init);
+	open_image(&text[SOUTH], init);
+	open_image(&text[WEST], init);
 	return (0);
 }
 #endif
 
 #ifndef BONUS
 
-static int	open_ground_sky(t_texture *texture, mlx_context init)
+static int	open_ground_sky(t_image *text, mlx_context init)
 {
-	if (open_image(texture->sky, init) != 2
-		|| open_image(texture->ground, init) != 2)
+	if (open_image(&text[SKY], init) != 2
+		|| open_image(&text[GROUND], init) != 2)
 	{
 		log_error("Used image instead of color for ground or sky texture.");
 		return (1);
@@ -52,30 +52,33 @@ static int	open_ground_sky(t_texture *texture, mlx_context init)
 }
 #else
 
-static int	open_ground_sky(t_texture *texture, mlx_context init)
+static int	open_ground_sky(t_image *text, mlx_context init)
 {
-	open_image(texture->sky, init);
-	open_image(texture->ground, init);
+	open_image(&text[SKY], init);
+	open_image(&text[GROUND], init);
 	return (0);
 }
 #endif
 
-int	load_map_texture(t_texture *texture, mlx_context init)
+int	load_map_texture(t_game *game, mlx_context init)
 {
-	if (open_wall(texture, init))
+	t_image *text;
+
+	text = game->text;
+	if (open_wall(text, init))
 		return (1);
-	if (!texture->north->img || !texture->east->img
-		|| !texture->south->img || !texture->west->img)
+	if (!text[NORTH].img || !text[EAST].img
+		|| !text[SOUTH].img || !text[WEST].img)
 		return (1);
-	if (open_ground_sky(texture, init))
+	if (open_ground_sky(text, init))
 		return (1);
-	if (!texture->sky->img || !texture->ground->img)
+	if (!text[SKY].img || !text[GROUND].img)
 		return (1);
-	texture->battery->path = ft_strdup("assets/battery_2.png");
-	open_image(texture->battery, init);
-	texture->door->path = ft_strdup("assets/door.png");
-	open_image(texture->door, init);
-	texture->exit->path = ft_strdup("assets/exit.png");
-	open_image(texture->exit, init);
+	text[BATTERY].path = ft_strdup("assets/battery_2.png");
+	open_image(&text[BATTERY], init);
+	text[DOOR].path = ft_strdup("assets/door.png");
+	open_image(&text[DOOR], init);
+	text[EXIT].path = ft_strdup("assets/exit.png");
+	open_image(&text[EXIT], init);
 	return (0);
 }

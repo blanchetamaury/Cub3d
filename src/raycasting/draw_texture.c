@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 20:09:49 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:42:05 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,77 +36,68 @@ mlx_color	texture_shader(t_game *game, mlx_color tmp,
 	return (tmp);
 }
 
-static void	draw_wall_face_north_and_south(t_game *game, int i, int len)
+static void	draw_wall_face_north_and_south(t_raycasting *ray, int i, int len, t_image *text, t_game *game)
 {
 	mlx_color	tmp;
 	float		shade;
 	float		color_alpha;
 
-	shade = shade_result(game, len);
-	if (game->ray->door == 1)
-		tmp = game->texture->door->colors[game->ray->tex_y
-			* game->texture->door->width + game->ray->tex_x];
-	else if (game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
-		tmp = game->texture->exit->colors[game->ray->tex_y
-			* game->texture->exit->width + game->ray->tex_x];
-	else if (game->ray->step_y < 0)
-		tmp = game->texture->north->colors[game->ray->tex_y
-			* game->texture->north->width + game->ray->tex_x];
+	shade = shade_result(ray, len);
+	if (ray->door == 1)
+		tmp = text[DOOR].colors[ray->tex_y * text[DOOR].width + ray->tex_x];
+	else if (game->map->map[ray->map_y][ray->map_x] == 'Q')
+		tmp = text[EXIT].colors[ray->tex_y * text[EXIT].width + ray->tex_x];
+	else if (ray->step_y < 0)
+		tmp = text[NORTH].colors[ray->tex_y * text[NORTH].width + ray->tex_x];
 	else
-		tmp = game->texture->south->colors[game->ray->tex_y
-			* game->texture->south->width + game->ray->tex_x];
-	color_alpha = 1.0f - (game->ray->perpwalldist / game->ray->light);
+		tmp = text[SOUTH].colors[ray->tex_y * text[SOUTH].width + ray->tex_x];
+	color_alpha = 1.0f - (ray->perpwalldist / ray->light);
 	if (is_bonus())
 		tmp = texture_shader(game, tmp, shade, color_alpha);
 	mlx_set_image_pixel(game->graphics->init, game->img[RENDER],
 		i, len, tmp);
 }
 
-static void	draw_wall_face_west_and_east(t_game *game, int i, int len)
+static void	draw_wall_face_west_and_east(t_raycasting *ray, int i, int len, t_image *text, t_game *game)
 {
 	mlx_color	tmp;
 	float		shade;
 	float		color_alpha;
 
-	shade = shade_result(game, len);
-	if (game->ray->door == 1)
-		tmp = game->texture->door->colors[game->ray->tex_y
-			* game->texture->door->width + game->ray->tex_x];
-	else if (game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
-		tmp = game->texture->exit->colors[game->ray->tex_y
-			* game->texture->exit->width + game->ray->tex_x];
-	else if (game->ray->step_x < 0)
-		tmp = game->texture->west->colors[game->ray->tex_y
-			* game->texture->west->width + game->ray->tex_x];
+	shade = shade_result(ray, len);
+	if (ray->door == 1)
+		tmp = text[DOOR].colors[ray->tex_y * text[DOOR].width + ray->tex_x];
+	else if (game->map->map[ray->map_y][ray->map_x] == 'Q')
+		tmp = text[EXIT].colors[ray->tex_y * text[EXIT].width + ray->tex_x];
+	else if (ray->step_x < 0)
+		tmp = text[WEST].colors[ray->tex_y * text[WEST].width + ray->tex_x];
 	else
-		tmp = game->texture->east->colors[game->ray->tex_y
-			* game->texture->east->width + game->ray->tex_x];
-	color_alpha = 1.0f - (game->ray->perpwalldist / game->ray->light);
+		tmp = text[EAST].colors[ray->tex_y * text[EAST].width + ray->tex_x];
+	color_alpha = 1.0f - (ray->perpwalldist / ray->light);
 	if (is_bonus())
 		tmp = texture_shader(game, tmp, shade, color_alpha);
 	mlx_set_image_pixel(game->graphics->init, game->img[RENDER],
 		i, len, tmp);
 }
 
-void	draw_wall(t_game *game, int len, int side, int i)
+void	draw_wall(t_game *game, int len, int side, int i, t_raycasting *ray)
 {
-	while (len < game->ray->draw_end)
+	while (len < ray->draw_end)
 	{
-		game->ray->tex_y = (int)game->ray->tex_pos & (get_face_height(side,
-					game->ray->step_x, game->ray->step_y, game->texture) - 1);
-		if (game->ray->door == 1 && game->map->map[game->ray->map_y][game->ray->map_x] == 'M')
-			game->ray->tex_y += game->ray->frame * 2;
-		else if (game->ray->door == 1 && game->map->map[game->ray->map_y][game->ray->map_x] == 'C')
-			game->ray->tex_y += 110 - (game->ray->frame * 2);
-		else if (game->ray->door == 1  && game->map->map[game->ray->map_y][game->ray->map_x] == 'O')
-			game->ray->tex_y = 110;
-		else if (game->map->map[game->ray->map_y][game->ray->map_x] == 'Q')
-			game->ray->tex_y = (int)game->ray->tex_pos & (128 - 1);
-		game->ray->tex_pos += game->ray->tex_step;
+		ray->tex_y = (int)ray->tex_pos & (get_face_height(side, ray->step_x, ray->step_y, game->text) - 1);
+		if (ray->door == 1 && game->map->map[ray->map_y][ray->map_x] == 'M')
+			ray->tex_y += ray->frame * 2;
+		else if (ray->door == 1 && game->map->map[ray->map_y][ray->map_x] == 'C')
+			ray->tex_y += 110 - (ray->frame * 2);
+		else if (ray->door == 1 && game->map->map[ray->map_y][ray->map_x] == 'O')
+			ray->tex_y = 110;
+		else if (game->map->map[ray->map_y][ray->map_x] == 'Q')
+			ray->tex_y = (int)ray->tex_pos & (128 - 1);
+		ray->tex_pos += ray->tex_step;
 		if (side == 0)
-			draw_wall_face_west_and_east(game, i, len);
+			draw_wall_face_west_and_east(game->ray, i, len, game->text, game);
 		else
-			draw_wall_face_north_and_south(game, i, len);
+			draw_wall_face_north_and_south(game->ray, i, len, game->text, game);
 		len++;
 	}
 }

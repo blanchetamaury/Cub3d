@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 20:10:59 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:47:27 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	get_pixel_image(t_game *game, t_image *img, int j, int light)
 
 	(void)light;
 	color_alpha = 1;//light / (LIGHT * 46);
-	shade = shade_result(game, game->ray->i % (HEIGHT_WINDOW / 2));
+	shade = shade_result(game->ray, game->ray->i % (HEIGHT_WINDOW / 2));
 	tmp = img->colors[game->ray->ty * img->width + game->ray->tx];
 	if (is_bonus())
 		tmp = texture_shader(game, tmp, shade, color_alpha);
@@ -107,12 +107,12 @@ void	raycasting_floor(t_game *game)
 		while (j < WIDTH_WINDOW)
 		{
 			game->ray->color_x = (float)j - WIDTH_WINDOW / 3 - 60;
-			calc_tx_and_ty(game, game->texture->sky);
+			calc_tx_and_ty(game, &game->text[SKY]);
 			game->ray->i = i;
-			get_pixel_image(game, game->texture->ground, j, i);
-			calc_tx_and_ty(game, game->texture->ground);
+			get_pixel_image(game, &game->text[GROUND], j, i);
+			calc_tx_and_ty(game, &game->text[GROUND]);
 			game->ray->i = HEIGHT_WINDOW - i - 1;
-			get_pixel_image(game, game->texture->sky, j,
+			get_pixel_image(game, &game->text[SKY], j,
 				HEIGHT_WINDOW - (HEIGHT_WINDOW - i - 1));
 			game->ray->floor_x += game->ray->floorstep_x;
 			game->ray->floor_y += game->ray->floorstep_y;
