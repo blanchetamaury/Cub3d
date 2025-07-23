@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 09:10:07 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 09:33:11 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,6 @@ int draw_size_wall_forced(t_game *g, int i)
     if (g->ray->draw_end >= HEIGHT_WINDOW) g->ray->draw_end = HEIGHT_WINDOW - 1;
     return lineheight;
 }
-
-
 
 void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 {

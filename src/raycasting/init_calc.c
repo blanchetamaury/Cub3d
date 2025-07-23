@@ -81,7 +81,7 @@ void	wall_size_texture(t_game *game, int side, int lineheight)
 	game->ray->wall_x -= floorf(game->ray->wall_x);
 	if (game->ray->door == 1)
 	{
-		game->ray->tex_x = (int)(game->ray->wall_x * game->texture->ground->width);
+		game->ray->tex_x = (int)(game->ray->wall_x * game->texture->door->width);
 	}
 	else
 	{
@@ -91,7 +91,7 @@ void	wall_size_texture(t_game *game, int side, int lineheight)
 	if (((side == 0 && game->ray->cos_x > 0) || (side == 1
 			&& game->ray->sin_y < 0)) && game->ray->door == 1)
 	{
-		game->ray->tex_x = game->texture->ground->width - game->ray->tex_x - 1;
+		game->ray->tex_x = game->texture->door->width - game->ray->tex_x - 1;
 	}
 	else if ((side == 0 && game->ray->cos_x > 0) || (side == 1
 			&& game->ray->sin_y < 0))
@@ -99,7 +99,7 @@ void	wall_size_texture(t_game *game, int side, int lineheight)
 				game->ray->step_y, game->texture) - game->ray->tex_x - 1;
 	if (game->ray->door == 1)
 	{
-		game->ray->tex_step = 1.0f * game->texture->ground->height / lineheight;
+		game->ray->tex_step = 1.0f * game->texture->door->height / lineheight;
 	}
 	else
 	{

@@ -42,8 +42,8 @@ static void	draw_wall_face_north_and_south(t_game *game, int i, int len)
 
 	shade = shade_result(game, len);
 	if (game->ray->door == 1)
-		tmp = game->texture->ground->colors[game->ray->tex_y
-			* game->texture->ground->width + game->ray->tex_x];
+		tmp = game->texture->door->colors[game->ray->tex_y
+			* game->texture->door->width + game->ray->tex_x];
 	else if (game->ray->step_y < 0)
 		tmp = game->texture->north->colors[game->ray->tex_y
 			* game->texture->north->width + game->ray->tex_x];
@@ -65,8 +65,8 @@ static void	draw_wall_face_west_and_east(t_game *game, int i, int len)
 
 	shade = shade_result(game, len);
 	if (game->ray->door == 1)
-		tmp = game->texture->ground->colors[game->ray->tex_y
-			* game->texture->ground->width + game->ray->tex_x];
+		tmp = game->texture->door->colors[game->ray->tex_y
+			* game->texture->door->width + game->ray->tex_x];
 	else if (game->ray->step_x < 0)
 		tmp = game->texture->west->colors[game->ray->tex_y
 			* game->texture->west->width + game->ray->tex_x];
