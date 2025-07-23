@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 13:14:22 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:26:26 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,23 +120,6 @@ static int check_door_hit(t_game *g, int side, int *status, float wall_dist)
     return 0;
 }
 
-static int find_door(t_game *g, int *status, float wall_dist)
-{
-    int side = 0;
-
-    while (1)
-    {
-        if (g->map->map[g->ray->map_y][g->ray->map_x] == 'P' || g->map->map[g->ray->map_y][g->ray->map_x] == 'C' || g->map->map[g->ray->map_y][g->ray->map_x] == 'M' || g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
-            if (check_door_hit(g, side, status, wall_dist))
-                return side;
-
-        if (g->map->map[g->ray->map_y][g->ray->map_x] == '1')
-            break;
-        side = find_wall_condition(g);
-    }
-    return side;
-}
-
 int draw_size_wall_forced(t_game *g, int i)
 {
     int lineheight;
@@ -169,6 +152,37 @@ int draw_size_wall_forced(t_game *g, int i)
     return lineheight;
 }
 
+static int find_door(t_game *g, int *status, float wall_dist, int i)
+{
+    int side = 0;
+	float lineheight;
+
+    while (1)
+    {
+        if (g->map->map[g->ray->map_y][g->ray->map_x] == 'P' || g->map->map[g->ray->map_y][g->ray->map_x] == 'C' || g->map->map[g->ray->map_y][g->ray->map_x] == 'M' || g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
+		{
+            if (check_door_hit(g, side, status, wall_dist))
+			{
+				if (g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
+				{
+					lineheight = draw_size_wall_forced(g, i);
+					g->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 0;
+					wall_size_texture(g, side, lineheight);
+					draw_wall(g, g->ray->draw_start, side, i);
+					return (-1);
+				}
+				else
+					return (side);
+			}
+		}
+
+        if (g->map->map[g->ray->map_y][g->ray->map_x] == '1')
+            break;
+        side = find_wall_condition(g);
+    }
+    return (side);
+}
+
 void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 {
 	int		i;
@@ -197,13 +211,14 @@ void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 		game->ray->door = 0;
 		init_calc(game, init_angle(game, i));
 		init_dir(game);
-		side = find_door(game, &s, z_buffer[i]);
-		if (s == 1)
+		side = find_door(game, &s, z_buffer[i], i);
+		if (s == 1 && side != -1)
 		{
 			lineheight = draw_size_wall_forced(game, i);
 			game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 0;
 			wall_size_texture(game, side, lineheight);
 			draw_wall(game, game->ray->draw_start, side, i);
+			z_buffer[i] = game->ray->perpwalldist;
 		}
 		i++;
 	}
