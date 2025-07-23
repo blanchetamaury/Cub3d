@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:07:40 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 13:14:08 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 14:17:25 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	next_element(t_game *game, int *x, int *y)
 	ray_x = game->player->pos_x;
 	ray_y = game->player->pos_y;
 	dist = 0;
-	while (game->map->map[(int)ray_y][(int)ray_x] == '0')
+	while (game->map->map[(int)ray_y][(int)ray_x] == '0' || game->map->map[(int)ray_y][(int)ray_x] == 'B')
 	{
 		ray_x += cos(deg_to_rad(game->player->angle));
 		ray_y += sin(deg_to_rad(game->player->angle));
