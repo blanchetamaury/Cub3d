@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 15:38:25 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 20:10:59 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	get_pixel_image(t_game *game, t_image *img, int j, int light)
 	tmp = img->colors[game->ray->ty * img->width + game->ray->tx];
 	if (is_bonus())
 		tmp = texture_shader(game, tmp, shade, color_alpha);
-	mlx_set_image_pixel(game->graphics->init, game->texture->render,
+	mlx_set_image_pixel(game->graphics->init, game->img[RENDER],
 		j, game->ray->i, tmp);
 }
 
@@ -73,20 +73,20 @@ static int	raycasting_floor_print(t_game *game, int i)
 	int					count;
 
 	count = 0;
-	mlx_get_image_region(game->graphics->init, game->texture->render,
+	mlx_get_image_region(game->graphics->init, game->img[RENDER],
 		0, i, WIDTH_WINDOW, 1, color);
 	while (count < 3)
 	{
-		mlx_set_image_region(game->graphics->init, game->texture->render,
+		mlx_set_image_region(game->graphics->init, game->img[RENDER],
 			0, i + count, WIDTH_WINDOW, 1, color);
 		count++;
 	}
 	count = 0;
-	mlx_get_image_region(game->graphics->init, game->texture->render,
+	mlx_get_image_region(game->graphics->init, game->img[RENDER],
 		0, HEIGHT_WINDOW - i - 1, WIDTH_WINDOW, 1, color);
 	while (count < 3)
 	{
-		mlx_set_image_region(game->graphics->init, game->texture->render,
+		mlx_set_image_region(game->graphics->init, game->img[RENDER],
 			0, (HEIGHT_WINDOW - i - 1) - count, WIDTH_WINDOW, 1, color);
 		count++;
 	}

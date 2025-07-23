@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:24:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 15:52:41 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 20:11:12 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sprite_draw_col(t_game *game, int len, int k, int tex_x)
 			raw.a = raw.a * intensity;
 		if (raw.a)
 			mlx_set_image_pixel(game->graphics->init,
-				game->texture->render, len, k, raw);
+				game->img[RENDER], len, k, raw);
 		k++;
 	}
 }

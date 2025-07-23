@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   progress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 10:15:35 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/18 15:17:11 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:21:56 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	progress(int value, int x, int y, t_game	*game)
 
 	if (value > 0)
 		mlx_put_image_to_window(game->graphics->init, game->graphics->window,
-			game->texture->progress_start, x, y);
+			game->img[PROGRESS_START], x, y);
 	i = 1;
 	while (i <= 4)
 	{
 		if (value > i)
 			mlx_put_image_to_window(game->graphics->init,
-				game->graphics->window, game->texture->progress_center,
+				game->graphics->window, game->img[PROGRESS_CENTER],
 				x + 56 + (60 * (i - 1)), y);
 		i++;
 	}
 	if (value > 5)
 		mlx_put_image_to_window(game->graphics->init, game->graphics->window,
-			game->texture->progress_end, x + 56 + (60 * 4), y);
+			game->img[PROGRESS_END], x + 56 + (60 * 4), y);
 }

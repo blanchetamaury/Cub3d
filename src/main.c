@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:00 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/14 11:31:40 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 20:00:37 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		clean_game(game);
 		return (0);
 	}
-	load_hud_texture(game->texture, game->graphics->init);
+	load_hud_texture(game->img, game->graphics->init);
 	create_window(game->graphics);
 	subscribe_events(game);
 	graphic(game);

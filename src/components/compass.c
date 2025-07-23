@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:23:25 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/14 11:28:10 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 20:19:36 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	compass(t_game *game)
 {
 	mlx_put_image_to_window(
 		game->graphics->init, game->graphics->window,
-		game->texture->compass_background,
+		game->img[COMPASS_BACKGROUND],
 		WIDTH_WINDOW - 160 - 24,
 		0
 		);
 	mlx_put_transformed_image_to_window(
 		game->graphics->init, game->graphics->window,
-		game->texture->compass_indicator,
+		game->img[COMPASS_INDICATOR],
 		WIDTH_WINDOW - 96 - 54,
 		55,
 		1,

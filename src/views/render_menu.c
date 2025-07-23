@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:26:38 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 13:48:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:14:06 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	put_logo_to_window(t_game *game)
 {
 	mlx_color	color[316 * 107];
 
-	mlx_get_image_region(game->graphics->init, game->texture->cub3d_logo,
+	mlx_get_image_region(game->graphics->init, game->img[CUB3D_LOGO],
 		0, 0, 316, 107, color);
 	set_region_opacity(color, 316 * 107,
 		min(game->graphics->frame * 10, 255));
@@ -33,9 +33,9 @@ void	put_play_to_window(t_game *game)
 		return ;
 	if (game->graphics->selection == 1)
 		mlx_get_image_region(game->graphics->init,
-			game->texture->play_button_selected, 0, 0, 88, 60, color);
+			game->img[PLAY_BUTTON_SELECTED], 0, 0, 88, 60, color);
 	else
-		mlx_get_image_region(game->graphics->init, game->texture->play_button,
+		mlx_get_image_region(game->graphics->init, game->img[PLAY_BUTTON],
 			0, 0, 88, 60, color);
 	set_region_opacity(color, 88 * 60,
 		min((game->graphics->frame - 15) * 20, 255));
@@ -51,9 +51,9 @@ void	put_option_to_window(t_game *game)
 		return ;
 	if (game->graphics->selection == 3)
 		mlx_get_image_region(game->graphics->init,
-			game->texture->option_button_selected, 0, 0, 135, 60, color);
+			game->img[OPTION_BUTTON_SELECTED], 0, 0, 135, 60, color);
 	else
-		mlx_get_image_region(game->graphics->init, game->texture->option_button,
+		mlx_get_image_region(game->graphics->init, game->img[OPTION_BUTTON],
 			0, 0, 135, 60, color);
 	set_region_opacity(color, 135 * 60,
 		min((game->graphics->frame - 30) * 20, 255));
@@ -69,9 +69,9 @@ void	put_exit_to_window(t_game *game)
 		return ;
 	if (game->graphics->selection == 4)
 		mlx_get_image_region(game->graphics->init,
-			game->texture->exit_button_selected, 0, 0, 88, 60, color);
+			game->img[EXIT_BUTTON_SELECTED], 0, 0, 88, 60, color);
 	else
-		mlx_get_image_region(game->graphics->init, game->texture->exit_button,
+		mlx_get_image_region(game->graphics->init, game->img[EXIT_BUTTON],
 			0, 0, 88, 60, color);
 	set_region_opacity(color, 88 * 60,
 		min((game->graphics->frame - 45) * 20, 255));
@@ -87,7 +87,7 @@ void	render_menu(t_game *game)
 	mlx_clear_window(game->graphics->init, game->graphics->window,
 		color(0x000000FF));
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
-		game->texture->render_tmp, 0, 0);
+		game->img[RENDER_TMP], 0, 0);
 	game->player->angle = fmodf(game->player->angle + 0.1f, 360.0f);
 	put_logo_to_window(game);
 	put_play_to_window(game);

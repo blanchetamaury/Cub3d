@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 17:05:13 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:12:28 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,53 +39,57 @@ typedef struct s_texture
 	t_image		*battery;
 	t_image		*door;
 	t_image		*exit;
-	mlx_image	render;
-	mlx_image	render_tmp;
-	mlx_image	compass_background;
-	mlx_image	compass_indicator;
-	mlx_image	hands;
-	mlx_image	clock_background;
-	mlx_image	cub3d_logo;
-	mlx_image	play_button;
-	mlx_image	play_button_selected;
-	mlx_image	online_button;
-	mlx_image	online_button_selected;
-	mlx_image	option_button;
-	mlx_image	option_button_selected;
-	mlx_image	exit_button;
-	mlx_image	exit_button_selected;
-	mlx_image	inventory_background;
-	mlx_image	inventory_icon_map;
-	mlx_image	inventory_icon_cases;
-	mlx_image	inventory_icon_save;
-	mlx_image	inventory_icon_options;
-	mlx_image	inventory_icon_map_selected;
-	mlx_image	inventory_icon_cases_selected;
-	mlx_image	inventory_icon_save_selected;
-	mlx_image	inventory_icon_options_selected;
-	mlx_image	q_arrow;
-	mlx_image	e_arrow;
-	mlx_image	minimap_header;
-	mlx_image	options_header;
-	mlx_image	slider_base;
-	mlx_image	slider_selected;
-	mlx_image	switch_on;
-	mlx_image	switch_off;
-	mlx_image	switch_selected;
-	mlx_image	progress_start;
-	mlx_image	progress_center;
-	mlx_image	progress_end;
-	mlx_image	map_t;
-	mlx_image	map_b;
-	mlx_image	map_l;
-	mlx_image	map_r;
-	mlx_image	map_p;
-	mlx_image	flash_panel;
-	mlx_image	led_on;
-	mlx_image	flash_on;
-	mlx_image	flash_off;
-	mlx_image	crosshair;
 }				t_texture;
+
+typedef	enum s_list_img
+{
+	RENDER,
+	RENDER_TMP,
+	COMPASS_BACKGROUND,
+	COMPASS_INDICATOR,
+	CLOCK_BACKGROUND,
+	HANDS,
+	CUB3D_LOGO,
+	PLAY_BUTTON,
+	PLAY_BUTTON_SELECTED,
+	ONLINE_BUTTON,
+	ONLINE_BUTTON_SELECTED,
+	OPTION_BUTTON,
+	OPTION_BUTTON_SELECTED,
+	EXIT_BUTTON,
+	EXIT_BUTTON_SELECTED,
+	INVENTORY_BACKGROUND,
+	INVENTORY_ICON_MAP,
+	INVENTORY_ICON_CASES,
+	INVENTORY_ICON_SAVE,
+	INVENTORY_ICON_OPTIONS,
+	INVENTORY_ICON_MAP_SELECTED,
+	INVENTORY_ICON_CASES_SELECTED,
+	INVENTORY_ICON_SAVE_SELECTED,
+	INVENTORY_ICON_OPTIONS_SELECTED,
+	Q_ARROW,
+	E_ARROW,
+	MINIMAP_HEADER,
+	OPTIONS_HEADER,
+	SLIDER_BASE,
+	SLIDER_SELECTED,
+	SWITCH_ON,
+	SWITCH_OFF,
+	SWITCH_SELECTED,
+	PROGRESS_START,
+	PROGRESS_CENTER,
+	PROGRESS_END,
+	MAP_T,
+	MAP_B,
+	MAP_L,
+	MAP_R,
+	MAP_P,
+	FLASH_PANEL,
+	LED_ON,
+	FLASH_ON,
+	FLASH_OFF,
+	CROSSHAIR,
+}	t_list_img;
 
 typedef struct s_graphics
 {
@@ -191,6 +195,7 @@ typedef struct s_rect
 
 typedef struct s_game
 {
+	mlx_image		img[CROSSHAIR + 1];
 	t_texture		*texture;
 	t_graphics		*graphics;
 	t_map			*map;

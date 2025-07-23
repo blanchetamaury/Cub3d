@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 17:35:07 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:09:49 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,24 @@
 mlx_color	texture_shader(t_game *game, mlx_color tmp,
 						float shade, float color_alpha)
 {
-	if (((tmp.r + tmp.g + tmp.b) / 3) * (shade / (2 + game->events->flashlight
-				* 4)) * color_alpha < 20)
-	{
+	if ((int)tmp.r * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha < 0)
 		tmp.r = 0;
-		tmp.g = 0;
-		tmp.b = 0;
-	}
+	else if ((int)tmp.r * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha > 230)
+		tmp.r = 230;
 	else
-	{
-		tmp.r = tmp.r * (shade / (2 + game->events->flashlight * 40))
-			* color_alpha;
-		tmp.g = tmp.g * (shade / (2 + game->events->flashlight * 40))
-			* color_alpha;
-		tmp.b = tmp.b * (shade / (2 + game->events->flashlight * 40))
-			* color_alpha;
-	}
+		tmp.r = (int)tmp.r * ((shade * game->ray->light) / (2 + game->events->flashlight * 4))  * color_alpha;
+	if ((int)tmp.g * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha < 0)
+		tmp.g = 0;
+	else if ((int)tmp.g * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha > 230)
+		tmp.g = 230;
+	else
+		tmp.g = (int)tmp.g * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha;
+	if ((int)tmp.b * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha < 0)
+		tmp.b = 0;
+	else if ((int)tmp.b * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha > 230)
+		tmp.b = 230;
+	else
+		tmp.b = (int)tmp.b * ((shade * game->ray->light) / (2 + game->events->flashlight * 4))  * color_alpha;
 	return (tmp);
 }
 
@@ -56,7 +58,7 @@ static void	draw_wall_face_north_and_south(t_game *game, int i, int len)
 	color_alpha = 1.0f - (game->ray->perpwalldist / game->ray->light);
 	if (is_bonus())
 		tmp = texture_shader(game, tmp, shade, color_alpha);
-	mlx_set_image_pixel(game->graphics->init, game->texture->render,
+	mlx_set_image_pixel(game->graphics->init, game->img[RENDER],
 		i, len, tmp);
 }
 
@@ -82,7 +84,7 @@ static void	draw_wall_face_west_and_east(t_game *game, int i, int len)
 	color_alpha = 1.0f - (game->ray->perpwalldist / game->ray->light);
 	if (is_bonus())
 		tmp = texture_shader(game, tmp, shade, color_alpha);
-	mlx_set_image_pixel(game->graphics->init, game->texture->render,
+	mlx_set_image_pixel(game->graphics->init, game->img[RENDER],
 		i, len, tmp);
 }
 

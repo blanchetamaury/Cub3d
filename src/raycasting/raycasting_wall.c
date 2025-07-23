@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 17:01:05 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:10:21 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ static int	raycasting_wall_print(t_game *game, int i, float *z_buffer)
 	int					count;
 
 	count = 0;
-	mlx_get_image_region(game->graphics->init, game->texture->render,
+	mlx_get_image_region(game->graphics->init, game->img[RENDER],
 		i, 0, 1, HEIGHT_WINDOW, color);
 	while (count < 6)
 	{
-		mlx_set_image_region(game->graphics->init, game->texture->render,
+		mlx_set_image_region(game->graphics->init, game->img[RENDER],
 			i + count, 0, 1, HEIGHT_WINDOW, color);
 		z_buffer[i + count] = game->ray->perpwalldist;
 		count++;

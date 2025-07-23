@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 15:53:52 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 20:27:50 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define WIDTH_WINDOW 1280
 # define HEIGHT_WINDOW 800
 
-# define LIGHT_OFF 7
-# define LIGHT_ON 12
+# define LIGHT_OFF 5
+# define LIGHT_ON 7
 
 # include "struct.h"
 
@@ -53,7 +53,7 @@ mlx_window_create_info	*init_window_info(void);
 /* ************************************************************************** */
 
 void					clean_color(t_color *color);
-void					clean_texture(t_texture *texture, mlx_context init);
+void					clean_texture(t_texture *texture, mlx_image *img, mlx_context init);
 void					clean_graphics(t_graphics *graphics);
 void					clean_player(t_player *player);
 void					clean_map(t_map *map);
@@ -78,7 +78,7 @@ int						log_debug(const char *message);
 /* ************************************************************************** */
 
 int						load_map_texture(t_texture *texture, mlx_context init);
-void					load_hud_texture(t_texture *texture, mlx_context init);
+void					load_hud_texture(mlx_image *img, mlx_context init);
 int						open_image(t_image *image, mlx_context init);
 
 /* ************************************************************************** */

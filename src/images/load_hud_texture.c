@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 15:49:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:07:32 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,73 +19,60 @@ mlx_image	load(char *name, mlx_context init)
 	return (mlx_new_image_from_file(init, name, &ignored, &ignored));
 }
 
-void	load_hud_texture_part3(t_texture *texture, mlx_context init)
+void	load_hud_texture_part3(mlx_image *img, mlx_context init)
 {
-	texture->map_t = load("assets/map_t.png", init);
-	texture->map_b = load("assets/map_b.png", init);
-	texture->map_l = load("assets/map_l.png", init);
-	texture->map_r = load("assets/map_r.png", init);
-	texture->map_p = load("assets/map_p.png", init);
-	texture->flash_panel = load("assets/flash_panel.png", init);
-	texture->led_on = load("assets/led_on.png", init);
-	texture->flash_on = load("assets/flash_on.png", init);
-	texture->flash_off = load("assets/flash_off.png", init);
-	texture->crosshair = load("assets/crosshair.png", init);
+	img[MAP_T] = load("assets/map_t.png", init);
+	img[MAP_B] = load("assets/map_b.png", init);
+	img[MAP_L] = load("assets/map_l.png", init);
+	img[MAP_R] = load("assets/map_r.png", init);
+	img[MAP_P] = load("assets/map_p.png", init);
+	img[FLASH_PANEL] = load("assets/flash_panel.png", init);
+	img[LED_ON] = load("assets/led_on.png", init);
+	img[FLASH_ON] = load("assets/flash_on.png", init);
+	img[FLASH_OFF] = load("assets/flash_off.png", init);
+	img[CROSSHAIR] = load("assets/crosshair.png", init);
 }
 
-void	load_hud_texture_part2(t_texture *texture, mlx_context init)
+void	load_hud_texture_part2(mlx_image *img, mlx_context init)
 {
-	texture->inventory_icon_save = load(
-			"assets/inventory_icon_save.png", init);
-	texture->inventory_icon_options = load(
-			"assets/inventory_icon_options.png", init);
-	texture->inventory_icon_map_selected = load(
-			"assets/inventory_icon_map_selected.png", init);
-	texture->inventory_icon_cases_selected = load(
-			"assets/inventory_icon_cases_selected.png", init);
-	texture->inventory_icon_save_selected = load(
-			"assets/inventory_icon_save_selected.png", init);
-	texture->inventory_icon_options_selected = load(
-			"assets/inventory_icon_options_selected.png", init);
-	texture->q_arrow = load("assets/q_arrow.png", init);
-	texture->e_arrow = load("assets/e_arrow.png", init);
-	texture->options_header = load("assets/options_header.png", init);
-	texture->slider_base = load("assets/slider_base.png", init);
-	texture->slider_selected = load("assets/slider_selected.png", init);
-	texture->switch_on = load("assets/switch_on.png", init);
-	texture->switch_off = load("assets/switch_off.png", init);
-	texture->switch_selected = load("assets/switch_selected.png", init);
-	texture->progress_start = load("assets/progress_start.png", init);
-	texture->progress_center = load("assets/progress_center.png", init);
-	texture->progress_end = load("assets/progress_end.png", init);
-	texture->minimap_header = load("assets/minimap_header.png", init);
-	load_hud_texture_part3(texture, init);
+	img[INVENTORY_ICON_SAVE] = load("assets/inventory_icon_save.png", init);
+	img[INVENTORY_ICON_OPTIONS] = load("assets/inventory_icon_options.png", init);
+	img[INVENTORY_ICON_MAP_SELECTED] = load("assets/inventory_icon_map_selected.png", init);
+	img[INVENTORY_ICON_CASES_SELECTED] = load("assets/inventory_icon_cases_selected.png", init);
+	img[INVENTORY_ICON_SAVE_SELECTED] = load("assets/inventory_icon_save_selected.png", init);
+	img[INVENTORY_ICON_OPTIONS_SELECTED] = load("assets/inventory_icon_options_selected.png", init);
+	img[Q_ARROW] = load("assets/q_arrow.png", init);
+	img[E_ARROW] = load("assets/e_arrow.png", init);
+	img[OPTIONS_HEADER] = load("assets/options_header.png", init);
+	img[SLIDER_BASE] = load("assets/slider_base.png", init);
+	img[SLIDER_SELECTED] = load("assets/slider_selected.png", init);
+	img[SWITCH_ON] = load("assets/switch_on.png", init);
+	img[SWITCH_OFF] = load("assets/switch_off.png", init);
+	img[SWITCH_SELECTED] = load("assets/switch_selected.png", init);
+	img[PROGRESS_START] = load("assets/progress_start.png", init);
+	img[PROGRESS_CENTER] = load("assets/progress_center.png", init);
+	img[PROGRESS_END] = load("assets/progress_end.png", init);
+	img[MINIMAP_HEADER] = load("assets/minimap_header.png", init);
+	load_hud_texture_part3(img, init);
 }
 
-void	load_hud_texture(t_texture *texture, mlx_context init)
+void	load_hud_texture(mlx_image *img, mlx_context init)
 {
-	texture->compass_background = load("assets/compass_background.png", init);
-	texture->compass_indicator = load("assets/compass_indicator.png", init);
-	texture->hands = load("assets/hands.png", init);
-	texture->clock_background = load("assets/clock_background.png", init);
-	texture->cub3d_logo = load("assets/cub3d_logo.png", init);
-	texture->play_button = load("assets/play_button.png", init);
-	texture->online_button = load("assets/online_button.png", init);
-	texture->option_button = load("assets/option_button.png", init);
-	texture->exit_button = load("assets/exit_button.png", init);
-	texture->play_button_selected = load(
-			"assets/play_button_selected.png", init);
-	texture->online_button_selected = load(
-			"assets/online_button_selected.png", init);
-	texture->option_button_selected = load(
-			"assets/option_button_selected.png", init);
-	texture->exit_button_selected = load(
-			"assets/exit_button_selected.png", init);
-	texture->inventory_background = load(
-			"assets/inventory_background.png", init);
-	texture->inventory_icon_map = load(
-			"assets/inventory_icon_map.png", init);
-	texture->inventory_icon_cases = load(
-			"assets/inventory_icon_cases.png", init);
-	load_hud_texture_part2(texture, init);
+	img[COMPASS_BACKGROUND] = load("assets/compass_background.png", init);
+	img[COMPASS_INDICATOR] = load("assets/compass_indicator.png", init);
+	img[HANDS] = load("assets/hands.png", init);
+	img[CLOCK_BACKGROUND] = load("assets/clock_background.png", init);
+	img[CUB3D_LOGO] = load("assets/cub3d_logo.png", init);
+	img[PLAY_BUTTON] = load("assets/play_button.png", init);
+	img[ONLINE_BUTTON] = load("assets/online_button.png", init);
+	img[OPTION_BUTTON] = load("assets/option_button.png", init);
+	img[EXIT_BUTTON] = load("assets/exit_button.png", init);
+	img[PLAY_BUTTON_SELECTED] = load("assets/play_button_selected.png", init);
+	img[ONLINE_BUTTON_SELECTED] = load("assets/online_button_selected.png", init);
+	img[OPTION_BUTTON_SELECTED] = load("assets/option_button_selected.png", init);
+	img[EXIT_BUTTON_SELECTED] = load("assets/exit_button_selected.png", init);
+	img[INVENTORY_BACKGROUND] = load("assets/inventory_background.png", init);
+	img[INVENTORY_ICON_MAP] = load("assets/inventory_icon_map.png", init);
+	img[INVENTORY_ICON_CASES] = load("assets/inventory_icon_cases.png", init);
+	load_hud_texture_part2(img, init);
 }

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 15:41:43 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:12:02 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	render_game(t_game *game)
 	mlx_clear_window(game->graphics->init, game->graphics->window,
 		color(0x000000FF));
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
-		game->texture->render_tmp, 0, 0);
+		game->img[RENDER_TMP], 0, 0);
 	compass(game);
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
-		game->texture->crosshair, (WIDTH_WINDOW / 2) - 40,
+		game->img[CROSSHAIR], (WIDTH_WINDOW / 2) - 40,
 		(HEIGHT_WINDOW / 2) + 20);
 	player_action(game);
 	if (is_bonus())
@@ -45,5 +45,5 @@ void	render_game(t_game *game)
 		battery_manager(game);
 	}
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
-		game->texture->clock_background, 0, HEIGHT_WINDOW - 128);
+		game->img[CLOCK_BACKGROUND], 0, HEIGHT_WINDOW - 128);
 }

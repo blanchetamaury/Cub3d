@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:16:48 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 17:59:26 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:27:20 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,60 +18,60 @@ static void	clean_img(mlx_context init, mlx_image img)
 		mlx_destroy_image(init, img);
 }
 
-static void	clean_hud_game(t_texture *texture, mlx_context init)
+static void	clean_hud_game(mlx_image *img, mlx_context init)
 {
-	clean_img(init, texture->compass_background);
-	clean_img(init, texture->compass_indicator);
-	clean_img(init, texture->hands);
-	clean_img(init, texture->clock_background);
-	clean_img(init, texture->inventory_icon_map);
-	clean_img(init, texture->inventory_icon_cases);
-	clean_img(init, texture->inventory_icon_save);
-	clean_img(init, texture->inventory_icon_options);
-	clean_img(init, texture->inventory_icon_map_selected);
-	clean_img(init, texture->inventory_icon_cases_selected);
-	clean_img(init, texture->inventory_icon_save_selected);
-	clean_img(init, texture->inventory_icon_options_selected);
-	clean_img(init, texture->q_arrow);
-	clean_img(init, texture->e_arrow);
-	clean_img(init, texture->map_t);
-	clean_img(init, texture->map_b);
-	clean_img(init, texture->map_l);
-	clean_img(init, texture->map_r);
-	clean_img(init, texture->map_p);
-	clean_img(init, texture->flash_panel);
-	clean_img(init, texture->led_on);
-	clean_img(init, texture->flash_on);
-	clean_img(init, texture->flash_off);
-	clean_img(init, texture->crosshair);
+	clean_img(init, img[COMPASS_BACKGROUND]);
+	clean_img(init, img[COMPASS_INDICATOR]);
+	clean_img(init, img[HANDS]);
+	clean_img(init, img[CLOCK_BACKGROUND]);
+	clean_img(init, img[INVENTORY_ICON_MAP]);
+	clean_img(init, img[INVENTORY_ICON_CASES]);
+	clean_img(init, img[INVENTORY_ICON_SAVE]);
+	clean_img(init, img[INVENTORY_ICON_OPTIONS]);
+	clean_img(init, img[INVENTORY_ICON_MAP_SELECTED]);
+	clean_img(init, img[INVENTORY_ICON_CASES_SELECTED]);
+	clean_img(init, img[INVENTORY_ICON_SAVE_SELECTED]);
+	clean_img(init, img[INVENTORY_ICON_OPTIONS_SELECTED]);
+	clean_img(init, img[Q_ARROW]);
+	clean_img(init, img[E_ARROW]);
+	clean_img(init, img[MAP_T]);
+	clean_img(init, img[MAP_B]);
+	clean_img(init, img[MAP_L]);
+	clean_img(init, img[MAP_R]);
+	clean_img(init, img[MAP_P]);
+	clean_img(init, img[FLASH_PANEL]);
+	clean_img(init, img[LED_ON]);
+	clean_img(init, img[FLASH_ON]);
+	clean_img(init, img[FLASH_OFF]);
+	clean_img(init, img[CROSSHAIR]);
 }
 
-static void	clean_hud(t_texture *texture, mlx_context init)
+static void	clean_hud(mlx_image *img, mlx_context init)
 {
-	clean_img(init, texture->cub3d_logo);
-	clean_img(init, texture->play_button);
-	clean_img(init, texture->online_button);
-	clean_img(init, texture->option_button);
-	clean_img(init, texture->exit_button);
-	clean_img(init, texture->play_button_selected);
-	clean_img(init, texture->online_button_selected);
-	clean_img(init, texture->option_button_selected);
-	clean_img(init, texture->exit_button_selected);
-	clean_img(init, texture->inventory_background);
-	clean_img(init, texture->minimap_header);
-	clean_img(init, texture->options_header);
-	clean_img(init, texture->slider_base);
-	clean_img(init, texture->slider_selected);
-	clean_img(init, texture->switch_on);
-	clean_img(init, texture->switch_off);
-	clean_img(init, texture->switch_selected);
-	clean_img(init, texture->progress_start);
-	clean_img(init, texture->progress_center);
-	clean_img(init, texture->progress_end);
-	clean_hud_game(texture, init);
+	clean_img(init, img[CUB3D_LOGO]);
+	clean_img(init, img[PLAY_BUTTON]);
+	clean_img(init, img[ONLINE_BUTTON]);
+	clean_img(init, img[OPTION_BUTTON]);
+	clean_img(init, img[EXIT_BUTTON]);
+	clean_img(init, img[PLAY_BUTTON_SELECTED]);
+	clean_img(init, img[ONLINE_BUTTON_SELECTED]);
+	clean_img(init, img[OPTION_BUTTON_SELECTED]);
+	clean_img(init, img[EXIT_BUTTON_SELECTED]);
+	clean_img(init, img[INVENTORY_BACKGROUND]);
+	clean_img(init, img[MINIMAP_HEADER]);
+	clean_img(init, img[OPTIONS_HEADER]);
+	clean_img(init, img[SLIDER_BASE]);
+	clean_img(init, img[SLIDER_SELECTED]);
+	clean_img(init, img[SWITCH_ON]);
+	clean_img(init, img[SWITCH_OFF]);
+	clean_img(init, img[SWITCH_SELECTED]);
+	clean_img(init, img[PROGRESS_START]);
+	clean_img(init, img[PROGRESS_CENTER]);
+	clean_img(init, img[PROGRESS_END]);
+	clean_hud_game(img, init);
 }
 
-void	clean_texture(t_texture *texture, mlx_context init)
+void	clean_texture(t_texture *texture, mlx_image *img, mlx_context init)
 {
 	clean_image(texture->north, init);
 	clean_image(texture->east, init);
@@ -82,8 +82,8 @@ void	clean_texture(t_texture *texture, mlx_context init)
 	clean_image(texture->battery, init);
 	clean_image(texture->door, init);
 	clean_image(texture->exit, init);
-	mlx_destroy_image(init, texture->render);
-	mlx_destroy_image(init, texture->render_tmp);
-	clean_hud(texture, init);
+	mlx_destroy_image(init, img[RENDER]);
+	mlx_destroy_image(init, img[RENDER_TMP]);
+	clean_hud(img, init);
 	free(texture);
 }

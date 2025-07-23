@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:26:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 15:47:01 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 20:21:28 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ static void	draw_map_el(t_game *game, int to_draw[4], int x, int y)
 {
 	if (to_draw[0] == 1)
 		mlx_put_image_to_window(game->graphics->init,
-			game->graphics->window, game->texture->map_r, x, y);
+			game->graphics->window, game->img[MAP_R], x, y);
 	if (to_draw[1] == 1)
 		mlx_put_image_to_window(game->graphics->init,
-			game->graphics->window, game->texture->map_l, x, y);
+			game->graphics->window, game->img[MAP_L], x, y);
 	if (to_draw[2] == 1)
 		mlx_put_image_to_window(game->graphics->init,
-			game->graphics->window, game->texture->map_t, x, y);
+			game->graphics->window, game->img[MAP_T], x, y);
 	if (to_draw[3] == 1)
 		mlx_put_image_to_window(game->graphics->init,
-			game->graphics->window, game->texture->map_b, x, y);
+			game->graphics->window, game->img[MAP_B], x, y);
 }
 
 static void	init_map_value(t_game *game, int *base_x, int *base_y, int *y)
@@ -81,7 +81,7 @@ void	minimap(t_game *game, int pos_x, int pos_y)
 				pos_y + y * 32);
 			if (y == (int)game->player->pos_y && x == (int)game->player->pos_x)
 				mlx_put_image_to_window(game->graphics->init,
-					game->graphics->window, game->texture->map_p,
+					game->graphics->window, game->img[MAP_P],
 					pos_x + x * 32, pos_y + y * 32);
 			x++;
 		}
