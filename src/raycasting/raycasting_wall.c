@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 14:26:26 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:13:35 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,13 @@ int draw_size_wall_forced(t_game *g, int i)
     float half_fov = (g->ray->fov / 2) * (3.14f / 180.0f);
     float angle_diff = camera_x * half_fov;
 
-    if (g->ray->perpwalldist == 0) g->ray->perpwalldist = 0.0001f;
+    if (g->ray->perpwalldist == 0)
+		g->ray->perpwalldist = 0.0001f;
     float dist = g->ray->perpwalldist * cosf(angle_diff);
     lineheight = (int)(HEIGHT_WINDOW / dist);
     g->ray->draw_start = -lineheight / 2 + HEIGHT_WINDOW / 2;
-    if (g->ray->draw_start < 0) g->ray->draw_start = 0;
+    if (g->ray->draw_start < 0)
+		g->ray->draw_start = 0;
 	if (g->map->map[g->ray->map_y][g->ray->map_x] == 'M')
 	{
 		g->ray->draw_end = lineheight * (0.5f - g->ray->frame / 60.0f) + HEIGHT_WINDOW / 2;
@@ -148,7 +150,8 @@ int draw_size_wall_forced(t_game *g, int i)
 		g->ray->draw_end = lineheight * -0.4f + HEIGHT_WINDOW / 2;
 	else
 		g->ray->draw_end = lineheight / 2 + HEIGHT_WINDOW / 2;
-    if (g->ray->draw_end >= HEIGHT_WINDOW) g->ray->draw_end = HEIGHT_WINDOW - 1;
+    if (g->ray->draw_end >= HEIGHT_WINDOW)
+		g->ray->draw_end = HEIGHT_WINDOW - 1;
     return lineheight;
 }
 

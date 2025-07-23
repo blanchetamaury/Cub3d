@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 09:47:25 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:33:17 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	add_battery(t_game *game)
 		x = 0;
 		while (game->map->map[y][x])
 		{
-			if (game->map->map[y][x] == '0' && rand() % 40 == 0)
+			if (game->map->map[y][x] == '0' && rand() % 1 == 0)
 				game->map->map[y][x] = 'B';
 			x++;
 		}

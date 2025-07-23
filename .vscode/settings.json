@@ -3,6 +3,8 @@
         "fstream": "c",
         "cstdlib": "c",
         "cmath": "c",
-        "cub3d.h": "c"
+        "cub3d.h": "c",
+        "fcntl.h": "c",
+        "stdlib.h": "c"
     }
 }

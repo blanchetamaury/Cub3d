@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:24:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 11:19:46 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:52:41 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sprite_draw_col(t_game *game, int len, int k, int tex_x)
 	while (k < game->ray->draw_end)
 	{
 		intensity = (2.0f + game->events->flashlight * 4.0f)
-			* (1.0f - (game->ray->transform_y / LIGHT));
+			* (1.0f - (game->ray->transform_y / game->ray->light));
 		idx = ((k - game->ray->draw_start) * game->texture->battery->height
 				/ game->ray->sprite_height) * game->texture->battery->width
 			+ tex_x;
@@ -137,14 +137,52 @@ void	raycasting_sprite(t_game *game, int status, float *z_buffer)
 
 	len = 0;
 	y = 0;
-	while (game->map->map[y] && status == 1)
+	if (game->ray->step_x < 0)
 	{
-		x = 0;
-		while (game->map->map[y][x])
+		ft_stats(game->map->map, &y, &x);
+		y--;
+		while (y > 0 && status == 1)
 		{
-			raycasting_sprite_condition(game, x, y, z_buffer);
-			x++;
+			if (game->map->map[y])
+			{
+				x = 0;
+				while (game->map->map[y][x])
+				{
+					raycasting_sprite_condition(game, x, y, z_buffer);
+					x++;
+				}
+			}
+			y--;
 		}
-		y++;
+	}
+	else if (game->ray->step_x > 0)
+	{
+		y = 0;
+		while (game->map->map[y] && status == 1)
+		{
+			if (game->map->map[y])
+			{
+				x = ft_strlen(game->map->map[y]);
+				while (x > 0)
+				{
+					raycasting_sprite_condition(game, x, y, z_buffer);
+					x--;
+				}
+			}
+			y++;
+		}
+	}
+	else
+	{
+		while (game->map->map[y] && status == 1)
+		{
+			x = 0;
+			while (game->map->map[y][x])
+			{
+				raycasting_sprite_condition(game, x, y, z_buffer);
+				x++;
+			}
+			y++;
+		}
 	}
 }

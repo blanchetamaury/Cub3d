@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 15:25:38 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:38:25 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	get_pixel_image(t_game *game, t_image *img, int j, int light)
 	float		shade;
 	float		color_alpha;
 
-	color_alpha = light / (LIGHT * 46);
+	(void)light;
+	color_alpha = 1;//light / (LIGHT * 46);
 	shade = shade_result(game, game->ray->i % (HEIGHT_WINDOW / 2));
 	tmp = img->colors[game->ray->ty * img->width + game->ray->tx];
 	if (is_bonus())

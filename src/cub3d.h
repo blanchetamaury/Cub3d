@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 09:59:39 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 15:53:52 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define WIDTH_WINDOW 1280
 # define HEIGHT_WINDOW 800
 
-# define LIGHT 10
+# define LIGHT_OFF 7
+# define LIGHT_ON 12
 
 # include "struct.h"
 

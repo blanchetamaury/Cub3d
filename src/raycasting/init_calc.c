@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:43:07 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 14:40:47 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:52:56 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ float	shade_result(t_game *game, int len)
 	float	max_rad;
 
 	game->ray->color_y = (float)len - (HEIGHT_WINDOW - HEIGHT_WINDOW / 3);
-	dist = hypotf(game->ray->color_x, game->ray->color_y) / (LIGHT * 0.125);
+	dist = hypotf(game->ray->color_x, game->ray->color_y) / (game->ray->light * 0.125);
 	max_rad = hypotf(WIDTH_WINDOW / 2, game->ray->draw_start);
 	return (1.0f - (dist / max_rad));
 }

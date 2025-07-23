@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:04:46 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/16 15:29:17 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 15:49:19 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	on_keydown(int key, void *param)
 	else if (key == 60)
 		game->events->debug_enabled = !game->events->debug_enabled;
 	else if (key == 15)
-		game->events->flashlight = !game->events->flashlight;
+		game->ray->light = game->ray->light == LIGHT_ON ? LIGHT_OFF:LIGHT_ON;
 }
 
 void	subscribe_keydown(t_game *game)

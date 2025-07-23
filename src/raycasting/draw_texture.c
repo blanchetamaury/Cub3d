@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 13:29:57 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 15:52:36 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ mlx_color	texture_shader(t_game *game, mlx_color tmp,
 	}
 	else
 	{
-		tmp.r = tmp.r * (shade / (2 + game->events->flashlight * 4))
+		tmp.r = tmp.r * (shade / (2 + game->events->flashlight * 40))
 			* color_alpha;
-		tmp.g = tmp.g * (shade / (2 + game->events->flashlight * 4))
+		tmp.g = tmp.g * (shade / (2 + game->events->flashlight * 40))
 			* color_alpha;
-		tmp.b = tmp.b * (shade / (2 + game->events->flashlight * 4))
+		tmp.b = tmp.b * (shade / (2 + game->events->flashlight * 40))
 			* color_alpha;
 	}
 	return (tmp);
@@ -50,7 +50,7 @@ static void	draw_wall_face_north_and_south(t_game *game, int i, int len)
 	else
 		tmp = game->texture->south->colors[game->ray->tex_y
 			* game->texture->south->width + game->ray->tex_x];
-	color_alpha = 1.0f - (game->ray->perpwalldist / LIGHT);
+	color_alpha = 1.0f - (game->ray->perpwalldist / game->ray->light);
 	if (is_bonus())
 		tmp = texture_shader(game, tmp, shade, color_alpha);
 	mlx_set_image_pixel(game->graphics->init, game->texture->render,
@@ -73,7 +73,7 @@ static void	draw_wall_face_west_and_east(t_game *game, int i, int len)
 	else
 		tmp = game->texture->east->colors[game->ray->tex_y
 			* game->texture->east->width + game->ray->tex_x];
-	color_alpha = 1.0f - (game->ray->perpwalldist / LIGHT);
+	color_alpha = 1.0f - (game->ray->perpwalldist / game->ray->light);
 	if (is_bonus())
 		tmp = texture_shader(game, tmp, shade, color_alpha);
 	mlx_set_image_pixel(game->graphics->init, game->texture->render,

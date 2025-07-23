@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 09:23:18 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:42:25 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ typedef struct s_raycasting
 	int			i;
 	int			door;
 	int			frame;
+	int			light;
 }				t_raycasting;
 
 typedef struct s_events
