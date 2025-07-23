@@ -6,7 +6,7 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:26:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/21 11:31:19 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/21 15:47:01 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ static void	get_texture(t_game *game, int x, int y, int to_draw[4])
 		to_draw[1] = 1;
 	if ((y > 0 && game->map->map[y][x] != game->map->map[y - 1][x]) || y == 0)
 		to_draw[2] = 1;
-	if ((game->map->map[y + 1] && (int)ft_strlen(game->map->map[y + 1]) >= x &&
-		game->map->map[y][x] != game->map->map[y + 1][x]) || !game->map->map[y + 1])
+	if ((game->map->map[y + 1] && (int)ft_strlen(game->map->map[y + 1]) >= x
+			&& game->map->map[y][x] != game->map->map[y + 1][x])
+		|| !game->map->map[y + 1])
 		to_draw[3] = 1;
 }
 

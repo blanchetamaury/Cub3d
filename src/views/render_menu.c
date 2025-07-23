@@ -40,14 +40,14 @@ void	put_play_to_window(t_game *game)
 	set_region_opacity(color, 88 * 60,
 		min((game->graphics->frame - 15) * 20, 255));
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 295, 88, 60, color);
+		40, 332, 88, 60, color);
 }
 
 void	put_option_to_window(t_game *game)
 {
 	mlx_color	color[135 * 60];
 
-	if (game->graphics->frame < 25)
+	if (game->graphics->frame < 30)
 		return ;
 	if (game->graphics->selection == 3)
 		mlx_get_image_region(game->graphics->init,
@@ -56,16 +56,16 @@ void	put_option_to_window(t_game *game)
 		mlx_get_image_region(game->graphics->init, game->texture->option_button,
 			0, 0, 135, 60, color);
 	set_region_opacity(color, 135 * 60,
-		min((game->graphics->frame - 25) * 20, 255));
+		min((game->graphics->frame - 30) * 20, 255));
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 442, 135, 60, color);
+		40, 406, 135, 60, color);
 }
 
 void	put_exit_to_window(t_game *game)
 {
 	mlx_color	color[88 * 60];
 
-	if (game->graphics->frame < 30)
+	if (game->graphics->frame < 45)
 		return ;
 	if (game->graphics->selection == 4)
 		mlx_get_image_region(game->graphics->init,
@@ -74,11 +74,9 @@ void	put_exit_to_window(t_game *game)
 		mlx_get_image_region(game->graphics->init, game->texture->exit_button,
 			0, 0, 88, 60, color);
 	set_region_opacity(color, 88 * 60,
-		min((game->graphics->frame - 30) * 20, 255));
+		min((game->graphics->frame - 45) * 20, 255));
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		40, 516,
-		88, 60,
-		color);
+		40, 480, 88, 60, color);
 }
 
 void	render_menu(t_game *game)
@@ -96,11 +94,11 @@ void	render_menu(t_game *game)
 	put_option_to_window(game);
 	put_exit_to_window(game);
 	mlx_mouse_get_pos(game->graphics->init, &mx, &my);
-	if (mx >= 40 && mx <= 128 && my >= 294 && my <= 368)
+	if (mx >= 40 && mx <= 128 && my >= 332 && my <= 406)
 		game->graphics->selection = 1;
-	else if (mx >= 40 && mx <= 175 && my >= 440 && my <= 514)
+	else if (mx >= 40 && mx <= 175 && my >= 406 && my <= 480)
 		game->graphics->selection = 3;
-	else if (mx >= 40 && mx <= 128 && my >= 514 && my <= 574)
+	else if (mx >= 40 && mx <= 128 && my >= 480 && my <= 540)
 		game->graphics->selection = 4;
 	else
 		game->graphics->selection = 0;

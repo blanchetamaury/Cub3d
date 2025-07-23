@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/18 11:34:02 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/21 15:49:44 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,49 @@ mlx_image	load(char *name, mlx_context init)
 	int	ignored;
 
 	return (mlx_new_image_from_file(init, name, &ignored, &ignored));
+}
+
+void	load_hud_texture_part3(t_texture *texture, mlx_context init)
+{
+	texture->map_t = load("assets/map_t.png", init);
+	texture->map_b = load("assets/map_b.png", init);
+	texture->map_l = load("assets/map_l.png", init);
+	texture->map_r = load("assets/map_r.png", init);
+	texture->map_p = load("assets/map_p.png", init);
+	texture->flash_panel = load("assets/flash_panel.png", init);
+	texture->led_on = load("assets/led_on.png", init);
+	texture->flash_on = load("assets/flash_on.png", init);
+	texture->flash_off = load("assets/flash_off.png", init);
+	texture->crosshair = load("assets/crosshair.png", init);
+}
+
+void	load_hud_texture_part2(t_texture *texture, mlx_context init)
+{
+	texture->inventory_icon_save = load(
+			"assets/inventory_icon_save.png", init);
+	texture->inventory_icon_options = load(
+			"assets/inventory_icon_options.png", init);
+	texture->inventory_icon_map_selected = load(
+			"assets/inventory_icon_map_selected.png", init);
+	texture->inventory_icon_cases_selected = load(
+			"assets/inventory_icon_cases_selected.png", init);
+	texture->inventory_icon_save_selected = load(
+			"assets/inventory_icon_save_selected.png", init);
+	texture->inventory_icon_options_selected = load(
+			"assets/inventory_icon_options_selected.png", init);
+	texture->q_arrow = load("assets/q_arrow.png", init);
+	texture->e_arrow = load("assets/e_arrow.png", init);
+	texture->options_header = load("assets/options_header.png", init);
+	texture->slider_base = load("assets/slider_base.png", init);
+	texture->slider_selected = load("assets/slider_selected.png", init);
+	texture->switch_on = load("assets/switch_on.png", init);
+	texture->switch_off = load("assets/switch_off.png", init);
+	texture->switch_selected = load("assets/switch_selected.png", init);
+	texture->progress_start = load("assets/progress_start.png", init);
+	texture->progress_center = load("assets/progress_center.png", init);
+	texture->progress_end = load("assets/progress_end.png", init);
+	texture->minimap_header = load("assets/minimap_header.png", init);
+	load_hud_texture_part3(texture, init);
 }
 
 void	load_hud_texture(t_texture *texture, mlx_context init)
@@ -44,38 +87,5 @@ void	load_hud_texture(t_texture *texture, mlx_context init)
 			"assets/inventory_icon_map.png", init);
 	texture->inventory_icon_cases = load(
 			"assets/inventory_icon_cases.png", init);
-	texture->inventory_icon_save = load(
-			"assets/inventory_icon_save.png", init);
-	texture->inventory_icon_options = load(
-			"assets/inventory_icon_options.png", init);
-	texture->inventory_icon_map_selected = load(
-			"assets/inventory_icon_map_selected.png", init);
-	texture->inventory_icon_cases_selected = load(
-			"assets/inventory_icon_cases_selected.png", init);
-	texture->inventory_icon_save_selected = load(
-			"assets/inventory_icon_save_selected.png", init);
-	texture->inventory_icon_options_selected = load(
-			"assets/inventory_icon_options_selected.png", init);
-	texture->q_arrow = load("assets/q_arrow.png", init);
-	texture->e_arrow = load("assets/e_arrow.png", init);
-	texture->options_header = load("assets/options_header.png", init);
-	texture->slider_base = load("assets/slider_base.png", init);
-	texture->slider_selected = load("assets/slider_selected.png", init);
-	texture->switch_on = load("assets/switch_on.png", init);
-	texture->switch_off = load("assets/switch_off.png", init);
-	texture->switch_selected = load("assets/switch_selected.png", init);
-	texture->progress_start = load("assets/progress_start.png", init);
-	texture->progress_center = load("assets/progress_center.png", init);
-	texture->progress_end = load("assets/progress_end.png", init);
-	texture->minimap_header = load("assets/minimap_header.png", init);
-	texture->map_t = load("assets/map_t.png", init);
-	texture->map_b = load("assets/map_b.png", init);
-	texture->map_l = load("assets/map_l.png", init);
-	texture->map_r = load("assets/map_r.png", init);
-	texture->map_p = load("assets/map_p.png", init);
-	texture->flash_panel = load("assets/flash_panel.png", init);
-	texture->led_on = load("assets/led_on.png", init);
-	texture->flash_on = load("assets/flash_on.png", init);
-	texture->flash_off = load("assets/flash_off.png", init);
-	texture->crosshair = load("assets/crosshair.png", init);
+	load_hud_texture_part2(texture, init);
 }

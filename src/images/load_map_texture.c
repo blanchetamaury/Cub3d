@@ -73,5 +73,7 @@ int	load_map_texture(t_texture *texture, mlx_context init)
 		return (1);
 	texture->battery->path = ft_strdup("assets/battery.png");
 	open_image(texture->battery, init);
+	texture->door->path = ft_strdup("assets/door.png");
+	open_image(texture->door, init);
 	return (0);
 }

@@ -22,6 +22,7 @@ void	init_player_pos(t_game *game)
 		game->player->angle = 90;
 	if (game->map->map[game->player->y][game->player->x] == 'W')
 		game->player->angle = 180;
+	game->player->base_angle = game->player->angle;
 	game->map->map[game->player->y][game->player->x] = '0';
 	game->player->pos_y = game->player->y + 0.5;
 	game->player->pos_x = game->player->x + 0.5;

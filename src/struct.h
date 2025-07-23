@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/21 15:42:40 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/23 09:23:18 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_texture
 	t_image		*sky;
 	t_image		*ground;
 	t_image		*battery;
+	t_image		*door;
 	mlx_image	render;
 	mlx_image	render_tmp;
 	mlx_image	compass_background;
@@ -106,6 +107,7 @@ typedef struct s_player
 	float		pos_y;
 	float		rad;
 	float		angle;
+	float		base_angle;
 	int			inventory_page;
 	int			selected_item;
 	int			use_mouse_rotation;
@@ -156,7 +158,7 @@ typedef struct s_raycasting
 	float		deg_to_rad;
 	float		transform_y;
 	float		transform_x;
-	int 		sprite_height;
+	int			sprite_height;
 	int			sprite_width;
 	int			i;
 	int			door;

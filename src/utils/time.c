@@ -6,15 +6,15 @@
 /*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:31:57 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/18 15:32:18 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/21 15:42:16 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-double get_time_in_seconds(void)
+double	get_time_in_seconds(void)
 {
-	struct timeval t;
+	struct timeval	t;
 
 	gettimeofday(&t, NULL);
 	return (t.tv_sec + t.tv_usec / 1000000.0);
