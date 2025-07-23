@@ -63,11 +63,13 @@ SRC_EVENTS =		src/event/subscribe_events.c \
 					src/event/subscribe_mouseup.c \
 					src/event/subscribe_window.c \
 					src/event/pages/inventory.c \
+					src/event/pages/options.c
 
 SRC_COLLISION =		src/collision/check_collision.c
 
 SRC_VIEWS =			src/views/render_game.c \
 					src/views/render_menu.c \
+					src/views/render_options.c \
 					src/views/render_inventory.c \
 					src/views/render_inventory_page.c \
 					src/views/render_options_page.c

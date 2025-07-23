@@ -119,6 +119,7 @@ mlx_color				texture_shader(t_game *game, mlx_color tmp,
 void					render_menu(t_game *game);
 void					render_game(t_game *game);
 void					render_inventory(t_game *game);
+void					render_options(t_game *game);
 void					render_inventory_page(t_game *game);
 void					render_options_page(t_game *game);
 
@@ -133,6 +134,7 @@ void					flashlight_panel(t_game *game);
 void					debug_fps(t_game *game);
 void					minimap(t_game *game, int postion_x, int postion_y);
 void					switch_view(t_game *game, int is_on, int x, int y);
+void					render_tab_indicator(t_game *game);
 
 /* ************************************************************************** */
 /* Collision                                                                  */
@@ -159,6 +161,7 @@ void					subscribe_window(t_graphics *graphics,
 void					subscribe_events(t_game *game);
 
 void					on_keydown_inventory(int key, t_game *game);
+void					on_keydown_options(int key, t_game *game);
 
 /* ************************************************************************** */
 /* Maths                                                                      */

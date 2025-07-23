@@ -50,6 +50,11 @@ static void	on_mouseup(int key, void *param)
 			change_view(game, 1);
 			game->player->angle = game->player->base_angle;
 		}
+		else if (game->graphics->selection == 3)
+		{
+			change_view(game, 3);
+			game->player->inventory_page = 3;
+		}
 		else if (game->graphics->selection == 4)
 			mlx_loop_end(game->graphics->init);
 	}

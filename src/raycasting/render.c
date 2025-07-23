@@ -34,6 +34,8 @@ void	render(void *data)
 		render_game(game);
 	else if (game->graphics->view == 2)
 		render_inventory(game);
+	else if (game->graphics->view == 3)
+		render_options(game);
 	if (is_bonus())
 	{
 		end_time = get_time_in_seconds();

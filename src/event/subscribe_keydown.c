@@ -19,6 +19,8 @@ static void	on_keydown(int key, void *param)
 	game = param;
 	if (game->graphics->view == 2)
 		return (on_keydown_inventory(key, game));
+	if (game->graphics->view == 3)
+		return (on_keydown_options(key, game));
 	if (key == 26)
 		game->events->move_forward = 1;
 	else if (key == 22)
