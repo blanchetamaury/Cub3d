@@ -96,6 +96,7 @@ typedef	enum s_list_img
 	MENU_BUTTON,
 	MENU_BUTTON_ACTIVE,
 	FADE,
+	GHOST,
 	SIZE_LIST_IMG,
 }	t_list_img;
 
@@ -203,6 +204,14 @@ typedef struct s_rect
 	int	w;
 }			t_rect;
 
+typedef	struct s_bot
+{
+	mlx_image	img;
+	float		pos_x;
+	float		pos_y;
+	float		dead_light;
+}				t_bot;
+
 typedef struct s_game
 {
 	mlx_image		img[SIZE_LIST_IMG];
@@ -212,6 +221,7 @@ typedef struct s_game
 	t_player		*player;
 	t_raycasting	*ray;
 	t_events		*events;
+	t_bot			bot[NB_BOT];
 }					t_game;
 
 #endif

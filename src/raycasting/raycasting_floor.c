@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:47:27 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:52:13 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ static void	get_pixel_image(t_game *game, t_image *img, int j, int light)
 {
 	mlx_color	tmp;
 	float		shade;
-	float		color_alpha;
+	//float		color_alpha;
 
 	(void)light;
-	color_alpha = 1;//light / (LIGHT * 46);
-	shade = shade_result(game->ray, game->ray->i % (HEIGHT_WINDOW / 2));
+	//color_alpha = light / (game->ray->light * 46);
+	shade = shade_result(game->ray, game->ray->i % (HEIGHT_WINDOW / 2) / game->ray->light);
 	tmp = img->colors[game->ray->ty * img->width + game->ray->tx];
 	if (is_bonus())
-		tmp = texture_shader(game, tmp, shade, color_alpha);
+		tmp = texture_shader(game, tmp, shade / 2, 1);
 	mlx_set_image_pixel(game->graphics->init, game->img[RENDER],
 		j, game->ray->i, tmp);
 }
@@ -104,6 +104,7 @@ void	raycasting_floor(t_game *game)
 	{
 		init_calc_floor(game, i);
 		j = 0;
+		game->ray->draw_start = i;
 		while (j < WIDTH_WINDOW)
 		{
 			game->ray->color_x = (float)j - WIDTH_WINDOW / 3 - 60;

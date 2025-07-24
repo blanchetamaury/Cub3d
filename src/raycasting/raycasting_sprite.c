@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:24:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:26:33 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:46:00 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,37 @@
 void	sprite_draw_col(t_game *game, t_image *text, int len, int k, int tex_x)
 {
 	mlx_color	raw;
+	float		shade;
 	float		intensity;
 	int			idx;
 
 	while (k < game->ray->draw_end)
 	{
-		intensity = (2.0f + game->events->flashlight * 4.0f)
+		game->ray->color_x = (float)k - WIDTH_WINDOW / 3 - 0;
+		shade = shade_result(game->ray, len);
+		intensity = (1.0f + game->events->flashlight * 3.0f) * shade
 			* (1.0f - (game->ray->transform_y / game->ray->light));
 		idx = ((k - game->ray->draw_start) * text[BATTERY].height
 				/ game->ray->sprite_height) * text[BATTERY].width + tex_x;
 		raw = text[BATTERY].colors[idx];
-		if (((raw.r + raw.g + raw.b) / 3) < 20 || raw.a * intensity < 255)
-		{
+		if (raw.r * intensity < 20)
 			raw.r = 0;
+		if (raw.g * intensity < 20)
 			raw.g = 0;
+		if (raw.b * intensity < 20)
 			raw.b = 0;
-		}
-		else
-			raw.a = raw.a * intensity;
+		if (raw.r * intensity > 230)
+			raw.r = 230 * (230 / raw.r);
+		if (raw.g * intensity > 230)
+			raw.g = 230 * (230 / raw.g);
+		if (raw.b * intensity > 230)
+			raw.b = 230 * (230 / raw.b);
+		if (raw.r * intensity <= 230 && raw.r * intensity >= 20)
+			raw.r = raw.r * intensity;
+		if (raw.g * intensity <= 230 && raw.g * intensity >= 20)
+			raw.g = raw.g * intensity;
+		if (raw.b * intensity <= 230 && raw.b * intensity >= 20)
+			raw.b = raw.b * intensity;
 		if (raw.a)
 			mlx_set_image_pixel(game->graphics->init,
 				game->img[RENDER], len, k, raw);

@@ -31,6 +31,9 @@
 # define LIGHT_OFF 5
 # define LIGHT_ON 7
 
+# define BOT_SPEED 2
+# define NB_BOT 10
+
 # include "struct.h"
 
 /* ************************************************************************** */
