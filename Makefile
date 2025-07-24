@@ -44,6 +44,7 @@ SRC_CLEANUP =		src/cleanup/clean_game.c \
 
 SRC_IMAGES =		src/images/open_image.c \
 					src/images/load_map_texture.c \
+					src/images/load_animated_texture.c \
 					src/images/load_hud_texture.c
 
 SRC_GRAPHICS =		src/raycasting/graphics.c \

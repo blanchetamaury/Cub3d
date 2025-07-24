@@ -84,6 +84,7 @@ int						log_debug(const char *message);
 
 int						load_map_texture(t_game *game, mlx_context init);
 void					load_hud_texture(mlx_image *img, mlx_context init);
+void					load_animation_texture(t_game *game);
 int						open_image(t_image *image, mlx_context init);
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 14:38:30 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:17:49 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ typedef enum s_list_text
 	BATTERY,
 	DOOR,
 	EXIT,
+	GHOST_FLY0,
+	GHOST_FLY1,
+	GHOST_FLY2,
+	GHOST_FLY3,
 	GHOST,
 	SIZE_LIST_TEXT,
 }	t_list_text;

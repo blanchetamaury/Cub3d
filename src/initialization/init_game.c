@@ -17,7 +17,6 @@ t_game	*init_game(void)
 	t_game	*game;
 
 	game = ft_calloc(1, sizeof(t_game));
-	//game->texture = init_texture();
 	game->graphics = init_graphics();
 	game->map = init_map();
 	game->img[RENDER] = mlx_new_image(game->graphics->init,

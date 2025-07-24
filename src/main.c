@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	load_hud_texture(game->img, game->graphics->init);
+	load_animation_texture(game);
 	create_window(game->graphics);
 	subscribe_events(game);
 	graphic(game);
