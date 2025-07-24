@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 09:07:23 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:03:14 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef enum s_list_text
 	BATTERY,
 	DOOR,
 	EXIT,
+	GHOST,
 	SIZE_LIST_TEXT,
 }	t_list_text;
 
@@ -90,7 +91,6 @@ typedef	enum s_list_img
 	FLASH_ON,
 	FLASH_OFF,
 	CROSSHAIR,
-	GHOST,
 	SIZE_LIST_IMG,
 }	t_list_img;
 
@@ -172,6 +172,9 @@ typedef struct s_raycasting
 	int			door;
 	int			frame;
 	int			light;
+	int			count_frame;
+	int			time_s;
+	int			count_bot;
 }				t_raycasting;
 
 typedef struct s_events
@@ -198,7 +201,6 @@ typedef struct s_rect
 
 typedef	struct s_bot
 {
-	mlx_image	img;
 	float		pos_x;
 	float		pos_y;
 	float		dead_light;

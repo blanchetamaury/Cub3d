@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:03:14 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 21:31:36 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:02:53 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ int	load_map_texture(t_game *game, mlx_context init)
 	open_image(&text[DOOR], init);
 	text[EXIT].path = ft_strdup("assets/exit.png");
 	open_image(&text[EXIT], init);
+	text[GHOST].path = ft_strdup("assets/ghost.png");
+	open_image(&text[GHOST], init);
 	return (0);
 }

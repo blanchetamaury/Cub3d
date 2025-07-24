@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:07:40 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 14:17:25 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/24 14:25:29 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	on_mouseup(int key, void *param)
 		else if (game->graphics->selection == 4)
 			mlx_loop_end(game->graphics->init);
 	}
-	if (game->graphics->view == 1)
+	else if (game->graphics->view == 1)
 	{
 		next_element(game, &x, &y);
 		if (game->map->map[y][x] == 'P')

@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 10:47:58 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:34:14 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@
 # define LIGHT_OFF 5
 # define LIGHT_ON 7
 
+# define PERCENTAGE_BATTERY  40
+
 # define BOT_SPEED 2
 # define NB_BOT 10
+# define TIME_SPAWN 1
 
 # include "struct.h"
 

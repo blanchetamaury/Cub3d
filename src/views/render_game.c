@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 20:12:02 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:12:52 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	render_game(t_game *game)
 	}
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 		game->img[CLOCK_BACKGROUND], 0, HEIGHT_WINDOW - 128);
+	game->ray->count_frame++;
 }
