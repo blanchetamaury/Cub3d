@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:42:05 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:54:58 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 mlx_color	texture_shader(t_game *game, mlx_color tmp,
 						float shade, float color_alpha)
 {
-	if ((int)tmp.r * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha < 0)
+	if ((int)tmp.r * (((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha) <= 20)
 		tmp.r = 0;
-	else if ((int)tmp.r * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha > 230)
+	else if ((int)tmp.r * (((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha) > 230)
 		tmp.r = 230;
 	else
-		tmp.r = (int)tmp.r * ((shade * game->ray->light) / (2 + game->events->flashlight * 4))  * color_alpha;
-	if ((int)tmp.g * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha < 0)
+		tmp.r = (int)tmp.r * (((shade * game->ray->light) / (2 + game->events->flashlight * 4))  * color_alpha);
+	if ((int)tmp.g * (((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha) <= 20)
 		tmp.g = 0;
-	else if ((int)tmp.g * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha > 230)
+	else if ((int)tmp.g * (((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha) > 230)
 		tmp.g = 230;
 	else
-		tmp.g = (int)tmp.g * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha;
-	if ((int)tmp.b * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha < 0)
+		tmp.g = (int)tmp.g * (((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha);
+	if ((int)tmp.b * (((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha) <= 20)
 		tmp.b = 0;
-	else if ((int)tmp.b * ((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha > 230)
+	else if ((int)tmp.b * (((shade * game->ray->light) / (2 + game->events->flashlight * 4)) * color_alpha) >= 230)
 		tmp.b = 230;
 	else
-		tmp.b = (int)tmp.b * ((shade * game->ray->light) / (2 + game->events->flashlight * 4))  * color_alpha;
+		tmp.b = (int)tmp.b * (((shade * game->ray->light) / (2 + game->events->flashlight * 4))  * color_alpha);
 	return (tmp);
 }
 

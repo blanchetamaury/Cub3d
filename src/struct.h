@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:38:37 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:07:23 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef	enum s_list_img
 	FLASH_ON,
 	FLASH_OFF,
 	CROSSHAIR,
+	GHOST,
 	SIZE_LIST_IMG,
 }	t_list_img;
 
@@ -195,6 +196,14 @@ typedef struct s_rect
 	int	w;
 }			t_rect;
 
+typedef	struct s_bot
+{
+	mlx_image	img;
+	float		pos_x;
+	float		pos_y;
+	float		dead_light;
+}				t_bot;
+
 typedef struct s_game
 {
 	mlx_image		img[SIZE_LIST_IMG];
@@ -204,6 +213,7 @@ typedef struct s_game
 	t_player		*player;
 	t_raycasting	*ray;
 	t_events		*events;
+	t_bot			bot[NB_BOT];
 }					t_game;
 
 #endif

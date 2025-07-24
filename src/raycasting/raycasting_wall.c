@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:46:25 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:41:48 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ static int find_door(t_game *g, int *status, float wall_dist, int i)
 				if (g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
 				{
 					lineheight = draw_size_wall_forced(g, i);
-					g->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 0;
+					g->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
 					wall_size_texture(g->ray, g->player, g->text, g->map, side, lineheight);
 					draw_wall(g, g->ray->draw_start, side, i, g->ray);
 					return (-1);
@@ -219,7 +219,7 @@ void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 		if (s == 1 && side != -1)
 		{
 			lineheight = draw_size_wall_forced(game, i);
-			game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 0;
+			game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
 			wall_size_texture(game->ray, game->player, game->text, game->map, side, lineheight);
 			draw_wall(game, game->ray->draw_start, side, i, game->ray);
 			z_buffer[i] = game->ray->perpwalldist;
