@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:07:40 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 14:17:25 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/24 11:15:47 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,17 @@ static void	on_mouseup(int key, void *param)
 			game->map->map[y][x] = 'C';
 		}
 		else if (game->map->map[y][x] == 'Q')
-			mlx_loop_end(game->graphics->init);// TODO: Add exit animation
+			change_view(game, 4);
+	}
+	else if (game->graphics->view == 4)
+	{
+		if (game->graphics->selection == 1 || game->graphics->selection == 2)
+		{
+			reset_game(game);
+			change_view(game, game->graphics->selection == 1);
+		}
+		else if (game->graphics->selection == 3)
+			mlx_loop_end(game->graphics->init);
 	}
 	(void) key;
 }

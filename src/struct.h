@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:38:37 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:17:49 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ typedef	enum s_list_img
 	FLASH_ON,
 	FLASH_OFF,
 	CROSSHAIR,
+	ESCAPED_TITLE,
+	RETRY_BUTTON,
+	RETRY_BUTTON_ACTIVE,
+	MENU_BUTTON,
+	MENU_BUTTON_ACTIVE,
+	FADE,
 	SIZE_LIST_IMG,
 }	t_list_img;
 
@@ -114,6 +120,8 @@ typedef struct s_player
 	float		pos_y;
 	float		rad;
 	float		angle;
+	float		base_pos_x;
+	float		base_pos_y;
 	float		base_angle;
 	int			inventory_page;
 	int			selected_item;

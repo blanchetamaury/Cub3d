@@ -69,6 +69,7 @@ SRC_COLLISION =		src/collision/check_collision.c
 SRC_VIEWS =			src/views/render_game.c \
 					src/views/render_menu.c \
 					src/views/render_options.c \
+					src/views/render_win.c \
 					src/views/render_inventory.c \
 					src/views/render_inventory_page.c \
 					src/views/render_options_page.c
@@ -89,7 +90,8 @@ SRC_UTILS =			src/utils/min.c \
 					src/utils/max.c \
 					src/utils/is_bonus.c \
 					src/utils/color.c \
-					src/utils/time.c
+					src/utils/time.c \
+					src/utils/reset_game.c
 
 SRC_PLAYER =		src/player/player_move_backward.c \
 					src/player/player_move_forward.c \

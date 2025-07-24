@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:42:44 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:20:58 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void					render_inventory(t_game *game);
 void					render_options(t_game *game);
 void					render_inventory_page(t_game *game);
 void					render_options_page(t_game *game);
+void					render_win(t_game *game);
 
 /* ************************************************************************** */
 /* Components    													          */
@@ -181,6 +182,7 @@ void					draw_circle(t_game *game, t_rect rect, uint32_t c);
 double					get_time_in_seconds(void);
 void					set_region_opacity(mlx_color *color, int size,
 							uint8_t opacity);
+void					reset_game(t_game *game);
 
 /* ************************************************************************** */
 /* Checks                                                                     */

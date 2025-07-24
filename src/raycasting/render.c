@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 13:05:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/23 18:09:36 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	render(void *data)
 		render_inventory(game);
 	else if (game->graphics->view == 3)
 		render_options(game);
+	else if (game->graphics->view == 4)
+		render_win(game);
 	if (is_bonus())
 	{
 		end_time = get_time_in_seconds();
