@@ -26,4 +26,6 @@ void	init_player_pos(t_game *game)
 	game->map->map[game->player->y][game->player->x] = '0';
 	game->player->pos_y = game->player->y + 0.5;
 	game->player->pos_x = game->player->x + 0.5;
+	game->player->base_pos_x = game->player->pos_x;
+	game->player->base_pos_y = game->player->pos_y;
 }

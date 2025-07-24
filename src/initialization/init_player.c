@@ -19,6 +19,6 @@ t_player	*init_player(void)
 	player = ft_calloc(1, sizeof(t_player));
 	player->x = 0;
 	player->y = 0;
-	player->battery = 3600;
+	player->battery = 200 * 2;
 	return (player);
 }

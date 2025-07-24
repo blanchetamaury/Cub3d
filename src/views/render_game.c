@@ -14,16 +14,16 @@
 
 static void	battery_manager(t_game *game)
 {
-	if (!game->events->flashlight && game->player->battery > 0)
+	if (game->ray->light == LIGHT_ON)
 		game->player->battery--;
 	if (game->player->battery == 0)
-		game->events->flashlight = 1;
+		game->ray->light = LIGHT_OFF;
 	if (game->map->map[(int)game->player->pos_y][(int)game->player->pos_x]
-			== 'B' && game->player->battery < 3600 - 600)
+			== 'B' && game->player->battery < (200) * 6)
 	{
 		game->map->map[(int)game->player->pos_y][(int)game->player->pos_x]
 			= '0';
-		game->player->battery += 600;
+		game->player->battery += 20 * 10;
 	}
 }
 

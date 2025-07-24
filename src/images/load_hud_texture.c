@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/24 14:01:57 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:38:58 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	load_hud_texture_part3(mlx_image *img, mlx_context init)
 	img[FLASH_ON] = load("assets/flash_on.png", init);
 	img[FLASH_OFF] = load("assets/flash_off.png", init);
 	img[CROSSHAIR] = load("assets/crosshair.png", init);
+	img[ESCAPED_TITLE] = load("assets/escaped_title.png", init);
+	img[RETRY_BUTTON] = load("assets/retry_button.png", init);
+	img[RETRY_BUTTON_ACTIVE] = load("assets/retry_button_active.png", init);
+	img[MENU_BUTTON] = load("assets/menu_button.png", init);
+	img[MENU_BUTTON_ACTIVE] = load("assets/menu_button_active.png", init);
+	img[FADE] = load("assets/fade.png", init);
 }
 
 void	load_hud_texture_part2(mlx_image *img, mlx_context init)

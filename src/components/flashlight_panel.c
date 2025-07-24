@@ -19,7 +19,7 @@ void	flashlight_panel(t_game *game)
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 		game->img[FLASH_PANEL], WIDTH_WINDOW - 154,
 		HEIGHT_WINDOW - 246);
-	if (!game->events->flashlight)
+	if (game->ray->light == LIGHT_ON)
 		mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 			game->img[FLASH_ON], WIDTH_WINDOW - 82,
 			HEIGHT_WINDOW - 74);
@@ -28,7 +28,7 @@ void	flashlight_panel(t_game *game)
 			game->img[FLASH_OFF], WIDTH_WINDOW - 82,
 			HEIGHT_WINDOW - 74);
 	i = 1;
-	while (i <= 6 && game->player->battery > (i * 600) - 600)
+	while (i <= 6 && game->player->battery > (i * 200) - 200)
 	{
 		mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 			game->img[LED_ON], 1164, 734 - (i - 1) * 18.5f);
