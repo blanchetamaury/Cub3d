@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (log_error("Missing map files arguments.") - 27);
-	else if (argc > 2)
+	if (argc > 2)
 		log_warn("Only one map arguments is supported. Using the first.");
 	game = init_game();
 	if (game == NULL)
