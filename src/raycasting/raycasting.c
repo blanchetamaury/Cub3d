@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:16:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 14:23:27 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/25 10:04:18 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	ghost_draw_col(t_game *game, t_image *text, int len, int k, int tex_x)
 		shade = shade_result(game->ray, len);
 		intensity = (1.0f + game->events->flashlight * 3.0f) * shade
 			* (1.0f - (game->ray->transform_y / game->ray->light));
-		idx = ((k - game->ray->draw_start) * text[GHOST].height
-				/ game->ray->sprite_height) * text[GHOST].width + tex_x;
-		raw = text[GHOST].colors[idx];
+		idx = ((k - game->ray->draw_start) * text[get_current_ghost_texture(game)].height
+				/ game->ray->sprite_height) * text[get_current_ghost_texture(game)].width + tex_x;
+		raw = text[get_current_ghost_texture(game)].colors[idx];
 		if (raw.r * intensity < 20)
 			raw.r = 0;
 		if (raw.g * intensity < 20)
@@ -81,7 +81,7 @@ void	ghost_draw_raw(t_game *game, t_image *text, int len, int draw_end_x, float 
 	draw_start_x = len;
 	while (len < draw_end_x)
 	{
-		tex_x = (len - draw_start_x) * text[BATTERY].width
+		tex_x = (len - draw_start_x) * text[get_current_ghost_texture(game)].width
 			/ game->ray->sprite_width;
 		if (game->ray->transform_y <= 0
 			|| game->ray->transform_y >= z_buffer[len])
@@ -154,38 +154,6 @@ void	raycasting(t_game *game)
 	raycasting_floor(game);
 	raycasting_wall(game, &status, z_buffer);
 	raycasting_sprite(game, status, z_buffer);
-	int max_x;
-	if (game->ray->count_frame >= game->graphics->max_fps * TIME_SPAWN)
-	{
-		game->ray->count_frame = 0;
-		if (game->ray->count_bot < NB_BOT)
-		{
-			max_x = ft_strlen(game->map->map[(int)game->player->pos_y]);
-			if (rand() % 2 == 0)
-				game->bot[game->ray->count_bot].pos_x = (int)game->player->pos_x - rand() % ((int)game->player->pos_x - 1);
-			else
-				game->bot[game->ray->count_bot].pos_x = (int)game->player->pos_x + rand() % (max_x - (int)game->player->pos_x);
-			if (rand() % 2 == 0)
-				game->bot[game->ray->count_bot].pos_y = (int)game->player->pos_y - rand() % ((int)game->player->pos_y - 1);
-			else
-				game->bot[game->ray->count_bot].pos_y = (int)game->player->pos_y + rand() % ((game->map->size - 1) - (int)game->player->pos_y);
-			game->ray->count_bot++;
-		}
-	}
-	max_x = 0;
-	while (game->ray->count_bot > max_x)
-	{
-		if (game->player->pos_x > game->bot[max_x].pos_x)
-			game->bot[max_x].pos_x += 0.01 * BOT_SPEED;
-		else
-			game->bot[max_x].pos_x -= 0.01 * BOT_SPEED;
-		if (game->player->pos_y > game->bot[max_x].pos_y)
-			game->bot[max_x].pos_y += 0.01 * BOT_SPEED;
-		else
-			game->bot[max_x].pos_y -= 0.01 * BOT_SPEED;
-		max_x++;
-	}
-	game->ray->time_s++;
 	raycasting_ghost(game, z_buffer);
 	mlx_get_image_region(game->graphics->init, game->img[RENDER], 0,
 		0, WIDTH_WINDOW, HEIGHT_WINDOW, color);

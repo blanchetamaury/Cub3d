@@ -47,4 +47,58 @@ void	render_game(t_game *game)
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 		game->img[CLOCK_BACKGROUND], 0, HEIGHT_WINDOW - 128);
 	game->ray->count_frame++;
+
+	// GHOST - To move later
+	int max_x;
+	if (game->ray->count_frame >= game->graphics->max_fps * TIME_SPAWN)
+	{
+		game->ray->count_frame = 0;
+		if (game->ray->count_bot < NB_BOT)
+		{
+			max_x = ft_strlen(game->map->map[(int)game->player->pos_y]);
+			if (rand() % 2 == 0)
+			{
+				if ((int)game->player->base_pos_x > 1)
+					game->bot[game->ray->count_bot].pos_x = (int)game->player->base_pos_x - rand() % ((int)game->player->base_pos_x - 1);
+				else
+					game->bot[game->ray->count_bot].pos_x = 0;
+			}
+			else
+			{
+				if (max_x - (int)game->player->base_pos_x > 1)
+					game->bot[game->ray->count_bot].pos_x = (int)game->player->base_pos_x + rand() % (max_x - (int)game->player->base_pos_x);
+				else
+					game->bot[game->ray->count_bot].pos_x = max_x - 1;
+			}
+			if (rand() % 2 == 0)
+			{
+				if ((int)game->player->base_pos_y > 1)
+					game->bot[game->ray->count_bot].pos_y = (int)game->player->base_pos_y - rand() % ((int)game->player->base_pos_y - 1);
+				else
+					game->bot[game->ray->count_bot].pos_y = 0;
+			}
+			else
+			{
+				if ((game->map->size - 1) - (int)game->player->base_pos_y > 1)
+					game->bot[game->ray->count_bot].pos_y = (int)game->player->base_pos_y + rand() % ((game->map->size - 1) - (int)game->player->base_pos_y);
+				else
+					game->bot[game->ray->count_bot].pos_y = game->map->size - 1;
+			}
+			game->ray->count_bot++;
+		}
+	}
+	max_x = 0;
+	while (game->ray->count_bot > max_x)
+	{
+		if (game->player->pos_x > game->bot[max_x].pos_x)
+			game->bot[max_x].pos_x += 0.01 * BOT_SPEED;
+		else
+			game->bot[max_x].pos_x -= 0.01 * BOT_SPEED;
+		if (game->player->pos_y > game->bot[max_x].pos_y)
+			game->bot[max_x].pos_y += 0.01 * BOT_SPEED;
+		else
+			game->bot[max_x].pos_y -= 0.01 * BOT_SPEED;
+		max_x++;
+	}
+	game->ray->time_s++;
 }

@@ -92,7 +92,8 @@ SRC_UTILS =			src/utils/min.c \
 					src/utils/is_bonus.c \
 					src/utils/color.c \
 					src/utils/time.c \
-					src/utils/reset_game.c
+					src/utils/reset_game.c \
+					src/utils/animation.c \
 
 SRC_PLAYER =		src/player/player_move_backward.c \
 					src/player/player_move_forward.c \
