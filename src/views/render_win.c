@@ -14,7 +14,7 @@
 
 static void	render_win_bg(t_game *game)
 {
-	mlx_color	fade[WIDTH_WINDOW * HEIGHT_WINDOW];
+	static mlx_color	fade[1280 * 800];
 
 	game->player->pos_x = (int)game->player->pos_x + 0.5f;
 	game->player->pos_y = (int)game->player->pos_y + 0.5f;
@@ -28,11 +28,11 @@ static void	render_win_bg(t_game *game)
 		minf(game->graphics->frame * 0.025f + 1, 4),
 		minf(game->graphics->frame * 0.025f, 3));
 	mlx_get_image_region(game->graphics->init, game->img[FADE],
-		0, 0, WIDTH_WINDOW, HEIGHT_WINDOW, fade);
-	set_region_opacity(fade, WIDTH_WINDOW * HEIGHT_WINDOW,
+		0, 0, 1280, 800, fade);
+	set_region_opacity(fade, 1280 * 800,
 		max(128 - game->graphics->frame, 10));
 	mlx_pixel_put_region(game->graphics->init, game->graphics->window,
-		0, 0, WIDTH_WINDOW, HEIGHT_WINDOW, fade);
+		0, 0, 1280, 800, fade);
 }
 
 void	put_retry_to_win(t_game *game)
