@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/28 14:12:28 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:13:07 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ typedef struct s_bot
 	float		pos_x;
 	float		pos_y;
 	float		dead_light;
+	int			life;
 }				t_bot;
 
 typedef struct s_game
