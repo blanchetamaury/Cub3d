@@ -6,13 +6,13 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:05:59 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 14:39:30 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/28 10:45:15 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	raycasting_task(void	*param)
+void	raycasting_task(void *param)
 {
 	t_game	*game;
 

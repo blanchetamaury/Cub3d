@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_calc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:43:07 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/27 12:03:52 by amaury           ###   ########.fr       */
+/*   Updated: 2025/07/28 10:40:29 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,6 @@ void	init_dir(t_raycasting *ray)
 	}
 }
 
-float	shade_result(t_raycasting *ray, int len)
-{
-	float	dist;
-	float	max_rad;
-	float	result;
-
-	ray->color_y = (float)len - (HEIGHT_WINDOW - HEIGHT_WINDOW / 3);
-	dist = hypotf(ray->color_x, ray->color_y) / (ray->light * 0.125);
-	max_rad = hypotf(WIDTH_WINDOW / 2, ray->draw_start);
-	result = 1.0f - (dist / max_rad);
-	if (result < 0)
-		result = 0;
-	if (result > 1)
-		result = 1.0;
-	return (result);
-}
-
 void	wall_size_texture(t_raycasting *ray, t_game *game,
 			t_image *text, int lineheight)
 {
@@ -103,4 +86,13 @@ void	wall_size_texture(t_raycasting *ray, t_game *game,
 		ray->tex_step = 1.0f * get_face_height(ray, text) / lineheight;
 	ray->tex_pos = (ray->draw_start - HEIGHT_WINDOW / 2 + lineheight / 2)
 		* ray->tex_step;
+}
+
+void	init_rad_floor(t_game *game, float *dir_x, float *dir_y)
+{
+	float	rad;
+
+	rad = game->player->angle * game->ray->deg_to_rad;
+	*dir_x = cosf(rad);
+	*dir_y = sinf(rad);
 }

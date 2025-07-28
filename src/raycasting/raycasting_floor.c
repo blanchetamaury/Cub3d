@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_floor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/26 14:00:36 by amaury           ###   ########.fr       */
+/*   Updated: 2025/07/28 10:40:05 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	init_rad_floor(t_game *game, float *dir_x, float *dir_y)
-{
-	float	rad;
-
-	rad = game->player->angle * game->ray->deg_to_rad;
-	*dir_x = cosf(rad);
-	*dir_y = sinf(rad);
-}
 
 static void	init_calc_floor(t_game *game, int i)
 {

@@ -56,7 +56,11 @@ SRC_GRAPHICS =		src/raycasting/graphics.c \
 					src/raycasting/raycasting_wall.c \
 					src/raycasting/raycasting_floor.c \
 					src/raycasting/raycasting_sprite.c \
-					src//raycasting/raycasting_ghost.c
+					src/raycasting/raycasting_ghost.c \
+					src/raycasting/raycasting_door.c \
+					src/raycasting/shader.c \
+					src/raycasting/calc_sprite.c \
+					src/raycasting/calc_door.c
 
 SRC_EVENTS =		src/event/subscribe_events.c \
 					src/event/subscribe_keydown.c \
