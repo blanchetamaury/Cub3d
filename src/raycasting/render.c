@@ -50,6 +50,8 @@ void	render(void *data)
 		render_options(game);
 	else if (game->graphics->view == 4)
 		render_win(game);
+	else if (game->graphics->view == 5)
+		render_lose(game);
 	counter_time(game, 0, start_time);
 	game->graphics->frame++;
 	game->ray->frame++;

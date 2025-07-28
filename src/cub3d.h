@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/28 10:51:52 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:17:20 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void					render_options(t_game *game);
 void					render_inventory_page(t_game *game);
 void					render_options_page(t_game *game);
 void					render_win(t_game *game);
+void					render_lose(t_game *game);
 
 /* ************************************************************************** */
 /* Components    													          */

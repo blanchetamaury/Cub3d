@@ -82,7 +82,7 @@ static void	on_mouseup(int key, void *param)
 		on_menu_click(game);
 	else if (game->graphics->view == 1)
 		on_game_click(game);
-	else if (game->graphics->view == 4)
+	else if (game->graphics->view == 4 || game->graphics->view == 5)
 	{
 		if (game->graphics->selection == 1 || game->graphics->selection == 2)
 		{

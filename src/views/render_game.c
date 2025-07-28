@@ -58,24 +58,33 @@ static void	spawn_enemy(t_game *game)
 
 static void enemy_manager(t_game *game)
 {
-	int		enemy_index;
+	int		i;
 	float	dx;
 	float	dy;
 	float	dist;
 
 	spawn_enemy(game);
-	enemy_index = 0;
-	while (game->ray->count_bot > enemy_index)
+	i = 0;
+	while (game->ray->count_bot > i)
 	{
-		dx = game->player->pos_x - game->bot[enemy_index].pos_x;
-		dy = game->player->pos_y - game->bot[enemy_index].pos_y;
+		dx = game->player->pos_x - game->bot[i].pos_x;
+		dy = game->player->pos_y - game->bot[i].pos_y;
 		dist = sqrtf(dx * dx + dy * dy);
 		if (dist > 0.01f)
 		{
-			game->bot[enemy_index].pos_x += (dx / dist) * 0.01f * BOT_SPEED;
-			game->bot[enemy_index].pos_y += (dy / dist) * 0.01f * BOT_SPEED;
+			game->bot[i].pos_x += (dx / dist) * 0.01f * BOT_SPEED;
+			game->bot[i].pos_y += (dy / dist) * 0.01f * BOT_SPEED;
 		}
-		enemy_index++;
+		i++;
+		if (roundf(game->bot[i].pos_x) == roundf(game->player->pos_x)
+			&& roundf(game->bot[i].pos_y) == roundf(game->player->pos_y))
+		{
+			game->player->battery -= 20 * 5;
+			game->bot[i].pos_x = -1;
+			game->bot[i].pos_y = -1;
+			if (game->player->battery <= 0)
+				change_view(game, 5);
+		}
 	}
 	game->ray->time_s++;
 }

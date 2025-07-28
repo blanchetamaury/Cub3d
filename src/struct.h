@@ -6,7 +6,7 @@
 /*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/26 12:43:06 by amaury           ###   ########.fr       */
+/*   Updated: 2025/07/28 15:14:41 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef enum s_list_img
 	FLASH_OFF,
 	CROSSHAIR,
 	ESCAPED_TITLE,
+	GHOSTED_TITLE,
 	RETRY_BUTTON,
 	RETRY_BUTTON_ACTIVE,
 	MENU_BUTTON,

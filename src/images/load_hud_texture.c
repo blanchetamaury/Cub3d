@@ -37,6 +37,7 @@ void	load_hud_texture_part3(mlx_image *img, mlx_context init)
 	img[MENU_BUTTON] = load("assets/menu_button.png", init);
 	img[MENU_BUTTON_ACTIVE] = load("assets/menu_button_active.png", init);
 	img[FADE] = load("assets/fade.png", init);
+	img[GHOSTED_TITLE] = load("assets/ghosted_title.png", init);
 }
 
 void	load_hud_texture_part2(mlx_image *img, mlx_context init)

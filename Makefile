@@ -76,6 +76,7 @@ SRC_VIEWS =			src/views/render_game.c \
 					src/views/render_menu.c \
 					src/views/render_options.c \
 					src/views/render_win.c \
+					src/views/render_lose.c \
 					src/views/render_inventory.c \
 					src/views/render_inventory_page.c \
 					src/views/render_options_page.c
