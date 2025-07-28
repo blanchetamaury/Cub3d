@@ -62,7 +62,7 @@ static int	open_ground_sky(t_image *text, mlx_context init)
 
 int	load_map_texture(t_game *game, mlx_context init)
 {
-	t_image *text;
+	t_image		*text;
 
 	text = game->text;
 	if (open_wall(text, init))

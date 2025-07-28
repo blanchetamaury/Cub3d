@@ -16,6 +16,10 @@ static void	render_win_bg(t_game *game)
 {
 	mlx_color	fade[WIDTH_WINDOW * HEIGHT_WINDOW];
 
+	game->player->pos_x = (int)game->player->pos_x + 0.5f;
+	game->player->pos_y = (int)game->player->pos_y + 0.5f;
+	mlx_clear_window(game->graphics->init, game->graphics->window,
+		color(0x000000FF));
 	mlx_put_transformed_image_to_window(game->graphics->init,
 		game->graphics->window, game->img[RENDER_TMP],
 		-(min(game->graphics->frame * 16, 1920)),
@@ -91,10 +95,6 @@ void	render_win(t_game *game)
 	int		mx;
 	int		my;
 
-	game->player->pos_x = (int)game->player->pos_x + 0.5f;
-	game->player->pos_y = (int)game->player->pos_y + 0.5f;
-	mlx_clear_window(game->graphics->init, game->graphics->window,
-		color(0x000000FF));
 	render_win_bg(game);
 	scale = minf(game->graphics->frame * 0.025f, 1);
 	mlx_put_transformed_image_to_window(game->graphics->init,
