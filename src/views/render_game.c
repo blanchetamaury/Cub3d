@@ -56,22 +56,25 @@ static void	spawn_enemy(t_game *game)
 	}
 }
 
-static void	enemy_manager(t_game *game)
+static void enemy_manager(t_game *game)
 {
 	int		enemy_index;
+	float	dx;
+	float	dy;
+	float	dist;
 
 	spawn_enemy(game);
 	enemy_index = 0;
 	while (game->ray->count_bot > enemy_index)
 	{
-		if (game->player->pos_x > game->bot[enemy_index].pos_x)
-			game->bot[enemy_index].pos_x += 0.01 * BOT_SPEED;
-		else
-			game->bot[enemy_index].pos_x -= 0.01 * BOT_SPEED;
-		if (game->player->pos_y > game->bot[enemy_index].pos_y)
-			game->bot[enemy_index].pos_y += 0.01 * BOT_SPEED;
-		else
-			game->bot[enemy_index].pos_y -= 0.01 * BOT_SPEED;
+		dx = game->player->pos_x - game->bot[enemy_index].pos_x;
+		dy = game->player->pos_y - game->bot[enemy_index].pos_y;
+		dist = sqrtf(dx * dx + dy * dy);
+		if (dist > 0.01f)
+		{
+			game->bot[enemy_index].pos_x += (dx / dist) * 0.01f * BOT_SPEED;
+			game->bot[enemy_index].pos_y += (dy / dist) * 0.01f * BOT_SPEED;
+		}
 		enemy_index++;
 	}
 	game->ray->time_s++;

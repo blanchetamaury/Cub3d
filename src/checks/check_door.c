@@ -40,7 +40,7 @@ int	check_door(t_game *game)
 				{
 					log_warn("Invalid door found. Ensure that is "
 						"surrounded by walls. Removing it.");
-					game->map->map[y][x] = 'O';
+					game->map->map[y][x] = '0';
 				}
 			}
 			x++;
