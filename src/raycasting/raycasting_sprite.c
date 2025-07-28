@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:24:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/28 10:47:06 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/28 11:06:31 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int	raycasting_sprite_loop(t_game *game, int status, float *z_buffer, int y)
 	if (game->ray->step_x < 0)
 	{
 		ft_stats(game->map->map, &y, &x);
-		while (y-- > 0 && status == 1)
+		y--;
+		while (y > 0 && status == 1)
 		{
 			x = 0;
 			while (game->map->map[y][x])
 				raycasting_sprite_condition(game, x++, y, z_buffer);
+			y--;
 		}
 	}
 	else if (game->ray->step_x > 0)

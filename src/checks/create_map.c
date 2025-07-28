@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/26 12:51:12 by amaury           ###   ########.fr       */
+/*   Updated: 2025/07/28 11:23:24 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ static int	create_map(t_game *game)
 	while (tmp != NULL)
 	{
 		if (check_line_map(tmp))
+		{
+			free(tmp);
 			break ;
+		}
 		free(tmp);
 		tmp = get_next_line(game->map->fd_map);
 	}
