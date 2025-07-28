@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
 /*   Updated: 2025/07/28 15:14:41 by rgodet           ###   ########.fr       */
@@ -190,6 +190,7 @@ typedef struct s_raycasting
 	int			count_bot;
 	int			side;
 	int			len;
+	int			dist;
 }				t_raycasting;
 
 typedef struct s_events

@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_ghost.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 12:07:09 by amaury            #+#    #+#             */
-/*   Updated: 2025/07/26 13:10:50 by amaury           ###   ########.fr       */
+/*   Updated: 2025/07/28 14:37:49 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-mlx_color	apply_shader(mlx_color raw, float intensity)
-{
-	if (raw.r * intensity < 20)
-		raw.r = 0;
-	if (raw.g * intensity < 20)
-		raw.g = 0;
-	if (raw.b * intensity < 20)
-		raw.b = 0;
-	if (raw.r * intensity > 230)
-		raw.r = 230 * (230 / raw.r);
-	if (raw.g * intensity > 230)
-		raw.g = 230 * (230 / raw.g);
-	if (raw.b * intensity > 230)
-		raw.b = 230 * (230 / raw.b);
-	if (raw.r * intensity <= 230 && raw.r * intensity >= 20)
-		raw.r = raw.r * intensity;
-	if (raw.g * intensity <= 230 && raw.g * intensity >= 20)
-		raw.g = raw.g * intensity;
-	if (raw.b * intensity <= 230 && raw.b * intensity >= 20)
-		raw.b = raw.b * intensity;
-	return (raw);
-}
 
 void	ghost_draw_col(t_game *game, t_image *text, int k, int tex_x)
 {
@@ -41,7 +18,12 @@ void	ghost_draw_col(t_game *game, t_image *text, int k, int tex_x)
 	float		shade;
 	float		intensity;
 	int			idx;
+	int			max;
 
+	if (game->ray->dist > 10)
+		max = 0;
+	else
+		max = 10 - game->ray->dist;
 	while (k < game->ray->draw_end)
 	{
 		game->ray->color_x = (float)k - WIDTH_WINDOW / 3 - 0;
@@ -53,10 +35,12 @@ void	ghost_draw_col(t_game *game, t_image *text, int k, int tex_x)
 				/ game->ray->sprite_height)
 			* text[get_current_ghost_texture(game)].width + tex_x;
 		raw = text[get_current_ghost_texture(game)].colors[idx];
-		raw = apply_shader(raw, intensity);
+		raw = sprite_intensity(raw, intensity);
 		if (raw.a)
+		{
 			mlx_set_image_pixel(game->graphics->init,
-				game->img[RENDER], game->ray->len, k, raw);
+				game->img[RENDER], game->ray->len, k - max * 20, raw);
+		}
 		k++;
 	}
 }
@@ -98,11 +82,11 @@ int	raycasting_ghost_calc(t_game *game, float x, float y,
 	plane_x = -dir_y * tan_half_fov;
 	plane_y = dir_x * tan_half_fov;
 	invdet = 1.0f / (plane_x * dir_y - dir_x * plane_y);
-	game->ray->transform_x = invdet * (dir_y * (x - game->player->pos_x + 0.5)
-			- dir_x * (y - game->player->pos_y + 0.5));
+	game->ray->transform_x = invdet * (dir_y * (x - game->player->pos_x)
+			- dir_x * (y - game->player->pos_y));
 	game->ray->transform_y = invdet * (0 - plane_y
-			* (x - game->player->pos_x + 0.5)
-			+ plane_x * (y - game->player->pos_y + 0.5));
+			* (x - game->player->pos_x)
+			+ plane_x * (y - game->player->pos_y));
 	return ((int)WIDTH_WINDOW / 2 * (1 + game->ray->transform_x
 			/ game->ray->transform_y));
 }
@@ -115,10 +99,13 @@ void	raycasting_ghost(t_game *game, t_raycasting *ray, float *z_buffer)
 	i = 0;
 	while (ray->count_bot > i)
 	{
+		ray->dist = game->player->pos_x - game->bot[i].pos_x + game->player->pos_y - game->bot[i].pos_y;
+		if (ray->dist < 0)
+			ray->dist *= -1;
 		sprite_screen_x = raycasting_ghost_calc(game, game->bot[i].pos_x,
 				game->bot[i].pos_y, 0);
 		ray->sprite_height = abs((int)(HEIGHT_WINDOW
-					/ ray->transform_y)) / 3;
+					/ ray->transform_y)) / 2;
 		ray->draw_start = -ray->sprite_height / 2 + HEIGHT_WINDOW
 			/ 2 + ray->sprite_height;
 		if (ray->draw_start < 0)
@@ -128,7 +115,7 @@ void	raycasting_ghost(t_game *game, t_raycasting *ray, float *z_buffer)
 		if (ray->draw_end >= HEIGHT_WINDOW)
 			ray->draw_end = HEIGHT_WINDOW - 1;
 		ray->sprite_width = abs((int)(HEIGHT_WINDOW
-					/ ray->transform_y)) / 3;
+					/ ray->transform_y)) / 2;
 		ray->len = find_draw_start(game, sprite_screen_x);
 		ghost_draw_raw(game, game->text, find_draw_end(game, sprite_screen_x),
 			z_buffer);
