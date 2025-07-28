@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/27 11:55:37 by amaury           ###   ########.fr       */
+/*   Updated: 2025/07/28 10:49:20 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,12 @@ void					raycasting_ghost(t_game *game, t_raycasting *ray, float *z_buffer);
 int						find_draw_start(t_game *game, int sprite_screen_x);
 int						find_draw_end(t_game *game, int sprite_screen_x);
 mlx_color				texture_shader(mlx_color tmp, float shade);
+void					raycasting_door(t_game *game, float *z_buffer);
+int						find_wall_condition(t_game *game);
+mlx_color				sprite_intensity(mlx_color raw, float intensity);
+void					sprite_draw_raw(t_game *game, int len, int draw_end_x, float *z_buffer);
+void					raycasting_sprite_condition(t_game *game, int x, int y, float *z_buffer);
+int						draw_size_wall_forced(t_game *g, int i);
 
 /* ************************************************************************** */
 /* Views                                                                      */

@@ -3,36 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/27 12:04:30 by amaury           ###   ########.fr       */
+/*   Updated: 2025/07/28 10:43:12 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-mlx_color	texture_shader(mlx_color tmp, float shade)
+static void	sprite_draw_col(t_game *game, t_image *text, int len, int tex_x)
 {
-	if ((int)tmp.r * shade <= 20)
-		tmp.r = 0;
-	else if ((int)tmp.r * shade > 230)
-		tmp.r = 230;
-	else
-		tmp.r = (int)tmp.r * shade;
-	if ((int)tmp.g * shade <= 20)
-		tmp.g = 0;
-	else if ((int)tmp.g * shade > 230)
-		tmp.g = 230;
-	else
-		tmp.g = (int)tmp.g * shade;
-	if ((int)tmp.b * shade <= 20)
-		tmp.b = 0;
-	else if ((int)tmp.b * shade >= 230)
-		tmp.b = 230;
-	else
-		tmp.b = (int)tmp.b * shade;
-	return (tmp);
+	mlx_color	raw;
+	float		shade;
+	float		intensity;
+	int			k;
+
+	k = game->ray->draw_start;
+	while (k < game->ray->draw_end)
+	{
+		game->ray->color_x = (float)k - WIDTH_WINDOW / 3 - 0;
+		shade = shade_result(game->ray, len);
+		intensity = (1.0f + game->events->flashlight * 3.0f) * shade
+			* (1.0f - (game->ray->transform_y / game->ray->light));
+		raw = text[BATTERY].colors[((k - game->ray->draw_start)
+				* text[BATTERY].height / game->ray->sprite_height)
+			* text[BATTERY].width + tex_x];
+		raw = sprite_intensity(raw, intensity);
+		if (raw.a)
+			mlx_set_image_pixel(game->graphics->init,
+				game->img[RENDER], len, k, raw);
+		k++;
+	}
+}
+
+void	sprite_draw_raw(t_game *game, int len, int draw_end_x, float *z_buffer)
+{
+	t_image	*text;
+	int		draw_start_x;
+	int		tex_x;
+
+	text = game->text;
+	draw_start_x = len;
+	while (len < draw_end_x)
+	{
+		tex_x = (len - draw_start_x) * text[BATTERY].width
+			/ game->ray->sprite_width;
+		if (game->ray->transform_y <= 0
+			|| game->ray->transform_y >= z_buffer[len])
+			;
+		else
+			sprite_draw_col(game, text, len, tex_x);
+		len++;
+	}
 }
 
 static void	draw_wall_face_north_and_south(t_raycasting *ray, int i,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/24 20:09:11 by amaury           ###   ########.fr       */
+/*   Updated: 2025/07/28 10:35:21 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,20 @@ void	change_view(t_game *game, int view)
 	game->graphics->frame = 0;
 }
 
+void	counter_time(t_game *game, double end_time, double start_time)
+{
+	if (is_bonus())
+	{
+		end_time = get_time_in_seconds();
+		game->graphics->fps = 1.0 / (end_time - start_time);
+		if (game->events->debug_enabled)
+			debug_fps(game);
+	}
+}
+
 void	render(void *data)
 {
 	double		start_time;
-	double		end_time;
 	t_game		*game;
 
 	game = (t_game *)data;
@@ -40,13 +50,7 @@ void	render(void *data)
 		render_options(game);
 	else if (game->graphics->view == 4)
 		render_win(game);
-	if (is_bonus())
-	{
-		end_time = get_time_in_seconds();
-		game->graphics->fps = 1.0 / (end_time - start_time);
-		if (game->events->debug_enabled)
-			debug_fps(game);
-	}
+	counter_time(game, 0, start_time);
 	game->graphics->frame++;
 	game->ray->frame++;
 }
