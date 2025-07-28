@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:58:27 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 11:17:49 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/26 12:43:06 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef enum s_list_text
 	SIZE_LIST_TEXT,
 }	t_list_text;
 
-typedef	enum s_list_img
+typedef enum s_list_img
 {
 	RENDER,
 	RENDER_TMP,
@@ -187,6 +187,8 @@ typedef struct s_raycasting
 	int			count_frame;
 	int			time_s;
 	int			count_bot;
+	int			side;
+	int			len;
 }				t_raycasting;
 
 typedef struct s_events
@@ -211,7 +213,7 @@ typedef struct s_rect
 	int	w;
 }			t_rect;
 
-typedef	struct s_bot
+typedef struct s_bot
 {
 	float		pos_x;
 	float		pos_y;

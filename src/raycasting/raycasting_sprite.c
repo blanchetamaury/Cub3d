@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_sprite.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:24:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 13:41:54 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/26 12:09:48 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	sprite_draw_raw(t_game *game, t_image *text, int len, int draw_end_x, float
 	}
 }
 
-static int	find_draw_start(t_game *game, int sprite_screen_x)
+int	find_draw_start(t_game *game, int sprite_screen_x)
 {
 	int	draw_start_x;
 
@@ -82,7 +82,7 @@ static int	find_draw_start(t_game *game, int sprite_screen_x)
 	return (draw_start_x);
 }
 
-static int	find_draw_end(t_game *game, int sprite_screen_x)
+int	find_draw_end(t_game *game, int sprite_screen_x)
 {
 	int	draw_end_x;
 
@@ -143,11 +143,9 @@ void	raycasting_sprite_condition(t_game *game, int x, int y, float *z_buffer)
 
 void	raycasting_sprite(t_game *game, int status, float *z_buffer)
 {
-	int	len;
 	int	y;
 	int	x;
 
-	len = 0;
 	y = 0;
 	if (game->ray->step_x < 0)
 	{

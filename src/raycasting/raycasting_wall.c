@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 09:41:48 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/27 12:18:08 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	find_wall(t_game *game, int *status)
 	return (side);
 }
 
-int	draw_size_wall(t_game *game, int side, int i)
+int	draw_size_wall(t_game *game, int i)
 {
 	int		lineheight;
 	float	camera_x;
@@ -55,7 +55,7 @@ int	draw_size_wall(t_game *game, int side, int i)
 	camera_x = 2.0f * i / (float)WIDTH_WINDOW - 1.0f;
 	half_fov = (game->ray->fov / 2) * (3.14 / 180.0f);
 	angle_diff = camera_x * half_fov;
-	if (side == 0)
+	if (game->ray->side == 0)
 		game->ray->perpwalldist = (game->ray->raylength_x - game->ray->ray_x)
 			* cosf(angle_diff);
 	else
@@ -92,58 +92,64 @@ static int	raycasting_wall_print(t_game *game, int i, float *z_buffer)
 	return (i);
 }
 
-static int check_door_hit(t_game *g, int side, int *status, float wall_dist)
+static int	check_door_hit(t_game *g, int side, int *status, float wall_dist)
 {
-    float t;
-    float plane;
+	float	t;
+	float	plane;
 
-    if (side == 0)
+	if (side == 0)
 	{
-        if (g->ray->cos_x == 0)
-			return 0;
-        plane = g->ray->map_x + 0.5f;
-        t = (plane - g->player->pos_x) / g->ray->cos_x;
-    }
+		if (g->ray->cos_x == 0)
+			return (0);
+		plane = g->ray->map_x + 0.5f;
+		t = (plane - g->player->pos_x) / g->ray->cos_x;
+	}
 	else
 	{
-        if (g->ray->sin_y == 0)
-			return 0;
-        plane = g->ray->map_y + 0.5f;
-        t = (plane - g->player->pos_y) / g->ray->sin_y;
-    }
-    if (t > 0.0f && t < wall_dist)
+		if (g->ray->sin_y == 0)
+			return (0);
+		plane = g->ray->map_y + 0.5f;
+		t = (plane - g->player->pos_y) / g->ray->sin_y;
+	}
+	if (t > 0.0f && t < wall_dist)
 	{
-        g->ray->perpwalldist = t;
-        g->ray->door = 1;
-        *status = 1;
-        return 1;
-    }
-    return 0;
+		g->ray->perpwalldist = t;
+		g->ray->door = 1;
+		*status = 1;
+		return (1);
+	}
+	return (0);
 }
 
-int draw_size_wall_forced(t_game *g, int i)
+int	draw_size_wall_forced(t_game *g, int i)
 {
-    int lineheight;
-    float camera_x = 2.0f * i / (float)WIDTH_WINDOW - 1.0f;
-    float half_fov = (g->ray->fov / 2) * (3.14f / 180.0f);
-    float angle_diff = camera_x * half_fov;
+	int		lineheight;
+	float	camera_x;
+	float	half_fov;
+	float	angle_diff;
+	float	dist;
 
-    if (g->ray->perpwalldist == 0)
+	camera_x = 2.0f * i / (float)WIDTH_WINDOW - 1.0f;
+	half_fov = (g->ray->fov / 2) * (3.14f / 180.0f);
+	angle_diff = camera_x * half_fov;
+	if (g->ray->perpwalldist == 0)
 		g->ray->perpwalldist = 0.0001f;
-    float dist = g->ray->perpwalldist * cosf(angle_diff);
-    lineheight = (int)(HEIGHT_WINDOW / dist);
-    g->ray->draw_start = -lineheight / 2 + HEIGHT_WINDOW / 2;
-    if (g->ray->draw_start < 0)
+	dist = g->ray->perpwalldist * cosf(angle_diff);
+	lineheight = (int)(HEIGHT_WINDOW / dist);
+	g->ray->draw_start = -lineheight / 2 + HEIGHT_WINDOW / 2;
+	if (g->ray->draw_start < 0)
 		g->ray->draw_start = 0;
 	if (g->map->map[g->ray->map_y][g->ray->map_x] == 'M')
 	{
-		g->ray->draw_end = lineheight * (0.5f - g->ray->frame / 60.0f) + HEIGHT_WINDOW / 2;
+		g->ray->draw_end = lineheight * (0.5f - g->ray->frame / 60.0f)
+			+ HEIGHT_WINDOW / 2;
 		if ((0.5f - g->ray->frame / 60.0f) <= -0.4f)
 			g->map->map[g->ray->map_y][g->ray->map_x] = 'O';
 	}
 	else if (g->map->map[g->ray->map_y][g->ray->map_x] == 'C')
 	{
-		g->ray->draw_end = lineheight * (-0.4f + g->ray->frame / 60.0f) + HEIGHT_WINDOW / 2;
+		g->ray->draw_end = lineheight * (-0.4f + g->ray->frame / 60.0f)
+			+ HEIGHT_WINDOW / 2;
 		if ((-0.4f + g->ray->frame / 60.0f) >= 0.5f)
 			g->map->map[g->ray->map_y][g->ray->map_x] = 'P';
 	}
@@ -151,28 +157,31 @@ int draw_size_wall_forced(t_game *g, int i)
 		g->ray->draw_end = lineheight * -0.4f + HEIGHT_WINDOW / 2;
 	else
 		g->ray->draw_end = lineheight / 2 + HEIGHT_WINDOW / 2;
-    if (g->ray->draw_end >= HEIGHT_WINDOW)
+	if (g->ray->draw_end >= HEIGHT_WINDOW)
 		g->ray->draw_end = HEIGHT_WINDOW - 1;
-    return lineheight;
+	return (lineheight);
 }
 
-static int find_door(t_game *g, int *status, float wall_dist, int i)
+static int	find_door(t_game *g, int *status, float wall_dist, int i)
 {
-    int side = 0;
-	float lineheight;
+	int		side;
+	float	lineheight;
 
-    while (1)
-    {
-        if (g->map->map[g->ray->map_y][g->ray->map_x] == 'P' || g->map->map[g->ray->map_y][g->ray->map_x] == 'C' || g->map->map[g->ray->map_y][g->ray->map_x] == 'M' || g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
+	side = 0;
+	while (1)
+	{
+		if (g->map->map[g->ray->map_y][g->ray->map_x] == 'P' || g->map->map[g->ray->map_y][g->ray->map_x] == 'C' || g->map->map[g->ray->map_y][g->ray->map_x] == 'M' || g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
 		{
-            if (check_door_hit(g, side, status, wall_dist))
+			if (check_door_hit(g, side, status, wall_dist))
 			{
 				if (g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
 				{
 					lineheight = draw_size_wall_forced(g, i);
 					g->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
-					wall_size_texture(g->ray, g->player, g->text, g->map, side, lineheight);
-					draw_wall(g, g->ray->draw_start, side, i, g->ray);
+					g->ray->side = side;
+					g->ray->len = g->ray->draw_start;
+					wall_size_texture(g->ray, g, g->text, lineheight);
+					draw_wall(g, i, g->ray);
 					return (-1);
 				}
 				else
@@ -180,17 +189,17 @@ static int find_door(t_game *g, int *status, float wall_dist, int i)
 			}
 		}
 
-        if (g->map->map[g->ray->map_y][g->ray->map_x] == '1' || g->map->map[g->ray->map_y][g->ray->map_x] == 'Q')
-            break;
-        side = find_wall_condition(g);
-    }
-    return (side);
+		if (g->map->map[g->ray->map_y][g->ray->map_x] == '1' || g->map->map[g->ray->map_y][g->ray->map_x] == 'Q')
+			break;
+		side = find_wall_condition(g);
+	}
+	return (side);
 }
 
 void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 {
+	int		s;
 	int		i;
-	int		side;
 	int		lineheight;
 
 	i = 0;
@@ -200,28 +209,29 @@ void	raycasting_wall(t_game *game, int *status, float *z_buffer)
 		game->ray->door = 0;
 		init_calc(game->ray, game->player, init_angle(game->ray, game->player, i));
 		init_dir(game->ray);
-		side = find_wall(game, status);
-		lineheight = draw_size_wall(game, side, i);
+		game->ray->side = find_wall(game, status);
+		lineheight = draw_size_wall(game, i);
 		game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
-		wall_size_texture(game->ray, game->player, game->text, game->map, side, lineheight);
-		draw_wall(game, game->ray->draw_start, side, i, game->ray);
+		wall_size_texture(game->ray, game, game->text, lineheight);
+		game->ray->len = game->ray->draw_start;
+		draw_wall(game, i, game->ray);
 		i = raycasting_wall_print(game, i, z_buffer);
 	}
 	i = 0;
-	int	s;
 	while (i < WIDTH_WINDOW)
 	{
 		s = 0;
 		game->ray->door = 0;
 		init_calc(game->ray, game->player, init_angle(game->ray, game->player, i));
 		init_dir(game->ray);
-		side = find_door(game, &s, z_buffer[i], i);
-		if (s == 1 && side != -1)
+		game->ray->side = find_door(game, &s, z_buffer[i], i);
+		if (s == 1 && game->ray->side != -1)
 		{
 			lineheight = draw_size_wall_forced(game, i);
 			game->ray->color_x = (float)i - WIDTH_WINDOW / 3 - 60;
-			wall_size_texture(game->ray, game->player, game->text, game->map, side, lineheight);
-			draw_wall(game, game->ray->draw_start, side, i, game->ray);
+			wall_size_texture(game->ray, game, game->text, lineheight);
+			game->ray->len = game->ray->draw_start;
+			draw_wall(game, i, game->ray);
 			z_buffer[i] = game->ray->perpwalldist;
 		}
 		i++;

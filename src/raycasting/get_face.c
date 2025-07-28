@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_face.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:40:46 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:23:47 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/27 11:55:06 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	get_face(int side, int step_x, int step_y)
 	}
 }
 
-int	get_face_height(int side, int step_x, int step_y, t_image *text)
+int	get_face_height(t_raycasting *ray, t_image *text)
 {
 	int	face;
 
-	face = get_face(side, step_x, step_y);
+	face = get_face(ray->side, ray->step_x, ray->step_y);
 	if (face == 0)
 		return (text[NORTH].height);
 	if (face == 1)
@@ -46,11 +46,11 @@ int	get_face_height(int side, int step_x, int step_y, t_image *text)
 	return (0);
 }
 
-int	get_face_width(int side, int step_x, int step_y, t_image *text)
+int	get_face_width(t_raycasting *ray, t_image *text)
 {
 	int	face;
 
-	face = get_face(side, step_x, step_y);
+	face = get_face(ray->side, ray->step_x, ray->step_y);
 	if (face == 0)
 		return (text[NORTH].width);
 	if (face == 1)

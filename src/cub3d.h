@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/25 10:09:44 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/27 11:55:37 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ mlx_window_create_info	*init_window_info(void);
 /* ************************************************************************** */
 
 void					clean_color(t_color *color);
-void					clean_texture(t_image *texture, mlx_image *img, mlx_context init);
+void					clean_texture(t_image *texture, mlx_image *img,
+							mlx_context init);
 void					clean_graphics(t_graphics *graphics);
 void					clean_player(t_player *player);
 void					clean_map(t_map *map);
@@ -96,17 +97,17 @@ void					graphic(t_game *game);
 void					raycasting(t_game *game);
 void					render(void *data);
 mlx_color				color(uint32_t color);
-void					draw_wall(t_game *game, int len, int side, int i, t_raycasting *ray);
+void					draw_wall(t_game *game, int i, t_raycasting *ray);
 int						get_face(int side, int step_x, int step_y);
-int						get_face_height(int side, int step_x, int step_y,
-							t_image *texture);
-int						get_face_width(int side, int step_x, int step_y,
-							t_image *texture);
+int						get_face_height(t_raycasting *ray, t_image *text);
+int						get_face_width(t_raycasting *ray, t_image *text);
 float					init_angle(t_raycasting *ray, t_player *player, int i);
-void					init_calc(t_raycasting *ray, t_player *player, float rad);
+void					init_calc(t_raycasting *ray, t_player *player,
+							float rad);
 void					init_dir(t_raycasting *ray);
 float					shade_result(t_raycasting *ray, int len);
-void					wall_size_texture(t_raycasting *ray, t_player *player, t_image *text, t_map *map, int side, int lineheight);
+void					wall_size_texture(t_raycasting *ray, t_game *game,
+							t_image *text, int lineheight);
 void					raycasting_floor(t_game *game);
 void					raycasting_wall(t_game *game, int *status,
 							float *z_buffer);
@@ -114,8 +115,10 @@ void					raycasting_sprite(t_game *game, int status,
 							float *z_buffer);
 void					init_rad_floor(t_game *game, float *dir_x,
 							float *dir_y);
-mlx_color				texture_shader(t_game *game, mlx_color tmp,
-							float shade, float color_alpha);
+void					raycasting_ghost(t_game *game, t_raycasting *ray, float *z_buffer);
+int						find_draw_start(t_game *game, int sprite_screen_x);
+int						find_draw_end(t_game *game, int sprite_screen_x);
+mlx_color				texture_shader(mlx_color tmp, float shade);
 
 /* ************************************************************************** */
 /* Views                                                                      */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_collision.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:54:41 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 09:45:28 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/26 12:59:04 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int	check_x(float y, float x, char c, t_map *map)
 	return (map->map[(int)y][(int)(x + 0.9) - 1] != c
 		&& map->map[(int)y][(int)(x + 0.1)] != c);
 }
-
 
 void	apply_position(t_player *player, t_map *map, float x, float y)
 {

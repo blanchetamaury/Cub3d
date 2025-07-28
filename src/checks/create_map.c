@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 16:58:22 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/26 12:51:12 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	check_line_map(char *str)
 	char	*find;
 
 	i = 0;
-	j = 0;
 	if (is_bonus())
 		find = " 10NSEWPQ\n";
 	else
@@ -94,7 +93,6 @@ static int	create_map(t_game *game)
 		free(tmp);
 		tmp = get_next_line(game->map->fd_map);
 	}
-	free(tmp);
 	if (write_map(game, tmp, &status) == 0 || status == 0)
 		return (0);
 	return (1);

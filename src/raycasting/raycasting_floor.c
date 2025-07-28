@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_floor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:30 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/24 10:52:13 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/26 14:00:36 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,17 @@ static void	init_calc_floor(t_game *game, int i)
 		* (dir_y - (dir_x * tan_half_fov));
 }
 
-static void	get_pixel_image(t_game *game, t_image *img, int j, int light)
+static void	get_pixel_image(t_game *game, t_image *img, int j)
 {
 	mlx_color	tmp;
 	float		shade;
-	//float		color_alpha;
 
-	(void)light;
-	//color_alpha = light / (game->ray->light * 46);
-	shade = shade_result(game->ray, game->ray->i % (HEIGHT_WINDOW / 2) / game->ray->light);
+	shade = shade_result(game->ray, game->ray->i
+			% (HEIGHT_WINDOW / 2) / game->ray->light) / 4;
 	tmp = img->colors[game->ray->ty * img->width + game->ray->tx];
 	if (is_bonus())
-		tmp = texture_shader(game, tmp, shade / 2, 1);
+		tmp = texture_shader(tmp, (shade * game->ray->light)
+				/ (2 + game->events->flashlight * 4));
 	mlx_set_image_pixel(game->graphics->init, game->img[RENDER],
 		j, game->ray->i, tmp);
 }
@@ -69,29 +68,24 @@ static void	calc_tx_and_ty(t_game *game, t_image *img)
 
 static int	raycasting_floor_print(t_game *game, int i)
 {
-	static mlx_color	color[WIDTH_WINDOW * 1];
+	static mlx_color	color_sky[WIDTH_WINDOW * 1];
+	static mlx_color	color_ground[WIDTH_WINDOW * 1];
 	int					count;
 
 	count = 0;
 	mlx_get_image_region(game->graphics->init, game->img[RENDER],
-		0, i, WIDTH_WINDOW, 1, color);
-	while (count < 3)
-	{
-		mlx_set_image_region(game->graphics->init, game->img[RENDER],
-			0, i + count, WIDTH_WINDOW, 1, color);
-		count++;
-	}
-	count = 0;
+		0, i, WIDTH_WINDOW, 1, color_sky);
 	mlx_get_image_region(game->graphics->init, game->img[RENDER],
-		0, HEIGHT_WINDOW - i - 1, WIDTH_WINDOW, 1, color);
+		0, HEIGHT_WINDOW - i - 1, WIDTH_WINDOW, 1, color_ground);
 	while (count < 3)
 	{
 		mlx_set_image_region(game->graphics->init, game->img[RENDER],
-			0, (HEIGHT_WINDOW - i - 1) - count, WIDTH_WINDOW, 1, color);
-		count++;
+			0, i + count, WIDTH_WINDOW, 1, color_sky);
+		mlx_set_image_region(game->graphics->init, game->img[RENDER],
+			0, (HEIGHT_WINDOW - i - 1) - count++,
+			WIDTH_WINDOW, 1, color_ground);
 	}
-	i += count;
-	return (i);
+	return (count);
 }
 
 void	raycasting_floor(t_game *game)
@@ -110,15 +104,14 @@ void	raycasting_floor(t_game *game)
 			game->ray->color_x = (float)j - WIDTH_WINDOW / 3 - 60;
 			calc_tx_and_ty(game, &game->text[SKY]);
 			game->ray->i = i;
-			get_pixel_image(game, &game->text[GROUND], j, i);
+			get_pixel_image(game, &game->text[GROUND], j);
 			calc_tx_and_ty(game, &game->text[GROUND]);
 			game->ray->i = HEIGHT_WINDOW - i - 1;
-			get_pixel_image(game, &game->text[SKY], j,
-				HEIGHT_WINDOW - (HEIGHT_WINDOW - i - 1));
+			get_pixel_image(game, &game->text[SKY], j);
 			game->ray->floor_x += game->ray->floorstep_x;
 			game->ray->floor_y += game->ray->floorstep_y;
 			j++;
 		}
-		i = raycasting_floor_print(game, i);
+		i += raycasting_floor_print(game, i);
 	}
 }

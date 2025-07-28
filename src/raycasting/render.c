@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:44:55 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 18:09:36 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/24 20:09:11 by amaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	render(void *data)
 	game = (t_game *)data;
 	if (is_bonus())
 		start_time = get_time_in_seconds();
+	else
+		start_time = 0;
 	if (game->graphics->view == 0)
 		render_menu(game);
 	else if (game->graphics->view == 1)
