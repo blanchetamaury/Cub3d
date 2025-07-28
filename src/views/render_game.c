@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/28 10:39:29 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/28 11:25:24 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	battery_manager(t_game *game)
 {
 	if (game->ray->light == LIGHT_ON)
 		game->player->battery--;
-	if (game->player->battery == 0)
+	if (game->player->battery <= 0)
 		game->ray->light = LIGHT_OFF;
 	if (game->map->map[(int)game->player->pos_y][(int)game->player->pos_x]
 			== 'B' && game->player->battery < (200) * 6)
