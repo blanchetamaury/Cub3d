@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 13:19:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/24 14:38:58 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/28 09:40:30 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,18 @@ void	load_hud_texture_part3(mlx_image *img, mlx_context init)
 
 void	load_hud_texture_part2(mlx_image *img, mlx_context init)
 {
-	img[INVENTORY_ICON_SAVE] = load("assets/inventory_icon_save.png", init);
-	img[INVENTORY_ICON_OPTIONS] = load("assets/inventory_icon_options.png", init);
-	img[INVENTORY_ICON_MAP_SELECTED] = load("assets/inventory_icon_map_selected.png", init);
-	img[INVENTORY_ICON_CASES_SELECTED] = load("assets/inventory_icon_cases_selected.png", init);
-	img[INVENTORY_ICON_SAVE_SELECTED] = load("assets/inventory_icon_save_selected.png", init);
-	img[INVENTORY_ICON_OPTIONS_SELECTED] = load("assets/inventory_icon_options_selected.png", init);
+	img[INVENTORY_ICON_SAVE] = load("assets/inventory_icon_save.png",
+			init);
+	img[INVENTORY_ICON_OPTIONS] = load(
+			"assets/inventory_icon_options.png", init);
+	img[INVENTORY_ICON_MAP_SELECTED] = load(
+			"assets/inventory_icon_map_selected.png", init);
+	img[INVENTORY_ICON_CASES_SELECTED] = load(
+			"assets/inventory_icon_cases_selected.png", init);
+	img[INVENTORY_ICON_SAVE_SELECTED] = load(
+			"assets/inventory_icon_save_selected.png", init);
+	img[INVENTORY_ICON_OPTIONS_SELECTED] = load(
+			"assets/inventory_icon_options_selected.png", init);
 	img[Q_ARROW] = load("assets/q_arrow.png", init);
 	img[E_ARROW] = load("assets/e_arrow.png", init);
 	img[OPTIONS_HEADER] = load("assets/options_header.png", init);
@@ -74,8 +80,10 @@ void	load_hud_texture(mlx_image *img, mlx_context init)
 	img[OPTION_BUTTON] = load("assets/option_button.png", init);
 	img[EXIT_BUTTON] = load("assets/exit_button.png", init);
 	img[PLAY_BUTTON_SELECTED] = load("assets/play_button_selected.png", init);
-	img[ONLINE_BUTTON_SELECTED] = load("assets/online_button_selected.png", init);
-	img[OPTION_BUTTON_SELECTED] = load("assets/option_button_selected.png", init);
+	img[ONLINE_BUTTON_SELECTED] = load("assets/online_button_selected.png",
+			init);
+	img[OPTION_BUTTON_SELECTED] = load("assets/option_button_selected.png",
+			init);
 	img[EXIT_BUTTON_SELECTED] = load("assets/exit_button_selected.png", init);
 	img[INVENTORY_BACKGROUND] = load("assets/inventory_background.png", init);
 	img[INVENTORY_ICON_MAP] = load("assets/inventory_icon_map.png", init);

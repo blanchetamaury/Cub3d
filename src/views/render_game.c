@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/24 13:12:52 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/28 10:39:29 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,56 @@ static void	battery_manager(t_game *game)
 	}
 }
 
+static void	spawn_enemy(t_game *game)
+{
+	int		max_x;
+
+	if (game->ray->count_frame >= game->graphics->max_fps * TIME_SPAWN
+		&& game->ray->count_bot < NB_BOT)
+	{
+		game->ray->count_frame = 0;
+		max_x = ft_strlen(game->map->map[(int)game->player->pos_y]);
+		if (rand() % 2 == 0)
+			game->bot[game->ray->count_bot].pos_x = max(0,
+					(int)game->player->base_pos_x - rand()
+					% ((int)game->player->base_pos_x - 1));
+		else
+			game->bot[game->ray->count_bot].pos_x = max(max_x - 1,
+					(int)game->player->base_pos_x + rand()
+					% (max_x - (int)game->player->base_pos_x));
+		if (rand() % 2 == 0)
+			game->bot[game->ray->count_bot].pos_y = max(0,
+					(int)game->player->base_pos_y - rand()
+					% ((int)game->player->base_pos_y - 1));
+		else
+			game->bot[game->ray->count_bot].pos_y = max(game->map->size - 1,
+					(int)game->player->base_pos_y + rand()
+					% ((game->map->size - 1) - (int)game->player->base_pos_y));
+		game->ray->count_bot++;
+	}
+}
+
+static void	enemy_manager(t_game *game)
+{
+	int		enemy_index;
+
+	spawn_enemy(game);
+	enemy_index = 0;
+	while (game->ray->count_bot > enemy_index)
+	{
+		if (game->player->pos_x > game->bot[enemy_index].pos_x)
+			game->bot[enemy_index].pos_x += 0.01 * BOT_SPEED;
+		else
+			game->bot[enemy_index].pos_x -= 0.01 * BOT_SPEED;
+		if (game->player->pos_y > game->bot[enemy_index].pos_y)
+			game->bot[enemy_index].pos_y += 0.01 * BOT_SPEED;
+		else
+			game->bot[enemy_index].pos_y -= 0.01 * BOT_SPEED;
+		enemy_index++;
+	}
+	game->ray->time_s++;
+}
+
 void	render_game(t_game *game)
 {
 	mlx_clear_window(game->graphics->init, game->graphics->window,
@@ -38,67 +88,14 @@ void	render_game(t_game *game)
 		game->img[CROSSHAIR], (WIDTH_WINDOW / 2) - 40,
 		(HEIGHT_WINDOW / 2) + 20);
 	player_action(game);
+	hand(game);
 	if (is_bonus())
 	{
-		hand(game);
 		flashlight_panel(game);
 		battery_manager(game);
+		enemy_manager(game);
 	}
 	mlx_put_image_to_window(game->graphics->init, game->graphics->window,
 		game->img[CLOCK_BACKGROUND], 0, HEIGHT_WINDOW - 128);
 	game->ray->count_frame++;
-
-	// GHOST - To move later
-	int max_x;
-	if (game->ray->count_frame >= game->graphics->max_fps * TIME_SPAWN)
-	{
-		game->ray->count_frame = 0;
-		if (game->ray->count_bot < NB_BOT)
-		{
-			max_x = ft_strlen(game->map->map[(int)game->player->pos_y]);
-			if (rand() % 2 == 0)
-			{
-				if ((int)game->player->base_pos_x > 1)
-					game->bot[game->ray->count_bot].pos_x = (int)game->player->base_pos_x - rand() % ((int)game->player->base_pos_x - 1);
-				else
-					game->bot[game->ray->count_bot].pos_x = 0;
-			}
-			else
-			{
-				if (max_x - (int)game->player->base_pos_x > 1)
-					game->bot[game->ray->count_bot].pos_x = (int)game->player->base_pos_x + rand() % (max_x - (int)game->player->base_pos_x);
-				else
-					game->bot[game->ray->count_bot].pos_x = max_x - 1;
-			}
-			if (rand() % 2 == 0)
-			{
-				if ((int)game->player->base_pos_y > 1)
-					game->bot[game->ray->count_bot].pos_y = (int)game->player->base_pos_y - rand() % ((int)game->player->base_pos_y - 1);
-				else
-					game->bot[game->ray->count_bot].pos_y = 0;
-			}
-			else
-			{
-				if ((game->map->size - 1) - (int)game->player->base_pos_y > 1)
-					game->bot[game->ray->count_bot].pos_y = (int)game->player->base_pos_y + rand() % ((game->map->size - 1) - (int)game->player->base_pos_y);
-				else
-					game->bot[game->ray->count_bot].pos_y = game->map->size - 1;
-			}
-			game->ray->count_bot++;
-		}
-	}
-	max_x = 0;
-	while (game->ray->count_bot > max_x)
-	{
-		if (game->player->pos_x > game->bot[max_x].pos_x)
-			game->bot[max_x].pos_x += 0.01 * BOT_SPEED;
-		else
-			game->bot[max_x].pos_x -= 0.01 * BOT_SPEED;
-		if (game->player->pos_y > game->bot[max_x].pos_y)
-			game->bot[max_x].pos_y += 0.01 * BOT_SPEED;
-		else
-			game->bot[max_x].pos_y -= 0.01 * BOT_SPEED;
-		max_x++;
-	}
-	game->ray->time_s++;
 }
