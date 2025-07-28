@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:45:18 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/28 11:25:24 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/28 15:43:10 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,65 @@ static void	battery_manager(t_game *game)
 static void	spawn_enemy(t_game *game)
 {
 	int		max_x;
+	int		i;
+	int		status;
 
-	if (game->ray->count_frame >= game->graphics->max_fps * TIME_SPAWN
-		&& game->ray->count_bot < NB_BOT)
+	status = 0;
+	if (game->ray->count_frame >= game->graphics->max_fps * TIME_SPAWN)
 	{
+		i = 0;
 		game->ray->count_frame = 0;
-		max_x = ft_strlen(game->map->map[(int)game->player->pos_y]);
-		if (rand() % 2 == 0)
-			game->bot[game->ray->count_bot].pos_x = max(0,
-					(int)game->player->base_pos_x - rand()
-					% ((int)game->player->base_pos_x - 1));
-		else
-			game->bot[game->ray->count_bot].pos_x = max(max_x - 1,
-					(int)game->player->base_pos_x + rand()
-					% (max_x - (int)game->player->base_pos_x));
-		if (rand() % 2 == 0)
-			game->bot[game->ray->count_bot].pos_y = max(0,
-					(int)game->player->base_pos_y - rand()
-					% ((int)game->player->base_pos_y - 1));
-		else
-			game->bot[game->ray->count_bot].pos_y = max(game->map->size - 1,
-					(int)game->player->base_pos_y + rand()
-					% ((game->map->size - 1) - (int)game->player->base_pos_y));
-		game->ray->count_bot++;
+		while (i < game->ray->count_bot)
+		{
+			printf(" BOT %d = life %d\n", i, game->bot[i].life);
+			if (game->bot[i].life == 0)
+			{
+				max_x = ft_strlen(game->map->map[(int)game->player->pos_y]);
+				if (rand() % 2 == 0)
+					game->bot[i].pos_x = max(0,
+							(int)game->player->base_pos_x - rand()
+							% ((int)game->player->base_pos_x - 1));
+				else
+					game->bot[i].pos_x = max(max_x - 1,
+							(int)game->player->base_pos_x + rand()
+							% (max_x - (int)game->player->base_pos_x));
+				if (rand() % 2 == 0)
+					game->bot[i].pos_y = max(0,
+							(int)game->player->base_pos_y - rand()
+							% ((int)game->player->base_pos_y - 1));
+				else
+					game->bot[i].pos_y = max(game->map->size - 1,
+							(int)game->player->base_pos_y + rand()
+							% ((game->map->size - 1) - (int)game->player->base_pos_y));
+				game->bot[i].life = 1;
+				status = 1;
+				break ;
+			}
+			i++;
+		}
+		if (status == 0 && game->ray->count_bot < NB_BOT)
+		{
+			max_x = ft_strlen(game->map->map[(int)game->player->pos_y]);
+			if (rand() % 2 == 0)
+				game->bot[game->ray->count_bot].pos_x = max(0,
+						(int)game->player->base_pos_x - rand()
+						% ((int)game->player->base_pos_x - 1));
+			else
+				game->bot[game->ray->count_bot].pos_x = max(max_x - 1,
+						(int)game->player->base_pos_x + rand()
+						% (max_x - (int)game->player->base_pos_x));
+			if (rand() % 2 == 0)
+				game->bot[game->ray->count_bot].pos_y = max(0,
+						(int)game->player->base_pos_y - rand()
+						% ((int)game->player->base_pos_y - 1));
+			else
+				game->bot[game->ray->count_bot].pos_y = max(game->map->size - 1,
+						(int)game->player->base_pos_y + rand()
+						% ((game->map->size - 1) - (int)game->player->base_pos_y));
+			game->bot[game->ray->count_bot].life = 1;
+			game->ray->count_bot++;
+		}
+		printf("\n");
 	}
 }
 
@@ -70,7 +106,7 @@ static void enemy_manager(t_game *game)
 		dx = game->player->pos_x - game->bot[i].pos_x;
 		dy = game->player->pos_y - game->bot[i].pos_y;
 		dist = sqrtf(dx * dx + dy * dy);
-		if (dist > 0.01f)
+		if (dist > 0.01f && game->bot[enemy_index].life == 1)
 		{
 			game->bot[i].pos_x += (dx / dist) * 0.01f * BOT_SPEED;
 			game->bot[i].pos_y += (dy / dist) * 0.01f * BOT_SPEED;

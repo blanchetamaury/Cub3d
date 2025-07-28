@@ -220,6 +220,7 @@ typedef struct s_bot
 	float		pos_x;
 	float		pos_y;
 	float		dead_light;
+	int			life;
 }				t_bot;
 
 typedef struct s_game
