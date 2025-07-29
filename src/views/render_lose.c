@@ -114,4 +114,6 @@ void	render_lose(t_game *game)
 		game->graphics->selection = 3;
 	else
 		game->graphics->selection = 0;
+	if (game->events->exit)
+		mlx_loop_end(game->graphics->init);
 }
