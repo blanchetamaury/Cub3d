@@ -72,6 +72,9 @@ SRC_EVENTS =		src/event/subscribe_events.c \
 
 SRC_COLLISION =		src/collision/check_collision.c
 
+SRC_ENEMY =			src/enemy/spawn.c \
+					src/enemy/manager.c
+
 SRC_VIEWS =			src/views/render_game.c \
 					src/views/render_menu.c \
 					src/views/render_options.c \
@@ -121,6 +124,7 @@ SRC		=	src/main.c \
 			${SRC_VIEWS} \
 			${SRC_COMPONENTS} \
 			${SRC_COLLISION} \
+			${SRC_ENEMY} \
 			${SRC_MATH} \
 			${SRC_UTILS} \
 			${SRC_CLEANUP} \

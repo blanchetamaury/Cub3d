@@ -33,4 +33,8 @@ void	reset_game(t_game *game)
 		}
 		y++;
 	}
+	game->player->battery = 200 * 2;
+	y = 0;
+	while (y < game->ray->count_bot)
+		game->bot[y++].life = 0;
 }

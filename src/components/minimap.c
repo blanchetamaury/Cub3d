@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:26:44 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 20:21:28 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/29 10:21:59 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	get_texture(t_game *game, int x, int y, int to_draw[4])
 	to_draw[1] = 0;
 	to_draw[2] = 0;
 	to_draw[3] = 0;
-	if (game->map->map[y][x] != '1')
+	if (game->map->map[y][x] != '1' && game->map->map[y][x] != 'Q')
 		return ;
 	if ((x > 0 && game->map->map[y][x] != game->map->map[y][x - 1]) || x == 0)
 		to_draw[0] = 1;

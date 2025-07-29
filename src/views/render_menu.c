@@ -102,5 +102,7 @@ void	render_menu(t_game *game)
 		game->graphics->selection = 4;
 	else
 		game->graphics->selection = 0;
+	if (game->events->exit)
+		mlx_loop_end(game->graphics->init);
 	game->graphics->frame++;
 }
