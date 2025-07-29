@@ -106,7 +106,7 @@ static void enemy_manager(t_game *game)
 		dx = game->player->pos_x - game->bot[i].pos_x;
 		dy = game->player->pos_y - game->bot[i].pos_y;
 		dist = sqrtf(dx * dx + dy * dy);
-		if (dist > 0.01f && game->bot[enemy_index].life == 1)
+		if (dist > 0.01f && game->bot[i].life == 1)
 		{
 			game->bot[i].pos_x += (dx / dist) * 0.01f * BOT_SPEED;
 			game->bot[i].pos_y += (dy / dist) * 0.01f * BOT_SPEED;
