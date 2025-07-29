@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/29 12:35:10 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:59:32 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,6 @@ int	find_wall_condition(t_game *game)
 	}
 }
 
-static void del_ghost(t_game *game)
-{
-	int i;
-	int	tmp_x;
-	int	tmp_y;
-
-	i = 0;
-	while (i < game->ray->count_bot)
-	{
-		tmp_x = game->ray->map_x - game->bot[i].pos_x;
-		tmp_y = game->ray->map_y - game->bot[i].pos_y;
-		if (tmp_x < 0)
-			tmp_x *= -1;
-		if (tmp_y < 0)
-			tmp_y *= -1;
-		if (tmp_x < 1 && tmp_y < 1)
-			game->bot[i].life = 0;
-		i++;
-	}
-}
-
 static int	find_wall(t_game *game, int *status, int i)
 {
 	int	side;
@@ -56,7 +35,8 @@ static int	find_wall(t_game *game, int *status, int i)
 	side = 0;
 	while (1)
 	{
-		if (i >= WIDTH_WINDOW / 2 - 5 && i <= WIDTH_WINDOW / 2 + 5 && game->ray->light == LIGHT_ON)
+		if (i >= WIDTH_WINDOW / 2 - 5 && i <= WIDTH_WINDOW / 2 + 5
+			&& game->ray->light == LIGHT_ON)
 			del_ghost(game);
 		if (game->map->map[game->ray->map_y][game->ray->map_x] == 'B')
 			*status = 1;

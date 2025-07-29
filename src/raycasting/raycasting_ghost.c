@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 12:07:09 by amaury            #+#    #+#             */
-/*   Updated: 2025/07/28 15:17:58 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:54:05 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@ void	ghost_draw_col(t_game *game, t_image *text, int k, int tex_x)
 	float		shade;
 	float		intensity;
 	int			idx;
-	int			max;
 
-	if (game->ray->dist > 10)
-		max = 0;
-	else
-		max = 10 - game->ray->dist; // trouver la solution
 	while (k < game->ray->draw_end)
 	{
 		game->ray->color_x = (float)k - WIDTH_WINDOW / 3 - 0;
@@ -89,38 +84,42 @@ int	raycasting_ghost_calc(t_game *game, float x, float y,
 			/ game->ray->transform_y));
 }
 
-void	raycasting_ghost(t_game *game, t_raycasting *ray, float *z_buffer)
+void	init_calc_ghost(t_game *game, t_raycasting *ray, float *z_buffer, int i)
 {
 	int	sprite_screen_x;
+
+	ray->dist = (game->player->pos_x - game->bot[i].pos_x)
+		+ (game->player->pos_y - game->bot[i].pos_y);
+	if (ray->dist < 0)
+		ray->dist *= -1;
+	sprite_screen_x = raycasting_ghost_calc(game, game->bot[i].pos_x,
+			game->bot[i].pos_y, 0);
+	ray->sprite_height = abs((int)(HEIGHT_WINDOW
+				/ ray->transform_y)) / 2;
+	ray->draw_start = -ray->sprite_height / 2 + HEIGHT_WINDOW
+		/ 2 + ray->sprite_height;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->sprite_height / 2 + HEIGHT_WINDOW
+		/ 2 + ray->sprite_height;
+	if (ray->draw_end >= HEIGHT_WINDOW)
+		ray->draw_end = HEIGHT_WINDOW - 1;
+	ray->sprite_width = abs((int)(HEIGHT_WINDOW
+				/ ray->transform_y)) / 2;
+	ray->len = find_draw_start(game, sprite_screen_x);
+	ghost_draw_raw(game, game->text, find_draw_end(game, sprite_screen_x),
+		z_buffer);
+}
+
+void	raycasting_ghost(t_game *game, t_raycasting *ray, float *z_buffer)
+{
 	int	i;
 
 	i = 0;
 	while (ray->count_bot > i)
 	{
 		if (game->bot[i].life == 1)
-		{
-			ray->dist = (game->player->pos_x - game->bot[i].pos_x)
-				+ (game->player->pos_y - game->bot[i].pos_y);
-			if (ray->dist < 0)
-				ray->dist *= -1;
-			sprite_screen_x = raycasting_ghost_calc(game, game->bot[i].pos_x,
-					game->bot[i].pos_y, 0);
-			ray->sprite_height = abs((int)(HEIGHT_WINDOW
-						/ ray->transform_y)) / 2;
-			ray->draw_start = -ray->sprite_height / 2 + HEIGHT_WINDOW
-				/ 2 + ray->sprite_height;
-			if (ray->draw_start < 0)
-				ray->draw_start = 0;
-			ray->draw_end = ray->sprite_height / 2 + HEIGHT_WINDOW
-				/ 2 + ray->sprite_height;
-			if (ray->draw_end >= HEIGHT_WINDOW)
-				ray->draw_end = HEIGHT_WINDOW - 1;
-			ray->sprite_width = abs((int)(HEIGHT_WINDOW
-						/ ray->transform_y)) / 2;
-			ray->len = find_draw_start(game, sprite_screen_x);
-			ghost_draw_raw(game, game->text, find_draw_end(game, sprite_screen_x),
-				z_buffer);
-		}
+			init_calc_ghost(game, ray, z_buffer, i);
 		i++;
 	}
 }

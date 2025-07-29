@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/29 16:44:54 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:59:24 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ void					sprite_draw_raw(t_game *game, int len, int draw_end_x,
 void					raycasting_sprite_condition(t_game *game, int x, int y,
 							float *z_buffer);
 int						draw_size_wall_forced(t_game *g, int i);
-int						raycasting_wall_print(t_game *game, int i, float *z_buffer);
+int						raycasting_wall_print(t_game *game, int i,
+							float *z_buffer);
 
 /* ************************************************************************** */
 /* Views                                                                      */
@@ -175,6 +176,7 @@ void					create_window(t_graphics *graphics);
 
 void					spawn_enemy(t_game *game);
 void					enemy_manager(t_game *game);
+void					del_ghost(t_game *game);
 
 /* ************************************************************************** */
 /* Events                                                                     */

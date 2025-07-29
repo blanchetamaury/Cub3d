@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   manager.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 10:57:32 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/29 12:50:52 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/29 16:59:08 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	del_ghost(t_game *game)
+{
+	int	i;
+	int	tmp_x;
+	int	tmp_y;
+
+	i = 0;
+	while (i < game->ray->count_bot)
+	{
+		tmp_x = game->ray->map_x - game->bot[i].pos_x;
+		tmp_y = game->ray->map_y - game->bot[i].pos_y;
+		if (tmp_x < 0)
+			tmp_x *= -1;
+		if (tmp_y < 0)
+			tmp_y *= -1;
+		if (tmp_x < 1 && tmp_y < 1)
+			game->bot[i].life = 0;
+		i++;
+	}
+}
 
 static void	enemy_die(t_game *game, int bot_index)
 {
