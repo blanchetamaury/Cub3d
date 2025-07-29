@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/28 10:43:12 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/29 10:45:14 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	draw_wall(t_game *game, int i, t_raycasting *ray)
 		else if (ray->door && game->map->map[ray->map_y][ray->map_x] == 'O')
 			ray->tex_y = 110;
 		else if (game->map->map[ray->map_y][ray->map_x] == 'Q')
-			ray->tex_y = (int)ray->tex_pos & (128 - 1);
+			ray->tex_y = (int)ray->tex_pos & (game->text[EXIT].height - 1);
 		ray->tex_pos += ray->tex_step;
 		if (!ray->side)
 			draw_wall_face_west_and_east(game->ray, i, game->text, game);
