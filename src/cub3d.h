@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/28 15:17:20 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/29 12:35:25 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void					sprite_draw_raw(t_game *game, int len, int draw_end_x,
 void					raycasting_sprite_condition(t_game *game, int x, int y,
 							float *z_buffer);
 int						draw_size_wall_forced(t_game *g, int i);
+int						raycasting_wall_print(t_game *game, int i, float *z_buffer);
 
 /* ************************************************************************** */
 /* Views                                                                      */

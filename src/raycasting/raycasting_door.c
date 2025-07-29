@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:22:54 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/28 10:48:55 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/29 15:42:18 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,18 @@ static int	find_door(t_game *g, int *status, float wall_dist, int i)
 	while (1)
 	{
 		if (g->map->map[g->ray->map_y][g->ray->map_x] == 'P'
-			|| g->map->map[g->ray->map_y][g->ray->map_x] == 'C'
-			|| g->map->map[g->ray->map_y][g->ray->map_x] == 'M'
-			|| g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
-		{
+				|| g->map->map[g->ray->map_y][g->ray->map_x] == 'C'
+				|| g->map->map[g->ray->map_y][g->ray->map_x] == 'M')
 			if (check_door_hit(g, side, status, wall_dist))
 				return (find_door_condition(g, i, side));
-		}
+		if (g->ray->map_y != (int)g->player->pos_y && side == 1)
+			if (g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
+				if (check_door_hit(g, side, status, wall_dist))
+					return (find_door_condition(g, i, side));
+		if (g->ray->map_x != (int)g->player->pos_x && side == 0)
+			if (g->map->map[g->ray->map_y][g->ray->map_x] == 'O')
+				if (check_door_hit(g, side, status, wall_dist))
+					return (find_door_condition(g, i, side));
 		if (g->map->map[g->ray->map_y][g->ray->map_x] == '1'
 			|| g->map->map[g->ray->map_y][g->ray->map_x] == 'Q')
 			break ;
@@ -105,7 +110,9 @@ void	raycasting_door(t_game *game, float *z_buffer)
 			game->ray->len = game->ray->draw_start;
 			draw_wall(game, i, game->ray);
 			z_buffer[i] = game->ray->perpwalldist;
+			i = raycasting_wall_print(game, i, z_buffer);
 		}
-		i++;
+		else
+			i++;
 	}
 }

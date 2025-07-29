@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:54:16 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/28 15:37:04 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/29 12:35:10 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	draw_size_wall(t_game *game, int i)
 	return (lineheight);
 }
 
-static int	raycasting_wall_print(t_game *game, int i, float *z_buffer)
+int	raycasting_wall_print(t_game *game, int i, float *z_buffer)
 {
 	static mlx_color	color[HEIGHT_WINDOW * 1];
 	int					count;
