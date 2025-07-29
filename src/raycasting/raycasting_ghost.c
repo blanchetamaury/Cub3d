@@ -24,6 +24,7 @@ void	ghost_draw_col(t_game *game, t_image *text, int k, int tex_x)
 		max = 0;
 	else
 		max = 10 - game->ray->dist; // trouver la solution
+	(void)max;
 	while (k < game->ray->draw_end)
 	{
 		game->ray->color_x = (float)k - WIDTH_WINDOW / 3 - 0;
