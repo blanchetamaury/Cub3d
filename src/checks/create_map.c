@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/28 11:23:24 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:09:04 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	check_line_map(char *str)
 	char	*find;
 
 	i = 0;
+	if (ft_strlen(str) == 1 && str[0] == '\n')
+		return (2);
 	if (is_bonus())
 		find = " 10NSEWPQ\n";
 	else
@@ -50,14 +52,15 @@ static void	close_file(t_game *game, char *tmp)
 	}
 }
 
-static int	write_map(t_game *game, char *tmp, int *status)
+static int	write_map(t_game *game, int *status)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
+	tmp = get_next_line(game->map->fd_map);
 	while (tmp != NULL)
 	{
-		tmp = get_next_line(game->map->fd_map);
 		if (tmp != NULL && check_line_map(tmp) == 0)
 		{
 			*status = 0;
@@ -70,40 +73,44 @@ static int	write_map(t_game *game, char *tmp, int *status)
 			i++;
 		}
 		free(tmp);
+		tmp = get_next_line(game->map->fd_map);
 	}
 	game->map->map = ft_push(game->map->map, NULL);
 	close_file(game, tmp);
 	return (i);
 }
 
-static int	create_map(t_game *game)
+static int	create_map(t_game *game, int status_line, int status)
 {
-	int		status;
 	char	*tmp;
 
-	status = 1;
 	game->map->map = ft_malloc_h(2);
 	if (game->map->map == NULL)
 		return (close(game->map->fd_map));
 	tmp = get_next_line(game->map->fd_map);
 	while (tmp != NULL)
 	{
-		if (check_line_map(tmp))
+		status_line = check_line_map(tmp);
+		if (status_line == 0)
 		{
 			free(tmp);
-			break ;
+			return (log_error("Too many texture found."
+				"All of these are required : NO, SO, WE, EA, F, C"));
 		}
+		else if (status_line)
+			break ;
 		free(tmp);
 		tmp = get_next_line(game->map->fd_map);
 	}
-	if (write_map(game, tmp, &status) == 0 || status == 0)
+	free(tmp);
+	if (write_map(game, &status) == 0 || status == 0)
 		return (0);
 	return (1);
 }
 
 int	get_map(t_game *game)
 {
-	if (create_map(game) == 0)
+	if (create_map(game, 0, 1) == 0)
 		return (0);
 	return (1);
 }

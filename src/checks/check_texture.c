@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:21:50 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 21:39:14 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:06:27 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static int	check_texture_wall_condition(t_image *text, char *tmp, int count)
 {
+	int i;
+
+	i = -1;
 	if (!ft_strncmp(tmp, "EA ", 3) && text[EAST].path == NULL && ++count)
 		text[EAST].path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
 	else if (!ft_strncmp(tmp, "WE ", 3) && text[WEST].path == NULL && ++count)
@@ -26,6 +29,10 @@ static int	check_texture_wall_condition(t_image *text, char *tmp, int count)
 		text[GROUND].path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
 	else if (!ft_strncmp(tmp, "C ", 2) && text[SKY].path == NULL && ++count)
 		text[SKY].path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+	else
+		while (tmp[++i])
+			if (ft_isprint(tmp[i]) && ++count)
+				break ;
 	return (count);
 }
 
@@ -45,8 +52,8 @@ static int	check_texture_all(t_game *game)
 	}
 	if (count != 6)
 	{
-		log_error("A texture is missing.\
-			All of these are required : NO, SO, WE, EA, F, C");
+		log_error("A texture is missing."
+			"All of these are required : NO, SO, WE, EA, F, C");
 		return (0);
 	}
 	return (1);
