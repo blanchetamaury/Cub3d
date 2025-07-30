@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:22:17 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/08 13:41:18 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/30 14:07:21 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),
 			void (*del)(void *));
+
+void	ft_freetab(char **split);
 
 void	*ft_realloc(void *ptr, size_t size);
 void	*ft_realloc_h(void *ptr, size_t new_size);
