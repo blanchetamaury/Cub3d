@@ -97,8 +97,9 @@ int	verif_comma(char *str)
 			count++;
 		i++;
 	}
-	if (count == 3)
+	if (count == 2)
 		return (1);
+	log_error("Invalid color format. Expected 3 components (R,G,B).");
 	return (0);
 }
 
