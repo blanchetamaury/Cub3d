@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:21:50 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/30 13:20:00 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:09:25 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_texture_wall_condition(t_image *text, char *tmp, int count)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!ft_strncmp(tmp, "EA ", 3) && text[EAST].path == NULL && ++count)

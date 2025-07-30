@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:06:20 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/29 16:59:24 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:10:53 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ void					set_region_opacity(mlx_color *color, int size,
 							uint8_t opacity);
 void					reset_game(t_game *game);
 int						get_current_ghost_texture(t_game *game);
+int						verif_comma(char *str);
 
 /* ************************************************************************** */
 /* Checks                                                                     */

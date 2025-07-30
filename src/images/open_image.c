@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:57:29 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/30 13:45:35 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/07/30 15:10:15 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,6 @@ static void	image_file(t_image *image, mlx_context init)
 			&image->height);
 	if (image->img == NULL)
 		log_error("Failed to open image file.");
-}
-
-int	verif_comma(char *str)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == ',')
-			count++;
-		i++;
-	}
-	if (count == 2)
-		return (1);
-	log_error("Invalid color format. Expected 3 components (R,G,B).");
-	return (0);
 }
 
 int	open_image(t_image *image, mlx_context init)
