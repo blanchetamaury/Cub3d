@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:21:50 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/30 11:06:27 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:20:00 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	check_texture_all(t_game *game)
 	}
 	if (count != 6)
 	{
-		log_error("A texture is missing."
+		log_error("A texture is missing. "
 			"All of these are required : NO, SO, WE, EA, F, C");
 		return (0);
 	}

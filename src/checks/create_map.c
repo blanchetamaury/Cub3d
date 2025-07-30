@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/30 11:09:04 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:21:18 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ static int	create_map(t_game *game, int status_line, int status)
 		if (status_line == 0)
 		{
 			free(tmp);
-			return (log_error("Too many texture found."
-				"All of these are required : NO, SO, WE, EA, F, C"));
+			return (log_error("Too many texture found. "
+				"All of these are required : NO, SO, WE, EA, F, C") - 72);
 		}
 		else if (status_line)
 			break ;
