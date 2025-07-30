@@ -16,8 +16,6 @@ void	clean_image(t_image *image, mlx_context init)
 {
 	if (init && image->img)
 		mlx_destroy_image(init, image->img);
-	if (image->path)
-		free(image->path);
-	if (image->colors)
-		free(image->colors);
+	free(image->path);
+	free(image->colors);
 }

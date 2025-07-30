@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:57:29 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/30 13:40:04 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:45:35 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,25 @@ static void	color_image(t_image *image, mlx_context init)
 	mlx_color	color;
 
 	tab = ft_split(image->path, ',');
-	if (!tab)
-		return ;
-	if (check_color(tab) == 1)
+	if (!tab || check_color(tab) == 1)
 		return ;
 	if (ft_atoi_8bit(tab[0]) < 0 || ft_atoi_8bit(tab[1]) < 0
 		|| ft_atoi_8bit(tab[2]) < 0)
 	{
 		log_error("Color values must be between 0 and 255.");
-		return ;
+		return (ft_freetab(tab));
 	}
 	create_mlx_image(image, init);
 	if (image->img == NULL)
 	{
 		log_error("Failed to create image from color.");
-		return ;
+		return (ft_freetab(tab));
 	}
 	color.r = ft_atoi_8bit(tab[0]);
 	color.g = ft_atoi_8bit(tab[1]);
 	color.b = ft_atoi_8bit(tab[2]);
 	color.a = 255;
+	ft_freetab(tab);
 	mlx_set_image_pixel(init, image->img, 0, 0, color);
 }
 
@@ -118,7 +117,7 @@ int	open_image(t_image *image, mlx_context init)
 	{
 		type = 2;
 		if (verif_comma(image->path) == 0)
-			return (2);
+			return (type);
 		color_image(image, init);
 	}
 	image->colors = ft_calloc(image->width * image->height, sizeof(mlx_color));
