@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:57:29 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/30 13:35:37 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:40:04 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	open_image(t_image *image, mlx_context init)
 	{
 		type = 2;
 		if (verif_comma(image->path) == 0)
-			return (type);
+			return (2);
 		color_image(image, init);
 	}
 	image->colors = ft_calloc(image->width * image->height, sizeof(mlx_color));
