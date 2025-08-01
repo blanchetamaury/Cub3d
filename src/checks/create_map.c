@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/08/01 16:20:55 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:51:45 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ static int	write_map(t_game *game, int *status, char *tmp)
 		}
 		if (tmp != NULL && ft_strlen(tmp) > 0)
 		{
-			game->map->map = ft_push(game->map->map, ft_strtrim(tmp, "\n"));
+			if (tmp != NULL && ft_strlen(tmp) > 1)
+				game->map->map = ft_push(game->map->map, ft_strtrim(tmp, "\n"));
+			else
+				game->map->map = ft_push(game->map->map, ft_strdup(tmp));
 			i++;
 		}
 		free(tmp);

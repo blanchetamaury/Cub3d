@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_door.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 09:54:04 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/26 12:51:35 by amaury           ###   ########.fr       */
+/*   Updated: 2025/08/01 17:03:47 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	is_valid_door(t_game *game, int x, int y)
 {
 	if (y < 0 || !game->map->map[y + 1] || x < 0)
 		return (0);
-	if (game->map->map[y - 1][x] == '1' && game->map->map[y + 1][x] == '1')
+	if ((int)ft_strlen(game->map->map[y - 1]) >= x && (int)ft_strlen(game->map->map[y + 1]) >= x  && game->map->map[y - 1][x] == '1' && game->map->map[y + 1][x] == '1')
 		return (1);
 	if (game->map->map[y][x - 1] == '1' && game->map->map[y][x + 1] == '1')
 		return (1);
