@@ -159,6 +159,7 @@ clean:
 
 fclean: clean
 	make -C libs/libft fclean
+	make -C libs/MacroLibX fclean
 	rm -f $(NAME)
 
 re: fclean all
