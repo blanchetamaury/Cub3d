@@ -16,7 +16,7 @@ int	log_error(const char *message)
 {
 	int	len;
 
-	len = write(2, "\e[31;1mError\e[0m\n", 20);
+	len = write(2, "\e[31;1mError\e[0m\n", 17);
 	if (message)
 		len += write(2, message, ft_strlen(message));
 	else
