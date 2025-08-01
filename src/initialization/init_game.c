@@ -23,6 +23,12 @@ t_game	*init_game(void)
 			WIDTH_WINDOW, HEIGHT_WINDOW);
 	game->img[RENDER_TMP] = mlx_new_image(game->graphics->init,
 			WIDTH_WINDOW, HEIGHT_WINDOW);
+	if (!game->img[RENDER] || !game->img[RENDER_TMP])
+	{
+		log_error("Failed to create render images.");
+		clean_game(game);
+		return (NULL);
+	}
 	game->player = init_player();
 	game->ray = init_raycasting();
 	game->events = init_events();
