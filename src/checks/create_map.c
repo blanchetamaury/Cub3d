@@ -108,7 +108,7 @@ static int	create_map(t_game *game, int *status_line, int status)
 
 int	get_map(t_game *game)
 {
-	int status_line;
+	int	status_line;
 
 	status_line = 0;
 	if (create_map(game, &status_line, 1) == 0)
