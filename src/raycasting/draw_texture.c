@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/29 16:44:32 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/01 15:36:21 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	draw_wall_face_north_and_south(t_raycasting *ray, int i,
 		tmp = text[DOOR].colors[ray->tex_y * text[DOOR].width + ray->tex_x];
 	else if (game->map->map[ray->map_y][ray->map_x] == 'Q')
 		tmp = text[EXIT].colors[ray->tex_y * text[EXIT].width + ray->tex_x];
-	else if (ray->step_y < 0)
+	else if (ray->step_y > 0)
 		tmp = text[NORTH].colors[ray->tex_y * text[NORTH].width + ray->tex_x];
 	else
 		tmp = text[SOUTH].colors[ray->tex_y * text[SOUTH].width + ray->tex_x];
@@ -94,7 +94,7 @@ static void	draw_wall_face_west_and_east(t_raycasting *ray, int i,
 		tmp = text[DOOR].colors[ray->tex_y * text[DOOR].width + ray->tex_x];
 	else if (game->map->map[ray->map_y][ray->map_x] == 'Q')
 		tmp = text[EXIT].colors[ray->tex_y * text[EXIT].width + ray->tex_x];
-	else if (ray->step_x < 0)
+	else if (ray->step_x > 0)
 		tmp = text[WEST].colors[ray->tex_y * text[WEST].width + ray->tex_x];
 	else
 		tmp = text[EAST].colors[ray->tex_y * text[EAST].width + ray->tex_x];
@@ -110,8 +110,11 @@ void	draw_wall(t_game *game, int i, t_raycasting *ray)
 {
 	while (game->ray->len < ray->draw_end)
 	{
-		ray->tex_y = (int)ray->tex_pos & (get_face_height(ray, game->text) - 1);
-		if (ray->door && game->map->map[ray->map_y][ray->map_x] == 'M')
+		if (game->map->map[ray->map_y][ray->map_x] == '1')
+			ray->tex_y = (int)ray->tex_pos & (get_face_height(ray, game->text) - 1);
+		else if (ray->door && game->map->map[ray->map_y][ray->map_x] == 'P')
+			ray->tex_y = (int)ray->tex_pos & (game->text[DOOR].height - 1);
+		else if (ray->door && game->map->map[ray->map_y][ray->map_x] == 'M')
 			ray->tex_y += ray->frame * 2;
 		else if (ray->door && game->map->map[ray->map_y][ray->map_x] == 'C')
 			ray->tex_y += 110 - (ray->frame * 2);
