@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:57:29 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/30 15:10:15 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:45:35 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	color_image(t_image *image, mlx_context init)
 
 	tab = ft_split(image->path, ',');
 	if (!tab || check_color(tab) == 1)
-		return ;
+		return (ft_freetab(tab));
 	if (ft_atoi_8bit(tab[0]) < 0 || ft_atoi_8bit(tab[1]) < 0
 		|| ft_atoi_8bit(tab[2]) < 0)
 	{
