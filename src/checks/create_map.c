@@ -77,7 +77,7 @@ static int	write_map(t_game *game, int *status)
 	return (i);
 }
 
-static int	create_map(t_game *game, int status_line, int status)
+static int	create_map(t_game *game, int *status_line, int status)
 {
 	char	*tmp;
 
@@ -87,15 +87,15 @@ static int	create_map(t_game *game, int status_line, int status)
 	tmp = get_next_line(game->map->fd_map);
 	while (tmp != NULL)
 	{
-		status_line = check_line_map(tmp);
-		if (status_line == 0)
+		*status_line = check_line_map(tmp);
+		if (*status_line == 0)
 		{
 			free(tmp);
 			log_error("Too many texture found. "
 				"All of these are required : NO, SO, WE, EA, F, C");
 			return (0);
 		}
-		else if (status_line)
+		if (*status_line)
 			break ;
 		free(tmp);
 		tmp = get_next_line(game->map->fd_map);
@@ -108,9 +108,13 @@ static int	create_map(t_game *game, int status_line, int status)
 
 int	get_map(t_game *game)
 {
-	if (create_map(game, 0, 1) == 0)
+	int status_line;
+
+	status_line = 0;
+	if (create_map(game, &status_line, 1) == 0)
 	{
-		log_error("Map not found");
+		if (status_line == 0)
+			log_error("Map not found");
 		return (0);
 	}
 	return (1);
