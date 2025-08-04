@@ -6,11 +6,51 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:30:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/23 10:01:59 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/08/04 16:39:48 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static int	check_char(char c)
+{
+	char	*str;
+	int		i;
+
+	str = "NESW";
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	check_player(t_game *game)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (game->map->map[i])
+	{
+		j = 0;
+		while (game->map->map[i][j])
+		{
+			if (check_char(game->map->map[i][j]) == 0)
+				count++;
+			j++;
+		}
+		i++;
+	}
+	if (count == 1)
+		return (0);
+	return (1);
+}
 
 static int	check_name_map(char *name, t_game *game)
 {
@@ -44,6 +84,8 @@ int	check_file_map(char **argv, t_game *game)
 		return (1);
 	if (check_map(game) == 0)
 		return (1);
+	if (check_player(game) == 1)
+		return (log_error("Too many player in map."));
 	check_door(game);
 	init_player_pos(game);
 	ft_stats(game->map->map, &game->map->size, &game->map->cap);

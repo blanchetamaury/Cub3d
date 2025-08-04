@@ -6,11 +6,20 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:21:50 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/30 15:09:25 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:06:45 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+char	*new_string(char *str)
+{
+	char	*new;
+
+	new = ft_strtrim(str, " ");
+	free(str);
+	return (new);
+}
 
 static int	check_texture_wall_condition(t_image *text, char *tmp, int count)
 {
@@ -26,9 +35,9 @@ static int	check_texture_wall_condition(t_image *text, char *tmp, int count)
 	else if (!ft_strncmp(tmp, "NO ", 3) && text[NORTH].path == NULL && ++count)
 		text[NORTH].path = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
 	else if (!ft_strncmp(tmp, "F ", 2) && text[GROUND].path == NULL && ++count)
-		text[GROUND].path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+		text[GROUND].path = new_string(ft_substr(tmp, 2, ft_strlen(tmp) - 3));
 	else if (!ft_strncmp(tmp, "C ", 2) && text[SKY].path == NULL && ++count)
-		text[SKY].path = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+		text[SKY].path = new_string(ft_substr(tmp, 2, ft_strlen(tmp) - 3));
 	else
 		while (tmp[++i])
 			if (ft_isprint(tmp[i]) && ++count)
