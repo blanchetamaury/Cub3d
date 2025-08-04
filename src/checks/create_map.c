@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/08/04 11:40:50 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/04 17:30:20 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ static int	create_map(t_game *game, int *status_line, int status)
 		free(tmp);
 		tmp = get_next_line(game->map->fd_map);
 	}
-	if (write_map(game, &status, tmp) == 0 || status == 0)
+	if (write_map(game, &status, tmp) == 0 && log_error("Map not found"))
 		return (0);
-	return (1);
+	return (status != 0);
 }
 
 int	get_map(t_game *game)
@@ -112,11 +112,6 @@ int	get_map(t_game *game)
 
 	status_line = 0;
 	if (create_map(game, &status_line, 1) == 0)
-	{
-		if (status_line == 0)
-			return (0);
-		log_error("Map not found");
 		return (0);
-	}
 	return (1);
 }
