@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:38:22 by amblanch          #+#    #+#             */
-/*   Updated: 2025/08/01 15:36:21 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:49:14 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ void	draw_wall(t_game *game, int i, t_raycasting *ray)
 	while (game->ray->len < ray->draw_end)
 	{
 		if (game->map->map[ray->map_y][ray->map_x] == '1')
-			ray->tex_y = (int)ray->tex_pos & (get_face_height(ray, game->text) - 1);
+			ray->tex_y = (int)ray->tex_pos
+				& (get_face_height(ray, game->text) - 1);
 		else if (ray->door && game->map->map[ray->map_y][ray->map_x] == 'P')
 			ray->tex_y = (int)ray->tex_pos & (game->text[DOOR].height - 1);
 		else if (ray->door && game->map->map[ray->map_y][ray->map_x] == 'M')

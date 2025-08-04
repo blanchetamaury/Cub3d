@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 12:39:49 by amblanch          #+#    #+#             */
-/*   Updated: 2025/08/01 17:08:44 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:47:00 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	fill(char **map, int x, int y, int status)
 	ft_stats(map, &size, &cap);
 	if (status == 0)
 		return (0);
-	if (status == 1 &&((map[y] == NULL || y >= size || y < 0 || x >= (int)ft_strlen(map[y])
+	if (status == 1 && ((map[y] == NULL || y >= size || y < 0
+				|| x >= (int)ft_strlen(map[y])
 				|| x < 0) || check_player(map[y][x]) == 0))
 		return (0);
 	if (y > size || y < 0 || x > (int)ft_strlen(map[y]) || x < 0

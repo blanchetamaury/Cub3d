@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:09:04 by amblanch          #+#    #+#             */
-/*   Updated: 2025/08/01 16:51:45 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:40:50 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ int	get_map(t_game *game)
 	if (create_map(game, &status_line, 1) == 0)
 	{
 		if (status_line == 0)
-			log_error("Map not found");
+			return (0);
+		log_error("Map not found");
 		return (0);
 	}
 	return (1);
