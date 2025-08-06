@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_face.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:40:46 by amblanch          #+#    #+#             */
-/*   Updated: 2025/07/27 11:55:06 by amaury           ###   ########.fr       */
+/*   Updated: 2025/08/05 12:49:24 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	get_face(int side, int step_x, int step_y)
 {
 	if (side == 0)
 	{
-		if (step_x < 0)
+		if (step_x > 0)
 			return (3);
 		else
 			return (1);
 	}
 	else
 	{
-		if (step_y < 0)
+		if (step_y > 0)
 			return (0);
 		else
 			return (2);
