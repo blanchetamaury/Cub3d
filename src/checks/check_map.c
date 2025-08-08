@@ -58,6 +58,8 @@ static int	check_name_map(char *name, t_game *game)
 	int			pos;
 	const char	tab[4] = ".cub";
 
+	if (ft_strlen(name) < 4)
+		return (1);
 	pos = 3;
 	len = ft_strlen(name) - 1;
 	while (len > 0 && pos > 0)
