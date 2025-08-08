@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:21:50 by amblanch          #+#    #+#             */
-/*   Updated: 2025/08/04 15:06:45 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/08 10:33:46 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_texture_wall_condition(t_image *text, char *tmp, int count)
 	else
 		while (tmp[++i])
 			if (ft_isprint(tmp[i]) && ++count)
-				break ;
+				return (-1);
 	return (count);
 }
 
@@ -55,6 +55,12 @@ static int	check_texture_all(t_game *game)
 	while (tmp != NULL && count < 6)
 	{
 		count = check_texture_wall_condition(game->text, tmp, count);
+		if (count == -1)
+		{
+			free(tmp);
+			log_error("Invalid texture line.");
+			return (0);
+		}
 		free(tmp);
 		if (count < 6)
 			tmp = get_next_line(game->map->fd_map);
