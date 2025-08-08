@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:28:11 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/23 15:19:33 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/08/08 09:27:16 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	settings(int key, t_game *game)
 				game->ray->deltaangle = game->ray->fov / (float)WIDTH_WINDOW;
 				game->ray->deg_to_rad = 3.14 / 180.0f;
 			}
-			if (game->player->selected_item == 1)
+			if (game->player->selected_item == 1 && game->graphics->max_fps < 210)
 			{
 				game->graphics->max_fps += 30;
 				mlx_set_fps_goal(game->graphics->init, game->graphics->max_fps);
