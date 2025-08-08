@@ -6,7 +6,7 @@
 /*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:30:33 by amblanch          #+#    #+#             */
-/*   Updated: 2025/08/04 16:39:48 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/08 10:48:56 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int	check_file_map(char **argv, t_game *game)
 		return (1);
 	if (get_map(game) == 0)
 		return (1);
-	if (check_map(game) == 0)
-		return (1);
 	if (check_player(game) == 1)
 		return (log_error("Too many player in map."));
+	if (check_map(game) == 0)
+		return (1);
 	check_door(game);
 	init_player_pos(game);
 	ft_stats(game->map->map, &game->map->size, &game->map->cap);
