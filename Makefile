@@ -166,3 +166,5 @@ fclean: clean
 re: fclean all
 
 rebonus: fclean bonus
+
+.PHONY: $(NAME) all clean fclean bonus rebonus re $(LIBS) $(OBJDIR) 
