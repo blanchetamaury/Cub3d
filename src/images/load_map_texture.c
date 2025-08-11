@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map_texture.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:03:14 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/24 14:02:53 by amblanch         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:27:56 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static int	open_wall(t_image *text, mlx_context init)
 		log_error("Used color instead of image for wall texture.");
 		return (1);
 	}
+	if (!text[NORTH].img || !text[EAST].img
+		|| !text[SOUTH].img || !text[WEST].img)
+		return (1);
 	return (0);
 }
 #else
@@ -34,6 +37,9 @@ static int	open_wall(t_image *text, mlx_context init)
 	open_image(&text[EAST], init);
 	open_image(&text[SOUTH], init);
 	open_image(&text[WEST], init);
+	if (!text[NORTH].img || !text[EAST].img
+		|| !text[SOUTH].img || !text[WEST].img)
+		return (1);
 	return (0);
 }
 #endif
@@ -62,7 +68,7 @@ static int	open_ground_sky(t_image *text, mlx_context init)
 
 int	load_map_texture(t_game *game, mlx_context init)
 {
-	t_image		*text;
+	t_image	*text;
 
 	text = game->text;
 	if (open_wall(text, init))

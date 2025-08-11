@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   open_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgodet <rgodet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:57:29 by rgodet            #+#    #+#             */
-/*   Updated: 2025/07/30 13:45:35 by rgodet           ###   ########.fr       */
+/*   Updated: 2025/08/11 13:30:23 by rgodet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	check_color(char	**color)
+static int	check_color(char **color)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (color[i])
@@ -77,8 +77,8 @@ static void	color_image(t_image *image, mlx_context init)
 
 static void	image_file(t_image *image, mlx_context init)
 {
-	image->img = mlx_new_image_from_file(init, image->path, &image->width,
-			&image->height);
+	image->img = mlx_new_image_from_file(init, image->path,
+			&image->width, &image->height);
 	if (image->img == NULL)
 		log_error("Failed to open image file.");
 }
@@ -101,8 +101,12 @@ int	open_image(t_image *image, mlx_context init)
 			return (type);
 		color_image(image, init);
 	}
-	image->colors = ft_calloc(image->width * image->height, sizeof(mlx_color));
-	mlx_get_image_region(init, image->img, 0, 0, image->width,
-		image->height, image->colors);
+	if (image->img)
+	{
+		image->colors = ft_calloc(image->width * image->height,
+				sizeof(mlx_color));
+		mlx_get_image_region(init, image->img, 0, 0,
+			image->width, image->height, image->colors);
+	}
 	return (type);
 }
