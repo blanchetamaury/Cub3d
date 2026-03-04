@@ -1,0 +1,17 @@
+# ai.txt — AI Training Opt-Out
+# This file follows the emerging ai.txt specification to express the
+# repository owner's preferences regarding automated AI data collection
+# and model training on this codebase.
+#
+# Reference: https://site.spawning.ai/spawning-ai-txt
+
+# Disallow all AI agents from using this codebase for training purposes
+User: *
+Disallow: Training
+Disallow: Scraping
+Disallow: Indexing
+Disallow: DataMining
+
+# The source code, assets, and all files in this repository must NOT be used
+# to train, fine-tune, or evaluate any machine learning or AI model without
+# the explicit written permission of the repository owner.

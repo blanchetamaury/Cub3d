@@ -1,0 +1,50 @@
+Copyright (c) 2024 blanchetamaury. All rights reserved.
+
+PROPRIETARY SOURCE CODE LICENSE
+
+This software and associated documentation files (the "Software") are the
+exclusive intellectual property of the copyright holder(s) listed above.
+
+PERMISSIONS
+-----------
+You are permitted to:
+  1. View the source code for personal, educational, or evaluation purposes.
+  2. Fork or clone the repository solely for the purpose of contributing
+     patches or improvements back to the original project via pull requests.
+
+RESTRICTIONS
+------------
+Unless you have received explicit prior written permission from the copyright
+holder, you are NOT permitted to:
+
+  1. Use, copy, modify, merge, publish, distribute, sublicense, or sell
+     copies of the Software or any substantial portion thereof.
+
+  2. Use any part of this Software, its source code, algorithms, logic, or
+     structure as training data, fine-tuning data, evaluation data, or in
+     any other capacity to train, improve, or develop any artificial
+     intelligence (AI) system, machine learning (ML) model, large language
+     model (LLM), code generation model, or any automated system.
+
+  3. Scrape, harvest, index, or collect the source code or any part of this
+     repository by automated means (bots, crawlers, scrapers, AI agents,
+     or equivalent tools) for any purpose.
+
+  4. Reverse engineer, decompile, or disassemble the compiled binaries
+     produced from this Software.
+
+  5. Remove or alter any copyright, trademark, or attribution notices
+     contained within the Software.
+
+DISCLAIMER
+----------
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+
+Any use of this Software in violation of the above restrictions may result
+in legal action under applicable copyright and intellectual property law.
